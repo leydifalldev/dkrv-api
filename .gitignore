@@ -1,0 +1,52 @@
+src/
+pkg/
+bin/
+dkrv-core/vendor
+search-engine/node_modules/
+
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+dkrv-admin/dist
+dkrv-admin/tmp
+dkrv-admin/out-tsc
+# Only exists if Bazel was run
+dkrv-admin/bazel-out
+
+# dependencies
+dkrv-admin/node_modules
+
+# profiling files
+dkrv-admin/chrome-profiler-events.json
+dkrv-admin/speed-measure-plugin.json
+
+# IDEs and editors
+dkrv-admin/.idea
+dkrv-admin/.project
+dkrv-admin/.classpath
+dkrv-admin/.c9/
+dkrv-admin/*.launch
+dkrv-admin/.settings/
+dkrv-admin/*.sublime-workspace
+
+# IDE - VSCode
+dkrv-admin/.vscode/*
+dkrv-admin/!.vscode/settings.json
+dkrv-admin/!.vscode/tasks.json
+dkrv-admin/!.vscode/launch.json
+dkrv-admin/!.vscode/extensions.json
+dkrv-admin/.history/*
+
+# misc
+dkrv-admin/.sass-cache
+dkrv-admin/connect.lock
+dkrv-admin/coverage
+dkrv-admin/libpeerconnection.log
+dkrv-admin/npm-debug.log
+dkrv-admin/yarn-error.log
+dkrv-admin/testem.log
+dkrv-admin/typings
+
+# System Files
+dkrv-admin/.DS_Store
+dkrv-admin/Thumbs.db

@@ -1,0 +1,27 @@
+{
+  "name": "search_engine",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./dist/server.js",
+  "scripts": {
+    "start": "ts-node src/server.ts",
+    "dev": "nodemon --watch 'src/**/*.ts' --ignore 'src/**/*.spec.ts' --exec 'ts-node' src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "compile": "protoc --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --js_out=import_style=commonjs,binary:./src/protos --ts_out=service=true:./src/protos ./src/protos/product.proto"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@elastic/elasticsearch": "^7.1.0",
+    "nodemon": "^1.19.1",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.2"
+  },
+  "dependencies": {
+    "@grpc/proto-loader": "^0.5.1",
+    "google-protobuf": "^3.9.0",
+    "grpc": "1.22.2",
+    "ts-protoc-gen": "^0.10.0"
+  }
+}

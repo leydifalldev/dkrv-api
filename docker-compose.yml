@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+  search-engine:
+    hostname: search-engine
+    build: ./search-engine
+    volumes: 
+      - ./search-engine:/usr/src/app:ro
+    ports: 
+      - '9500:5000'
+    networks: 
+      - dkrv-network
+    depends_on:
+      - elasticsearch_1
+    links:
+      - elasticsearch_1
+  dkrv-core:
+    hostname: dkrv-core
+    build: ./dkrv-core
+    container_name: 'dkrv-core'
+    restart: 'always'
+    volumes: 
+      - ./dkrv-core:/app
+    ports:
+      - '9000:9000'
+    networks: 
+      - dkrv-network
+    depends_on:
+      - search-engine
+    links:
+      - search-engine
+  elasticsearch_1:
+    hostname: elasticsearch_1
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
+    container_name: elasticsearch_1
+    environment:
+      - node.name=elasticsearch_1
+      - cluster.initial_master_nodes=elasticsearch_1
+      - cluster.name=docker-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch_1_data:/usr/share/elasticsearch/data
+    ports:
+      - '7200:9200'
+    networks:
+      - dkrv-network
+
+volumes:
+  elasticsearch_1_data:
+    driver: local
+  esdata02:
+    driver: local
+
+networks:
+  dkrv-network: {}
+
+   
