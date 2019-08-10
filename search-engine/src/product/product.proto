@@ -1,0 +1,76 @@
+syntax = "proto3";
+package product;
+option go_package = "product";
+
+message RequestEmpty {}
+
+message Gastronomie { string name = 1; }
+
+message Coordinate {
+  float lon = 1;
+  float lat = 2;
+}
+
+message Accompaniment { string name = 1; }
+
+message MenuLink { string id = 1; }
+
+message Picture { string src = 1; }
+
+message Schedule {
+  string date = 1;
+  string start_am = 2;
+  string end_am = 3;
+  string start_pm = 4;
+  string end_pm = 5;
+}
+
+message Product {
+  string name = 1;
+  string place_logo = 2;
+  int32 price = 3;
+  string phone = 4;
+  string description = 5;
+  repeated Gastronomie gastronomie = 6;
+  int32 cooking_time = 7;
+  Coordinate location = 8;
+  string address = 9;
+  string cpc = 10;
+  int32 like = 11;
+  repeated string recipes = 12;
+  repeated Accompaniment accompaniment = 13;
+  string place_name = 14;
+  string place_ref = 15;
+  MenuLink menus_link = 16;
+  int32 notation = 17;
+  int32 discount = 18;
+  string size = 19;
+  int32 quantity = 20;
+  int32 spicy_level = 21;
+  string category = 22;
+  repeated Picture picture = 23;
+  int32 main_picture = 24;
+  repeated Schedule schedule = 25;
+  string id = 26; 
+}
+
+message ProductAPIResponse {
+  int64 total = 1;
+  repeated Product data = 2;
+}
+
+message ID {
+  string id = 1;
+}
+
+message DeleteResponse {
+  string id = 1;
+  string msg = 2;
+}
+
+service ProductService {
+  rpc GetAll(RequestEmpty) returns (ProductAPIResponse);
+  rpc AddProduct(Product) returns (ID);
+  rpc UpdateProduct(Product) returns (Product);
+  rpc DeleteProduct(ID) returns (DeleteResponse);
+}
