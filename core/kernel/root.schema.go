@@ -1,7 +1,7 @@
 package kernel
 
 import (
-	"fmt"
+	"log"
 
 	"github.com/graphql-go/graphql"
 	"github.com/graphql-go/handler"
@@ -9,6 +9,7 @@ import (
 
 //GetGraphQLHandler return entrypoint for graphql
 func GetGraphQLHandler() *handler.Handler {
+	log.Println("GetGraphQLHandler")
 	schemaConfig := graphql.SchemaConfig{
 		Query: graphql.NewObject(graphql.ObjectConfig{
 			Name:   "RootQuery",
@@ -19,7 +20,7 @@ func GetGraphQLHandler() *handler.Handler {
 	schema, err := graphql.NewSchema(schemaConfig)
 
 	if err != nil {
-		fmt.Println("Failed to create new schema, error: %v", err)
+		log.Println("Failed to create new schema, error: %v", err)
 	}
 
 	httpHandler := handler.New(&handler.Config{

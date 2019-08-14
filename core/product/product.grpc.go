@@ -7,7 +7,8 @@ import (
 )
 
 //URL is the grpc esearch address
-var URL = "search-engine:5000"
+//var URL = "search-engine:5000"
+var URL = "0.0.0.0:5000"
 
 //StartGRPCService is the function for starting grpc service
 func StartGRPCService(uri string) {

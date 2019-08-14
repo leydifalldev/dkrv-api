@@ -1,13 +1,20 @@
 import { Injectable, OnModuleInit, HttpException, Logger } from '@nestjs/common';
 import * as elasticsearch from 'elasticsearch';
-import { ListResponse } from '../types/common.defs';
+import productMapping from '../product/product.mapping';
+import { SearchParams } from 'elasticsearch';
+import { ID, DeleteResponse, DetailResponse } from 'src/types/common.defs';
 
 @Injectable()
 export class ElasticService implements OnModuleInit {
   protected readonly esclient: elasticsearch.Client;
-  constructor() {
+  constructor(
+    private host: string,
+    private index: string,
+    private type: string,
+    private mapping: any,
+    ) {
     this.esclient = new elasticsearch.Client({
-      host: 'http://localhost:9200'/*'http://elasticsearch_1:9200'*/, // replace with your cluster endpoint
+      host: this.host, /*'http://elasticsearch_1:9200'*/
     });
   }
 
@@ -25,108 +32,39 @@ export class ElasticService implements OnModuleInit {
       });
   }
 
-  config() {
+  async config() {
     try {
-      this.esclient.indices.exists({ index: 'food' }, (err, res, status) => {
-        if (res) {
-          Logger.log('index already exists');
-        } else {
-          this.esclient.indices.create({
-            index: 'food',
-          }, (error: any, result: any, stat: any) => {
-            Logger.log(error, result, status);
-            this.putMapping();
-          });
+      const result = await this.esclient.indices.exists({ index: this.index });
+      if (result) {
+        Logger.log(this.index + 'index already exists');
+      } else {
+        Logger.log(this.index + ' does not exists ====> creating ...');
+        const createIndexResult = await this.esclient.indices.create({index: this.index});
+        if (createIndexResult && createIndexResult.acknowledged) {
+          try {
+            Logger.log(this.index + ' does not exists ====> creating ...');
+            const updateMappingResult = await this.putMapping(this.mapping);
+            Logger.log(this.index + ' creation result ====>');
+            Logger.log(updateMappingResult);
+          } catch (e) {
+            Logger.log(this.index + ' error ', e);
+          }
         }
-      });
+      }
     } catch (e) {
       Logger.log('Error to set config', e);
     }
   }
 
-  async putMapping() {
+  async putMapping(mappingSchema) {
     try {
       Logger.log('Creating Mapping index');
-      this.esclient.indices.putMapping({
-        index: 'food',
-        type: 'product',
-        body: {
-          properties: {
-            name: {
-              type: 'text',
-            },
-            place_logo: {
-              type: 'text',
-            },
-            price: {
-              type: 'long',
-            },
-            phone: {
-              type: 'text',
-            },
-            description: {
-              type: 'text',
-            },
-            cooking_time: {
-              type: 'integer',
-            },
-            location: {
-              type: 'geo_point',
-            },
-            address: {
-              type: 'text',
-            },
-            likes: {
-              type: 'integer',
-            },
-            recipes: {
-              type: 'nested',
-            },
-            place_name: {
-              type: 'text',
-            },
-            place_ref: {
-              type: 'text',
-            },
-            menus_link: {
-              type: 'nested',
-            },
-            notation: {
-              type: 'integer',
-            },
-            discount: {
-              type: 'float',
-            },
-            size: {
-              type: 'text',
-            },
-            quantity: {
-              type: 'text',
-            },
-            spicy_level: {
-              type: 'text',
-            },
-            category: {
-              type: 'text',
-            },
-            pictures: {
-              type: 'nested',
-            },
-            main_picture: {
-              type: 'integer',
-            },
-            schedule: {
-              type: 'nested',
-            },
-          },
-        },
-      }, (err, resp, status) => {
-        if (err) {
-          Logger.log(err, status);
+      const mappingResult = await this.esclient.indices.putMapping(mappingSchema);
+      if (mappingResult) {
+          Logger.log(mappingResult);
         } else {
-          Logger.log('Successfully Created Index', status, resp);
+          Logger.log('Successfully Created Index');
         }
-      });
     } catch (e) {
       Logger.log('Error=====>', e);
     }
@@ -136,18 +74,106 @@ export class ElasticService implements OnModuleInit {
     return this.esclient;
   }
 
-  async search(index: string, body: any): Promise<ListResponse> {
-    const result = await this.esclient.search({ index, body });
-    Logger.log('search result');
-    Logger.log(result);
-    const data = result.hits.hits.map((hit: any) => {
-      hit.id = hit._id;
-      return hit;
+  formatList(esresult) {
+    const data = esresult.hits.hits.map((hit: any) => {
+      hit._source.id = hit._id;
+      return hit._source;
     });
     const resp: any = {
       total: data.length,
       data,
     };
     return resp;
+  }
+
+  async search(params: any): Promise<any> {
+    const request: SearchParams = {
+      index: this.index,
+      type: this.type,
+      q: params.q,
+      from: params.from || 0,
+      size: params.size || 10,
+    };
+    const result = await this.esclient.search(request);
+    return this.formatList(result);
+  }
+
+  async add(params: any): Promise<ID> {
+    Logger.log(params);
+    const resp = await this.esclient.index({
+      index: this.index,
+      type: this.type,
+      refresh: 'true',
+      body: params,
+    });
+    Logger.log(resp);
+    return {
+      id: resp._id,
+    };
+  }
+
+  async update(params) {
+    try {
+      const resp = await this.esclient.update({
+        index: this.index,
+        type: this.type,
+        refresh: 'true',
+        id: params.id,
+        body: {
+          doc: params,
+        },
+      });
+      return resp;
+    } catch (e) {
+      Logger.log(e);
+    }
+  }
+
+  async delete(id): Promise<DeleteResponse> {
+    const resp = await this.esclient.delete({
+      index: this.index,
+      type: this.type,
+      refresh: 'true',
+      id,
+    });
+    return {
+      id,
+      msg: resp.result,
+    };
+  }
+
+  async getDetail(id: string): Promise<DetailResponse> {
+    try {
+    Logger.log(id);
+    const resp = await this.esclient.get({
+      index: this.index,
+      type: this.type,
+      id,
+    });
+    return {
+      status: 200,
+      error: null,
+      data: resp._source,
+    };
+    } catch (e) {
+      Logger.log(e);
+      this.searchErrorHandler(e);
+    }
+  }
+
+  searchErrorHandler(e) {
+    if (e.statusCode === 404) {
+      return {
+        status: 404,
+        error: 'Place Not Found',
+        data: [],
+      };
+    } else if (e.statusCode === 405) {
+      return {
+        status: 405,
+        error: 'No request id Found',
+        data: [],
+      };
+    }
   }
 }

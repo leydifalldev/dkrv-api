@@ -1,6 +1,6 @@
 syntax = "proto3";
-package product;
-option go_package = "product";
+package place;
+option go_package = "place";
 
 message RequestEmpty {}
 
@@ -13,8 +13,6 @@ message Coordinate {
 
 message Accompaniment { string name = 1; }
 
-message MenuLink { string id = 1; }
-
 message Picture { string src = 1; }
 
 message Schedule {
@@ -25,54 +23,54 @@ message Schedule {
   string end_pm = 5;
 }
 
-message Product {
+message Services {
   string name = 1;
-  string place_logo = 2;
-  int32 price = 3;
+}
+
+message Category {
+  string name = 1;
+}
+
+message Place {
+  string id = 1;
+  string name = 2;
+  string place_logo = 3;
   string phone = 4;
-  string description = 5;
-  repeated Gastronomie gastronomie = 6;
-  int32 cooking_time = 7;
+  string email = 5;
+  string description = 6;
+  repeated Gastronomie gastronomie = 7;
   Coordinate location = 8;
   string address = 9;
   string cpc = 10;
-  int32 like = 11;
-  repeated string recipes = 12;
-  repeated Accompaniment accompaniment = 13;
-  string place_name = 14;
-  string place_ref = 15;
-  MenuLink menus_link = 16;
-  int32 notation = 17;
-  int32 discount = 18;
-  string size = 19;
-  int32 quantity = 20;
-  int32 spicy_level = 21;
-  string category = 22;
-  repeated Picture picture = 23;
-  int32 main_picture = 24;
-  repeated Schedule schedule = 25;
-  string id = 26; 
+  int32 likes = 11;
+  int32 notation = 12;
+  string primary_category = 13;
+  repeated Picture pictures = 14;
+  int32 main_picture = 15;
+  repeated Schedule schedule = 16;
+  string zone = 17;
+  int32 travel_time = 18;
+  bool ocean_near = 19;
+  Services services = 20;
+  bool temporaly_place = 21;
+  Category categories = 22;
 }
 
-message ProductAPIResponse {
-  int64 total = 1;
-  repeated Product data = 2;
+message ID {
+  string id = 1;
 }
+
 message ListResponse {
   int32 status = 1;
   string error = 2;
   int64 total = 3;
-  repeated Product data = 4;
+  repeated Place data = 4;
 }
 
 message CreateResponse {
   int32 status = 1;
   string id = 2;
   string error = 3;
-}
-
-message ID {
-  string id = 1;
 }
 
 message DeleteResponse {
@@ -88,7 +86,7 @@ message UpdateResponse {
 message DetailResponse {
   int32 status = 1;
   string error = 2;
-  Product data = 4;
+  Place data = 4;
 }
 
 message SearchRequest {
@@ -97,10 +95,10 @@ message SearchRequest {
   int32 to = 3;
 }
 
-service ProductService {
+service PlaceService {
   rpc Search(SearchRequest) returns (ListResponse);
   rpc GetDetail(ID) returns (DetailResponse);
-  rpc AddProduct(Product) returns (CreateResponse);
-  rpc UpdateProduct(Product) returns (UpdateResponse);
-  rpc DeleteProduct(ID) returns (DeleteResponse);
+  rpc AddPlace(Place) returns (CreateResponse);
+  rpc UpdatePlace(Place) returns (UpdateResponse);
+  rpc DeletePlace(ID) returns (DeleteResponse);
 }

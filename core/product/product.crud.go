@@ -11,14 +11,16 @@ import (
 func GetAllProduct(conn *grpc.ClientConn) []*Product {
 	var products []*Product
 	client := NewProductServiceClient(conn)
-	result, _ := client.GetAll(context.Background(), &RequestEmpty{})
-	products = result.GetProducts()
+	req := &SearchRequest{Q: "Hello", From: 0, To: 10}
+	result, _ := client.Search(context.Background(), req)
+	products = result.GetData()
 	log.Println(result)
 	return products
 }
 
 //AddProduct add product via grpc
-func AddProduct(conn *grpc.ClientConn, *Product) *Product {
+func AddProduct(conn *grpc.ClientConn, product *Product) *CreateResponse {
 	client := NewProductServiceClient(conn)
-	result, _ := client.GetAll(context.Background(), &RequestEmpty{})
+	result, _ := client.AddProduct(context.Background(), product)
+	return result
 }

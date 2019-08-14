@@ -1,8 +1,6 @@
 package product
 
 import (
-	"log"
-
 	graphql "github.com/graphql-go/graphql"
 )
 
@@ -13,7 +11,6 @@ func GetProductQuery() *graphql.Field {
 		Resolve: func(params graphql.ResolveParams) (interface{}, error) {
 			conn := GRPCConnect(URL)
 			result := GetAllProduct(conn)
-			log.Println(result)
 			return result, nil
 		},
 	}
