@@ -1,0 +1,217 @@
+{
+  "name": "Pizzas",
+  "place_id": "HIOEe2wBncT5VI-wBncT",
+  "category_code": "dish",
+  "category_name": "Plats",
+  "collection": [
+    {
+      "id": "HIOEe2wBncT5VI-oRDeZ",
+      "name": "Pizza Margherita",
+      "type": "unit",
+      "price": 10000,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Tomates"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 1
+    },
+    {
+      "id": "HIOEe2wBncT5VI-IOEe2",
+      "name": "Pizza 4 fromages",
+      "type": "unit",
+      "price": 10000,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Roblechon",
+        "Chèvre"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 2
+    },
+    {
+      "id": "HIOEe2wBncT5VI-SHJOI",
+      "name": "Pizza Bolognaise",
+      "type": "unit",
+      "price": 2500,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Viande Hachée",
+        "Tomates"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 3
+    },
+    {
+      "id": "HIOEe2wBncT5VI-AWDXF",
+      "name": "Pizza chèvre miel",
+      "type": "unit",
+      "price": 2800,
+      "cooking_time": 10,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Chèvre",
+        "Miel"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 4
+    },
+    {
+      "id": "HIOEe2wBncT5VI-APOXF",
+      "name": "Pizza Bolognaise",
+      "type": "unit",
+      "price": 2500,
+      "cooking_time": 10,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Viande Hachée",
+        "Tomates"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 5
+    },
+    {
+      "id": "HIOEe2wBncT5VI-OPCFF",
+      "name": "Pizza végétarienne",
+      "type": "unit",
+      "price": 2500,
+      "cooking_time": 10,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Olives",
+        "Tomates",
+        "Cornichon",
+        "Poivron"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 6
+    },
+    {
+      "id": "HIOEe2wBncT5VI-LEYDI",
+      "name": "Pizza Nordique",
+      "type": "unit",
+      "price": 2200,
+      "cooking_time": 10,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Saumon",
+        "Créme fraiche"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 7
+    },{
+      "id": "HIOEe2wBncT5VI-REFSD",
+      "name": "Pizza Hawaiënne",
+      "type": "unit",
+      "price": 2900,
+      "cooking_time": 10,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Jambon",
+        "Ananas",
+        "Olives",
+        "Piment"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 8
+    },
+    {
+      "id": "HIOEe2wBncT5VI-KEBAB",
+      "name": "Pizza Bolognaise",
+      "type": "unit",
+      "price": 2500,
+      "cooking_time": 10,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Viande Kebab",
+        "Tomates",
+        "Oignons"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 9
+    },
+    {
+      "id": "HIOEe2wBncT5VI-Cannib",
+      "name": "Pizza Bolognaise",
+      "type": "unit",
+      "price": 2500,
+      "cooking_time": 10,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Poulet",
+        "Viande Hachée",
+        "Mergez"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 10
+    },
+    {
+      "id": "HIOEe2wBncT5VI-ORIEN",
+      "name": "Pizza Orientale",
+      "type": "unit",
+      "price": 2500,
+      "cooking_time": 10,
+      "like": 10,
+      "recipes": [
+        "Mozzarella",
+        "Emmentale",
+        "Mergez",
+        "Poivron vert"
+      ],
+      "notation": 10,
+      "discount": 10,
+      "size": "Medium",
+      "picture": "/image.jpg",
+      "position": 11
+    }
+  ]
+}
