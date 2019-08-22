@@ -7,6 +7,9 @@ const productMapping = {
       name: {
       type: 'text',
       },
+      type: {
+        type: 'long',
+      },
       place_logo: {
         type: 'text',
       },

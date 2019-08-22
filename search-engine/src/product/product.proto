@@ -52,6 +52,7 @@ message Product {
   int32 main_picture = 24;
   repeated Schedule schedule = 25;
   string id = 26; 
+  string type = 27; 
 }
 
 message ProductAPIResponse {

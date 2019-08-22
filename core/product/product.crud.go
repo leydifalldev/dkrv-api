@@ -11,8 +11,12 @@ import (
 func GetAllProduct(conn *grpc.ClientConn) []*Product {
 	var products []*Product
 	client := NewProductServiceClient(conn)
+	defer conn.Close()
 	req := &SearchRequest{Q: "Hello", From: 0, To: 10}
-	result, _ := client.Search(context.Background(), req)
+	result, err := client.Search(context.Background(), req)
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
 	products = result.GetData()
 	log.Println(result)
 	return products
@@ -21,6 +25,10 @@ func GetAllProduct(conn *grpc.ClientConn) []*Product {
 //AddProduct add product via grpc
 func AddProduct(conn *grpc.ClientConn, product *Product) *CreateResponse {
 	client := NewProductServiceClient(conn)
-	result, _ := client.AddProduct(context.Background(), product)
+	defer conn.Close()
+	result, err := client.AddProduct(context.Background(), product)
+	if err != nil {
+		log.Fatalf("did not connect: %v", err)
+	}
 	return result
 }

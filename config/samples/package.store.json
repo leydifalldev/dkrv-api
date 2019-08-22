@@ -1,0 +1,92 @@
+{
+  "name": "Pizzas",
+  "place_id": "HIOEe2wBncT5VI-wBncT",
+  "category_code": "dish",
+  "category_name": "Plats",
+  "price": 12000,
+  "picture": "/image.jpg",
+  "notation": 10,
+  "discount": 10,
+  "likes": 10,
+  "package": [
+    {
+      "category_code": "dish",
+      "choice": [
+        {
+          "id": "HIOEe2wBncT5VI-oRDeZ",
+          "name": "Pizza Margherita",
+          "price_add": 100,
+          "size": "Medium",
+          "position": 1
+        },
+        {
+          "id": "HIOEe2wBncT5VI-IOEe2",
+          "name": "Pizza 4 fromages",
+          "price_add": 100,
+          "size": "Medium",
+          "position": 2
+        },
+        {
+          "id": "HIOEe2wBncT5VI-SHJOI",
+          "name": "Pizza Bolognaise",
+          "price_add": 100,
+          "price": 2500,
+          "size": "Medium",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "category_code": "dessert",
+      "choice": [
+        {
+          "id": "HIOEe2wBncT5VI-CHOCO",
+          "name": "Fondant au chocolat",
+          "price_add": 100,
+          "size": "Medium",
+          "position": 1
+        },
+        {
+          "id": "HIOEe2wBncT5VI-TIRAM",
+          "name": "Tiramissu",
+          "price_add": 100,
+          "size": "Medium",
+          "position": 2
+        },
+        {
+          "id": "HIOEe2wBncT5VI-SHJOI",
+          "name": "Crêpe",
+          "price_add": 100,
+          "size": "Medium",
+          "position": 3
+        }
+      ]
+    },
+    {
+      "category_code": "drink",
+      "choice": [
+        {
+          "id": "HIOEe2wBncT5VI-CHOCO",
+          "name": "Coca cola",
+          "price_add": 100,
+          "size": "33ml",
+          "position": 1
+        },
+        {
+          "id": "HIOEe2wBncT5VI-TIRAM",
+          "name": "Fanto",
+          "price_add": 100,
+          "size": "33ml",
+          "position": 2
+        },
+        {
+          "id": "HIOEe2wBncT5VI-SHJOI",
+          "name": "Orangina",
+          "price_add": 100,
+          "size": "33ml",
+          "position": 3
+        }
+      ]
+    }
+  ]
+}

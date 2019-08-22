@@ -1,0 +1,100 @@
+syntax = "proto3";
+package place;
+option go_package = "place";
+
+message Coordinate {
+  float lon = 1;
+  float lat = 2;
+}
+
+message Picture { string src = 1; }
+
+message Product {
+  string id = 1; 
+  string type = 2;
+  string name = 3;
+  int32 price = 4;
+  int32 like = 5;
+  repeated string recipes = 6;
+  int32 notation = 7;
+  int32 discount = 8;
+  string picture = 9;
+  string size = 10;
+  int32 position = 11; 
+}
+
+message PlaceStore {
+  string id = 1;
+  repeated Category categories = 2;
+}
+
+message Category {
+  string id = 1;
+  string name = 2; 
+  repeated Collection collections = 3;
+}
+
+message Collection {
+  string id = 1;
+  string name = 2;
+  repeated Product products = 3;
+}
+
+message Gastronomie { string name = 1;}
+
+message ID {
+  string id = 1;
+}
+
+message DeleteResponse {
+  int32 status = 1;
+  string error = 2;
+  string id = 3;
+}
+  
+message UpdateResponse {
+  int32 status = 1;
+  string error = 2;
+  string id = 3;
+}
+  
+message DetailResponse {
+  int32 status = 1;
+  string error = 2;
+  PlaceStore data = 4;
+}
+  
+message SearchRequest {
+  string q = 1;
+  int32 from = 2;
+  int32 to = 3;
+}
+
+message ListResponse {
+  int32 status = 1;
+  string error = 2;
+  int64 total = 3;
+  repeated PlaceStore data = 4;
+}
+
+message CreateResponse {
+  int32 status = 1;
+  string id = 2;
+  string error = 3;
+}
+
+message FoodCategory {
+  string category_name = 1;
+  string category_code = 2;
+}
+
+message Empty {}
+
+service PlaceStoreService {
+  rpc GetList(Empty) returns (ListResponse);
+  rpc Get(ID) returns (DetailResponse);
+  rpc Add(PlaceStore) returns (CreateResponse);
+  rpc AddCategory(FoodCategory) returns (CreateResponse);
+  rpc Update(PlaceStore) returns (UpdateResponse);
+  rpc Delete(ID) returns (DeleteResponse);
+}
