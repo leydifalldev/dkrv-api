@@ -25,19 +25,11 @@ message Product {
 
 message PlaceStore {
   string id = 1;
-  repeated Category categories = 2;
-}
-
-message Category {
-  string id = 1;
-  string name = 2; 
-  repeated Collection collections = 3;
-}
-
-message Collection {
-  string id = 1;
   string name = 2;
-  repeated Product products = 3;
+  string category_code = 3;
+  string category_name = 4;
+  string place_id = 5;
+  repeated Product collection = 6;
 }
 
 message Gastronomie { string name = 1;}
@@ -94,7 +86,6 @@ service PlaceStoreService {
   rpc GetList(Empty) returns (ListResponse);
   rpc Get(ID) returns (DetailResponse);
   rpc Add(PlaceStore) returns (CreateResponse);
-  rpc AddCategory(FoodCategory) returns (CreateResponse);
   rpc Update(PlaceStore) returns (UpdateResponse);
   rpc Delete(ID) returns (DeleteResponse);
 }

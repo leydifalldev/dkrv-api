@@ -7,65 +7,29 @@ message Coordinate {
   float lat = 2;
 }
 
-message Accompaniment { string name = 1; }
-
-message MenuLink { string id = 1; }
-
 message Picture { string src = 1; }
 
-message Schedule {
-  string date = 1;
-  string start_am = 2;
-  string end_am = 3;
-  string start_pm = 4;
-  string end_pm = 5;
-}
-
 message Product {
-  string name = 1;
-  string place_logo = 2;
-  int32 price = 3;
-  string phone = 4;
-  string description = 5;
-  repeated Gastronomie gastronomie = 6;
-  int32 cooking_time = 7;
-  Coordinate location = 8;
-  string address = 9;
-  string cpc = 10;
-  int32 like = 11;
-  repeated string recipes = 12;
-  repeated Accompaniment accompaniment = 13;
-  string place_name = 14;
-  string place_ref = 15;
-  MenuLink menus_link = 16;
-  int32 notation = 17;
-  int32 discount = 18;
-  string size = 19;
-  int32 quantity = 20;
-  int32 spicy_level = 21;
-  string category = 22;
-  repeated Picture picture = 23;
-  int32 main_picture = 24;
-  repeated Schedule schedule = 25;
-  string id = 26; 
-  string type = 27;
+  string id = 1; 
+  string type = 2;
+  string name = 3;
+  int32 price = 4;
+  int32 like = 5;
+  repeated string recipes = 6;
+  int32 notation = 7;
+  int32 discount = 8;
+  string picture = 9;
+  string size = 10;
+  int32 position = 11; 
 }
 
 message PlaceStore {
   string id = 1;
-  repeated Category categories = 2;
-}
-
-message Category {
-  string id = 1;
-  string name = 2; 
-  repeated Collection collections = 3;
-}
-
-message Collection {
-  string id = 1;
   string name = 2;
-  repeated Product products = 3;
+  string category_code = 3;
+  string category_name = 4;
+  string place_id = 5;
+  repeated Product collection = 6;
 }
 
 message Gastronomie { string name = 1;}
@@ -109,6 +73,11 @@ message CreateResponse {
   int32 status = 1;
   string id = 2;
   string error = 3;
+}
+
+message FoodCategory {
+  string category_name = 1;
+  string category_code = 2;
 }
 
 message Empty {}

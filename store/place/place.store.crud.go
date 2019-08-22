@@ -4,13 +4,15 @@ import (
 	context "context"
 	"log"
 	"store/db"
+
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 //GetList return List of info
 func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error) {
 	var data []*PlaceStore
 	var cpt int64
-	c := db.NewConnect()
+	c := db.NewConnect("dkrv", "place")
 	cur, status, err := c.GetList()
 	defer cur.Close(ctx)
 	cpt = 0
@@ -35,7 +37,7 @@ func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error)
 //Get return List of info
 func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
 	var res *DetailResponse
-	c := db.NewConnect()
+	c := db.NewConnect("dkrv", "place")
 	var p *PlaceStore
 	cur, status, err := c.Get()
 	derr := cur.Decode(&p)
@@ -54,7 +56,7 @@ func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
 //Add allows to add info
 func (s *Server) Add(ctx context.Context, req *PlaceStore) (*CreateResponse, error) {
 	var response *CreateResponse
-	c := db.NewConnect()
+	c := db.NewConnect("dkrv", "place")
 	id, status, err := c.Create(req)
 	response = &CreateResponse{
 		Status: status,
@@ -67,10 +69,15 @@ func (s *Server) Add(ctx context.Context, req *PlaceStore) (*CreateResponse, err
 //Update allow to update
 func (s *Server) Update(ctx context.Context, req *PlaceStore) (*UpdateResponse, error) {
 	var response *UpdateResponse
+	c := db.NewConnect("dkrv", "place")
+	id, status, err := c.Update(bson.M{"place_id": req.Id}, req)
+	if id != nil {
+		log.Println("Hello")
+	}
 	response = &UpdateResponse{
-		Status: 200,
-		Error:  "null",
-		Id:     "XXXXXXXXX",
+		Status: status,
+		Error:  err,
+		Id:     "done",
 	}
 	return response, nil
 }

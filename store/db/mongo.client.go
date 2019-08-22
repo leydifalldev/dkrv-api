@@ -29,26 +29,28 @@ func getClient() *mongo.Client {
 	return client
 }
 
-func getCollection(conn *mongo.Client, databaseName string, collectionName string) (*mongo.Collection, context.Context) {
+func getCollection(conn *mongo.Client, databaseName string, collectionName string) (*mongo.Collection, context.Context, context.CancelFunc) {
 	c := conn.Database(databaseName).Collection(collectionName)
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
-	return c, ctx
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	return c, ctx, cancel
 }
 
 //Store is the struct for the mongo connection
 type Store struct {
-	conn *mongo.Client
+	conn           *mongo.Client
+	dbName         string
+	collectionName string
 }
 
 //NewConnect return store
-func NewConnect() *Store {
+func NewConnect(dbName string, collectionName string) *Store {
 	conn := getClient()
-	return &Store{conn: conn}
+	return &Store{conn: conn, dbName: dbName, collectionName: collectionName}
 }
 
 //GetList retrieve list
 func (s Store) GetList() (*mongo.Cursor, int32, string) {
-	c, ctx := getCollection(s.conn, "dkrv", "place")
+	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
 	defer s.conn.Disconnect(ctx)
 	opt := options.Find()
 	opt.SetLimit(2)
@@ -62,7 +64,7 @@ func (s Store) GetList() (*mongo.Cursor, int32, string) {
 
 //Get return entity
 func (s Store) Get() (*mongo.SingleResult, int32, string) {
-	c, ctx := getCollection(s.conn, "dkrv", "place")
+	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
 	defer s.conn.Disconnect(ctx)
 	filter := bson.M{"_id": "Hello"}
 	d := c.FindOne(context.TODO(), filter)
@@ -71,7 +73,7 @@ func (s Store) Get() (*mongo.SingleResult, int32, string) {
 
 //Create insert a new document at database
 func (s Store) Create(d interface{}) (string, int32, string) {
-	c, ctx := getCollection(s.conn, "dkrv", "place")
+	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
 	defer s.conn.Disconnect(ctx)
 	res, err := c.InsertOne(ctx, d)
 	if err != nil {
@@ -81,18 +83,26 @@ func (s Store) Create(d interface{}) (string, int32, string) {
 }
 
 //Update update a document
-func (s Store) Update(id *bson.D, d *bson.D) *mongo.UpdateResult {
-	c, ctx := getCollection(s.conn, "dkrv", "place")
+func (s Store) Update(id bson.D, d interface{}) (*mongo.UpdateResult, int32, string) {
+	upd := bson.D{
+		{
+			"$inc", bson.D{
+				d,
+			},
+		},
+	}
+	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
 	res, err := c.UpdateOne(ctx, id, d)
 	if err != nil {
 		log.Fatal(err)
+		return res, 500, "DATABASE ERROR: Cannot update document"
 	}
-	return res
+	return res, 200, "none"
 }
 
 //Delete delete document
 func (s Store) Delete(id *bson.D) *mongo.DeleteResult {
-	c, ctx := getCollection(s.conn, "dkrv", "place")
+	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
 	res, err := c.DeleteOne(ctx, id)
 	if err != nil {
 		log.Fatal(err)

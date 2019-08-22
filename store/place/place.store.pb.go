@@ -71,84 +71,6 @@ func (m *Coordinate) GetLat() float32 {
 	return 0
 }
 
-type Accompaniment struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Accompaniment) Reset()         { *m = Accompaniment{} }
-func (m *Accompaniment) String() string { return proto.CompactTextString(m) }
-func (*Accompaniment) ProtoMessage()    {}
-func (*Accompaniment) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{1}
-}
-
-func (m *Accompaniment) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Accompaniment.Unmarshal(m, b)
-}
-func (m *Accompaniment) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Accompaniment.Marshal(b, m, deterministic)
-}
-func (m *Accompaniment) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Accompaniment.Merge(m, src)
-}
-func (m *Accompaniment) XXX_Size() int {
-	return xxx_messageInfo_Accompaniment.Size(m)
-}
-func (m *Accompaniment) XXX_DiscardUnknown() {
-	xxx_messageInfo_Accompaniment.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Accompaniment proto.InternalMessageInfo
-
-func (m *Accompaniment) GetName() string {
-	if m != nil {
-		return m.Name
-	}
-	return ""
-}
-
-type MenuLink struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *MenuLink) Reset()         { *m = MenuLink{} }
-func (m *MenuLink) String() string { return proto.CompactTextString(m) }
-func (*MenuLink) ProtoMessage()    {}
-func (*MenuLink) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{2}
-}
-
-func (m *MenuLink) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_MenuLink.Unmarshal(m, b)
-}
-func (m *MenuLink) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_MenuLink.Marshal(b, m, deterministic)
-}
-func (m *MenuLink) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_MenuLink.Merge(m, src)
-}
-func (m *MenuLink) XXX_Size() int {
-	return xxx_messageInfo_MenuLink.Size(m)
-}
-func (m *MenuLink) XXX_DiscardUnknown() {
-	xxx_messageInfo_MenuLink.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_MenuLink proto.InternalMessageInfo
-
-func (m *MenuLink) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
 type Picture struct {
 	Src                  string   `protobuf:"bytes,1,opt,name=src,proto3" json:"src,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
@@ -160,7 +82,7 @@ func (m *Picture) Reset()         { *m = Picture{} }
 func (m *Picture) String() string { return proto.CompactTextString(m) }
 func (*Picture) ProtoMessage()    {}
 func (*Picture) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{3}
+	return fileDescriptor_161d5f758bceed95, []int{1}
 }
 
 func (m *Picture) XXX_Unmarshal(b []byte) error {
@@ -188,115 +110,28 @@ func (m *Picture) GetSrc() string {
 	return ""
 }
 
-type Schedule struct {
-	Date                 string   `protobuf:"bytes,1,opt,name=date,proto3" json:"date,omitempty"`
-	StartAm              string   `protobuf:"bytes,2,opt,name=start_am,json=startAm,proto3" json:"start_am,omitempty"`
-	EndAm                string   `protobuf:"bytes,3,opt,name=end_am,json=endAm,proto3" json:"end_am,omitempty"`
-	StartPm              string   `protobuf:"bytes,4,opt,name=start_pm,json=startPm,proto3" json:"start_pm,omitempty"`
-	EndPm                string   `protobuf:"bytes,5,opt,name=end_pm,json=endPm,proto3" json:"end_pm,omitempty"`
+type Product struct {
+	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Type                 string   `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
+	Name                 string   `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
+	Price                int32    `protobuf:"varint,4,opt,name=price,proto3" json:"price,omitempty"`
+	Like                 int32    `protobuf:"varint,5,opt,name=like,proto3" json:"like,omitempty"`
+	Recipes              []string `protobuf:"bytes,6,rep,name=recipes,proto3" json:"recipes,omitempty"`
+	Notation             int32    `protobuf:"varint,7,opt,name=notation,proto3" json:"notation,omitempty"`
+	Discount             int32    `protobuf:"varint,8,opt,name=discount,proto3" json:"discount,omitempty"`
+	Picture              string   `protobuf:"bytes,9,opt,name=picture,proto3" json:"picture,omitempty"`
+	Size                 string   `protobuf:"bytes,10,opt,name=size,proto3" json:"size,omitempty"`
+	Position             int32    `protobuf:"varint,11,opt,name=position,proto3" json:"position,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
 	XXX_sizecache        int32    `json:"-"`
-}
-
-func (m *Schedule) Reset()         { *m = Schedule{} }
-func (m *Schedule) String() string { return proto.CompactTextString(m) }
-func (*Schedule) ProtoMessage()    {}
-func (*Schedule) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{4}
-}
-
-func (m *Schedule) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Schedule.Unmarshal(m, b)
-}
-func (m *Schedule) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Schedule.Marshal(b, m, deterministic)
-}
-func (m *Schedule) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Schedule.Merge(m, src)
-}
-func (m *Schedule) XXX_Size() int {
-	return xxx_messageInfo_Schedule.Size(m)
-}
-func (m *Schedule) XXX_DiscardUnknown() {
-	xxx_messageInfo_Schedule.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Schedule proto.InternalMessageInfo
-
-func (m *Schedule) GetDate() string {
-	if m != nil {
-		return m.Date
-	}
-	return ""
-}
-
-func (m *Schedule) GetStartAm() string {
-	if m != nil {
-		return m.StartAm
-	}
-	return ""
-}
-
-func (m *Schedule) GetEndAm() string {
-	if m != nil {
-		return m.EndAm
-	}
-	return ""
-}
-
-func (m *Schedule) GetStartPm() string {
-	if m != nil {
-		return m.StartPm
-	}
-	return ""
-}
-
-func (m *Schedule) GetEndPm() string {
-	if m != nil {
-		return m.EndPm
-	}
-	return ""
-}
-
-type Product struct {
-	Name                 string           `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	PlaceLogo            string           `protobuf:"bytes,2,opt,name=place_logo,json=placeLogo,proto3" json:"place_logo,omitempty"`
-	Price                int32            `protobuf:"varint,3,opt,name=price,proto3" json:"price,omitempty"`
-	Phone                string           `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
-	Description          string           `protobuf:"bytes,5,opt,name=description,proto3" json:"description,omitempty"`
-	Gastronomie          []*Gastronomie   `protobuf:"bytes,6,rep,name=gastronomie,proto3" json:"gastronomie,omitempty"`
-	CookingTime          int32            `protobuf:"varint,7,opt,name=cooking_time,json=cookingTime,proto3" json:"cooking_time,omitempty"`
-	Location             *Coordinate      `protobuf:"bytes,8,opt,name=location,proto3" json:"location,omitempty"`
-	Address              string           `protobuf:"bytes,9,opt,name=address,proto3" json:"address,omitempty"`
-	Cpc                  string           `protobuf:"bytes,10,opt,name=cpc,proto3" json:"cpc,omitempty"`
-	Like                 int32            `protobuf:"varint,11,opt,name=like,proto3" json:"like,omitempty"`
-	Recipes              []string         `protobuf:"bytes,12,rep,name=recipes,proto3" json:"recipes,omitempty"`
-	Accompaniment        []*Accompaniment `protobuf:"bytes,13,rep,name=accompaniment,proto3" json:"accompaniment,omitempty"`
-	PlaceName            string           `protobuf:"bytes,14,opt,name=place_name,json=placeName,proto3" json:"place_name,omitempty"`
-	PlaceRef             string           `protobuf:"bytes,15,opt,name=place_ref,json=placeRef,proto3" json:"place_ref,omitempty"`
-	MenusLink            *MenuLink        `protobuf:"bytes,16,opt,name=menus_link,json=menusLink,proto3" json:"menus_link,omitempty"`
-	Notation             int32            `protobuf:"varint,17,opt,name=notation,proto3" json:"notation,omitempty"`
-	Discount             int32            `protobuf:"varint,18,opt,name=discount,proto3" json:"discount,omitempty"`
-	Size                 string           `protobuf:"bytes,19,opt,name=size,proto3" json:"size,omitempty"`
-	Quantity             int32            `protobuf:"varint,20,opt,name=quantity,proto3" json:"quantity,omitempty"`
-	SpicyLevel           int32            `protobuf:"varint,21,opt,name=spicy_level,json=spicyLevel,proto3" json:"spicy_level,omitempty"`
-	Category             string           `protobuf:"bytes,22,opt,name=category,proto3" json:"category,omitempty"`
-	Picture              []*Picture       `protobuf:"bytes,23,rep,name=picture,proto3" json:"picture,omitempty"`
-	MainPicture          int32            `protobuf:"varint,24,opt,name=main_picture,json=mainPicture,proto3" json:"main_picture,omitempty"`
-	Schedule             []*Schedule      `protobuf:"bytes,25,rep,name=schedule,proto3" json:"schedule,omitempty"`
-	Id                   string           `protobuf:"bytes,26,opt,name=id,proto3" json:"id,omitempty"`
-	Type                 string           `protobuf:"bytes,27,opt,name=type,proto3" json:"type,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}         `json:"-"`
-	XXX_unrecognized     []byte           `json:"-"`
-	XXX_sizecache        int32            `json:"-"`
 }
 
 func (m *Product) Reset()         { *m = Product{} }
 func (m *Product) String() string { return proto.CompactTextString(m) }
 func (*Product) ProtoMessage()    {}
 func (*Product) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{5}
+	return fileDescriptor_161d5f758bceed95, []int{2}
 }
 
 func (m *Product) XXX_Unmarshal(b []byte) error {
@@ -317,16 +152,23 @@ func (m *Product) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Product proto.InternalMessageInfo
 
-func (m *Product) GetName() string {
+func (m *Product) GetId() string {
 	if m != nil {
-		return m.Name
+		return m.Id
 	}
 	return ""
 }
 
-func (m *Product) GetPlaceLogo() string {
+func (m *Product) GetType() string {
 	if m != nil {
-		return m.PlaceLogo
+		return m.Type
+	}
+	return ""
+}
+
+func (m *Product) GetName() string {
+	if m != nil {
+		return m.Name
 	}
 	return ""
 }
@@ -336,55 +178,6 @@ func (m *Product) GetPrice() int32 {
 		return m.Price
 	}
 	return 0
-}
-
-func (m *Product) GetPhone() string {
-	if m != nil {
-		return m.Phone
-	}
-	return ""
-}
-
-func (m *Product) GetDescription() string {
-	if m != nil {
-		return m.Description
-	}
-	return ""
-}
-
-func (m *Product) GetGastronomie() []*Gastronomie {
-	if m != nil {
-		return m.Gastronomie
-	}
-	return nil
-}
-
-func (m *Product) GetCookingTime() int32 {
-	if m != nil {
-		return m.CookingTime
-	}
-	return 0
-}
-
-func (m *Product) GetLocation() *Coordinate {
-	if m != nil {
-		return m.Location
-	}
-	return nil
-}
-
-func (m *Product) GetAddress() string {
-	if m != nil {
-		return m.Address
-	}
-	return ""
-}
-
-func (m *Product) GetCpc() string {
-	if m != nil {
-		return m.Cpc
-	}
-	return ""
 }
 
 func (m *Product) GetLike() int32 {
@@ -397,34 +190,6 @@ func (m *Product) GetLike() int32 {
 func (m *Product) GetRecipes() []string {
 	if m != nil {
 		return m.Recipes
-	}
-	return nil
-}
-
-func (m *Product) GetAccompaniment() []*Accompaniment {
-	if m != nil {
-		return m.Accompaniment
-	}
-	return nil
-}
-
-func (m *Product) GetPlaceName() string {
-	if m != nil {
-		return m.PlaceName
-	}
-	return ""
-}
-
-func (m *Product) GetPlaceRef() string {
-	if m != nil {
-		return m.PlaceRef
-	}
-	return ""
-}
-
-func (m *Product) GetMenusLink() *MenuLink {
-	if m != nil {
-		return m.MenusLink
 	}
 	return nil
 }
@@ -443,6 +208,13 @@ func (m *Product) GetDiscount() int32 {
 	return 0
 }
 
+func (m *Product) GetPicture() string {
+	if m != nil {
+		return m.Picture
+	}
+	return ""
+}
+
 func (m *Product) GetSize() string {
 	if m != nil {
 		return m.Size
@@ -450,75 +222,30 @@ func (m *Product) GetSize() string {
 	return ""
 }
 
-func (m *Product) GetQuantity() int32 {
+func (m *Product) GetPosition() int32 {
 	if m != nil {
-		return m.Quantity
+		return m.Position
 	}
 	return 0
-}
-
-func (m *Product) GetSpicyLevel() int32 {
-	if m != nil {
-		return m.SpicyLevel
-	}
-	return 0
-}
-
-func (m *Product) GetCategory() string {
-	if m != nil {
-		return m.Category
-	}
-	return ""
-}
-
-func (m *Product) GetPicture() []*Picture {
-	if m != nil {
-		return m.Picture
-	}
-	return nil
-}
-
-func (m *Product) GetMainPicture() int32 {
-	if m != nil {
-		return m.MainPicture
-	}
-	return 0
-}
-
-func (m *Product) GetSchedule() []*Schedule {
-	if m != nil {
-		return m.Schedule
-	}
-	return nil
-}
-
-func (m *Product) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-func (m *Product) GetType() string {
-	if m != nil {
-		return m.Type
-	}
-	return ""
 }
 
 type PlaceStore struct {
-	Id                   string      `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Categories           []*Category `protobuf:"bytes,2,rep,name=categories,proto3" json:"categories,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	Id                   string     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name                 string     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	CategoryCode         string     `protobuf:"bytes,3,opt,name=category_code,json=categoryCode,proto3" json:"category_code,omitempty"`
+	CategoryName         string     `protobuf:"bytes,4,opt,name=category_name,json=categoryName,proto3" json:"category_name,omitempty"`
+	PlaceId              string     `protobuf:"bytes,5,opt,name=place_id,json=placeId,proto3" json:"place_id,omitempty"`
+	Collection           []*Product `protobuf:"bytes,6,rep,name=collection,proto3" json:"collection,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
+	XXX_unrecognized     []byte     `json:"-"`
+	XXX_sizecache        int32      `json:"-"`
 }
 
 func (m *PlaceStore) Reset()         { *m = PlaceStore{} }
 func (m *PlaceStore) String() string { return proto.CompactTextString(m) }
 func (*PlaceStore) ProtoMessage()    {}
 func (*PlaceStore) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{6}
+	return fileDescriptor_161d5f758bceed95, []int{3}
 }
 
 func (m *PlaceStore) XXX_Unmarshal(b []byte) error {
@@ -546,119 +273,37 @@ func (m *PlaceStore) GetId() string {
 	return ""
 }
 
-func (m *PlaceStore) GetCategories() []*Category {
-	if m != nil {
-		return m.Categories
-	}
-	return nil
-}
-
-type Category struct {
-	Id                   string        `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string        `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Collections          []*Collection `protobuf:"bytes,3,rep,name=collections,proto3" json:"collections,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
-}
-
-func (m *Category) Reset()         { *m = Category{} }
-func (m *Category) String() string { return proto.CompactTextString(m) }
-func (*Category) ProtoMessage()    {}
-func (*Category) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{7}
-}
-
-func (m *Category) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Category.Unmarshal(m, b)
-}
-func (m *Category) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Category.Marshal(b, m, deterministic)
-}
-func (m *Category) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Category.Merge(m, src)
-}
-func (m *Category) XXX_Size() int {
-	return xxx_messageInfo_Category.Size(m)
-}
-func (m *Category) XXX_DiscardUnknown() {
-	xxx_messageInfo_Category.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Category proto.InternalMessageInfo
-
-func (m *Category) GetId() string {
-	if m != nil {
-		return m.Id
-	}
-	return ""
-}
-
-func (m *Category) GetName() string {
+func (m *PlaceStore) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *Category) GetCollections() []*Collection {
+func (m *PlaceStore) GetCategoryCode() string {
 	if m != nil {
-		return m.Collections
-	}
-	return nil
-}
-
-type Collection struct {
-	Id                   string     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Products             []*Product `protobuf:"bytes,3,rep,name=products,proto3" json:"products,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
-}
-
-func (m *Collection) Reset()         { *m = Collection{} }
-func (m *Collection) String() string { return proto.CompactTextString(m) }
-func (*Collection) ProtoMessage()    {}
-func (*Collection) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{8}
-}
-
-func (m *Collection) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Collection.Unmarshal(m, b)
-}
-func (m *Collection) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Collection.Marshal(b, m, deterministic)
-}
-func (m *Collection) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Collection.Merge(m, src)
-}
-func (m *Collection) XXX_Size() int {
-	return xxx_messageInfo_Collection.Size(m)
-}
-func (m *Collection) XXX_DiscardUnknown() {
-	xxx_messageInfo_Collection.DiscardUnknown(m)
-}
-
-var xxx_messageInfo_Collection proto.InternalMessageInfo
-
-func (m *Collection) GetId() string {
-	if m != nil {
-		return m.Id
+		return m.CategoryCode
 	}
 	return ""
 }
 
-func (m *Collection) GetName() string {
+func (m *PlaceStore) GetCategoryName() string {
 	if m != nil {
-		return m.Name
+		return m.CategoryName
 	}
 	return ""
 }
 
-func (m *Collection) GetProducts() []*Product {
+func (m *PlaceStore) GetPlaceId() string {
 	if m != nil {
-		return m.Products
+		return m.PlaceId
+	}
+	return ""
+}
+
+func (m *PlaceStore) GetCollection() []*Product {
+	if m != nil {
+		return m.Collection
 	}
 	return nil
 }
@@ -674,7 +319,7 @@ func (m *Gastronomie) Reset()         { *m = Gastronomie{} }
 func (m *Gastronomie) String() string { return proto.CompactTextString(m) }
 func (*Gastronomie) ProtoMessage()    {}
 func (*Gastronomie) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{9}
+	return fileDescriptor_161d5f758bceed95, []int{4}
 }
 
 func (m *Gastronomie) XXX_Unmarshal(b []byte) error {
@@ -713,7 +358,7 @@ func (m *ID) Reset()         { *m = ID{} }
 func (m *ID) String() string { return proto.CompactTextString(m) }
 func (*ID) ProtoMessage()    {}
 func (*ID) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{10}
+	return fileDescriptor_161d5f758bceed95, []int{5}
 }
 
 func (m *ID) XXX_Unmarshal(b []byte) error {
@@ -754,7 +399,7 @@ func (m *DeleteResponse) Reset()         { *m = DeleteResponse{} }
 func (m *DeleteResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteResponse) ProtoMessage()    {}
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{11}
+	return fileDescriptor_161d5f758bceed95, []int{6}
 }
 
 func (m *DeleteResponse) XXX_Unmarshal(b []byte) error {
@@ -809,7 +454,7 @@ func (m *UpdateResponse) Reset()         { *m = UpdateResponse{} }
 func (m *UpdateResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateResponse) ProtoMessage()    {}
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{12}
+	return fileDescriptor_161d5f758bceed95, []int{7}
 }
 
 func (m *UpdateResponse) XXX_Unmarshal(b []byte) error {
@@ -864,7 +509,7 @@ func (m *DetailResponse) Reset()         { *m = DetailResponse{} }
 func (m *DetailResponse) String() string { return proto.CompactTextString(m) }
 func (*DetailResponse) ProtoMessage()    {}
 func (*DetailResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{13}
+	return fileDescriptor_161d5f758bceed95, []int{8}
 }
 
 func (m *DetailResponse) XXX_Unmarshal(b []byte) error {
@@ -919,7 +564,7 @@ func (m *SearchRequest) Reset()         { *m = SearchRequest{} }
 func (m *SearchRequest) String() string { return proto.CompactTextString(m) }
 func (*SearchRequest) ProtoMessage()    {}
 func (*SearchRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{14}
+	return fileDescriptor_161d5f758bceed95, []int{9}
 }
 
 func (m *SearchRequest) XXX_Unmarshal(b []byte) error {
@@ -975,7 +620,7 @@ func (m *ListResponse) Reset()         { *m = ListResponse{} }
 func (m *ListResponse) String() string { return proto.CompactTextString(m) }
 func (*ListResponse) ProtoMessage()    {}
 func (*ListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{15}
+	return fileDescriptor_161d5f758bceed95, []int{10}
 }
 
 func (m *ListResponse) XXX_Unmarshal(b []byte) error {
@@ -1037,7 +682,7 @@ func (m *CreateResponse) Reset()         { *m = CreateResponse{} }
 func (m *CreateResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateResponse) ProtoMessage()    {}
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{16}
+	return fileDescriptor_161d5f758bceed95, []int{11}
 }
 
 func (m *CreateResponse) XXX_Unmarshal(b []byte) error {
@@ -1079,6 +724,53 @@ func (m *CreateResponse) GetError() string {
 	return ""
 }
 
+type FoodCategory struct {
+	CategoryName         string   `protobuf:"bytes,1,opt,name=category_name,json=categoryName,proto3" json:"category_name,omitempty"`
+	CategoryCode         string   `protobuf:"bytes,2,opt,name=category_code,json=categoryCode,proto3" json:"category_code,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-"`
+	XXX_unrecognized     []byte   `json:"-"`
+	XXX_sizecache        int32    `json:"-"`
+}
+
+func (m *FoodCategory) Reset()         { *m = FoodCategory{} }
+func (m *FoodCategory) String() string { return proto.CompactTextString(m) }
+func (*FoodCategory) ProtoMessage()    {}
+func (*FoodCategory) Descriptor() ([]byte, []int) {
+	return fileDescriptor_161d5f758bceed95, []int{12}
+}
+
+func (m *FoodCategory) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_FoodCategory.Unmarshal(m, b)
+}
+func (m *FoodCategory) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_FoodCategory.Marshal(b, m, deterministic)
+}
+func (m *FoodCategory) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_FoodCategory.Merge(m, src)
+}
+func (m *FoodCategory) XXX_Size() int {
+	return xxx_messageInfo_FoodCategory.Size(m)
+}
+func (m *FoodCategory) XXX_DiscardUnknown() {
+	xxx_messageInfo_FoodCategory.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_FoodCategory proto.InternalMessageInfo
+
+func (m *FoodCategory) GetCategoryName() string {
+	if m != nil {
+		return m.CategoryName
+	}
+	return ""
+}
+
+func (m *FoodCategory) GetCategoryCode() string {
+	if m != nil {
+		return m.CategoryCode
+	}
+	return ""
+}
+
 type Empty struct {
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`
@@ -1089,7 +781,7 @@ func (m *Empty) Reset()         { *m = Empty{} }
 func (m *Empty) String() string { return proto.CompactTextString(m) }
 func (*Empty) ProtoMessage()    {}
 func (*Empty) Descriptor() ([]byte, []int) {
-	return fileDescriptor_161d5f758bceed95, []int{17}
+	return fileDescriptor_161d5f758bceed95, []int{13}
 }
 
 func (m *Empty) XXX_Unmarshal(b []byte) error {
@@ -1112,14 +804,9 @@ var xxx_messageInfo_Empty proto.InternalMessageInfo
 
 func init() {
 	proto.RegisterType((*Coordinate)(nil), "place.Coordinate")
-	proto.RegisterType((*Accompaniment)(nil), "place.Accompaniment")
-	proto.RegisterType((*MenuLink)(nil), "place.MenuLink")
 	proto.RegisterType((*Picture)(nil), "place.Picture")
-	proto.RegisterType((*Schedule)(nil), "place.Schedule")
 	proto.RegisterType((*Product)(nil), "place.Product")
 	proto.RegisterType((*PlaceStore)(nil), "place.PlaceStore")
-	proto.RegisterType((*Category)(nil), "place.Category")
-	proto.RegisterType((*Collection)(nil), "place.Collection")
 	proto.RegisterType((*Gastronomie)(nil), "place.Gastronomie")
 	proto.RegisterType((*ID)(nil), "place.ID")
 	proto.RegisterType((*DeleteResponse)(nil), "place.DeleteResponse")
@@ -1128,74 +815,54 @@ func init() {
 	proto.RegisterType((*SearchRequest)(nil), "place.SearchRequest")
 	proto.RegisterType((*ListResponse)(nil), "place.ListResponse")
 	proto.RegisterType((*CreateResponse)(nil), "place.CreateResponse")
+	proto.RegisterType((*FoodCategory)(nil), "place.FoodCategory")
 	proto.RegisterType((*Empty)(nil), "place.Empty")
 }
 
 func init() { proto.RegisterFile("place.store.proto", fileDescriptor_161d5f758bceed95) }
 
 var fileDescriptor_161d5f758bceed95 = []byte{
-	// 963 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0x5b, 0x6b, 0x1b, 0xc7,
-	0x17, 0x47, 0xda, 0x48, 0x5a, 0x1d, 0xd9, 0x4e, 0x3c, 0xb1, 0xf3, 0x9f, 0xd8, 0xfc, 0xa9, 0xb3,
-	0xa5, 0xd4, 0xa4, 0xad, 0x53, 0x9c, 0x3e, 0xf5, 0x4d, 0xb5, 0x8b, 0x09, 0x38, 0x46, 0xac, 0xdb,
-	0x97, 0x52, 0x10, 0xd3, 0xd9, 0x63, 0x79, 0xf0, 0xee, 0xcc, 0x7a, 0x66, 0x14, 0x50, 0x1f, 0xfb,
-	0x25, 0xfb, 0x61, 0xfa, 0x52, 0xe6, 0xb2, 0xab, 0xf5, 0x85, 0x10, 0x42, 0xdf, 0xe6, 0xdc, 0x7f,
-	0xe7, 0xba, 0x0b, 0xdb, 0x75, 0xc9, 0x38, 0x1e, 0x19, 0xab, 0x34, 0x1e, 0xd5, 0x5a, 0x59, 0x45,
-	0x06, 0x9e, 0x95, 0x7d, 0x0f, 0x70, 0xa2, 0x94, 0x2e, 0x84, 0x64, 0x16, 0xc9, 0x33, 0x48, 0x4a,
-	0x25, 0x69, 0xef, 0xa0, 0x77, 0xd8, 0xcf, 0xdd, 0xd3, 0x73, 0x98, 0xa5, 0xfd, 0xc8, 0x61, 0x36,
-	0xfb, 0x12, 0x36, 0xa7, 0x9c, 0xab, 0xaa, 0x66, 0x52, 0x54, 0x28, 0x2d, 0x21, 0xf0, 0x44, 0xb2,
-	0x0a, 0xbd, 0xd5, 0x38, 0xf7, 0xef, 0x6c, 0x0f, 0xd2, 0xf7, 0x28, 0x97, 0xe7, 0x42, 0xde, 0x90,
-	0x2d, 0xe8, 0x8b, 0x22, 0x4a, 0xfb, 0xa2, 0xc8, 0xf6, 0x61, 0x34, 0x13, 0xdc, 0x2e, 0xb5, 0x8f,
-	0x67, 0x34, 0x8f, 0x32, 0xf7, 0xcc, 0xfe, 0xea, 0x41, 0x7a, 0xc9, 0xaf, 0xb1, 0x58, 0x96, 0xe8,
-	0x3c, 0x17, 0xcc, 0xb6, 0x9e, 0xdd, 0x9b, 0xbc, 0x84, 0xd4, 0x58, 0xa6, 0xed, 0x9c, 0x55, 0x1e,
-	0xd5, 0x38, 0x1f, 0x79, 0x7a, 0x5a, 0x91, 0x5d, 0x18, 0xa2, 0x2c, 0x9c, 0x20, 0xf1, 0x82, 0x01,
-	0xca, 0x62, 0x5a, 0xad, 0x2d, 0xea, 0x8a, 0x3e, 0xe9, 0x58, 0xcc, 0x5a, 0x8b, 0xba, 0xa2, 0x83,
-	0xd6, 0x62, 0x56, 0x65, 0x7f, 0x0f, 0x61, 0x34, 0xd3, 0xaa, 0x58, 0xf2, 0x47, 0xb3, 0x23, 0xff,
-	0x07, 0xf0, 0xd5, 0x9b, 0x97, 0x6a, 0xa1, 0x22, 0x8a, 0xb1, 0xe7, 0x9c, 0xab, 0x85, 0x22, 0x3b,
-	0x30, 0xa8, 0xb5, 0xe0, 0xe8, 0x61, 0x0c, 0xf2, 0x40, 0x78, 0xee, 0xb5, 0x92, 0x18, 0x31, 0x04,
-	0x82, 0x1c, 0xc0, 0xa4, 0x40, 0xc3, 0xb5, 0xa8, 0xad, 0x50, 0x32, 0xc2, 0xe8, 0xb2, 0xc8, 0x0f,
-	0x30, 0x59, 0x30, 0x63, 0xb5, 0x92, 0xaa, 0x12, 0x48, 0x87, 0x07, 0xc9, 0xe1, 0xe4, 0x98, 0x1c,
-	0x85, 0x8e, 0x9e, 0xad, 0x25, 0x79, 0x57, 0x8d, 0xbc, 0x82, 0x0d, 0xae, 0xd4, 0x8d, 0x90, 0x8b,
-	0xb9, 0x15, 0x15, 0xd2, 0x91, 0x87, 0x32, 0x89, 0xbc, 0x5f, 0x44, 0x85, 0xe4, 0x3b, 0x48, 0x4b,
-	0xc5, 0x99, 0x8f, 0x9b, 0x1e, 0xf4, 0x0e, 0x27, 0xc7, 0xdb, 0xd1, 0xeb, 0x7a, 0x22, 0xf2, 0x56,
-	0x85, 0x50, 0x18, 0xb1, 0xa2, 0xd0, 0x68, 0x0c, 0x1d, 0x87, 0x2a, 0x46, 0xd2, 0x75, 0x91, 0xd7,
-	0x9c, 0x42, 0xe8, 0x22, 0xaf, 0xb9, 0x2b, 0x5a, 0x29, 0x6e, 0x90, 0x4e, 0x7c, 0x54, 0xff, 0x76,
-	0xf6, 0x1a, 0xb9, 0xa8, 0xd1, 0xd0, 0x8d, 0x83, 0xc4, 0xd9, 0x47, 0x92, 0xfc, 0x08, 0x9b, 0xac,
-	0x3b, 0x51, 0x74, 0xd3, 0xe7, 0xb8, 0x13, 0xd1, 0xdc, 0x99, 0xb6, 0xfc, 0xae, 0xea, 0xba, 0x15,
-	0xbe, 0x49, 0x5b, 0x9d, 0x56, 0x5c, 0xb8, 0x4e, 0xed, 0x43, 0x20, 0xe6, 0x1a, 0xaf, 0xe8, 0x53,
-	0x2f, 0x4d, 0x3d, 0x23, 0xc7, 0x2b, 0x72, 0x04, 0x50, 0xa1, 0x5c, 0x9a, 0x79, 0x29, 0xe4, 0x0d,
-	0x7d, 0xe6, 0x4b, 0xf0, 0x34, 0x06, 0x6d, 0xa6, 0x37, 0x1f, 0x7b, 0x15, 0x3f, 0xc8, 0x7b, 0x90,
-	0x4a, 0x65, 0x43, 0xc1, 0xb6, 0x7d, 0x66, 0x2d, 0xed, 0x64, 0x85, 0x30, 0x5c, 0x2d, 0xa5, 0xa5,
-	0x24, 0xc8, 0x1a, 0xda, 0x55, 0xc3, 0x88, 0x3f, 0x91, 0x3e, 0x0f, 0x23, 0xe4, 0xde, 0x4e, 0xff,
-	0x76, 0xc9, 0xa4, 0x15, 0x76, 0x45, 0x77, 0x82, 0x7e, 0x43, 0x93, 0x2f, 0x60, 0x62, 0x6a, 0xc1,
-	0x57, 0xf3, 0x12, 0x3f, 0x60, 0x49, 0x77, 0xbd, 0x18, 0x3c, 0xeb, 0xdc, 0x71, 0x9c, 0x31, 0x67,
-	0x16, 0x17, 0x4a, 0xaf, 0xe8, 0x8b, 0x90, 0x54, 0x43, 0x93, 0x43, 0x18, 0xd5, 0x61, 0xbb, 0xe8,
-	0xff, 0x7c, 0x19, 0xb7, 0x62, 0x46, 0x71, 0xe7, 0xf2, 0x46, 0xec, 0x46, 0xa4, 0x62, 0x42, 0xce,
-	0x1b, 0x75, 0x1a, 0x46, 0xc4, 0xf1, 0x9a, 0xfd, 0xfc, 0x06, 0x52, 0x13, 0x97, 0x91, 0xbe, 0xf4,
-	0xde, 0x9a, 0xfa, 0x34, 0x3b, 0x9a, 0xb7, 0x0a, 0x71, 0xcf, 0xf7, 0x9a, 0x3d, 0x77, 0x69, 0xdb,
-	0x55, 0x8d, 0x74, 0x3f, 0xa4, 0xed, 0xde, 0xd9, 0x7b, 0x80, 0x99, 0xb3, 0xbf, 0x74, 0x97, 0xe8,
-	0xfe, 0x65, 0x20, 0x6f, 0x00, 0x62, 0x1e, 0x02, 0x0d, 0xed, 0xdf, 0x09, 0x78, 0x12, 0x13, 0xcc,
-	0x3b, 0x2a, 0x19, 0x87, 0xb4, 0xe1, 0x3f, 0x70, 0xd6, 0x2c, 0x6e, 0xbf, 0xb3, 0xb8, 0x6f, 0x61,
-	0xc2, 0x55, 0x59, 0x22, 0x77, 0x3d, 0x33, 0x34, 0xf1, 0x11, 0xd6, 0x53, 0xdf, 0x48, 0xf2, 0xae,
-	0x56, 0xf6, 0xbb, 0x3b, 0x91, 0x0d, 0xf9, 0x49, 0x61, 0x5e, 0x43, 0x5a, 0x87, 0xf3, 0xd1, 0xc4,
-	0x68, 0x9b, 0x10, 0xd8, 0x79, 0x2b, 0xcf, 0x5e, 0xc1, 0xa4, 0xb3, 0xc4, 0x8f, 0x1e, 0xd3, 0x1d,
-	0xe8, 0xbf, 0x3b, 0x7d, 0x70, 0x46, 0x2f, 0x60, 0xeb, 0x14, 0x4b, 0xb4, 0x98, 0xa3, 0xa9, 0x95,
-	0x34, 0x48, 0x5e, 0xc0, 0xd0, 0x58, 0x66, 0x97, 0xc6, 0x6b, 0x0d, 0xf2, 0x48, 0xb9, 0xcb, 0x83,
-	0x5a, 0x2b, 0x1d, 0x31, 0x06, 0x22, 0xfa, 0x4b, 0xba, 0xfe, 0x7e, 0xad, 0xdd, 0x89, 0xfd, 0x8f,
-	0xfc, 0xa1, 0xc3, 0x67, 0x99, 0x28, 0x3f, 0xd3, 0xdf, 0x57, 0xfe, 0xf8, 0x33, 0x7f, 0x2e, 0xd7,
-	0x4d, 0x5a, 0x4f, 0x8f, 0xff, 0x1e, 0xb0, 0x6c, 0x0a, 0x9b, 0x97, 0xc8, 0x34, 0xbf, 0xce, 0xf1,
-	0x76, 0x89, 0xc6, 0x92, 0x0d, 0xe8, 0xdd, 0xc6, 0x32, 0xf5, 0x6e, 0x5d, 0x3d, 0xaf, 0xb4, 0x0a,
-	0x9f, 0x8a, 0x41, 0xee, 0xdf, 0x0e, 0xa9, 0x55, 0xf1, 0x38, 0xf7, 0xad, 0xca, 0x56, 0xb0, 0x71,
-	0x2e, 0x8c, 0xfd, 0x4c, 0x9c, 0x3b, 0x30, 0xb0, 0xca, 0xb2, 0xd2, 0x3b, 0x4c, 0xf2, 0x40, 0x74,
-	0xd0, 0x27, 0x1f, 0x43, 0x7f, 0x01, 0x5b, 0x27, 0x1a, 0x3f, 0xa5, 0xe8, 0xa1, 0xbc, 0xfd, 0x76,
-	0xee, 0x5a, 0x30, 0x49, 0x07, 0x4c, 0x36, 0x82, 0xc1, 0xcf, 0x55, 0x6d, 0x57, 0xc7, 0xff, 0xf4,
-	0x60, 0x7b, 0x1d, 0xed, 0x12, 0xf5, 0x07, 0xf7, 0x0d, 0xfa, 0x16, 0x46, 0x67, 0x68, 0x5d, 0xb2,
-	0x64, 0x23, 0x42, 0xf2, 0xea, 0x7b, 0xcf, 0x23, 0x75, 0xa7, 0x0e, 0x5f, 0x43, 0x72, 0x86, 0x96,
-	0x8c, 0xa3, 0xec, 0xdd, 0xe9, 0xde, 0x6e, 0x7c, 0xde, 0x6b, 0xec, 0x1b, 0x48, 0xa6, 0x45, 0x41,
-	0x1e, 0x66, 0xd9, 0x1a, 0xdc, 0x4b, 0xf2, 0x18, 0x86, 0x61, 0xd6, 0x3e, 0x66, 0x73, 0x6f, 0x1a,
-	0x5f, 0xc3, 0x30, 0xcc, 0xfb, 0xe3, 0x80, 0xba, 0x9b, 0xf0, 0xd3, 0xe8, 0xb7, 0xf0, 0x7b, 0xf3,
-	0xc7, 0xd0, 0xff, 0xec, 0xbc, 0xfd, 0x37, 0x00, 0x00, 0xff, 0xff, 0xae, 0x2d, 0x1c, 0x69, 0x01,
-	0x09, 0x00, 0x00,
+	// 638 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x54, 0x61, 0x6b, 0x13, 0x4d,
+	0x10, 0xe6, 0xee, 0x72, 0x49, 0x33, 0x49, 0xc3, 0xdb, 0x7d, 0xab, 0x9c, 0xf5, 0x4b, 0x3d, 0x11,
+	0x8b, 0x48, 0x94, 0xf8, 0x0b, 0x6a, 0xaa, 0xa5, 0x20, 0xa5, 0x6c, 0x11, 0xc4, 0x2f, 0x65, 0xbd,
+	0x1d, 0x75, 0xf1, 0x72, 0x7b, 0xdd, 0x9d, 0x08, 0xf1, 0x0f, 0xf8, 0xcb, 0xfc, 0x55, 0x7e, 0x91,
+	0xdd, 0xbd, 0x4b, 0xd3, 0xa4, 0x14, 0x29, 0x7e, 0x9b, 0x67, 0x76, 0xee, 0xb9, 0x67, 0x9e, 0x99,
+	0x5d, 0xd8, 0xa9, 0x4b, 0x51, 0xe0, 0xd8, 0x92, 0x36, 0x38, 0xae, 0x8d, 0x26, 0xcd, 0x52, 0x9f,
+	0xca, 0x5f, 0x02, 0x4c, 0xb5, 0x36, 0x52, 0x55, 0x82, 0x90, 0xfd, 0x07, 0x49, 0xa9, 0xab, 0x2c,
+	0xda, 0x8f, 0x0e, 0x62, 0xee, 0x42, 0x9f, 0x11, 0x94, 0xc5, 0x4d, 0x46, 0x50, 0xfe, 0x10, 0x7a,
+	0x67, 0xaa, 0xa0, 0xb9, 0xf1, 0xe5, 0xd6, 0x14, 0xbe, 0xbc, 0xcf, 0x5d, 0x98, 0xff, 0x8c, 0xa1,
+	0x77, 0x66, 0xb4, 0x9c, 0x17, 0xc4, 0x46, 0x10, 0x2b, 0xd9, 0x1c, 0xc6, 0x4a, 0x32, 0x06, 0x1d,
+	0x5a, 0xd4, 0xe8, 0xb9, 0xfa, 0xdc, 0xc7, 0x2e, 0x57, 0x89, 0x19, 0x66, 0x49, 0xc8, 0xb9, 0x98,
+	0xed, 0x42, 0x5a, 0x1b, 0x55, 0x60, 0xd6, 0xd9, 0x8f, 0x0e, 0x52, 0x1e, 0x80, 0xab, 0x2c, 0xd5,
+	0x37, 0xcc, 0x52, 0x9f, 0xf4, 0x31, 0xcb, 0xa0, 0x67, 0xb0, 0x50, 0x35, 0xda, 0xac, 0xbb, 0x9f,
+	0x1c, 0xf4, 0x79, 0x0b, 0xd9, 0x1e, 0x6c, 0x55, 0x9a, 0x04, 0x29, 0x5d, 0x65, 0x3d, 0xff, 0xc5,
+	0x12, 0xbb, 0x33, 0xa9, 0x6c, 0xa1, 0xe7, 0x15, 0x65, 0x5b, 0xe1, 0xac, 0xc5, 0x8e, 0xb1, 0x0e,
+	0xcd, 0x65, 0x7d, 0x2f, 0xa9, 0x85, 0xee, 0xff, 0x56, 0xfd, 0xc0, 0x0c, 0x82, 0x52, 0x17, 0x3b,
+	0xa6, 0x5a, 0x5b, 0xe5, 0xff, 0x32, 0x08, 0x4c, 0x2d, 0xce, 0x7f, 0x45, 0x00, 0x67, 0xce, 0xe2,
+	0x73, 0x67, 0xfa, 0x4d, 0x66, 0xf8, 0xc6, 0xe3, 0x95, 0xc6, 0x1f, 0xc3, 0x76, 0x21, 0x08, 0xbf,
+	0x68, 0xb3, 0xb8, 0x28, 0xb4, 0x6c, 0x5d, 0x19, 0xb6, 0xc9, 0xa9, 0x96, 0xd7, 0x8b, 0x3c, 0x43,
+	0xe7, 0x7a, 0xd1, 0xa9, 0x63, 0x7a, 0x00, 0x5b, 0x7e, 0xbc, 0x17, 0x4a, 0x7a, 0xc3, 0x5c, 0x1f,
+	0x0e, 0x9f, 0x48, 0x36, 0x06, 0x28, 0x74, 0x59, 0x62, 0xe1, 0x55, 0x3b, 0xdb, 0x06, 0x93, 0xd1,
+	0x38, 0xec, 0x47, 0x33, 0x39, 0xbe, 0x52, 0x91, 0x3f, 0x82, 0xc1, 0xb1, 0xb0, 0x64, 0x74, 0xa5,
+	0x67, 0xea, 0x6a, 0x60, 0xd1, 0x95, 0xee, 0x7c, 0x17, 0xe2, 0x93, 0xa3, 0xf5, 0x0e, 0xf3, 0x53,
+	0x18, 0x1d, 0x61, 0x89, 0x84, 0x1c, 0x6d, 0xad, 0x2b, 0x8b, 0xec, 0x3e, 0x74, 0x2d, 0x09, 0x9a,
+	0x5b, 0x5f, 0x95, 0xf2, 0x06, 0xb9, 0x81, 0xa3, 0x31, 0xda, 0x34, 0x66, 0x04, 0xd0, 0xf0, 0x25,
+	0xab, 0x7c, 0xef, 0x6b, 0x29, 0xfe, 0x19, 0x1f, 0x3a, 0x7d, 0x24, 0x54, 0x79, 0x47, 0xbe, 0x27,
+	0xd0, 0x91, 0x82, 0x84, 0xf7, 0x7f, 0x30, 0xd9, 0x69, 0x2d, 0x5c, 0x8e, 0x9c, 0xfb, 0xe3, 0xfc,
+	0x10, 0xb6, 0xcf, 0x51, 0x98, 0xe2, 0x2b, 0xc7, 0xcb, 0x39, 0x5a, 0x62, 0x43, 0x88, 0x2e, 0x1b,
+	0x9b, 0xa2, 0x4b, 0xe7, 0xe7, 0x67, 0xa3, 0x67, 0x9e, 0x3a, 0xe5, 0x3e, 0x76, 0x4a, 0x49, 0x7b,
+	0xa5, 0x29, 0x8f, 0x49, 0xe7, 0x0b, 0x18, 0xbe, 0x53, 0x96, 0xee, 0xa8, 0x73, 0x17, 0x52, 0xd2,
+	0x24, 0x4a, 0x4f, 0x98, 0xf0, 0x00, 0x56, 0xd4, 0x27, 0xb7, 0xa9, 0x3f, 0x85, 0xd1, 0xd4, 0xe0,
+	0xdf, 0x98, 0x1e, 0xec, 0x8d, 0x97, 0x0b, 0xbe, 0x14, 0x93, 0xac, 0x88, 0xc9, 0x3f, 0xc0, 0xf0,
+	0xad, 0xd6, 0x72, 0xda, 0x2c, 0xeb, 0xe6, 0x36, 0x47, 0x37, 0x6c, 0xf3, 0xc6, 0xbd, 0x88, 0x37,
+	0xef, 0x45, 0xde, 0x83, 0xf4, 0xcd, 0xac, 0xa6, 0xc5, 0xe4, 0x77, 0x04, 0x3b, 0x57, 0x7d, 0x9c,
+	0xa3, 0xf9, 0xee, 0x9e, 0x8f, 0xe7, 0xd0, 0x3b, 0x46, 0x72, 0x36, 0xb2, 0x61, 0xd3, 0xac, 0x2f,
+	0xdf, 0xfb, 0xbf, 0x41, 0xd7, 0x1c, 0x7e, 0x0a, 0xc9, 0x31, 0x12, 0xeb, 0x37, 0x67, 0x27, 0x47,
+	0x7b, 0xf7, 0x9a, 0x70, 0x6d, 0x65, 0x5e, 0x40, 0x72, 0x28, 0x25, 0xdb, 0xf4, 0x6f, 0xf9, 0xc1,
+	0x9a, 0x7d, 0x13, 0xe8, 0x86, 0x2d, 0xbe, 0xed, 0x9b, 0xb5, 0x3d, 0x7f, 0x06, 0xdd, 0x70, 0x93,
+	0x6e, 0x16, 0xb4, 0x7a, 0xc7, 0x5e, 0xf7, 0x3e, 0x86, 0x87, 0xfd, 0x53, 0xd7, 0x3f, 0xf3, 0xaf,
+	0xfe, 0x04, 0x00, 0x00, 0xff, 0xff, 0x69, 0x7a, 0x6a, 0x54, 0xfb, 0x05, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
