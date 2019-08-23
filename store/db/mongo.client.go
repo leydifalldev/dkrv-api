@@ -3,9 +3,9 @@ package db
 import (
 	"context"
 	"log"
+	"os"
 	"time"
 
-	"github.com/golang/protobuf/proto"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -13,7 +13,8 @@ import (
 )
 
 func getClient() *mongo.Client {
-	clientOptions := options.Client().ApplyURI("mongodb://localhost:27017")
+	uri := os.Getenv("MONGO_HOST")
+	clientOptions := options.Client().ApplyURI(uri)
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
 	if err != nil {
@@ -84,18 +85,19 @@ func (s Store) Create(d interface{}) (string, int32, string) {
 }
 
 //Update update a document
-func (s Store) Update(id bson.D, d interface{}) (*mongo.UpdateResult, int32, string) {
-	doc, _ := proto.Marshal(d)
-	bd := bson.Unmarshal(d)
-	upd := bson.D{
-		{
-			"$inc", bson.D{
-				bd,
-			},
-		},
-	}
+func (s Store) Update(id string, d interface{}) (*mongo.UpdateResult, int32, string) {
+	//doc, _ := proto.Marshal(d)
+	//bd := bson.Unmarshal(d)
+	var bdoc bson.M
+	err := bson.UnmarshalExtJSON([]byte(`{"$set": {"name": "Doudou"}}`), true, &bdoc)
+	log.Println(bdoc)
+	/*upd := bson.D{
+		{"$inc", bson.D{
+			bdoc,
+		}},
+	}*/
 	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
-	res, err := c.UpdateOne(ctx, id, d)
+	res, err := c.UpdateOne(ctx, id, bdoc)
 	if err != nil {
 		log.Fatal(err)
 		return res, 500, "DATABASE ERROR: Cannot update document"

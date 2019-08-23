@@ -4,8 +4,6 @@ import (
 	context "context"
 	"log"
 	"store/db"
-
-	"go.mongodb.org/mongo-driver/bson"
 )
 
 //GetList return List of info
@@ -70,7 +68,7 @@ func (s *Server) Add(ctx context.Context, req *PlaceStore) (*CreateResponse, err
 func (s *Server) Update(ctx context.Context, req *PlaceStore) (*UpdateResponse, error) {
 	var response *UpdateResponse
 	c := db.NewConnect("dkrv", "place")
-	id, status, err := c.Update(bson.M{"place_id": req.Id}, req)
+	id, status, err := c.Update(req.Id, req)
 	if id != nil {
 		log.Println("Hello")
 	}
