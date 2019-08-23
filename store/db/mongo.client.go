@@ -5,6 +5,7 @@ import (
 	"log"
 	"time"
 
+	"github.com/golang/protobuf/proto"
 	"go.mongodb.org/mongo-driver/bson"
 	"go.mongodb.org/mongo-driver/bson/primitive"
 	"go.mongodb.org/mongo-driver/mongo"
@@ -84,10 +85,12 @@ func (s Store) Create(d interface{}) (string, int32, string) {
 
 //Update update a document
 func (s Store) Update(id bson.D, d interface{}) (*mongo.UpdateResult, int32, string) {
+	doc, _ := proto.Marshal(d)
+	bd := bson.Unmarshal(d)
 	upd := bson.D{
 		{
 			"$inc", bson.D{
-				d,
+				bd,
 			},
 		},
 	}
