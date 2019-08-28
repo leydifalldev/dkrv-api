@@ -1,4 +1,4 @@
-package db
+package mongo
 
 import (
 	"context"
@@ -44,8 +44,8 @@ type Store struct {
 	collectionName string
 }
 
-//NewConnect return store
-func NewConnect(dbName string, collectionName string) *Store {
+//GetRepository return store
+func GetRepository(dbName string, collectionName string) *Store {
 	conn := getClient()
 	return &Store{conn: conn, dbName: dbName, collectionName: collectionName}
 }
@@ -55,7 +55,7 @@ func (s Store) GetList() (*mongo.Cursor, int32, string) {
 	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
 	defer s.conn.Disconnect(ctx)
 	opt := options.Find()
-	opt.SetLimit(2)
+	//opt.SetLimit(2)
 	cur, err := c.Find(ctx, bson.D{{}}, opt)
 	if err != nil {
 		log.Fatal(err)
@@ -65,10 +65,10 @@ func (s Store) GetList() (*mongo.Cursor, int32, string) {
 }
 
 //Get return entity
-func (s Store) Get() (*mongo.SingleResult, int32, string) {
+func (s Store) Get(id string) (*mongo.SingleResult, int32, string) {
 	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
 	defer s.conn.Disconnect(ctx)
-	filter := bson.M{"_id": "Hello"}
+	filter := bson.M{"id": id}
 	d := c.FindOne(context.TODO(), filter)
 	return d, 200, "none"
 }
@@ -85,19 +85,12 @@ func (s Store) Create(d interface{}) (string, int32, string) {
 }
 
 //Update update a document
-func (s Store) Update(id string, d interface{}) (*mongo.UpdateResult, int32, string) {
-	//doc, _ := proto.Marshal(d)
-	//bd := bson.Unmarshal(d)
-	var bdoc bson.M
-	err := bson.UnmarshalExtJSON([]byte(`{"$set": {"name": "Doudou"}}`), true, &bdoc)
-	log.Println(bdoc)
-	/*upd := bson.D{
-		{"$inc", bson.D{
-			bdoc,
-		}},
-	}*/
+func (s Store) Update(id string, d bson.D) (*mongo.UpdateResult, int32, string) {
 	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
-	res, err := c.UpdateOne(ctx, id, bdoc)
+	log.Println(id)
+	log.Println(d)
+	bid, _ := primitive.ObjectIDFromHex(id)
+	res, err := c.UpdateOne(ctx, bson.M{"_id": bid}, d)
 	if err != nil {
 		log.Fatal(err)
 		return res, 500, "DATABASE ERROR: Cannot update document"

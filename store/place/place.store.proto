@@ -26,9 +26,9 @@ message Product {
 message PlaceStore {
   string id = 1;
   string name = 2;
-  string category_code = 3;
-  string category_name = 4;
-  string place_id = 5;
+  string categorycode = 3;
+  string categoryname = 4;
+  string placeid = 5;
   repeated Product collection = 6;
 }
 
@@ -43,7 +43,11 @@ message DeleteResponse {
   string error = 2;
   string id = 3;
 }
-  
+
+message UpdateRequest {
+  string id = 1;
+  PlaceStore payload = 2;
+}
 message UpdateResponse {
   int32 status = 1;
   string error = 2;
@@ -76,8 +80,8 @@ message CreateResponse {
 }
 
 message FoodCategory {
-  string category_name = 1;
-  string category_code = 2;
+  string categoryname = 1;
+  string categorycode = 2;
 }
 
 message Empty {}
@@ -86,6 +90,6 @@ service PlaceStoreService {
   rpc GetList(Empty) returns (ListResponse);
   rpc Get(ID) returns (DetailResponse);
   rpc Add(PlaceStore) returns (CreateResponse);
-  rpc Update(PlaceStore) returns (UpdateResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Delete(ID) returns (DeleteResponse);
 }
