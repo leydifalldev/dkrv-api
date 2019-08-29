@@ -23,16 +23,20 @@ message Product {
   int32 position = 11; 
 }
 
-message Collection {
+message CollectionPayload {
   string id = 1;
   string name = 2;
   string categorycode = 3;
   string categoryname = 4;
   string placeid = 5;
-  repeated Product collection = 6;
+  repeated Product products = 6;
 }
 
 message Gastronomie { string name = 1;}
+
+message CreateCollectionRequest {
+  string name = 1;
+}
 
 message ID {
   string id = 1;
@@ -46,7 +50,7 @@ message DeleteResponse {
 
 message UpdateRequest {
   string id = 1;
-  PlaceStore payload = 2;
+  CollectionPayload payload = 2;
 }
 message UpdateResponse {
   int32 status = 1;
@@ -86,10 +90,10 @@ message FoodCategory {
 
 message Empty {}
 
-service PlaceStoreService {
+service CollectionService {
   rpc GetList(Empty) returns (ListResponse);
   rpc Get(ID) returns (DetailResponse);
-  rpc Add(PlaceStore) returns (CreateResponse);
+  rpc Add(CreateRequest) returns (CreateResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Delete(ID) returns (DeleteResponse);
 }
