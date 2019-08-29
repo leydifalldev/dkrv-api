@@ -9,8 +9,8 @@ protoc --proto_path=./core/product \
        --go_out=plugins=grpc:./core/product ./core/product/product.proto
 echo 'OK =========> generate protobuf to core'
 
-echo 'OK =========> start coping place-info proto to place-info folder'
-cp -R ./config/protos/place.store.proto ./store/place/place.store.proto
-echo 'OK =========> start generating place.store proto code for place.store'
-protoc --proto_path=./store/place \
-       --go_out=plugins=grpc:./store/place ./store/place/place.store.proto
+echo 'OK =========> start coping collection proto to collection folder'
+cp -R ./config/protos/collection.proto ./store/collection/collection.proto
+echo 'OK =========> start generating collection proto code for collection.store'
+protoc --proto_path=./store/collection \
+       --go_out=plugins=grpc:./store/collection ./store/collection/collection.proto

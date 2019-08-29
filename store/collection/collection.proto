@@ -1,6 +1,6 @@
 syntax = "proto3";
-package place;
-option go_package = "place";
+package collection;
+option go_package = "collection";
 
 message Coordinate {
   float lon = 1;
@@ -23,16 +23,20 @@ message Product {
   int32 position = 11; 
 }
 
-message PlaceStore {
+message CollectionPayload {
   string id = 1;
   string name = 2;
   string categorycode = 3;
   string categoryname = 4;
   string placeid = 5;
-  repeated Product collection = 6;
+  repeated Product products = 6;
 }
 
 message Gastronomie { string name = 1;}
+
+message CreateCollectionRequest {
+  string name = 1;
+}
 
 message ID {
   string id = 1;
@@ -44,9 +48,13 @@ message DeleteResponse {
   string id = 3;
 }
 
+message CreateRequest {
+  CollectionPayload payload = 1;
+}
+
 message UpdateRequest {
   string id = 1;
-  PlaceStore payload = 2;
+  CollectionPayload payload = 2;
 }
 message UpdateResponse {
   int32 status = 1;
@@ -57,7 +65,7 @@ message UpdateResponse {
 message DetailResponse {
   int32 status = 1;
   string error = 2;
-  PlaceStore data = 4;
+  CollectionPayload data = 4;
 }
   
 message SearchRequest {
@@ -70,7 +78,7 @@ message ListResponse {
   int32 status = 1;
   string error = 2;
   int64 total = 3;
-  repeated PlaceStore data = 4;
+  repeated CollectionPayload data = 4;
 }
 
 message CreateResponse {
@@ -86,10 +94,10 @@ message FoodCategory {
 
 message Empty {}
 
-service PlaceStoreService {
+service CollectionService {
   rpc GetList(Empty) returns (ListResponse);
   rpc Get(ID) returns (DetailResponse);
-  rpc Add(PlaceStore) returns (CreateResponse);
+  rpc Add(CreateRequest) returns (CreateResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Delete(ID) returns (DeleteResponse);
 }

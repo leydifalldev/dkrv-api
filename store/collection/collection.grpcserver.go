@@ -1,4 +1,4 @@
-package place
+package collection
 
 import (
 	"log"

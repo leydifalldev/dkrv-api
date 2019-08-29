@@ -1,4 +1,4 @@
-package place
+package collection
 
 import (
 	context "context"
@@ -12,7 +12,7 @@ import (
 
 //GetList return List of info
 func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error) {
-	var data []*PlaceStore
+	var data []*CollectionPayload
 	var cpt int64
 	c := mongo.GetRepository("dkrv", "place")
 	cur, status, err := c.GetList()
@@ -20,7 +20,7 @@ func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error)
 	cpt = 0
 	for cur.Next(context.TODO()) {
 		cpt++
-		var p PlaceStore
+		var p CollectionPayload
 		err := cur.Decode(&p)
 		if err != nil {
 			log.Fatal(err)
@@ -39,7 +39,7 @@ func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error)
 //Get return List of info
 func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
 	c := mongo.GetRepository("dkrv", "place")
-	var p *PlaceStore
+	var p *CollectionPayload
 	cur, status, err := c.Get(req.GetId())
 	derr := cur.Decode(&p)
 	if derr != nil {
@@ -56,8 +56,9 @@ func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
 }
 
 //Add allows to add info
-func (s *Server) Add(ctx context.Context, req *PlaceStore) (*CreateResponse, error) {
+func (s *Server) Add(ctx context.Context, req *CollectionPayload) (*CreateResponse, error) {
 	c := mongo.GetRepository("dkrv", "place")
+	collection := 
 	id, status, err := c.Create(req)
 	return &CreateResponse{
 		Status: status,
