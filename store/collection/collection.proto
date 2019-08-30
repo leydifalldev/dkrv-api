@@ -23,7 +23,7 @@ message Product {
   int32 position = 11; 
 }
 
-message CollectionPayload {
+message Collection {
   string id = 1;
   string name = 2;
   string categorycode = 3;
@@ -49,12 +49,12 @@ message DeleteResponse {
 }
 
 message CreateRequest {
-  CollectionPayload payload = 1;
+  Collection payload = 1;
 }
 
 message UpdateRequest {
   string id = 1;
-  CollectionPayload payload = 2;
+  Collection payload = 2;
 }
 message UpdateResponse {
   int32 status = 1;
@@ -65,7 +65,7 @@ message UpdateResponse {
 message DetailResponse {
   int32 status = 1;
   string error = 2;
-  CollectionPayload data = 4;
+  Collection data = 4;
 }
   
 message SearchRequest {
@@ -78,7 +78,7 @@ message ListResponse {
   int32 status = 1;
   string error = 2;
   int64 total = 3;
-  repeated CollectionPayload data = 4;
+  repeated Collection data = 4;
 }
 
 message CreateResponse {

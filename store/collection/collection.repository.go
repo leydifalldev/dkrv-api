@@ -5,14 +5,13 @@ import (
 	"log"
 	"reflect"
 	"store/mongo"
-	"strings"
 
 	"go.mongodb.org/mongo-driver/bson"
 )
 
 //GetList return List of info
 func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error) {
-	var data []*CollectionPayload
+	var data []*Collection
 	var cpt int64
 	c := mongo.GetRepository("dkrv", "place")
 	cur, status, err := c.GetList()
@@ -20,7 +19,7 @@ func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error)
 	cpt = 0
 	for cur.Next(context.TODO()) {
 		cpt++
-		var p CollectionPayload
+		var p Collection
 		err := cur.Decode(&p)
 		if err != nil {
 			log.Fatal(err)
@@ -39,7 +38,7 @@ func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error)
 //Get return List of info
 func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
 	c := mongo.GetRepository("dkrv", "place")
-	var p *CollectionPayload
+	var p *Collection
 	cur, status, err := c.Get(req.GetId())
 	derr := cur.Decode(&p)
 	if derr != nil {
@@ -56,9 +55,8 @@ func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
 }
 
 //Add allows to add info
-func (s *Server) Add(ctx context.Context, req *CollectionPayload) (*CreateResponse, error) {
+func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
 	c := mongo.GetRepository("dkrv", "place")
-	collection := 
 	id, status, err := c.Create(req)
 	return &CreateResponse{
 		Status: status,
@@ -86,7 +84,7 @@ func empty(v reflect.Value) bool {
 //Update allow to update
 func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
 	c := mongo.GetRepository("dkrv", "place")
-	log.Println("req.Payload")
+	/*log.Println("req.Payload")
 	log.Println(req.Payload)
 	input := reflect.ValueOf(req.Payload)
 	if input.Kind() == reflect.Ptr {
@@ -102,9 +100,9 @@ func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateRespons
 	}
 
 	log.Println(values)
-
+	*/
 	update := bson.D{
-		{"$set", values},
+		{"$set", req.Payload},
 	}
 	id, status, _ := c.Update(req.GetId(), update)
 	if id != nil {

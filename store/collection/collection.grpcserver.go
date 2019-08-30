@@ -22,6 +22,6 @@ func GrpcServer() {
 		log.Println("grpcServer ===> Error to connect to 0.0.0.0:6000")
 	}
 	g := grpc.NewServer()
-	RegisterPlaceStoreServiceServer(g, NewServer())
+	RegisterCollectionServiceServer(g, NewServer())
 	g.Serve(lis)
 }

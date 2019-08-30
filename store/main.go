@@ -2,11 +2,11 @@ package main
 
 import (
 	"log"
-	"store/place"
+	"store/collection"
 )
 
 func main() {
 	log.Println("hello place info")
-	go place.GrpcServer()
+	go collection.GrpcServer()
 	select {}
 }
