@@ -1,0 +1,18 @@
+{
+  "firtsname": "Doudou",
+  "lastname": "FALL",
+  "email": "doudou.leydi.fall@gmail.com",
+  "birthdate": "15-01-1988",
+  "birthplace": "Dakar",
+  "address": "69 Cité des jeunes cadres, liberté 6 Ext",
+  "cpc": "69 Cité des jeunes cadres, liberté 6 Ext",
+  "password": "dsqdhqsd",
+  "adminlevel": 1,
+  "picture": {
+    "src": "ocean.doudou.fall.jpg"
+  },
+  "location": {
+    "lon": 1,
+    "lat": 3
+  }
+}
