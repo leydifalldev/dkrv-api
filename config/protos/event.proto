@@ -1,0 +1,130 @@
+syntax = "proto3";
+package event;
+option go_package = "event";
+
+message RequestEmpty {}
+
+
+message Picture { string src = 1; }
+
+message Gallery {
+  int32 main = 1;
+  repeated Picture pictures = 2; 
+}
+
+message Category {
+  string name = 1;
+}
+
+message Coordinate {
+  float lon = 1;
+  float lat = 2;
+}
+
+message Price {
+  int64 base = 1;
+  string currency = 2;
+}
+
+message Host {
+  string name = 1;
+  string src = 2;
+}
+
+message Location {
+  string address = 1;
+  string cpc = 2;
+  string zone = 3;
+  Coordinate location = 4;
+}
+
+message Event {
+  string id = 1;
+  string name = 2;
+  string placeid = 3;
+  string phone = 4;
+  string email = 5;
+  string place = 6;
+  string date = 7;
+  Category categories = 8;
+  string description = 9;
+  Price price = 10;
+  Location location = 11;
+  int64 nbplace = 12;
+  int64 likes = 13;
+  Gallery gallery = 14;
+  repeated Host hosts = 15;
+}
+
+message ID {
+  string id = 1;
+}
+
+message ListResponse {
+  int32 status = 1;
+  string error = 2;
+  int64 total = 3;
+  repeated Event data = 4;
+}
+
+message CreateRequest {
+  Event payload = 1;
+}
+
+message CreateResponse {
+  int32 status = 1;
+  string error = 3;
+  string payload = 2;
+}
+
+message DetailRequest {
+  string id = 4;
+}
+
+message DetailResponse {
+  int32 status = 1;
+  string error = 2;
+  Event payload = 4;
+}
+
+message UpdateRequest {
+  string id = 1;
+  Event payload = 3;
+}
+
+message UpdateResponse {
+  int32 status = 1;
+  string error = 2;
+  Event payload = 3;
+}
+
+message DeleteRequest {
+  string id = 3;
+}
+
+message DeleteResponse {
+  int32 status = 1;
+  string error = 2;
+  bool payload = 3;
+}
+
+message SearchRequest {
+  SearchParams payload = 1;
+}
+
+message SearchParams {
+  string q = 1;
+  int32 from = 2;
+  int32 to = 3;
+  string fromdate = 4;
+  string todate = 5;
+  repeated string category = 6;
+}
+
+service EventService {
+  rpc Search(SearchRequest) returns (ListResponse);
+  rpc Get(DetailRequest) returns (DetailResponse);
+  rpc Add(CreateRequest) returns (CreateResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
+}

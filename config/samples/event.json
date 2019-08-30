@@ -1,9 +1,18 @@
 {
   "name": "Concert dip",
   "placeid": "fkjdfndskjfds",
+  "phone": "+221.77.695.36.25",
   "place": "Grand Théâtre de Dakar",
   "price": {
     "normal": 14000
+  },
+  "gallery": {
+    "main": 1,
+    "pictures": [
+      {
+        "src": "ghost.jpeg"
+      }
+    ]
   },
   "date": "1567152547",
   "address": "1 rue corniche ouest, dakar",
@@ -18,5 +27,6 @@
       "name": "DopeBoy DMG",
       "src": "ocean.dope.jpg"
     }
-  ]
+  ],
+  "likes": 12300
 }
