@@ -56,10 +56,6 @@ message Event {
   repeated Host hosts = 15;
 }
 
-message ID {
-  string id = 1;
-}
-
 message ListResponse {
   int32 status = 1;
   string error = 2;
