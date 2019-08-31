@@ -1,10 +1,13 @@
 {
+  "id": "event-1",
   "name": "Concert dip",
   "placeid": "fkjdfndskjfds",
   "phone": "+221.77.695.36.25",
   "place": "Grand Théâtre de Dakar",
+  "email": "doudou.leydi.fall@gmail.com",
   "price": {
-    "normal": 14000
+    "base": 14000,
+    "currency": "FCFA"
   },
   "gallery": {
     "main": 1,
@@ -15,17 +18,34 @@
     ]
   },
   "date": "1567152547",
-  "address": "1 rue corniche ouest, dakar",
   "nbplace": 100,
   "description": "A l'occasion de son anniversaire dip doundou guiss organise un grand concert au grand théâtre de Dakar",
-  "host": [
+  "location": {
+    "address": "1 rue corniche ouest, dakar",
+    "cpc": "1 rue corniche ouest, dakar",
+    "zone": "Corniche Ouest",
+    "coordinate": {
+      "lon": 1,
+      "lat": 2
+    }
+  },
+  "artists": [
     {
-      "name": "Wally",
-      "src": "ocean.wally.jpg"
+      "id": "event-artist-1",
+      "name": "Dip Doundou GUISS",
+      "src": "https://www.google.com/imgres?imgurl=https%3A%2F%2Flookaside.fbsbx.com%2Flookaside%2Fcrawler%2Fmedia%2F%3Fmedia_id%3D347079298788988&imgrefurl=https%3A%2F%2Ffr-fr.facebook.com%2Fdipdoundouguissofficiel%2F%3F__tn__%3D%252AsH-R&docid=dQE8BkxcDOMIuM&tbnid=QQU0_iLuwi-UOM%3A&vet=10ahUKEwiJ_b-0uq3kAhUkAWMBHfZRDewQMwg9KAIwAg..i&w=959&h=960&bih=576&biw=1200&q=dip%20doundou%20guiss&ved=0ahUKEwiJ_b-0uq3kAhUkAWMBHfZRDewQMwg9KAIwAg&iact=mrc&uact=8"
+    }
+  ],
+  "hosts": [
+    {
+      "id": "event-artist-2",
+      "name": "BM Jaay",
+      "src": "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwiVuqOhq63kAhVSJBoKHefrBAwQjRx6BAgBEAQ&url=http%3A%2F%2Fwww.rapdjolof.com%2Fwebzine%2Fnews%2Fitem%2F3877-bm-jaay-marouane-3&psig=AOvVaw05tcV9HABnQKeriC3q7Fn6&ust=1567348741827583"
     },
     {
+      "id": "event-artist-3",
       "name": "DopeBoy DMG",
-      "src": "ocean.dope.jpg"
+      "src": "https://www.google.com/url?sa=i&source=images&cd=&ved=2ahUKEwibwK3wq63kAhWnxYUKHV6bB4cQjRx6BAgBEAQ&url=https%3A%2F%2Fsenemusic.sn%2Flvl-le-tout-premier-clip-de-dopeboy-dmg%2F&psig=AOvVaw2Mi1nZanFkYSuHlCivBMKT&ust=1567348915212995"
     }
   ],
   "likes": 12300

@@ -26,10 +26,9 @@ message Price {
   string currency = 2;
 }
 
-message Artist {
-  string id = 1;
-  string name = 2;
-  string src = 3;
+message Host {
+  string name = 1;
+  string src = 2;
 }
 
 message Location {
@@ -54,8 +53,7 @@ message Event {
   int64 nbplace = 12;
   int64 likes = 13;
   Gallery gallery = 14;
-  repeated Artist artists = 15;
-  repeated Artist hosts = 16;
+  repeated Host hosts = 15;
 }
 
 message ListResponse {

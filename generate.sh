@@ -14,3 +14,9 @@ cp -R ./config/protos/collection.proto ./store/collection/collection.proto
 echo 'OK =========> start generating collection proto code for collection.store'
 protoc --proto_path=./store/collection \
        --go_out=plugins=grpc:./store/collection ./store/collection/collection.proto
+
+echo 'OK =========> start coping event proto to event folder'
+cp -R ./config/protos/event.proto ./dkrv-event/event/event.proto
+echo 'OK =========> start generating event proto code for event.store'
+protoc --proto_path=./dkrv-event/event \
+       --go_out=plugins=grpc:./dkrv-event/event ./dkrv-event/event/event.proto

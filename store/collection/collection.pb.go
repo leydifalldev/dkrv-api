@@ -111,6 +111,7 @@ func (m *Picture) GetSrc() string {
 }
 
 type Product struct {
+	// @inject_tag: valid:"ip"
 	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Type                 string   `protobuf:"bytes,2,opt,name=type,proto3" json:"type,omitempty"`
 	Name                 string   `protobuf:"bytes,3,opt,name=name,proto3" json:"name,omitempty"`
