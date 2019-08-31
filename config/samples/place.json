@@ -1,0 +1,47 @@
+{
+  "id": "762d2fcf-304c-419f-a044-9dff376e3f51",
+  "name": "Hello",
+  "place_logo": "Hello",
+  "phone": "Hello",
+  "email": "Hello",
+  "description": "Hello",
+  "gastronomie": [
+    {
+      "name": "Hello"
+    }
+  ],
+  "location": {
+    "lon": 1.1,
+    "lat": 1.1
+  },
+  "address": "Hello",
+  "cpc": "Hello",
+  "likes": 10,
+  "notation": 10,
+  "primary_category": "Hello",
+  "pictures": [
+    {
+      "src": "Hello"
+    }
+  ],
+  "main_picture": 10,
+  "schedule": [
+    {
+      "date": "Hello",
+      "start_am": "Hello",
+      "end_am": "Hello",
+      "start_pm": "Hello",
+      "end_pm": "Hello"
+    }
+  ],
+  "zone": "Hello",
+  "travel_time": 10,
+  "ocean_near": true,
+  "services": {
+    "name": "Hello"
+  },
+  "temporaly_place": true,
+  "categories": {
+    "name": "Hello"
+  }
+}
