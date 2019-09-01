@@ -4,19 +4,39 @@ option go_package = "event";
 
 message RequestEmpty {}
 
-
 message Picture { string src = 1; }
 
 message Gallery {
   int32 main = 1;
-  repeated Picture pictures = 2; 
+  repeated Picture pictures = 2;
 }
 
-message Category {
+message Category { 
   string name = 1;
+  string code = 2;
 }
 
-message Coordinate {
+message Place {
+  string id = 1;
+  string name = 2;
+  string nbplace = 3;
+  Address address = 4;
+  string src = 5;
+}
+
+message Address {
+  Location location = 1;
+  string formated_address = 2;
+  string cpc = 3;
+  Zone zone = 4; 
+}
+
+message Zone {
+  string name = 1;
+  string code = 2; 
+}
+
+message Location {
   float lon = 1;
   float lat = 2;
 }
@@ -32,30 +52,21 @@ message Artist {
   string src = 3;
 }
 
-message Location {
-  string address = 1;
-  string cpc = 2;
-  string zone = 3;
-  Coordinate coordinate = 4;
-}
-
 message Event {
   string id = 1;
   string name = 2;
-  string placeid = 3;
+  string place_id = 3;
   string phone = 4;
   string email = 5;
-  string place = 6;
+  Place place = 6;
   string date = 7;
-  Category categories = 8;
+  repeated Category categories = 8;
   string description = 9;
   Price price = 10;
-  Location location = 11;
-  int64 nbplace = 12;
-  int64 likes = 13;
   Gallery gallery = 14;
   repeated Artist artists = 15;
   repeated Artist hosts = 16;
+  int64 likes = 13;
 }
 
 message ListResponse {
@@ -65,9 +76,7 @@ message ListResponse {
   repeated Event payload = 4;
 }
 
-message CreateRequest {
-  Event payload = 1;
-}
+message CreateRequest { Event payload = 1; }
 
 message CreateResponse {
   int32 status = 1;
@@ -75,9 +84,7 @@ message CreateResponse {
   string payload = 2;
 }
 
-message DetailRequest {
-  string id = 4;
-}
+message DetailRequest { string id = 4; }
 
 message DetailResponse {
   int32 status = 1;
@@ -96,9 +103,7 @@ message UpdateResponse {
   Event payload = 3;
 }
 
-message DeleteRequest {
-  string id = 3;
-}
+message DeleteRequest { string id = 3; }
 
 message DeleteResponse {
   int32 status = 1;
@@ -106,9 +111,7 @@ message DeleteResponse {
   bool payload = 3;
 }
 
-message SearchRequest {
-  SearchParams payload = 1;
-}
+message SearchRequest { SearchParams payload = 1; }
 
 message SearchParams {
   string q = 1;
