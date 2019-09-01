@@ -3,7 +3,12 @@
   "name": "Concert dip",
   "placeid": "fkjdfndskjfds",
   "phone": "+221.77.695.36.25",
-  "place": "Grand Théâtre de Dakar",
+  "place": {
+    "id": "place-1",
+    "name": "Grand Théâtre de Dakar",
+    "nbplace": 100,
+    "src": ""
+  },
   "email": "doudou.leydi.fall@gmail.com",
   "price": {
     "base": 14000,
@@ -18,7 +23,6 @@
     ]
   },
   "date": "1567152547",
-  "nbplace": 100,
   "description": "A l'occasion de son anniversaire dip doundou guiss organise un grand concert au grand théâtre de Dakar",
   "location": {
     "address": "1 rue corniche ouest, dakar",
