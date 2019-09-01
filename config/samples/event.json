@@ -7,7 +7,8 @@
     "id": "place-1",
     "name": "Grand Théâtre de Dakar",
     "nbplace": 100,
-    "src": ""
+    "address": "",
+    "src": "http://www.france-guineeequatoriale.org/wp-content/uploads/2016/02/Grand-Th%C3%A9atre-Dakar.jpg"
   },
   "email": "doudou.leydi.fall@gmail.com",
   "price": {
