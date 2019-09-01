@@ -8,8 +8,6 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
-	codes "google.golang.org/grpc/codes"
-	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -1076,26 +1074,6 @@ type CollectionServiceServer interface {
 	Add(context.Context, *CreateRequest) (*CreateResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Delete(context.Context, *ID) (*DeleteResponse, error)
-}
-
-// UnimplementedCollectionServiceServer can be embedded to have forward compatible implementations.
-type UnimplementedCollectionServiceServer struct {
-}
-
-func (*UnimplementedCollectionServiceServer) GetList(ctx context.Context, req *Empty) (*ListResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetList not implemented")
-}
-func (*UnimplementedCollectionServiceServer) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
-}
-func (*UnimplementedCollectionServiceServer) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
-}
-func (*UnimplementedCollectionServiceServer) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
-}
-func (*UnimplementedCollectionServiceServer) Delete(ctx context.Context, req *ID) (*DeleteResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
 func RegisterCollectionServiceServer(s *grpc.Server, srv CollectionServiceServer) {

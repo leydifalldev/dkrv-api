@@ -37,7 +37,7 @@ message Zone {
 }
 
 message Location {
-  float lon = 1;
+  float lng = 1;
   float lat = 2;
 }
 
@@ -55,7 +55,6 @@ message Artist {
 message Event {
   string id = 1;
   string name = 2;
-  string place_id = 3;
   string phone = 4;
   string email = 5;
   Place place = 6;
