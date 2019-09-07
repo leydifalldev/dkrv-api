@@ -5,117 +5,187 @@ option go_package = "event";
 message RequestEmpty {}
 
 
-message Picture { string src = 1; }
+message Picture {
+  // @inject_tag: bson:"src"
+  string src = 1; 
+}
 
 message Gallery {
+  // @inject_tag: bson:"main"
   int32 main = 1;
+  // @inject_tag: bson:"pictures"
   repeated Picture pictures = 2; 
 }
 
 message Category {
+  // @inject_tag: bson:"name"
   string name = 1;
 }
 
 message Coordinate {
-  float lon = 1;
+  // @inject_tag: bson:"lng"
+  float lng = 1;
+  // @inject_tag: bson:"lat"
   float lat = 2;
 }
 
 message Price {
+  // @inject_tag: bson:"base"
   int64 base = 1;
+  // @inject_tag: bson:"currency"
   string currency = 2;
 }
 
 message Artist {
+  // @inject_tag: bson:"id"
   string id = 1;
+  // @inject_tag: bson:"name"
   string name = 2;
-  string src = 3;
+  // @inject_tag: bson:"picture"
+  string picture = 3;
+}
+
+message Place {
+  // @inject_tag: bson:"id"
+  string id = 1;
+  // @inject_tag: bson:"name"
+  string name = 2;
+  // @inject_tag: bson:"logo"
+  string logo = 3;
+  // @inject_tag: bson:"location"
+  Location location = 4;
+  // @inject_tag: bson:"picture"
+  Picture picture = 5;
 }
 
 message Location {
+  // @inject_tag: bson:"address"
   string address = 1;
+  // @inject_tag: bson:"cpc"
   string cpc = 2;
+  // @inject_tag: bson:"zone"
   string zone = 3;
+  // @inject_tag: bson:"coordinate"
   Coordinate coordinate = 4;
 }
 
 message Event {
+  // @inject_tag: bson:"id"
   string id = 1;
+  // @inject_tag: bson:"name"
   string name = 2;
-  string placeid = 3;
+  // @inject_tag: bson:"phone"
   string phone = 4;
+  // @inject_tag: bson:"email"
   string email = 5;
-  string place = 6;
+  // @inject_tag: bson:"place"
+  Place place = 6;
+  // @inject_tag: bson:"date"
   string date = 7;
+  // @inject_tag: bson:"categories"
   Category categories = 8;
+  // @inject_tag: bson:"description"
   string description = 9;
+  // @inject_tag: bson:"price"
   Price price = 10;
-  Location location = 11;
-  int64 nbplace = 12;
-  int64 likes = 13;
-  Gallery gallery = 14;
-  repeated Artist artists = 15;
-  repeated Artist hosts = 16;
+  // @inject_tag: bson:"nbplace"
+  int64 nbplace = 11;
+  // @inject_tag: bson:"likes"
+  int64 likes = 12;
+  // @inject_tag: bson:"gallery"
+  Gallery gallery = 13;
+  // @inject_tag: bson:"artists"
+  repeated Artist artists = 14;
+  // @inject_tag: bson:"hosts"
+  repeated Artist hosts = 15;
 }
 
 message ListResponse {
+  // @inject_tag: bson:"status"
   int32 status = 1;
+  // @inject_tag: bson:"error"
   string error = 2;
+  // @inject_tag: bson:"total"
   int64 total = 3;
+  // @inject_tag: bson:"payload"
   repeated Event payload = 4;
 }
 
 message CreateRequest {
+  // @inject_tag: bson:"payload"
   Event payload = 1;
 }
 
 message CreateResponse {
+  // @inject_tag: bson:"status"
   int32 status = 1;
+  // @inject_tag: bson:"error"
   string error = 3;
+  // @inject_tag: bson:"payload"
   string payload = 2;
 }
 
 message DetailRequest {
+  // @inject_tag: bson:"id"
   string id = 4;
 }
 
 message DetailResponse {
+  // @inject_tag: bson:"status"
   int32 status = 1;
+  // @inject_tag: bson:"error"
   string error = 2;
+  // @inject_tag: bson:"payload"
   Event payload = 4;
 }
 
 message UpdateRequest {
+  // @inject_tag: bson:"id"
   string id = 1;
+  // @inject_tag: bson:"payload"
   Event payload = 3;
 }
 
 message UpdateResponse {
+  // @inject_tag: bson:"status"
   int32 status = 1;
+  // @inject_tag: bson:"error"
   string error = 2;
+  // @inject_tag: bson:"payload"
   Event payload = 3;
 }
 
 message DeleteRequest {
+  // @inject_tag: bson:"id"
   string id = 3;
 }
 
 message DeleteResponse {
+  // @inject_tag: bson:"status"
   int32 status = 1;
+  // @inject_tag: bson:"error"
   string error = 2;
+  // @inject_tag: bson:"payload"
   bool payload = 3;
 }
 
 message SearchRequest {
+  // @inject_tag: bson:"payload"
   SearchParams payload = 1;
 }
 
 message SearchParams {
+  // @inject_tag: bson:"q"
   string q = 1;
+  // @inject_tag: bson:"from"
   int32 from = 2;
+  // @inject_tag: bson:"to"
   int32 to = 3;
+  // @inject_tag: bson:"fromdate"
   string fromdate = 4;
+  // @inject_tag: bson:"todate"
   string todate = 5;
+  // @inject_tag: bson:"category"
   repeated string category = 6;
 }
 

@@ -1,4 +1,4 @@
-package mongo
+package database
 
 import (
 	"context"
@@ -85,12 +85,13 @@ func (s Store) Create(d interface{}) (string, int32, string) {
 }
 
 //Update update a document
-func (s Store) Update(id string, d bson.D) (*mongo.UpdateResult, int32, string) {
+func (s Store) Update(id string, content interface{}) (*mongo.UpdateResult, int32, string) {
 	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
 	log.Println(id)
-	log.Println(d)
+	log.Println(content)
+	update := bson.M{"$set": content}
 	bid, _ := primitive.ObjectIDFromHex(id)
-	res, err := c.UpdateOne(ctx, bson.M{"_id": bid}, d)
+	res, err := c.UpdateOne(ctx, bson.M{"_id": bid}, update)
 	if err != nil {
 		log.Fatal(err)
 		return res, 500, "DATABASE ERROR: Cannot update document"

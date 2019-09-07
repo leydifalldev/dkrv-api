@@ -10,7 +10,7 @@ message Coordinate {
 message Picture { string src = 1; }
 
 message Product {
-  // @inject_tag: valid:"ip"
+  // @inject_tag: id:"ip"
   string id = 1; 
   string type = 2;
   string name = 3;

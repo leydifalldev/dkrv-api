@@ -25,9 +25,9 @@ var _ = math.Inf
 const _ = proto.ProtoPackageIsVersion3 // please upgrade the proto package
 
 type RequestEmpty struct {
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *RequestEmpty) Reset()         { *m = RequestEmpty{} }
@@ -56,10 +56,11 @@ func (m *RequestEmpty) XXX_DiscardUnknown() {
 var xxx_messageInfo_RequestEmpty proto.InternalMessageInfo
 
 type Picture struct {
-	Src                  string   `protobuf:"bytes,1,opt,name=src,proto3" json:"src,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"src"
+	Src                  string   `protobuf:"bytes,1,opt,name=src,proto3" json:"src,omitempty" bson:"src"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *Picture) Reset()         { *m = Picture{} }
@@ -95,11 +96,13 @@ func (m *Picture) GetSrc() string {
 }
 
 type Gallery struct {
-	Main                 int32      `protobuf:"varint,1,opt,name=main,proto3" json:"main,omitempty"`
-	Pictures             []*Picture `protobuf:"bytes,2,rep,name=pictures,proto3" json:"pictures,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
-	XXX_unrecognized     []byte     `json:"-"`
-	XXX_sizecache        int32      `json:"-"`
+	// @inject_tag: bson:"main"
+	Main int32 `protobuf:"varint,1,opt,name=main,proto3" json:"main,omitempty" bson:"main"`
+	// @inject_tag: bson:"pictures"
+	Pictures             []*Picture `protobuf:"bytes,2,rep,name=pictures,proto3" json:"pictures,omitempty" bson:"pictures"`
+	XXX_NoUnkeyedLiteral struct{}   `json:"-" bson:"-"`
+	XXX_unrecognized     []byte     `json:"-" bson:"-"`
+	XXX_sizecache        int32      `json:"-" bson:"-"`
 }
 
 func (m *Gallery) Reset()         { *m = Gallery{} }
@@ -142,10 +145,11 @@ func (m *Gallery) GetPictures() []*Picture {
 }
 
 type Category struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"name"
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" bson:"name"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *Category) Reset()         { *m = Category{} }
@@ -181,11 +185,13 @@ func (m *Category) GetName() string {
 }
 
 type Coordinate struct {
-	Lon                  float32  `protobuf:"fixed32,1,opt,name=lon,proto3" json:"lon,omitempty"`
-	Lat                  float32  `protobuf:"fixed32,2,opt,name=lat,proto3" json:"lat,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"lng"
+	Lng float32 `protobuf:"fixed32,1,opt,name=lng,proto3" json:"lng,omitempty" bson:"lng"`
+	// @inject_tag: bson:"lat"
+	Lat                  float32  `protobuf:"fixed32,2,opt,name=lat,proto3" json:"lat,omitempty" bson:"lat"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *Coordinate) Reset()         { *m = Coordinate{} }
@@ -213,9 +219,9 @@ func (m *Coordinate) XXX_DiscardUnknown() {
 
 var xxx_messageInfo_Coordinate proto.InternalMessageInfo
 
-func (m *Coordinate) GetLon() float32 {
+func (m *Coordinate) GetLng() float32 {
 	if m != nil {
-		return m.Lon
+		return m.Lng
 	}
 	return 0
 }
@@ -228,11 +234,13 @@ func (m *Coordinate) GetLat() float32 {
 }
 
 type Price struct {
-	Base                 int64    `protobuf:"varint,1,opt,name=base,proto3" json:"base,omitempty"`
-	Currency             string   `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"base"
+	Base int64 `protobuf:"varint,1,opt,name=base,proto3" json:"base,omitempty" bson:"base"`
+	// @inject_tag: bson:"currency"
+	Currency             string   `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty" bson:"currency"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *Price) Reset()         { *m = Price{} }
@@ -274,47 +282,58 @@ func (m *Price) GetCurrency() string {
 	return ""
 }
 
-type Host struct {
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	Src                  string   `protobuf:"bytes,2,opt,name=src,proto3" json:"src,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+type Artist struct {
+	// @inject_tag: bson:"id"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
+	// @inject_tag: bson:"name"
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" bson:"name"`
+	// @inject_tag: bson:"src"
+	Src                  string   `protobuf:"bytes,3,opt,name=src,proto3" json:"src,omitempty" bson:"src"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
-func (m *Host) Reset()         { *m = Host{} }
-func (m *Host) String() string { return proto.CompactTextString(m) }
-func (*Host) ProtoMessage()    {}
-func (*Host) Descriptor() ([]byte, []int) {
+func (m *Artist) Reset()         { *m = Artist{} }
+func (m *Artist) String() string { return proto.CompactTextString(m) }
+func (*Artist) ProtoMessage()    {}
+func (*Artist) Descriptor() ([]byte, []int) {
 	return fileDescriptor_2d17a9d3f0ddf27e, []int{6}
 }
 
-func (m *Host) XXX_Unmarshal(b []byte) error {
-	return xxx_messageInfo_Host.Unmarshal(m, b)
+func (m *Artist) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Artist.Unmarshal(m, b)
 }
-func (m *Host) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
-	return xxx_messageInfo_Host.Marshal(b, m, deterministic)
+func (m *Artist) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Artist.Marshal(b, m, deterministic)
 }
-func (m *Host) XXX_Merge(src proto.Message) {
-	xxx_messageInfo_Host.Merge(m, src)
+func (m *Artist) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Artist.Merge(m, src)
 }
-func (m *Host) XXX_Size() int {
-	return xxx_messageInfo_Host.Size(m)
+func (m *Artist) XXX_Size() int {
+	return xxx_messageInfo_Artist.Size(m)
 }
-func (m *Host) XXX_DiscardUnknown() {
-	xxx_messageInfo_Host.DiscardUnknown(m)
+func (m *Artist) XXX_DiscardUnknown() {
+	xxx_messageInfo_Artist.DiscardUnknown(m)
 }
 
-var xxx_messageInfo_Host proto.InternalMessageInfo
+var xxx_messageInfo_Artist proto.InternalMessageInfo
 
-func (m *Host) GetName() string {
+func (m *Artist) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Artist) GetName() string {
 	if m != nil {
 		return m.Name
 	}
 	return ""
 }
 
-func (m *Host) GetSrc() string {
+func (m *Artist) GetSrc() string {
 	if m != nil {
 		return m.Src
 	}
@@ -322,13 +341,17 @@ func (m *Host) GetSrc() string {
 }
 
 type Location struct {
-	Address              string      `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty"`
-	Cpc                  string      `protobuf:"bytes,2,opt,name=cpc,proto3" json:"cpc,omitempty"`
-	Zone                 string      `protobuf:"bytes,3,opt,name=zone,proto3" json:"zone,omitempty"`
-	Coordinate           *Coordinate `protobuf:"bytes,4,opt,name=coordinate,proto3" json:"coordinate,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}    `json:"-"`
-	XXX_unrecognized     []byte      `json:"-"`
-	XXX_sizecache        int32       `json:"-"`
+	// @inject_tag: bson:"address"
+	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty" bson:"address"`
+	// @inject_tag: bson:"cpc"
+	Cpc string `protobuf:"bytes,2,opt,name=cpc,proto3" json:"cpc,omitempty" bson:"cpc"`
+	// @inject_tag: bson:"zone"
+	Zone string `protobuf:"bytes,3,opt,name=zone,proto3" json:"zone,omitempty" bson:"zone"`
+	// @inject_tag: bson:"coordinate"
+	Coordinate           *Coordinate `protobuf:"bytes,4,opt,name=coordinate,proto3" json:"coordinate,omitempty" bson:"coordinate"`
+	XXX_NoUnkeyedLiteral struct{}    `json:"-" bson:"-"`
+	XXX_unrecognized     []byte      `json:"-" bson:"-"`
+	XXX_sizecache        int32       `json:"-" bson:"-"`
 }
 
 func (m *Location) Reset()         { *m = Location{} }
@@ -385,24 +408,41 @@ func (m *Location) GetCoordinate() *Coordinate {
 }
 
 type Event struct {
-	Id                   string    `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string    `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Placeid              string    `protobuf:"bytes,3,opt,name=placeid,proto3" json:"placeid,omitempty"`
-	Phone                string    `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
-	Email                string    `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty"`
-	Place                string    `protobuf:"bytes,6,opt,name=place,proto3" json:"place,omitempty"`
-	Date                 string    `protobuf:"bytes,7,opt,name=date,proto3" json:"date,omitempty"`
-	Categories           *Category `protobuf:"bytes,8,opt,name=categories,proto3" json:"categories,omitempty"`
-	Description          string    `protobuf:"bytes,9,opt,name=description,proto3" json:"description,omitempty"`
-	Price                *Price    `protobuf:"bytes,10,opt,name=price,proto3" json:"price,omitempty"`
-	Location             *Location `protobuf:"bytes,11,opt,name=location,proto3" json:"location,omitempty"`
-	Nbplace              int64     `protobuf:"varint,12,opt,name=nbplace,proto3" json:"nbplace,omitempty"`
-	Likes                int64     `protobuf:"varint,13,opt,name=likes,proto3" json:"likes,omitempty"`
-	Gallery              *Gallery  `protobuf:"bytes,14,opt,name=gallery,proto3" json:"gallery,omitempty"`
-	Hosts                []*Host   `protobuf:"bytes,15,rep,name=hosts,proto3" json:"hosts,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}  `json:"-"`
-	XXX_unrecognized     []byte    `json:"-"`
-	XXX_sizecache        int32     `json:"-"`
+	// @inject_tag: bson:"id"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
+	// @inject_tag: bson:"name"
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" bson:"name"`
+	// @inject_tag: bson:"placeid"
+	Placeid string `protobuf:"bytes,3,opt,name=placeid,proto3" json:"placeid,omitempty" bson:"placeid"`
+	// @inject_tag: bson:"phone"
+	Phone string `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty" bson:"phone"`
+	// @inject_tag: bson:"email"
+	Email string `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty" bson:"email"`
+	// @inject_tag: bson:"place"
+	Place string `protobuf:"bytes,6,opt,name=place,proto3" json:"place,omitempty" bson:"place"`
+	// @inject_tag: bson:"date"
+	Date string `protobuf:"bytes,7,opt,name=date,proto3" json:"date,omitempty" bson:"date"`
+	// @inject_tag: bson:"categories"
+	Categories *Category `protobuf:"bytes,8,opt,name=categories,proto3" json:"categories,omitempty" bson:"categories"`
+	// @inject_tag: bson:"description"
+	Description string `protobuf:"bytes,9,opt,name=description,proto3" json:"description,omitempty" bson:"description"`
+	// @inject_tag: bson:"price"
+	Price *Price `protobuf:"bytes,10,opt,name=price,proto3" json:"price,omitempty" bson:"price"`
+	// @inject_tag: bson:"location"
+	Location *Location `protobuf:"bytes,11,opt,name=location,proto3" json:"location,omitempty" bson:"location"`
+	// @inject_tag: bson:"nbplace"
+	Nbplace int64 `protobuf:"varint,12,opt,name=nbplace,proto3" json:"nbplace,omitempty" bson:"nbplace"`
+	// @inject_tag: bson:"likes"
+	Likes int64 `protobuf:"varint,13,opt,name=likes,proto3" json:"likes,omitempty" bson:"likes"`
+	// @inject_tag: bson:"gallery"
+	Gallery *Gallery `protobuf:"bytes,14,opt,name=gallery,proto3" json:"gallery,omitempty" bson:"gallery"`
+	// @inject_tag: bson:"artists"
+	Artists []*Artist `protobuf:"bytes,15,rep,name=artists,proto3" json:"artists,omitempty" bson:"artists"`
+	// @inject_tag: bson:"hosts"
+	Hosts                []*Artist `protobuf:"bytes,16,rep,name=hosts,proto3" json:"hosts,omitempty" bson:"hosts"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-" bson:"-"`
+	XXX_unrecognized     []byte    `json:"-" bson:"-"`
+	XXX_sizecache        int32     `json:"-" bson:"-"`
 }
 
 func (m *Event) Reset()         { *m = Event{} }
@@ -528,7 +568,14 @@ func (m *Event) GetGallery() *Gallery {
 	return nil
 }
 
-func (m *Event) GetHosts() []*Host {
+func (m *Event) GetArtists() []*Artist {
+	if m != nil {
+		return m.Artists
+	}
+	return nil
+}
+
+func (m *Event) GetHosts() []*Artist {
 	if m != nil {
 		return m.Hosts
 	}
@@ -536,13 +583,17 @@ func (m *Event) GetHosts() []*Host {
 }
 
 type ListResponse struct {
-	Status               int32    `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Error                string   `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	Total                int64    `protobuf:"varint,3,opt,name=total,proto3" json:"total,omitempty"`
-	Payload              []*Event `protobuf:"bytes,4,rep,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"status"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
+	// @inject_tag: bson:"error"
+	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
+	// @inject_tag: bson:"total"
+	Total int64 `protobuf:"varint,3,opt,name=total,proto3" json:"total,omitempty" bson:"total"`
+	// @inject_tag: bson:"payload"
+	Payload              []*Event `protobuf:"bytes,4,rep,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *ListResponse) Reset()         { *m = ListResponse{} }
@@ -599,10 +650,11 @@ func (m *ListResponse) GetPayload() []*Event {
 }
 
 type CreateRequest struct {
-	Payload              *Event   `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"payload"
+	Payload              *Event   `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *CreateRequest) Reset()         { *m = CreateRequest{} }
@@ -638,12 +690,15 @@ func (m *CreateRequest) GetPayload() *Event {
 }
 
 type CreateResponse struct {
-	Status               int32    `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Error                string   `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty"`
-	Payload              string   `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"status"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
+	// @inject_tag: bson:"error"
+	Error string `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
+	// @inject_tag: bson:"payload"
+	Payload              string   `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *CreateResponse) Reset()         { *m = CreateResponse{} }
@@ -693,10 +748,11 @@ func (m *CreateResponse) GetPayload() string {
 }
 
 type DetailRequest struct {
-	Id                   string   `protobuf:"bytes,4,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"id"
+	Id                   string   `protobuf:"bytes,4,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *DetailRequest) Reset()         { *m = DetailRequest{} }
@@ -732,12 +788,15 @@ func (m *DetailRequest) GetId() string {
 }
 
 type DetailResponse struct {
-	Status               int32    `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Error                string   `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	Payload              *Event   `protobuf:"bytes,4,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"status"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
+	// @inject_tag: bson:"error"
+	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
+	// @inject_tag: bson:"payload"
+	Payload              *Event   `protobuf:"bytes,4,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *DetailResponse) Reset()         { *m = DetailResponse{} }
@@ -787,11 +846,13 @@ func (m *DetailResponse) GetPayload() *Event {
 }
 
 type UpdateRequest struct {
-	Id                   string   `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Payload              *Event   `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"id"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
+	// @inject_tag: bson:"payload"
+	Payload              *Event   `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *UpdateRequest) Reset()         { *m = UpdateRequest{} }
@@ -834,12 +895,15 @@ func (m *UpdateRequest) GetPayload() *Event {
 }
 
 type UpdateResponse struct {
-	Status               int32    `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Error                string   `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	Payload              *Event   `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"status"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
+	// @inject_tag: bson:"error"
+	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
+	// @inject_tag: bson:"payload"
+	Payload              *Event   `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *UpdateResponse) Reset()         { *m = UpdateResponse{} }
@@ -889,10 +953,11 @@ func (m *UpdateResponse) GetPayload() *Event {
 }
 
 type DeleteRequest struct {
-	Id                   string   `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"id"
+	Id                   string   `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *DeleteRequest) Reset()         { *m = DeleteRequest{} }
@@ -928,12 +993,15 @@ func (m *DeleteRequest) GetId() string {
 }
 
 type DeleteResponse struct {
-	Status               int32    `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty"`
-	Error                string   `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty"`
-	Payload              bool     `protobuf:"varint,3,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"status"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
+	// @inject_tag: bson:"error"
+	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
+	// @inject_tag: bson:"payload"
+	Payload              bool     `protobuf:"varint,3,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *DeleteResponse) Reset()         { *m = DeleteResponse{} }
@@ -983,10 +1051,11 @@ func (m *DeleteResponse) GetPayload() bool {
 }
 
 type SearchRequest struct {
-	Payload              *SearchParams `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty"`
-	XXX_NoUnkeyedLiteral struct{}      `json:"-"`
-	XXX_unrecognized     []byte        `json:"-"`
-	XXX_sizecache        int32         `json:"-"`
+	// @inject_tag: bson:"payload"
+	Payload              *SearchParams `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	XXX_NoUnkeyedLiteral struct{}      `json:"-" bson:"-"`
+	XXX_unrecognized     []byte        `json:"-" bson:"-"`
+	XXX_sizecache        int32         `json:"-" bson:"-"`
 }
 
 func (m *SearchRequest) Reset()         { *m = SearchRequest{} }
@@ -1022,15 +1091,21 @@ func (m *SearchRequest) GetPayload() *SearchParams {
 }
 
 type SearchParams struct {
-	Q                    string   `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty"`
-	From                 int32    `protobuf:"varint,2,opt,name=from,proto3" json:"from,omitempty"`
-	To                   int32    `protobuf:"varint,3,opt,name=to,proto3" json:"to,omitempty"`
-	Fromdate             string   `protobuf:"bytes,4,opt,name=fromdate,proto3" json:"fromdate,omitempty"`
-	Todate               string   `protobuf:"bytes,5,opt,name=todate,proto3" json:"todate,omitempty"`
-	Category             []string `protobuf:"bytes,6,rep,name=category,proto3" json:"category,omitempty"`
-	XXX_NoUnkeyedLiteral struct{} `json:"-"`
-	XXX_unrecognized     []byte   `json:"-"`
-	XXX_sizecache        int32    `json:"-"`
+	// @inject_tag: bson:"q"
+	Q string `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty" bson:"q"`
+	// @inject_tag: bson:"from"
+	From int32 `protobuf:"varint,2,opt,name=from,proto3" json:"from,omitempty" bson:"from"`
+	// @inject_tag: bson:"to"
+	To int32 `protobuf:"varint,3,opt,name=to,proto3" json:"to,omitempty" bson:"to"`
+	// @inject_tag: bson:"fromdate"
+	Fromdate string `protobuf:"bytes,4,opt,name=fromdate,proto3" json:"fromdate,omitempty" bson:"fromdate"`
+	// @inject_tag: bson:"todate"
+	Todate string `protobuf:"bytes,5,opt,name=todate,proto3" json:"todate,omitempty" bson:"todate"`
+	// @inject_tag: bson:"category"
+	Category             []string `protobuf:"bytes,6,rep,name=category,proto3" json:"category,omitempty" bson:"category"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
 }
 
 func (m *SearchParams) Reset()         { *m = SearchParams{} }
@@ -1107,7 +1182,7 @@ func init() {
 	proto.RegisterType((*Category)(nil), "event.Category")
 	proto.RegisterType((*Coordinate)(nil), "event.Coordinate")
 	proto.RegisterType((*Price)(nil), "event.Price")
-	proto.RegisterType((*Host)(nil), "event.Host")
+	proto.RegisterType((*Artist)(nil), "event.Artist")
 	proto.RegisterType((*Location)(nil), "event.Location")
 	proto.RegisterType((*Event)(nil), "event.Event")
 	proto.RegisterType((*ListResponse)(nil), "event.ListResponse")
@@ -1126,59 +1201,60 @@ func init() {
 func init() { proto.RegisterFile("event.proto", fileDescriptor_2d17a9d3f0ddf27e) }
 
 var fileDescriptor_2d17a9d3f0ddf27e = []byte{
-	// 832 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x56, 0xdd, 0x6a, 0xdc, 0x38,
-	0x14, 0x66, 0xec, 0xf1, 0x78, 0xe6, 0xcc, 0x4f, 0x76, 0xb5, 0xd9, 0x45, 0x64, 0x61, 0x77, 0xea,
-	0x8b, 0x32, 0xf4, 0x27, 0x6d, 0x27, 0x84, 0xdc, 0x15, 0xda, 0x34, 0xa4, 0x85, 0x5c, 0x04, 0x85,
-	0x42, 0xe8, 0x9d, 0x62, 0x2b, 0x89, 0xa9, 0xc7, 0x72, 0x24, 0x4d, 0x60, 0x02, 0x7d, 0x87, 0xde,
-	0xf6, 0x5d, 0xfa, 0x70, 0x45, 0x7f, 0x1e, 0x7b, 0x28, 0xa1, 0xa4, 0x77, 0x3a, 0x47, 0xe7, 0x3b,
-	0xe7, 0x3b, 0x47, 0x9f, 0x64, 0xc3, 0x90, 0xdd, 0xb2, 0x52, 0xed, 0x56, 0x82, 0x2b, 0x8e, 0x22,
-	0x63, 0x24, 0x13, 0x18, 0x11, 0x76, 0xb3, 0x64, 0x52, 0x1d, 0x2d, 0x2a, 0xb5, 0x4a, 0xfe, 0x85,
-	0xf8, 0x34, 0x4f, 0xd5, 0x52, 0x30, 0xf4, 0x07, 0x84, 0x52, 0xa4, 0xb8, 0x33, 0xed, 0xcc, 0x06,
-	0x44, 0x2f, 0x93, 0x0f, 0x10, 0x1f, 0xd3, 0xa2, 0x60, 0x62, 0x85, 0x10, 0x74, 0x17, 0x34, 0x2f,
-	0xcd, 0x6e, 0x44, 0xcc, 0x1a, 0x3d, 0x81, 0x7e, 0x65, 0xb1, 0x12, 0x07, 0xd3, 0x70, 0x36, 0x9c,
-	0x4f, 0x76, 0x6d, 0x49, 0x97, 0x92, 0xd4, 0xfb, 0xc9, 0x7f, 0xd0, 0x3f, 0xa4, 0x8a, 0x5d, 0x71,
-	0x9b, 0xab, 0xa4, 0x0b, 0xe6, 0x2a, 0x99, 0x75, 0xf2, 0x12, 0xe0, 0x90, 0x73, 0x91, 0xe5, 0x25,
-	0x55, 0x86, 0x4a, 0xc1, 0x6d, 0xb1, 0x80, 0xe8, 0xa5, 0xf1, 0x50, 0x85, 0x03, 0xe7, 0xa1, 0x2a,
-	0x39, 0x80, 0xe8, 0x54, 0xe4, 0x29, 0xd3, 0xe9, 0x2e, 0xa8, 0xb4, 0xe9, 0x42, 0x62, 0xd6, 0x68,
-	0x07, 0xfa, 0xe9, 0x52, 0x08, 0x56, 0xa6, 0x2b, 0x83, 0x19, 0x90, 0xda, 0x4e, 0x9e, 0x41, 0xf7,
-	0x3d, 0x97, 0xea, 0x67, 0x34, 0xfc, 0x0c, 0x82, 0xf5, 0x0c, 0xbe, 0x40, 0xff, 0x84, 0xa7, 0x54,
-	0xe5, 0xbc, 0x44, 0x18, 0x62, 0x9a, 0x65, 0x82, 0x49, 0xe9, 0x40, 0xde, 0xd4, 0xb8, 0xb4, 0xaa,
-	0x71, 0x69, 0x95, 0xea, 0xec, 0x77, 0xbc, 0x64, 0x38, 0xb4, 0xd9, 0xf5, 0x1a, 0xbd, 0x02, 0x48,
-	0xeb, 0x26, 0x71, 0x77, 0xda, 0x99, 0x0d, 0xe7, 0x7f, 0xba, 0x91, 0xad, 0xbb, 0x27, 0x8d, 0xa0,
-	0xe4, 0x7b, 0x08, 0xd1, 0x91, 0x0e, 0x40, 0x13, 0x08, 0xf2, 0xcc, 0xd5, 0x0d, 0xf2, 0xac, 0xa6,
-	0x1f, 0x34, 0xe8, 0x63, 0x88, 0xab, 0x82, 0xa6, 0x2c, 0xcf, 0x5c, 0x5d, 0x6f, 0xa2, 0x6d, 0x88,
-	0xaa, 0x6b, 0xcd, 0xa7, 0x6b, 0xfc, 0xd6, 0xd0, 0x5e, 0xb6, 0xa0, 0x79, 0x81, 0x23, 0xeb, 0x35,
-	0x86, 0x89, 0xd5, 0x30, 0xdc, 0x73, 0xb1, 0xda, 0xd0, 0xf5, 0x32, 0x4d, 0x3b, 0xb6, 0xf5, 0xf4,
-	0x1a, 0xbd, 0x00, 0x48, 0xed, 0xa9, 0xe6, 0x4c, 0xe2, 0xbe, 0x69, 0x68, 0xcb, 0x37, 0xe4, 0x8e,
-	0x9b, 0x34, 0x42, 0xd0, 0x14, 0x86, 0x19, 0x93, 0xa9, 0xc8, 0x2b, 0x3d, 0x50, 0x3c, 0x30, 0xb9,
-	0x9a, 0x2e, 0x94, 0x40, 0x54, 0xe9, 0x63, 0xc5, 0x60, 0xb2, 0x8d, 0xbc, 0xa2, 0xb4, 0x8f, 0xd8,
-	0x2d, 0xf4, 0x14, 0xfa, 0x85, 0x3b, 0x13, 0x3c, 0x6c, 0x15, 0xf5, 0x47, 0x45, 0xea, 0x00, 0x3d,
-	0x93, 0xf2, 0xc2, 0xf6, 0x33, 0x32, 0x0a, 0xf1, 0xa6, 0xee, 0xb3, 0xc8, 0x3f, 0x33, 0x89, 0xc7,
-	0xc6, 0x6f, 0x0d, 0x34, 0x83, 0xf8, 0xca, 0x8a, 0x1e, 0x4f, 0x4c, 0x6e, 0x2f, 0x6a, 0x77, 0x15,
-	0x88, 0xdf, 0x46, 0x8f, 0x20, 0xba, 0xe6, 0x52, 0x49, 0xbc, 0x65, 0xc4, 0x3f, 0x74, 0x71, 0x5a,
-	0x5c, 0xc4, 0xee, 0x24, 0x77, 0x30, 0x3a, 0xc9, 0xa5, 0x22, 0x4c, 0x56, 0xbc, 0x94, 0x0c, 0xfd,
-	0x03, 0x3d, 0xa9, 0xa8, 0x5a, 0x4a, 0x77, 0x91, 0x9c, 0x65, 0x0e, 0x42, 0x08, 0x2e, 0xdc, 0x69,
-	0x5a, 0x43, 0x7b, 0x15, 0x57, 0xb4, 0x30, 0x87, 0x19, 0x12, 0x6b, 0xa0, 0xc7, 0x10, 0x57, 0x74,
-	0x55, 0x70, 0x9a, 0xe1, 0xae, 0x29, 0xec, 0x67, 0x64, 0x74, 0x42, 0xfc, 0x66, 0x72, 0x00, 0xe3,
-	0x43, 0xc1, 0xb4, 0xa0, 0xec, 0x85, 0x6f, 0x02, 0x3b, 0xad, 0xe1, 0x6e, 0x00, 0xcf, 0x61, 0xe2,
-	0x81, 0xbf, 0x4a, 0x3b, 0x6c, 0xd2, 0xc6, 0xeb, 0x3a, 0x81, 0x53, 0xa1, 0xcb, 0xfc, 0x3f, 0x8c,
-	0xdf, 0x31, 0x45, 0xf3, 0xc2, 0x53, 0xb2, 0xa2, 0xee, 0x7a, 0x51, 0x27, 0x97, 0x30, 0xf1, 0x01,
-	0x0f, 0x9a, 0x58, 0x6b, 0x36, 0xf7, 0xb4, 0x78, 0x0c, 0xe3, 0x8f, 0x55, 0xd6, 0x98, 0xcd, 0xe6,
-	0xed, 0x6a, 0x24, 0x0a, 0xef, 0x4b, 0x74, 0x09, 0x13, 0x9f, 0xe8, 0x77, 0x09, 0xdf, 0x5b, 0xc7,
-	0x4c, 0xae, 0x60, 0x9b, 0x84, 0xc3, 0x7a, 0x72, 0xe7, 0x7a, 0x72, 0x36, 0xe0, 0x41, 0x44, 0x70,
-	0x9b, 0x48, 0x7f, 0x5d, 0xfa, 0x35, 0x8c, 0xcf, 0x18, 0x15, 0xe9, 0xb5, 0x2f, 0xfd, 0x7c, 0x53,
-	0x47, 0x7f, 0x39, 0xce, 0x36, 0xec, 0x94, 0x0a, 0xba, 0x90, 0x6b, 0xfc, 0xd7, 0x0e, 0x8c, 0x9a,
-	0x3b, 0x68, 0x04, 0x9d, 0x1b, 0x37, 0xea, 0xce, 0x8d, 0x7e, 0x57, 0x2e, 0x05, 0x5f, 0x18, 0x36,
-	0x11, 0x31, 0x6b, 0xdd, 0x9c, 0xe2, 0x86, 0x47, 0x44, 0x02, 0xc5, 0xf5, 0x73, 0xae, 0xfd, 0x99,
-	0x7f, 0x36, 0x07, 0xa4, 0xb6, 0x75, 0x9b, 0x8a, 0x9b, 0x1d, 0xfb, 0x88, 0x39, 0xcb, 0x7c, 0x02,
-	0xdc, 0x13, 0x84, 0x7b, 0xd3, 0xd0, 0x7c, 0x02, 0x9c, 0x3d, 0xff, 0x16, 0xc0, 0xc8, 0x0c, 0xf8,
-	0x8c, 0x89, 0x5b, 0xfd, 0xa2, 0xec, 0x41, 0xcf, 0x52, 0x44, 0xdb, 0xad, 0x5e, 0x5c, 0xcb, 0x3b,
-	0xbe, 0xc3, 0xd6, 0x65, 0x9e, 0x43, 0x78, 0xcc, 0x54, 0x8d, 0x68, 0x29, 0x7b, 0xe7, 0xef, 0x0d,
-	0xef, 0x1a, 0xf3, 0x26, 0xcb, 0x6a, 0x4c, 0xeb, 0x82, 0xd6, 0x98, 0x8d, 0xdb, 0xb7, 0x0f, 0x3d,
-	0xab, 0xb1, 0x1a, 0xd6, 0xd2, 0x6e, 0x0d, 0xdb, 0x10, 0xe2, 0x3e, 0xf4, 0xac, 0x22, 0x1a, 0x0c,
-	0x1b, 0x0a, 0x6a, 0x30, 0x6c, 0xca, 0xe6, 0x6d, 0xfc, 0xc9, 0xfe, 0x2a, 0x5c, 0xf4, 0xcc, 0x8f,
-	0xc3, 0xde, 0x8f, 0x00, 0x00, 0x00, 0xff, 0xff, 0x8c, 0x22, 0x4e, 0x30, 0x47, 0x08, 0x00, 0x00,
+	// 842 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x56, 0xdd, 0x8a, 0xdc, 0x36,
+	0x14, 0x66, 0xec, 0xb1, 0x3d, 0x73, 0xe6, 0x27, 0xa9, 0x9a, 0x16, 0xb1, 0x85, 0x76, 0x70, 0xa1,
+	0x1d, 0x5a, 0x9a, 0xb6, 0x13, 0x42, 0xee, 0x02, 0xe9, 0x36, 0x2c, 0x85, 0x5c, 0x2c, 0x0a, 0x85,
+	0xd0, 0x3b, 0xad, 0xad, 0xdd, 0x35, 0xf5, 0x58, 0x5e, 0x49, 0xb3, 0x30, 0x0b, 0x7d, 0x87, 0xde,
+	0xf6, 0x09, 0xfb, 0x1a, 0x45, 0x47, 0x92, 0xc7, 0x1e, 0xca, 0xb2, 0x6c, 0xee, 0xce, 0xff, 0xf9,
+	0xce, 0xd1, 0x27, 0xd9, 0x30, 0x13, 0xb7, 0xa2, 0x31, 0xcf, 0x5b, 0x25, 0x8d, 0x24, 0x09, 0x2a,
+	0xf9, 0x12, 0xe6, 0x4c, 0xdc, 0xec, 0x84, 0x36, 0x6f, 0xb7, 0xad, 0xd9, 0xe7, 0x5f, 0x40, 0x76,
+	0x5e, 0x15, 0x66, 0xa7, 0x04, 0x79, 0x0a, 0xb1, 0x56, 0x05, 0x1d, 0xad, 0x46, 0xeb, 0x29, 0xb3,
+	0x62, 0xfe, 0x1b, 0x64, 0x67, 0xbc, 0xae, 0x85, 0xda, 0x13, 0x02, 0xe3, 0x2d, 0xaf, 0x1a, 0xf4,
+	0x26, 0x0c, 0x65, 0xf2, 0x1d, 0x4c, 0x5a, 0x97, 0xab, 0x69, 0xb4, 0x8a, 0xd7, 0xb3, 0xcd, 0xf2,
+	0xb9, 0x6b, 0xe9, 0x4b, 0xb2, 0xce, 0x9f, 0x7f, 0x09, 0x93, 0x53, 0x6e, 0xc4, 0x95, 0x74, 0xb5,
+	0x1a, 0xbe, 0x15, 0xbe, 0x13, 0xca, 0xf9, 0x4f, 0x00, 0xa7, 0x52, 0xaa, 0xb2, 0x6a, 0xb8, 0x41,
+	0x28, 0x75, 0x73, 0x85, 0x01, 0x11, 0xb3, 0x22, 0x5a, 0xb8, 0xa1, 0x91, 0xb7, 0x70, 0x93, 0xbf,
+	0x82, 0xe4, 0x5c, 0x55, 0x85, 0xb0, 0xe5, 0x2e, 0xb8, 0x76, 0xe5, 0x62, 0x86, 0x32, 0x39, 0x81,
+	0x49, 0xb1, 0x53, 0x4a, 0x34, 0xc5, 0x1e, 0x73, 0xa6, 0xac, 0xd3, 0xf3, 0xd7, 0x90, 0xbe, 0x51,
+	0xa6, 0xd2, 0x86, 0x2c, 0x21, 0xaa, 0x4a, 0x0f, 0x23, 0xaa, 0xca, 0x0e, 0x58, 0x74, 0x00, 0x16,
+	0xb6, 0x12, 0x1f, 0xb6, 0xf2, 0x17, 0x4c, 0xde, 0xc9, 0x82, 0x9b, 0x4a, 0x36, 0x84, 0x42, 0xc6,
+	0xcb, 0x52, 0x09, 0xad, 0x7d, 0x99, 0xa0, 0xda, 0xbc, 0xa2, 0x2d, 0x7c, 0x29, 0x2b, 0xda, 0xea,
+	0x77, 0xb2, 0x11, 0xbe, 0x14, 0xca, 0xe4, 0x67, 0x80, 0xa2, 0x1b, 0x9b, 0x8e, 0x57, 0xa3, 0xf5,
+	0x6c, 0xf3, 0x89, 0x5f, 0xe2, 0x61, 0x1f, 0xac, 0x17, 0x94, 0xff, 0x1b, 0x43, 0xf2, 0xd6, 0x06,
+	0x3c, 0x08, 0x3e, 0x85, 0xac, 0xad, 0x79, 0x21, 0xaa, 0xd2, 0xf7, 0x0d, 0x2a, 0x79, 0x06, 0x49,
+	0x7b, 0x6d, 0xf1, 0x8c, 0xd1, 0xee, 0x14, 0x6b, 0x15, 0x5b, 0x5e, 0xd5, 0x34, 0x71, 0x56, 0x54,
+	0x30, 0xd6, 0xa6, 0xd1, 0xd4, 0xc7, 0x5a, 0xc5, 0xf6, 0x2b, 0x2d, 0xec, 0xcc, 0xf5, 0xb3, 0x32,
+	0xf9, 0x11, 0xa0, 0x70, 0xe7, 0x5c, 0x09, 0x4d, 0x27, 0x38, 0xd0, 0x93, 0x30, 0x90, 0x27, 0x00,
+	0xeb, 0x85, 0x90, 0x15, 0xcc, 0x4a, 0xa1, 0x0b, 0x55, 0xb5, 0x76, 0xa1, 0x74, 0x8a, 0xb5, 0xfa,
+	0x26, 0x92, 0x43, 0xd2, 0xda, 0x83, 0xa6, 0x80, 0xd5, 0xe6, 0x81, 0x63, 0xd6, 0xc6, 0x9c, 0x8b,
+	0x7c, 0x0f, 0x93, 0xda, 0x9f, 0x09, 0x9d, 0x0d, 0x9a, 0x86, 0xa3, 0x62, 0x5d, 0x80, 0xdd, 0x49,
+	0x73, 0xe1, 0xe6, 0x99, 0x23, 0x67, 0x82, 0x6a, 0xe7, 0xac, 0xab, 0x3f, 0x85, 0xa6, 0x0b, 0xb4,
+	0x3b, 0x85, 0xac, 0x21, 0xbb, 0x72, 0xd7, 0x80, 0x2e, 0xb1, 0x76, 0xa0, 0xb9, 0xbf, 0x1c, 0x2c,
+	0xb8, 0xc9, 0xb7, 0x90, 0x71, 0xa4, 0x96, 0xa6, 0x4f, 0xf0, 0x42, 0x2c, 0x7c, 0xa4, 0x23, 0x1c,
+	0x0b, 0x5e, 0xf2, 0x35, 0x24, 0xd7, 0xd2, 0x86, 0x3d, 0xfd, 0xbf, 0x30, 0xe7, 0xcb, 0xef, 0x60,
+	0xfe, 0xce, 0xaa, 0x42, 0xb7, 0xb2, 0xd1, 0x82, 0x7c, 0x0e, 0xa9, 0x36, 0xdc, 0xec, 0xb4, 0xbf,
+	0x85, 0x5e, 0xc3, 0x33, 0x53, 0x4a, 0x2a, 0x7f, 0xf0, 0x4e, 0xb1, 0x56, 0x23, 0x0d, 0xaf, 0xf1,
+	0xdc, 0x63, 0xe6, 0x14, 0xf2, 0x0d, 0x64, 0x2d, 0xdf, 0xd7, 0x92, 0x97, 0x74, 0x8c, 0xad, 0xc3,
+	0x3a, 0x91, 0x52, 0x2c, 0x38, 0xf3, 0x57, 0xb0, 0x38, 0x55, 0xc2, 0x72, 0xcf, 0xbd, 0x16, 0xfd,
+	0xc4, 0xd1, 0xe0, 0x1c, 0x8e, 0x12, 0x3f, 0xc0, 0x32, 0x24, 0x3e, 0x14, 0x76, 0xdc, 0x87, 0x4d,
+	0x0f, 0x7d, 0x22, 0x4f, 0x58, 0x5f, 0xf9, 0x2b, 0x58, 0xfc, 0x2a, 0x0c, 0xaf, 0xea, 0x00, 0xc9,
+	0xf1, 0x7f, 0x1c, 0xf8, 0x9f, 0x5f, 0xc2, 0x32, 0x04, 0x3c, 0x6a, 0x63, 0x83, 0xdd, 0xdc, 0x33,
+	0xe2, 0x19, 0x2c, 0x7e, 0x6f, 0xcb, 0xde, 0x6e, 0x8e, 0x2f, 0x62, 0xaf, 0x50, 0x7c, 0x5f, 0xa1,
+	0x4b, 0x58, 0x86, 0x42, 0x1f, 0x0b, 0xf8, 0xde, 0x3e, 0xb8, 0xb9, 0x5a, 0x1c, 0x03, 0x8e, 0xbb,
+	0xcd, 0x7d, 0xb0, 0x9b, 0x73, 0x01, 0x8f, 0x02, 0x42, 0x87, 0x40, 0x26, 0x87, 0xd6, 0xaf, 0x61,
+	0xf1, 0x5e, 0x70, 0x55, 0x5c, 0x87, 0xd6, 0x3f, 0x1c, 0xf3, 0xe8, 0x53, 0x8f, 0xd9, 0x85, 0x9d,
+	0x73, 0xc5, 0xb7, 0xfa, 0x90, 0xff, 0xf7, 0x08, 0xe6, 0x7d, 0x0f, 0x99, 0xc3, 0xe8, 0xc6, 0xaf,
+	0x7a, 0x74, 0x63, 0x9f, 0xa0, 0x4b, 0x25, 0xb7, 0x88, 0x26, 0x61, 0x28, 0xdb, 0xe1, 0x8c, 0x44,
+	0x1c, 0x09, 0x8b, 0x8c, 0xb4, 0xdf, 0x02, 0x6b, 0x2f, 0xc3, 0x0b, 0x3b, 0x65, 0x9d, 0x6e, 0xc7,
+	0x34, 0x12, 0x3d, 0xee, 0xbd, 0xf3, 0x1a, 0x7e, 0x3f, 0xfc, 0x6b, 0x45, 0xd3, 0x55, 0x8c, 0xdf,
+	0x0f, 0xaf, 0x6f, 0xfe, 0x89, 0x60, 0x8e, 0x0b, 0x7e, 0x2f, 0xd4, 0xad, 0x7d, 0x7c, 0x5e, 0x40,
+	0xea, 0x20, 0x92, 0x67, 0x83, 0x59, 0xfc, 0xc8, 0x27, 0x61, 0xc2, 0xc1, 0x65, 0xde, 0x40, 0x7c,
+	0x26, 0x4c, 0x97, 0x31, 0x60, 0xf6, 0xc9, 0x67, 0x47, 0xd6, 0x43, 0xce, 0x9b, 0xb2, 0xec, 0x72,
+	0x06, 0x17, 0xb4, 0xcb, 0x39, 0xba, 0x7d, 0x2f, 0x21, 0x75, 0x1c, 0xeb, 0xd2, 0x06, 0xdc, 0xed,
+	0xd2, 0x8e, 0x88, 0xf8, 0x12, 0x52, 0xc7, 0x88, 0x1e, 0xc2, 0x1e, 0x83, 0x7a, 0x08, 0xfb, 0xb4,
+	0xf9, 0x25, 0xfb, 0xc3, 0xfd, 0x67, 0x5c, 0xa4, 0xf8, 0xd7, 0xf1, 0xe2, 0xbf, 0x00, 0x00, 0x00,
+	0xff, 0xff, 0x74, 0xe8, 0x7b, 0xfe, 0x84, 0x08, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.

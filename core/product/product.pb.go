@@ -95,7 +95,9 @@ func (m *Gastronomie) GetName() string {
 }
 
 type Coordinate struct {
-	Lon                  float32  `protobuf:"fixed32,1,opt,name=lon,proto3" json:"lon,omitempty"`
+	// @inject_tag: bson:"lon"
+	Lon float32 `protobuf:"fixed32,1,opt,name=lon,proto3" json:"lon,omitempty"`
+	// @inject_tag: bson:"lat"
 	Lat                  float32  `protobuf:"fixed32,2,opt,name=lat,proto3" json:"lat,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-"`
 	XXX_unrecognized     []byte   `json:"-"`

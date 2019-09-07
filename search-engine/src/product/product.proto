@@ -7,7 +7,9 @@ message RequestEmpty {}
 message Gastronomie { string name = 1; }
 
 message Coordinate {
+  // @inject_tag: bson:"lon"
   float lon = 1;
+  // @inject_tag: bson:"lat"
   float lat = 2;
 }
 

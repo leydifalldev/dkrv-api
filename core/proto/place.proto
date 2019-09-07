@@ -1,0 +1,104 @@
+syntax = "proto3";
+package place;
+option go_package = "place";
+
+message RequestEmpty {}
+
+message Gastronomie { string name = 1; }
+
+message Coordinate {
+  float lon = 1;
+  float lat = 2;
+}
+
+message Accompaniment { string name = 1; }
+
+message Picture { string src = 1; }
+
+message Schedule {
+  string date = 1;
+  string start_am = 2;
+  string end_am = 3;
+  string start_pm = 4;
+  string end_pm = 5;
+}
+
+message Services {
+  string name = 1;
+}
+
+message Category {
+  string name = 1;
+}
+
+message Place {
+  string id = 1;
+  string name = 2;
+  string place_logo = 3;
+  string phone = 4;
+  string email = 5;
+  string description = 6;
+  repeated Gastronomie gastronomie = 7;
+  Coordinate location = 8;
+  string address = 9;
+  string cpc = 10;
+  int32 likes = 11;
+  int32 notation = 12;
+  string primary_category = 13;
+  repeated Picture pictures = 14;
+  int32 main_picture = 15;
+  repeated Schedule schedule = 16;
+  string zone = 17;
+  int32 travel_time = 18;
+  bool ocean_near = 19;
+  Services services = 20;
+  bool temporaly_place = 21;
+  Category categories = 22;
+}
+
+message ID {
+  string id = 1;
+}
+
+message ListResponse {
+  int32 status = 1;
+  string error = 2;
+  int64 total = 3;
+  repeated Place data = 4;
+}
+
+message CreateResponse {
+  int32 status = 1;
+  string id = 2;
+  string error = 3;
+}
+
+message DeleteResponse {
+  int32 status = 1;
+  string error = 2;
+}
+
+message UpdateResponse {
+  int32 status = 1;
+  string error = 2;
+}
+
+message DetailResponse {
+  int32 status = 1;
+  string error = 2;
+  Place data = 4;
+}
+
+message SearchRequest {
+  string q = 1;
+  int32 from = 2;
+  int32 to = 3;
+}
+
+service PlaceService {
+  rpc Search(SearchRequest) returns (ListResponse);
+  rpc GetDetail(ID) returns (DetailResponse);
+  rpc AddPlace(Place) returns (CreateResponse);
+  rpc UpdatePlace(Place) returns (UpdateResponse);
+  rpc DeletePlace(ID) returns (DeleteResponse);
+}
