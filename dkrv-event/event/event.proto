@@ -6,177 +6,200 @@ message RequestEmpty {}
 
 
 message Picture {
-  // @inject_tag: bson:"src"
+  // @inject_tag: bson:"src,omitempty"
   string src = 1; 
 }
 
 message Gallery {
-  // @inject_tag: bson:"main"
+  // @inject_tag: bson:"main,omitempty"
   int32 main = 1;
-  // @inject_tag: bson:"pictures"
+  // @inject_tag: bson:"pictures,omitempty"
   repeated Picture pictures = 2; 
 }
 
 message Category {
-  // @inject_tag: bson:"name"
+  // @inject_tag: bson:"name,omitempty"
   string name = 1;
 }
 
 message Coordinate {
-  // @inject_tag: bson:"lng"
+  // @inject_tag: bson:"lng,omitempty"
   float lng = 1;
-  // @inject_tag: bson:"lat"
+  // @inject_tag: bson:"lat,omitempty"
   float lat = 2;
 }
 
 message Price {
-  // @inject_tag: bson:"base"
+  // @inject_tag: bson:"base,omitempty"
   int64 base = 1;
-  // @inject_tag: bson:"currency"
+  // @inject_tag: bson:"currency,omitempty"
   string currency = 2;
 }
 
 message Artist {
-  // @inject_tag: bson:"id"
+  // @inject_tag: bson:"id,omitempty"
   string id = 1;
-  // @inject_tag: bson:"name"
+  // @inject_tag: bson:"name,omitempty"
   string name = 2;
-  // @inject_tag: bson:"src"
-  string src = 3;
+  // @inject_tag: bson:"picture,omitempty"
+  string picture = 3;
+}
+
+message Place {
+  // @inject_tag: bson:"id,omitempty"
+  string id = 1;
+  // @inject_tag: bson:"name,omitempty"
+  string name = 2;
+  // @inject_tag: bson:"logo,omitempty"
+  string logo = 3;
+  // @inject_tag: bson:"location,omitempty"
+  Location location = 4;
+  // @inject_tag: bson:"picture,omitempty"
+  Picture picture = 5;
 }
 
 message Location {
-  // @inject_tag: bson:"address"
+  // @inject_tag: bson:"address,omitempty"
   string address = 1;
-  // @inject_tag: bson:"cpc"
+  // @inject_tag: bson:"cpc,omitempty"
   string cpc = 2;
-  // @inject_tag: bson:"zone"
+  // @inject_tag: bson:"zone,omitempty"
   string zone = 3;
-  // @inject_tag: bson:"coordinate"
+  // @inject_tag: bson:"coordinate,omitempty"
   Coordinate coordinate = 4;
 }
 
 message Event {
-  // @inject_tag: bson:"id"
+  // @inject_tag: bson:"id,omitempty"
   string id = 1;
-  // @inject_tag: bson:"name"
+  // @inject_tag: bson:"name,omitempty"
   string name = 2;
-  // @inject_tag: bson:"placeid"
-  string placeid = 3;
-  // @inject_tag: bson:"phone"
+  // @inject_tag: bson:"phone,omitempty"
   string phone = 4;
-  // @inject_tag: bson:"email"
+  // @inject_tag: bson:"email,omitempty"
   string email = 5;
-  // @inject_tag: bson:"place"
-  string place = 6;
-  // @inject_tag: bson:"date"
+  // @inject_tag: bson:"place,omitempty"
+  Place place = 6;
+  // @inject_tag: bson:"date,omitempty"
   string date = 7;
-  // @inject_tag: bson:"categories"
+  // @inject_tag: bson:"categories,omitempty"
   Category categories = 8;
-  // @inject_tag: bson:"description"
+  // @inject_tag: bson:"description,omitempty"
   string description = 9;
-  // @inject_tag: bson:"price"
+  // @inject_tag: bson:"price,omitempty"
   Price price = 10;
-  // @inject_tag: bson:"location"
-  Location location = 11;
-  // @inject_tag: bson:"nbplace"
-  int64 nbplace = 12;
-  // @inject_tag: bson:"likes"
-  int64 likes = 13;
-  // @inject_tag: bson:"gallery"
-  Gallery gallery = 14;
-  // @inject_tag: bson:"artists"
-  repeated Artist artists = 15;
-  // @inject_tag: bson:"hosts"
-  repeated Artist hosts = 16;
+  // @inject_tag: bson:"nbplace,omitempty"
+  int64 nbplace = 11;
+  // @inject_tag: bson:"likes,omitempty"
+  int64 likes = 12;
+  // @inject_tag: bson:"gallery,omitempty"
+  Gallery gallery = 13;
+  // @inject_tag: bson:"artists,omitempty"
+  repeated Artist artists = 14;
+  // @inject_tag: bson:"hosts,omitempty"
+  repeated Artist hosts = 15;
 }
 
 message ListResponse {
-  // @inject_tag: bson:"status"
+  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error"
+  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"total"
+  // @inject_tag: bson:"total,omitempty"
   int64 total = 3;
-  // @inject_tag: bson:"payload"
+  // @inject_tag: bson:"payload,omitempty"
   repeated Event payload = 4;
 }
 
 message CreateRequest {
-  // @inject_tag: bson:"payload"
+  // @inject_tag: bson:"payload,omitempty"
   Event payload = 1;
 }
 
 message CreateResponse {
-  // @inject_tag: bson:"status"
+  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error"
+  // @inject_tag: bson:"error,omitempty"
   string error = 3;
-  // @inject_tag: bson:"payload"
+  // @inject_tag: bson:"payload,omitempty"
   string payload = 2;
 }
 
 message DetailRequest {
-  // @inject_tag: bson:"id"
+  // @inject_tag: bson:"id,omitempty"
   string id = 4;
 }
 
 message DetailResponse {
-  // @inject_tag: bson:"status"
+  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error"
+  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"payload"
+  // @inject_tag: bson:"payload,omitempty"
   Event payload = 4;
 }
 
 message UpdateRequest {
-  // @inject_tag: bson:"id"
+  // @inject_tag: bson:"id,omitempty"
   string id = 1;
-  // @inject_tag: bson:"payload"
+  // @inject_tag: bson:"payload,omitempty"
   Event payload = 3;
 }
 
 message UpdateResponse {
-  // @inject_tag: bson:"status"
+  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error"
+  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"payload"
-  Event payload = 3;
+  // @inject_tag: bson:"payload,omitempty"
+  bool payload = 3;
+}
+
+message UpdatePlaceRequest {
+  // @inject_tag: bson:"id,omitempty"
+  string id = 1;
+  // @inject_tag: bson:"payload,omitempty"
+  Place payload = 2;
+}
+
+message UpdateLocationRequest {
+  // @inject_tag: bson:"id,omitempty"
+  string id = 1;
+  // @inject_tag: bson:"payload,omitempty"
+  Location payload = 2;
 }
 
 message DeleteRequest {
-  // @inject_tag: bson:"id"
+  // @inject_tag: bson:"id,omitempty"
   string id = 3;
 }
 
 message DeleteResponse {
-  // @inject_tag: bson:"status"
+  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error"
+  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"payload"
+  // @inject_tag: bson:"payload,omitempty"
   bool payload = 3;
 }
 
 message SearchRequest {
-  // @inject_tag: bson:"payload"
+  // @inject_tag: bson:"payload,omitempty"
   SearchParams payload = 1;
 }
 
 message SearchParams {
-  // @inject_tag: bson:"q"
+  // @inject_tag: bson:"q,omitempty"
   string q = 1;
-  // @inject_tag: bson:"from"
+  // @inject_tag: bson:"from,omitempty"
   int32 from = 2;
-  // @inject_tag: bson:"to"
+  // @inject_tag: bson:"to,omitempty"
   int32 to = 3;
-  // @inject_tag: bson:"fromdate"
+  // @inject_tag: bson:"fromdate,omitempty"
   string fromdate = 4;
-  // @inject_tag: bson:"todate"
+  // @inject_tag: bson:"todate,omitempty"
   string todate = 5;
-  // @inject_tag: bson:"category"
+  // @inject_tag: bson:"category,omitempty"
   repeated string category = 6;
 }
 
@@ -184,6 +207,7 @@ service EventService {
   rpc Search(SearchRequest) returns (ListResponse);
   rpc Get(DetailRequest) returns (DetailResponse);
   rpc Add(CreateRequest) returns (CreateResponse);
+  rpc UpdateLocation(UpdateLocationRequest) returns (UpdateResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
   rpc Delete(DeleteRequest) returns (DeleteResponse);
 }

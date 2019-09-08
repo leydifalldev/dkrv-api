@@ -1,12 +1,12 @@
 package main
 
 import (
+	"event/event"
 	"log"
-	"store/collection"
 )
 
 func main() {
 	log.Println("grpc server: starting ...")
-	go collection.GrpcServer()
+	go event.GrpcServer()
 	select {}
 }

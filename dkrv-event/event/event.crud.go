@@ -4,6 +4,9 @@ import (
 	context "context"
 	"event/database"
 	"log"
+
+	"github.com/google/uuid"
+	"go.mongodb.org/mongo-driver/bson"
 )
 
 //Search return List of info
@@ -54,29 +57,57 @@ func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, 
 //Add allows to add info
 func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
 	c := database.GetRepository("dkrv", "event")
-	id, status, err := c.Create(req)
+	event := req.GetPayload()
+	id, err := uuid.NewUUID()
+	if err != nil {
+		log.Println("Cannot not generate uuid for inserting document")
+	}
+	log.Printf(id.String())
+	idr, status, errres := c.Create(event)
 	return &CreateResponse{
 		Status:  status,
-		Error:   err,
-		Payload: id,
+		Error:   errres,
+		Payload: idr,
 	}, nil
 }
 
 //Update allow to update
 func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
-	c := database.GetRepository("dkrv", "place")
+	c := database.GetRepository("dkrv", "event")
+	event := req.GetPayload()
+	log.Println(event)
+	update := bson.D{{Key: "$set", Value: event}}
+	res, status, err := c.Update(req.GetId(), update)
 
-	id, status, _ := c.Update(req.GetId(), req.Payload)
-	if id != nil {
-		log.Println("Hello")
-	}
 	return &UpdateResponse{
-		Status: status,
-		Error:  "null",
-		Id:     "done",
+		Status:  status,
+		Error:   err,
+		Payload: res,
+	}, nil
+}
+
+//UpdateLocation allow to update
+func (s *Server) UpdateLocation(ctx context.Context, req *UpdateLocationRequest) (*UpdateResponse, error) {
+	c := database.GetRepository("dkrv", "event")
+	placeevent := req.GetPayload()
+	log.Println(placeevent)
+	update := bson.D{{Key: "$set", Value: bson.M{"place.location": placeevent}}}
+	res, status, err := c.Update(req.GetId(), update)
+
+	return &UpdateResponse{
+		Status:  status,
+		Error:   err,
+		Payload: res,
 	}, nil
 }
 
 //Delete allow to delete
-func (s *Server) Delete(ctx context.Context, req *ID) (*DeleteResponse, error) {
+func (s *Server) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
+	c := database.GetRepository("dkrv", "event")
+	res, status, err := c.Delete(req.GetId())
+	return &DeleteResponse{
+		Status:  status,
+		Error:   err,
+		Payload: res,
+	}, nil
 }

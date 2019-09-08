@@ -56,8 +56,8 @@ func (m *RequestEmpty) XXX_DiscardUnknown() {
 var xxx_messageInfo_RequestEmpty proto.InternalMessageInfo
 
 type Picture struct {
-	// @inject_tag: bson:"src"
-	Src                  string   `protobuf:"bytes,1,opt,name=src,proto3" json:"src,omitempty" bson:"src"`
+	// @inject_tag: bson:"src,omitempty"
+	Src                  string   `protobuf:"bytes,1,opt,name=src,proto3" json:"src,omitempty" bson:"src,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -96,10 +96,10 @@ func (m *Picture) GetSrc() string {
 }
 
 type Gallery struct {
-	// @inject_tag: bson:"main"
-	Main int32 `protobuf:"varint,1,opt,name=main,proto3" json:"main,omitempty" bson:"main"`
-	// @inject_tag: bson:"pictures"
-	Pictures             []*Picture `protobuf:"bytes,2,rep,name=pictures,proto3" json:"pictures,omitempty" bson:"pictures"`
+	// @inject_tag: bson:"main,omitempty"
+	Main int32 `protobuf:"varint,1,opt,name=main,proto3" json:"main,omitempty" bson:"main,omitempty"`
+	// @inject_tag: bson:"pictures,omitempty"
+	Pictures             []*Picture `protobuf:"bytes,2,rep,name=pictures,proto3" json:"pictures,omitempty" bson:"pictures,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}   `json:"-" bson:"-"`
 	XXX_unrecognized     []byte     `json:"-" bson:"-"`
 	XXX_sizecache        int32      `json:"-" bson:"-"`
@@ -145,8 +145,8 @@ func (m *Gallery) GetPictures() []*Picture {
 }
 
 type Category struct {
-	// @inject_tag: bson:"name"
-	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" bson:"name"`
+	// @inject_tag: bson:"name,omitempty"
+	Name                 string   `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty" bson:"name,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -185,10 +185,10 @@ func (m *Category) GetName() string {
 }
 
 type Coordinate struct {
-	// @inject_tag: bson:"lng"
-	Lng float32 `protobuf:"fixed32,1,opt,name=lng,proto3" json:"lng,omitempty" bson:"lng"`
-	// @inject_tag: bson:"lat"
-	Lat                  float32  `protobuf:"fixed32,2,opt,name=lat,proto3" json:"lat,omitempty" bson:"lat"`
+	// @inject_tag: bson:"lng,omitempty"
+	Lng float32 `protobuf:"fixed32,1,opt,name=lng,proto3" json:"lng,omitempty" bson:"lng,omitempty"`
+	// @inject_tag: bson:"lat,omitempty"
+	Lat                  float32  `protobuf:"fixed32,2,opt,name=lat,proto3" json:"lat,omitempty" bson:"lat,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -234,10 +234,10 @@ func (m *Coordinate) GetLat() float32 {
 }
 
 type Price struct {
-	// @inject_tag: bson:"base"
-	Base int64 `protobuf:"varint,1,opt,name=base,proto3" json:"base,omitempty" bson:"base"`
-	// @inject_tag: bson:"currency"
-	Currency             string   `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty" bson:"currency"`
+	// @inject_tag: bson:"base,omitempty"
+	Base int64 `protobuf:"varint,1,opt,name=base,proto3" json:"base,omitempty" bson:"base,omitempty"`
+	// @inject_tag: bson:"currency,omitempty"
+	Currency             string   `protobuf:"bytes,2,opt,name=currency,proto3" json:"currency,omitempty" bson:"currency,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -283,12 +283,12 @@ func (m *Price) GetCurrency() string {
 }
 
 type Artist struct {
-	// @inject_tag: bson:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
-	// @inject_tag: bson:"name"
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" bson:"name"`
-	// @inject_tag: bson:"src"
-	Src                  string   `protobuf:"bytes,3,opt,name=src,proto3" json:"src,omitempty" bson:"src"`
+	// @inject_tag: bson:"id,omitempty"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id,omitempty"`
+	// @inject_tag: bson:"name,omitempty"
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" bson:"name,omitempty"`
+	// @inject_tag: bson:"picture,omitempty"
+	Picture              string   `protobuf:"bytes,3,opt,name=picture,proto3" json:"picture,omitempty" bson:"picture,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -333,22 +333,98 @@ func (m *Artist) GetName() string {
 	return ""
 }
 
-func (m *Artist) GetSrc() string {
+func (m *Artist) GetPicture() string {
 	if m != nil {
-		return m.Src
+		return m.Picture
 	}
 	return ""
 }
 
+type Place struct {
+	// @inject_tag: bson:"id,omitempty"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id,omitempty"`
+	// @inject_tag: bson:"name,omitempty"
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" bson:"name,omitempty"`
+	// @inject_tag: bson:"logo,omitempty"
+	Logo string `protobuf:"bytes,3,opt,name=logo,proto3" json:"logo,omitempty" bson:"logo,omitempty"`
+	// @inject_tag: bson:"location,omitempty"
+	Location *Location `protobuf:"bytes,4,opt,name=location,proto3" json:"location,omitempty" bson:"location,omitempty"`
+	// @inject_tag: bson:"picture,omitempty"
+	Picture              *Picture `protobuf:"bytes,5,opt,name=picture,proto3" json:"picture,omitempty" bson:"picture,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
+}
+
+func (m *Place) Reset()         { *m = Place{} }
+func (m *Place) String() string { return proto.CompactTextString(m) }
+func (*Place) ProtoMessage()    {}
+func (*Place) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{7}
+}
+
+func (m *Place) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_Place.Unmarshal(m, b)
+}
+func (m *Place) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_Place.Marshal(b, m, deterministic)
+}
+func (m *Place) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_Place.Merge(m, src)
+}
+func (m *Place) XXX_Size() int {
+	return xxx_messageInfo_Place.Size(m)
+}
+func (m *Place) XXX_DiscardUnknown() {
+	xxx_messageInfo_Place.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_Place proto.InternalMessageInfo
+
+func (m *Place) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *Place) GetName() string {
+	if m != nil {
+		return m.Name
+	}
+	return ""
+}
+
+func (m *Place) GetLogo() string {
+	if m != nil {
+		return m.Logo
+	}
+	return ""
+}
+
+func (m *Place) GetLocation() *Location {
+	if m != nil {
+		return m.Location
+	}
+	return nil
+}
+
+func (m *Place) GetPicture() *Picture {
+	if m != nil {
+		return m.Picture
+	}
+	return nil
+}
+
 type Location struct {
-	// @inject_tag: bson:"address"
-	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty" bson:"address"`
-	// @inject_tag: bson:"cpc"
-	Cpc string `protobuf:"bytes,2,opt,name=cpc,proto3" json:"cpc,omitempty" bson:"cpc"`
-	// @inject_tag: bson:"zone"
-	Zone string `protobuf:"bytes,3,opt,name=zone,proto3" json:"zone,omitempty" bson:"zone"`
-	// @inject_tag: bson:"coordinate"
-	Coordinate           *Coordinate `protobuf:"bytes,4,opt,name=coordinate,proto3" json:"coordinate,omitempty" bson:"coordinate"`
+	// @inject_tag: bson:"address,omitempty"
+	Address string `protobuf:"bytes,1,opt,name=address,proto3" json:"address,omitempty" bson:"address,omitempty"`
+	// @inject_tag: bson:"cpc,omitempty"
+	Cpc string `protobuf:"bytes,2,opt,name=cpc,proto3" json:"cpc,omitempty" bson:"cpc,omitempty"`
+	// @inject_tag: bson:"zone,omitempty"
+	Zone string `protobuf:"bytes,3,opt,name=zone,proto3" json:"zone,omitempty" bson:"zone,omitempty"`
+	// @inject_tag: bson:"coordinate,omitempty"
+	Coordinate           *Coordinate `protobuf:"bytes,4,opt,name=coordinate,proto3" json:"coordinate,omitempty" bson:"coordinate,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}    `json:"-" bson:"-"`
 	XXX_unrecognized     []byte      `json:"-" bson:"-"`
 	XXX_sizecache        int32       `json:"-" bson:"-"`
@@ -358,7 +434,7 @@ func (m *Location) Reset()         { *m = Location{} }
 func (m *Location) String() string { return proto.CompactTextString(m) }
 func (*Location) ProtoMessage()    {}
 func (*Location) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{7}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{8}
 }
 
 func (m *Location) XXX_Unmarshal(b []byte) error {
@@ -408,38 +484,34 @@ func (m *Location) GetCoordinate() *Coordinate {
 }
 
 type Event struct {
-	// @inject_tag: bson:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
-	// @inject_tag: bson:"name"
-	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" bson:"name"`
-	// @inject_tag: bson:"placeid"
-	Placeid string `protobuf:"bytes,3,opt,name=placeid,proto3" json:"placeid,omitempty" bson:"placeid"`
-	// @inject_tag: bson:"phone"
-	Phone string `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty" bson:"phone"`
-	// @inject_tag: bson:"email"
-	Email string `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty" bson:"email"`
-	// @inject_tag: bson:"place"
-	Place string `protobuf:"bytes,6,opt,name=place,proto3" json:"place,omitempty" bson:"place"`
-	// @inject_tag: bson:"date"
-	Date string `protobuf:"bytes,7,opt,name=date,proto3" json:"date,omitempty" bson:"date"`
-	// @inject_tag: bson:"categories"
-	Categories *Category `protobuf:"bytes,8,opt,name=categories,proto3" json:"categories,omitempty" bson:"categories"`
-	// @inject_tag: bson:"description"
-	Description string `protobuf:"bytes,9,opt,name=description,proto3" json:"description,omitempty" bson:"description"`
-	// @inject_tag: bson:"price"
-	Price *Price `protobuf:"bytes,10,opt,name=price,proto3" json:"price,omitempty" bson:"price"`
-	// @inject_tag: bson:"location"
-	Location *Location `protobuf:"bytes,11,opt,name=location,proto3" json:"location,omitempty" bson:"location"`
-	// @inject_tag: bson:"nbplace"
-	Nbplace int64 `protobuf:"varint,12,opt,name=nbplace,proto3" json:"nbplace,omitempty" bson:"nbplace"`
-	// @inject_tag: bson:"likes"
-	Likes int64 `protobuf:"varint,13,opt,name=likes,proto3" json:"likes,omitempty" bson:"likes"`
-	// @inject_tag: bson:"gallery"
-	Gallery *Gallery `protobuf:"bytes,14,opt,name=gallery,proto3" json:"gallery,omitempty" bson:"gallery"`
-	// @inject_tag: bson:"artists"
-	Artists []*Artist `protobuf:"bytes,15,rep,name=artists,proto3" json:"artists,omitempty" bson:"artists"`
-	// @inject_tag: bson:"hosts"
-	Hosts                []*Artist `protobuf:"bytes,16,rep,name=hosts,proto3" json:"hosts,omitempty" bson:"hosts"`
+	// @inject_tag: bson:"id,omitempty"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id,omitempty"`
+	// @inject_tag: bson:"name,omitempty"
+	Name string `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" bson:"name,omitempty"`
+	// @inject_tag: bson:"phone,omitempty"
+	Phone string `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty" bson:"phone,omitempty"`
+	// @inject_tag: bson:"email,omitempty"
+	Email string `protobuf:"bytes,5,opt,name=email,proto3" json:"email,omitempty" bson:"email,omitempty"`
+	// @inject_tag: bson:"place,omitempty"
+	Place *Place `protobuf:"bytes,6,opt,name=place,proto3" json:"place,omitempty" bson:"place,omitempty"`
+	// @inject_tag: bson:"date,omitempty"
+	Date string `protobuf:"bytes,7,opt,name=date,proto3" json:"date,omitempty" bson:"date,omitempty"`
+	// @inject_tag: bson:"categories,omitempty"
+	Categories *Category `protobuf:"bytes,8,opt,name=categories,proto3" json:"categories,omitempty" bson:"categories,omitempty"`
+	// @inject_tag: bson:"description,omitempty"
+	Description string `protobuf:"bytes,9,opt,name=description,proto3" json:"description,omitempty" bson:"description,omitempty"`
+	// @inject_tag: bson:"price,omitempty"
+	Price *Price `protobuf:"bytes,10,opt,name=price,proto3" json:"price,omitempty" bson:"price,omitempty"`
+	// @inject_tag: bson:"nbplace,omitempty"
+	Nbplace int64 `protobuf:"varint,11,opt,name=nbplace,proto3" json:"nbplace,omitempty" bson:"nbplace,omitempty"`
+	// @inject_tag: bson:"likes,omitempty"
+	Likes int64 `protobuf:"varint,12,opt,name=likes,proto3" json:"likes,omitempty" bson:"likes,omitempty"`
+	// @inject_tag: bson:"gallery,omitempty"
+	Gallery *Gallery `protobuf:"bytes,13,opt,name=gallery,proto3" json:"gallery,omitempty" bson:"gallery,omitempty"`
+	// @inject_tag: bson:"artists,omitempty"
+	Artists []*Artist `protobuf:"bytes,14,rep,name=artists,proto3" json:"artists,omitempty" bson:"artists,omitempty"`
+	// @inject_tag: bson:"hosts,omitempty"
+	Hosts                []*Artist `protobuf:"bytes,15,rep,name=hosts,proto3" json:"hosts,omitempty" bson:"hosts,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}  `json:"-" bson:"-"`
 	XXX_unrecognized     []byte    `json:"-" bson:"-"`
 	XXX_sizecache        int32     `json:"-" bson:"-"`
@@ -449,7 +521,7 @@ func (m *Event) Reset()         { *m = Event{} }
 func (m *Event) String() string { return proto.CompactTextString(m) }
 func (*Event) ProtoMessage()    {}
 func (*Event) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{8}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{9}
 }
 
 func (m *Event) XXX_Unmarshal(b []byte) error {
@@ -484,13 +556,6 @@ func (m *Event) GetName() string {
 	return ""
 }
 
-func (m *Event) GetPlaceid() string {
-	if m != nil {
-		return m.Placeid
-	}
-	return ""
-}
-
 func (m *Event) GetPhone() string {
 	if m != nil {
 		return m.Phone
@@ -505,11 +570,11 @@ func (m *Event) GetEmail() string {
 	return ""
 }
 
-func (m *Event) GetPlace() string {
+func (m *Event) GetPlace() *Place {
 	if m != nil {
 		return m.Place
 	}
-	return ""
+	return nil
 }
 
 func (m *Event) GetDate() string {
@@ -536,13 +601,6 @@ func (m *Event) GetDescription() string {
 func (m *Event) GetPrice() *Price {
 	if m != nil {
 		return m.Price
-	}
-	return nil
-}
-
-func (m *Event) GetLocation() *Location {
-	if m != nil {
-		return m.Location
 	}
 	return nil
 }
@@ -583,14 +641,14 @@ func (m *Event) GetHosts() []*Artist {
 }
 
 type ListResponse struct {
-	// @inject_tag: bson:"status"
-	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
-	// @inject_tag: bson:"error"
-	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
-	// @inject_tag: bson:"total"
-	Total int64 `protobuf:"varint,3,opt,name=total,proto3" json:"total,omitempty" bson:"total"`
-	// @inject_tag: bson:"payload"
-	Payload              []*Event `protobuf:"bytes,4,rep,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	// @inject_tag: bson:"status,omitempty"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status,omitempty"`
+	// @inject_tag: bson:"error,omitempty"
+	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error,omitempty"`
+	// @inject_tag: bson:"total,omitempty"
+	Total int64 `protobuf:"varint,3,opt,name=total,proto3" json:"total,omitempty" bson:"total,omitempty"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              []*Event `protobuf:"bytes,4,rep,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -600,7 +658,7 @@ func (m *ListResponse) Reset()         { *m = ListResponse{} }
 func (m *ListResponse) String() string { return proto.CompactTextString(m) }
 func (*ListResponse) ProtoMessage()    {}
 func (*ListResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{9}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{10}
 }
 
 func (m *ListResponse) XXX_Unmarshal(b []byte) error {
@@ -650,8 +708,8 @@ func (m *ListResponse) GetPayload() []*Event {
 }
 
 type CreateRequest struct {
-	// @inject_tag: bson:"payload"
-	Payload              *Event   `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              *Event   `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -661,7 +719,7 @@ func (m *CreateRequest) Reset()         { *m = CreateRequest{} }
 func (m *CreateRequest) String() string { return proto.CompactTextString(m) }
 func (*CreateRequest) ProtoMessage()    {}
 func (*CreateRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{10}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{11}
 }
 
 func (m *CreateRequest) XXX_Unmarshal(b []byte) error {
@@ -690,12 +748,12 @@ func (m *CreateRequest) GetPayload() *Event {
 }
 
 type CreateResponse struct {
-	// @inject_tag: bson:"status"
-	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
-	// @inject_tag: bson:"error"
-	Error string `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
-	// @inject_tag: bson:"payload"
-	Payload              string   `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	// @inject_tag: bson:"status,omitempty"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status,omitempty"`
+	// @inject_tag: bson:"error,omitempty"
+	Error string `protobuf:"bytes,3,opt,name=error,proto3" json:"error,omitempty" bson:"error,omitempty"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              string   `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -705,7 +763,7 @@ func (m *CreateResponse) Reset()         { *m = CreateResponse{} }
 func (m *CreateResponse) String() string { return proto.CompactTextString(m) }
 func (*CreateResponse) ProtoMessage()    {}
 func (*CreateResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{11}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{12}
 }
 
 func (m *CreateResponse) XXX_Unmarshal(b []byte) error {
@@ -748,8 +806,8 @@ func (m *CreateResponse) GetPayload() string {
 }
 
 type DetailRequest struct {
-	// @inject_tag: bson:"id"
-	Id                   string   `protobuf:"bytes,4,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
+	// @inject_tag: bson:"id,omitempty"
+	Id                   string   `protobuf:"bytes,4,opt,name=id,proto3" json:"id,omitempty" bson:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -759,7 +817,7 @@ func (m *DetailRequest) Reset()         { *m = DetailRequest{} }
 func (m *DetailRequest) String() string { return proto.CompactTextString(m) }
 func (*DetailRequest) ProtoMessage()    {}
 func (*DetailRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{12}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{13}
 }
 
 func (m *DetailRequest) XXX_Unmarshal(b []byte) error {
@@ -788,12 +846,12 @@ func (m *DetailRequest) GetId() string {
 }
 
 type DetailResponse struct {
-	// @inject_tag: bson:"status"
-	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
-	// @inject_tag: bson:"error"
-	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
-	// @inject_tag: bson:"payload"
-	Payload              *Event   `protobuf:"bytes,4,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	// @inject_tag: bson:"status,omitempty"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status,omitempty"`
+	// @inject_tag: bson:"error,omitempty"
+	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error,omitempty"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              *Event   `protobuf:"bytes,4,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -803,7 +861,7 @@ func (m *DetailResponse) Reset()         { *m = DetailResponse{} }
 func (m *DetailResponse) String() string { return proto.CompactTextString(m) }
 func (*DetailResponse) ProtoMessage()    {}
 func (*DetailResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{13}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{14}
 }
 
 func (m *DetailResponse) XXX_Unmarshal(b []byte) error {
@@ -846,10 +904,10 @@ func (m *DetailResponse) GetPayload() *Event {
 }
 
 type UpdateRequest struct {
-	// @inject_tag: bson:"id"
-	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
-	// @inject_tag: bson:"payload"
-	Payload              *Event   `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	// @inject_tag: bson:"id,omitempty"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id,omitempty"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              *Event   `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -859,7 +917,7 @@ func (m *UpdateRequest) Reset()         { *m = UpdateRequest{} }
 func (m *UpdateRequest) String() string { return proto.CompactTextString(m) }
 func (*UpdateRequest) ProtoMessage()    {}
 func (*UpdateRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{14}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{15}
 }
 
 func (m *UpdateRequest) XXX_Unmarshal(b []byte) error {
@@ -895,12 +953,12 @@ func (m *UpdateRequest) GetPayload() *Event {
 }
 
 type UpdateResponse struct {
-	// @inject_tag: bson:"status"
-	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
-	// @inject_tag: bson:"error"
-	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
-	// @inject_tag: bson:"payload"
-	Payload              *Event   `protobuf:"bytes,3,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	// @inject_tag: bson:"status,omitempty"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status,omitempty"`
+	// @inject_tag: bson:"error,omitempty"
+	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error,omitempty"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              bool     `protobuf:"varint,3,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -910,7 +968,7 @@ func (m *UpdateResponse) Reset()         { *m = UpdateResponse{} }
 func (m *UpdateResponse) String() string { return proto.CompactTextString(m) }
 func (*UpdateResponse) ProtoMessage()    {}
 func (*UpdateResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{15}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{16}
 }
 
 func (m *UpdateResponse) XXX_Unmarshal(b []byte) error {
@@ -945,7 +1003,105 @@ func (m *UpdateResponse) GetError() string {
 	return ""
 }
 
-func (m *UpdateResponse) GetPayload() *Event {
+func (m *UpdateResponse) GetPayload() bool {
+	if m != nil {
+		return m.Payload
+	}
+	return false
+}
+
+type UpdatePlaceRequest struct {
+	// @inject_tag: bson:"id,omitempty"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id,omitempty"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              *Place   `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
+	XXX_unrecognized     []byte   `json:"-" bson:"-"`
+	XXX_sizecache        int32    `json:"-" bson:"-"`
+}
+
+func (m *UpdatePlaceRequest) Reset()         { *m = UpdatePlaceRequest{} }
+func (m *UpdatePlaceRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdatePlaceRequest) ProtoMessage()    {}
+func (*UpdatePlaceRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{17}
+}
+
+func (m *UpdatePlaceRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdatePlaceRequest.Unmarshal(m, b)
+}
+func (m *UpdatePlaceRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdatePlaceRequest.Marshal(b, m, deterministic)
+}
+func (m *UpdatePlaceRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdatePlaceRequest.Merge(m, src)
+}
+func (m *UpdatePlaceRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdatePlaceRequest.Size(m)
+}
+func (m *UpdatePlaceRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdatePlaceRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdatePlaceRequest proto.InternalMessageInfo
+
+func (m *UpdatePlaceRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *UpdatePlaceRequest) GetPayload() *Place {
+	if m != nil {
+		return m.Payload
+	}
+	return nil
+}
+
+type UpdateLocationRequest struct {
+	// @inject_tag: bson:"id,omitempty"
+	Id string `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id,omitempty"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              *Location `protobuf:"bytes,2,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
+	XXX_NoUnkeyedLiteral struct{}  `json:"-" bson:"-"`
+	XXX_unrecognized     []byte    `json:"-" bson:"-"`
+	XXX_sizecache        int32     `json:"-" bson:"-"`
+}
+
+func (m *UpdateLocationRequest) Reset()         { *m = UpdateLocationRequest{} }
+func (m *UpdateLocationRequest) String() string { return proto.CompactTextString(m) }
+func (*UpdateLocationRequest) ProtoMessage()    {}
+func (*UpdateLocationRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{18}
+}
+
+func (m *UpdateLocationRequest) XXX_Unmarshal(b []byte) error {
+	return xxx_messageInfo_UpdateLocationRequest.Unmarshal(m, b)
+}
+func (m *UpdateLocationRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	return xxx_messageInfo_UpdateLocationRequest.Marshal(b, m, deterministic)
+}
+func (m *UpdateLocationRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_UpdateLocationRequest.Merge(m, src)
+}
+func (m *UpdateLocationRequest) XXX_Size() int {
+	return xxx_messageInfo_UpdateLocationRequest.Size(m)
+}
+func (m *UpdateLocationRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_UpdateLocationRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_UpdateLocationRequest proto.InternalMessageInfo
+
+func (m *UpdateLocationRequest) GetId() string {
+	if m != nil {
+		return m.Id
+	}
+	return ""
+}
+
+func (m *UpdateLocationRequest) GetPayload() *Location {
 	if m != nil {
 		return m.Payload
 	}
@@ -953,8 +1109,8 @@ func (m *UpdateResponse) GetPayload() *Event {
 }
 
 type DeleteRequest struct {
-	// @inject_tag: bson:"id"
-	Id                   string   `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
+	// @inject_tag: bson:"id,omitempty"
+	Id                   string   `protobuf:"bytes,3,opt,name=id,proto3" json:"id,omitempty" bson:"id,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -964,7 +1120,7 @@ func (m *DeleteRequest) Reset()         { *m = DeleteRequest{} }
 func (m *DeleteRequest) String() string { return proto.CompactTextString(m) }
 func (*DeleteRequest) ProtoMessage()    {}
 func (*DeleteRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{16}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{19}
 }
 
 func (m *DeleteRequest) XXX_Unmarshal(b []byte) error {
@@ -993,12 +1149,12 @@ func (m *DeleteRequest) GetId() string {
 }
 
 type DeleteResponse struct {
-	// @inject_tag: bson:"status"
-	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status"`
-	// @inject_tag: bson:"error"
-	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error"`
-	// @inject_tag: bson:"payload"
-	Payload              bool     `protobuf:"varint,3,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	// @inject_tag: bson:"status,omitempty"
+	Status int32 `protobuf:"varint,1,opt,name=status,proto3" json:"status,omitempty" bson:"status,omitempty"`
+	// @inject_tag: bson:"error,omitempty"
+	Error string `protobuf:"bytes,2,opt,name=error,proto3" json:"error,omitempty" bson:"error,omitempty"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              bool     `protobuf:"varint,3,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -1008,7 +1164,7 @@ func (m *DeleteResponse) Reset()         { *m = DeleteResponse{} }
 func (m *DeleteResponse) String() string { return proto.CompactTextString(m) }
 func (*DeleteResponse) ProtoMessage()    {}
 func (*DeleteResponse) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{17}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{20}
 }
 
 func (m *DeleteResponse) XXX_Unmarshal(b []byte) error {
@@ -1051,8 +1207,8 @@ func (m *DeleteResponse) GetPayload() bool {
 }
 
 type SearchRequest struct {
-	// @inject_tag: bson:"payload"
-	Payload              *SearchParams `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload"`
+	// @inject_tag: bson:"payload,omitempty"
+	Payload              *SearchParams `protobuf:"bytes,1,opt,name=payload,proto3" json:"payload,omitempty" bson:"payload,omitempty"`
 	XXX_NoUnkeyedLiteral struct{}      `json:"-" bson:"-"`
 	XXX_unrecognized     []byte        `json:"-" bson:"-"`
 	XXX_sizecache        int32         `json:"-" bson:"-"`
@@ -1062,7 +1218,7 @@ func (m *SearchRequest) Reset()         { *m = SearchRequest{} }
 func (m *SearchRequest) String() string { return proto.CompactTextString(m) }
 func (*SearchRequest) ProtoMessage()    {}
 func (*SearchRequest) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{18}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{21}
 }
 
 func (m *SearchRequest) XXX_Unmarshal(b []byte) error {
@@ -1091,18 +1247,18 @@ func (m *SearchRequest) GetPayload() *SearchParams {
 }
 
 type SearchParams struct {
-	// @inject_tag: bson:"q"
-	Q string `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty" bson:"q"`
-	// @inject_tag: bson:"from"
-	From int32 `protobuf:"varint,2,opt,name=from,proto3" json:"from,omitempty" bson:"from"`
-	// @inject_tag: bson:"to"
-	To int32 `protobuf:"varint,3,opt,name=to,proto3" json:"to,omitempty" bson:"to"`
-	// @inject_tag: bson:"fromdate"
-	Fromdate string `protobuf:"bytes,4,opt,name=fromdate,proto3" json:"fromdate,omitempty" bson:"fromdate"`
-	// @inject_tag: bson:"todate"
-	Todate string `protobuf:"bytes,5,opt,name=todate,proto3" json:"todate,omitempty" bson:"todate"`
-	// @inject_tag: bson:"category"
-	Category             []string `protobuf:"bytes,6,rep,name=category,proto3" json:"category,omitempty" bson:"category"`
+	// @inject_tag: bson:"q,omitempty"
+	Q string `protobuf:"bytes,1,opt,name=q,proto3" json:"q,omitempty" bson:"q,omitempty"`
+	// @inject_tag: bson:"from,omitempty"
+	From int32 `protobuf:"varint,2,opt,name=from,proto3" json:"from,omitempty" bson:"from,omitempty"`
+	// @inject_tag: bson:"to,omitempty"
+	To int32 `protobuf:"varint,3,opt,name=to,proto3" json:"to,omitempty" bson:"to,omitempty"`
+	// @inject_tag: bson:"fromdate,omitempty"
+	Fromdate string `protobuf:"bytes,4,opt,name=fromdate,proto3" json:"fromdate,omitempty" bson:"fromdate,omitempty"`
+	// @inject_tag: bson:"todate,omitempty"
+	Todate string `protobuf:"bytes,5,opt,name=todate,proto3" json:"todate,omitempty" bson:"todate,omitempty"`
+	// @inject_tag: bson:"category,omitempty"
+	Category             []string `protobuf:"bytes,6,rep,name=category,proto3" json:"category,omitempty" bson:"category,omitempty"`
 	XXX_NoUnkeyedLiteral struct{} `json:"-" bson:"-"`
 	XXX_unrecognized     []byte   `json:"-" bson:"-"`
 	XXX_sizecache        int32    `json:"-" bson:"-"`
@@ -1112,7 +1268,7 @@ func (m *SearchParams) Reset()         { *m = SearchParams{} }
 func (m *SearchParams) String() string { return proto.CompactTextString(m) }
 func (*SearchParams) ProtoMessage()    {}
 func (*SearchParams) Descriptor() ([]byte, []int) {
-	return fileDescriptor_2d17a9d3f0ddf27e, []int{19}
+	return fileDescriptor_2d17a9d3f0ddf27e, []int{22}
 }
 
 func (m *SearchParams) XXX_Unmarshal(b []byte) error {
@@ -1183,6 +1339,7 @@ func init() {
 	proto.RegisterType((*Coordinate)(nil), "event.Coordinate")
 	proto.RegisterType((*Price)(nil), "event.Price")
 	proto.RegisterType((*Artist)(nil), "event.Artist")
+	proto.RegisterType((*Place)(nil), "event.Place")
 	proto.RegisterType((*Location)(nil), "event.Location")
 	proto.RegisterType((*Event)(nil), "event.Event")
 	proto.RegisterType((*ListResponse)(nil), "event.ListResponse")
@@ -1192,6 +1349,8 @@ func init() {
 	proto.RegisterType((*DetailResponse)(nil), "event.DetailResponse")
 	proto.RegisterType((*UpdateRequest)(nil), "event.UpdateRequest")
 	proto.RegisterType((*UpdateResponse)(nil), "event.UpdateResponse")
+	proto.RegisterType((*UpdatePlaceRequest)(nil), "event.UpdatePlaceRequest")
+	proto.RegisterType((*UpdateLocationRequest)(nil), "event.UpdateLocationRequest")
 	proto.RegisterType((*DeleteRequest)(nil), "event.DeleteRequest")
 	proto.RegisterType((*DeleteResponse)(nil), "event.DeleteResponse")
 	proto.RegisterType((*SearchRequest)(nil), "event.SearchRequest")
@@ -1201,60 +1360,64 @@ func init() {
 func init() { proto.RegisterFile("event.proto", fileDescriptor_2d17a9d3f0ddf27e) }
 
 var fileDescriptor_2d17a9d3f0ddf27e = []byte{
-	// 842 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xa4, 0x56, 0xdd, 0x8a, 0xdc, 0x36,
-	0x14, 0x66, 0xec, 0xb1, 0x3d, 0x73, 0xe6, 0x27, 0xa9, 0x9a, 0x16, 0xb1, 0x85, 0x76, 0x70, 0xa1,
-	0x1d, 0x5a, 0x9a, 0xb6, 0x13, 0x42, 0xee, 0x02, 0xe9, 0x36, 0x2c, 0x85, 0x5c, 0x2c, 0x0a, 0x85,
-	0xd0, 0x3b, 0xad, 0xad, 0xdd, 0x35, 0xf5, 0x58, 0x5e, 0x49, 0xb3, 0x30, 0x0b, 0x7d, 0x87, 0xde,
-	0xf6, 0x09, 0xfb, 0x1a, 0x45, 0x47, 0x92, 0xc7, 0x1e, 0xca, 0xb2, 0x6c, 0xee, 0xce, 0xff, 0xf9,
-	0xce, 0xd1, 0x27, 0xd9, 0x30, 0x13, 0xb7, 0xa2, 0x31, 0xcf, 0x5b, 0x25, 0x8d, 0x24, 0x09, 0x2a,
-	0xf9, 0x12, 0xe6, 0x4c, 0xdc, 0xec, 0x84, 0x36, 0x6f, 0xb7, 0xad, 0xd9, 0xe7, 0x5f, 0x40, 0x76,
-	0x5e, 0x15, 0x66, 0xa7, 0x04, 0x79, 0x0a, 0xb1, 0x56, 0x05, 0x1d, 0xad, 0x46, 0xeb, 0x29, 0xb3,
-	0x62, 0xfe, 0x1b, 0x64, 0x67, 0xbc, 0xae, 0x85, 0xda, 0x13, 0x02, 0xe3, 0x2d, 0xaf, 0x1a, 0xf4,
-	0x26, 0x0c, 0x65, 0xf2, 0x1d, 0x4c, 0x5a, 0x97, 0xab, 0x69, 0xb4, 0x8a, 0xd7, 0xb3, 0xcd, 0xf2,
-	0xb9, 0x6b, 0xe9, 0x4b, 0xb2, 0xce, 0x9f, 0x7f, 0x09, 0x93, 0x53, 0x6e, 0xc4, 0x95, 0x74, 0xb5,
-	0x1a, 0xbe, 0x15, 0xbe, 0x13, 0xca, 0xf9, 0x4f, 0x00, 0xa7, 0x52, 0xaa, 0xb2, 0x6a, 0xb8, 0x41,
-	0x28, 0x75, 0x73, 0x85, 0x01, 0x11, 0xb3, 0x22, 0x5a, 0xb8, 0xa1, 0x91, 0xb7, 0x70, 0x93, 0xbf,
-	0x82, 0xe4, 0x5c, 0x55, 0x85, 0xb0, 0xe5, 0x2e, 0xb8, 0x76, 0xe5, 0x62, 0x86, 0x32, 0x39, 0x81,
-	0x49, 0xb1, 0x53, 0x4a, 0x34, 0xc5, 0x1e, 0x73, 0xa6, 0xac, 0xd3, 0xf3, 0xd7, 0x90, 0xbe, 0x51,
-	0xa6, 0xd2, 0x86, 0x2c, 0x21, 0xaa, 0x4a, 0x0f, 0x23, 0xaa, 0xca, 0x0e, 0x58, 0x74, 0x00, 0x16,
-	0xb6, 0x12, 0x1f, 0xb6, 0xf2, 0x17, 0x4c, 0xde, 0xc9, 0x82, 0x9b, 0x4a, 0x36, 0x84, 0x42, 0xc6,
-	0xcb, 0x52, 0x09, 0xad, 0x7d, 0x99, 0xa0, 0xda, 0xbc, 0xa2, 0x2d, 0x7c, 0x29, 0x2b, 0xda, 0xea,
-	0x77, 0xb2, 0x11, 0xbe, 0x14, 0xca, 0xe4, 0x67, 0x80, 0xa2, 0x1b, 0x9b, 0x8e, 0x57, 0xa3, 0xf5,
-	0x6c, 0xf3, 0x89, 0x5f, 0xe2, 0x61, 0x1f, 0xac, 0x17, 0x94, 0xff, 0x1b, 0x43, 0xf2, 0xd6, 0x06,
-	0x3c, 0x08, 0x3e, 0x85, 0xac, 0xad, 0x79, 0x21, 0xaa, 0xd2, 0xf7, 0x0d, 0x2a, 0x79, 0x06, 0x49,
-	0x7b, 0x6d, 0xf1, 0x8c, 0xd1, 0xee, 0x14, 0x6b, 0x15, 0x5b, 0x5e, 0xd5, 0x34, 0x71, 0x56, 0x54,
-	0x30, 0xd6, 0xa6, 0xd1, 0xd4, 0xc7, 0x5a, 0xc5, 0xf6, 0x2b, 0x2d, 0xec, 0xcc, 0xf5, 0xb3, 0x32,
-	0xf9, 0x11, 0xa0, 0x70, 0xe7, 0x5c, 0x09, 0x4d, 0x27, 0x38, 0xd0, 0x93, 0x30, 0x90, 0x27, 0x00,
-	0xeb, 0x85, 0x90, 0x15, 0xcc, 0x4a, 0xa1, 0x0b, 0x55, 0xb5, 0x76, 0xa1, 0x74, 0x8a, 0xb5, 0xfa,
-	0x26, 0x92, 0x43, 0xd2, 0xda, 0x83, 0xa6, 0x80, 0xd5, 0xe6, 0x81, 0x63, 0xd6, 0xc6, 0x9c, 0x8b,
-	0x7c, 0x0f, 0x93, 0xda, 0x9f, 0x09, 0x9d, 0x0d, 0x9a, 0x86, 0xa3, 0x62, 0x5d, 0x80, 0xdd, 0x49,
-	0x73, 0xe1, 0xe6, 0x99, 0x23, 0x67, 0x82, 0x6a, 0xe7, 0xac, 0xab, 0x3f, 0x85, 0xa6, 0x0b, 0xb4,
-	0x3b, 0x85, 0xac, 0x21, 0xbb, 0x72, 0xd7, 0x80, 0x2e, 0xb1, 0x76, 0xa0, 0xb9, 0xbf, 0x1c, 0x2c,
-	0xb8, 0xc9, 0xb7, 0x90, 0x71, 0xa4, 0x96, 0xa6, 0x4f, 0xf0, 0x42, 0x2c, 0x7c, 0xa4, 0x23, 0x1c,
-	0x0b, 0x5e, 0xf2, 0x35, 0x24, 0xd7, 0xd2, 0x86, 0x3d, 0xfd, 0xbf, 0x30, 0xe7, 0xcb, 0xef, 0x60,
-	0xfe, 0xce, 0xaa, 0x42, 0xb7, 0xb2, 0xd1, 0x82, 0x7c, 0x0e, 0xa9, 0x36, 0xdc, 0xec, 0xb4, 0xbf,
-	0x85, 0x5e, 0xc3, 0x33, 0x53, 0x4a, 0x2a, 0x7f, 0xf0, 0x4e, 0xb1, 0x56, 0x23, 0x0d, 0xaf, 0xf1,
-	0xdc, 0x63, 0xe6, 0x14, 0xf2, 0x0d, 0x64, 0x2d, 0xdf, 0xd7, 0x92, 0x97, 0x74, 0x8c, 0xad, 0xc3,
-	0x3a, 0x91, 0x52, 0x2c, 0x38, 0xf3, 0x57, 0xb0, 0x38, 0x55, 0xc2, 0x72, 0xcf, 0xbd, 0x16, 0xfd,
-	0xc4, 0xd1, 0xe0, 0x1c, 0x8e, 0x12, 0x3f, 0xc0, 0x32, 0x24, 0x3e, 0x14, 0x76, 0xdc, 0x87, 0x4d,
-	0x0f, 0x7d, 0x22, 0x4f, 0x58, 0x5f, 0xf9, 0x2b, 0x58, 0xfc, 0x2a, 0x0c, 0xaf, 0xea, 0x00, 0xc9,
-	0xf1, 0x7f, 0x1c, 0xf8, 0x9f, 0x5f, 0xc2, 0x32, 0x04, 0x3c, 0x6a, 0x63, 0x83, 0xdd, 0xdc, 0x33,
-	0xe2, 0x19, 0x2c, 0x7e, 0x6f, 0xcb, 0xde, 0x6e, 0x8e, 0x2f, 0x62, 0xaf, 0x50, 0x7c, 0x5f, 0xa1,
-	0x4b, 0x58, 0x86, 0x42, 0x1f, 0x0b, 0xf8, 0xde, 0x3e, 0xb8, 0xb9, 0x5a, 0x1c, 0x03, 0x8e, 0xbb,
-	0xcd, 0x7d, 0xb0, 0x9b, 0x73, 0x01, 0x8f, 0x02, 0x42, 0x87, 0x40, 0x26, 0x87, 0xd6, 0xaf, 0x61,
-	0xf1, 0x5e, 0x70, 0x55, 0x5c, 0x87, 0xd6, 0x3f, 0x1c, 0xf3, 0xe8, 0x53, 0x8f, 0xd9, 0x85, 0x9d,
-	0x73, 0xc5, 0xb7, 0xfa, 0x90, 0xff, 0xf7, 0x08, 0xe6, 0x7d, 0x0f, 0x99, 0xc3, 0xe8, 0xc6, 0xaf,
-	0x7a, 0x74, 0x63, 0x9f, 0xa0, 0x4b, 0x25, 0xb7, 0x88, 0x26, 0x61, 0x28, 0xdb, 0xe1, 0x8c, 0x44,
-	0x1c, 0x09, 0x8b, 0x8c, 0xb4, 0xdf, 0x02, 0x6b, 0x2f, 0xc3, 0x0b, 0x3b, 0x65, 0x9d, 0x6e, 0xc7,
-	0x34, 0x12, 0x3d, 0xee, 0xbd, 0xf3, 0x1a, 0x7e, 0x3f, 0xfc, 0x6b, 0x45, 0xd3, 0x55, 0x8c, 0xdf,
-	0x0f, 0xaf, 0x6f, 0xfe, 0x89, 0x60, 0x8e, 0x0b, 0x7e, 0x2f, 0xd4, 0xad, 0x7d, 0x7c, 0x5e, 0x40,
-	0xea, 0x20, 0x92, 0x67, 0x83, 0x59, 0xfc, 0xc8, 0x27, 0x61, 0xc2, 0xc1, 0x65, 0xde, 0x40, 0x7c,
-	0x26, 0x4c, 0x97, 0x31, 0x60, 0xf6, 0xc9, 0x67, 0x47, 0xd6, 0x43, 0xce, 0x9b, 0xb2, 0xec, 0x72,
-	0x06, 0x17, 0xb4, 0xcb, 0x39, 0xba, 0x7d, 0x2f, 0x21, 0x75, 0x1c, 0xeb, 0xd2, 0x06, 0xdc, 0xed,
-	0xd2, 0x8e, 0x88, 0xf8, 0x12, 0x52, 0xc7, 0x88, 0x1e, 0xc2, 0x1e, 0x83, 0x7a, 0x08, 0xfb, 0xb4,
-	0xf9, 0x25, 0xfb, 0xc3, 0xfd, 0x67, 0x5c, 0xa4, 0xf8, 0xd7, 0xf1, 0xe2, 0xbf, 0x00, 0x00, 0x00,
-	0xff, 0xff, 0x74, 0xe8, 0x7b, 0xfe, 0x84, 0x08, 0x00, 0x00,
+	// 899 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x56, 0xdb, 0x6e, 0xdc, 0x44,
+	0x18, 0xd6, 0xda, 0xeb, 0x3d, 0xfc, 0x7b, 0x28, 0x0c, 0x2d, 0x1a, 0x05, 0x04, 0x2b, 0x23, 0x41,
+	0x00, 0x51, 0x20, 0x15, 0xea, 0x1d, 0x52, 0x09, 0x21, 0x42, 0xca, 0x45, 0x34, 0x15, 0x52, 0xc5,
+	0xdd, 0xc4, 0x9e, 0x26, 0x16, 0x5e, 0x8f, 0x33, 0x33, 0xa9, 0xb4, 0x95, 0x78, 0x07, 0xae, 0x78,
+	0x0c, 0x9e, 0x89, 0x47, 0x41, 0xf3, 0xcf, 0x61, 0x6d, 0x13, 0xda, 0x28, 0xe2, 0x6e, 0xfe, 0xf3,
+	0xf7, 0x1f, 0x6d, 0x58, 0x88, 0x57, 0xa2, 0x31, 0x8f, 0x5b, 0x25, 0x8d, 0x24, 0x19, 0x12, 0xf9,
+	0x1a, 0x96, 0x4c, 0x5c, 0xdf, 0x08, 0x6d, 0x4e, 0xb6, 0xad, 0xd9, 0xe5, 0x1f, 0xc0, 0xf4, 0xbc,
+	0x2a, 0xcc, 0x8d, 0x12, 0xe4, 0x1d, 0x48, 0xb5, 0x2a, 0xe8, 0x68, 0x33, 0x3a, 0x9c, 0x33, 0xfb,
+	0xcc, 0x7f, 0x86, 0xe9, 0x29, 0xaf, 0x6b, 0xa1, 0x76, 0x84, 0xc0, 0x78, 0xcb, 0xab, 0x06, 0xa5,
+	0x19, 0xc3, 0x37, 0xf9, 0x02, 0x66, 0xad, 0xb3, 0xd5, 0x34, 0xd9, 0xa4, 0x87, 0x8b, 0xa3, 0xf5,
+	0x63, 0x17, 0xd2, 0xbb, 0x64, 0x51, 0x9e, 0x7f, 0x04, 0xb3, 0x63, 0x6e, 0xc4, 0xa5, 0x74, 0xbe,
+	0x1a, 0xbe, 0x15, 0x3e, 0x12, 0xbe, 0xf3, 0x6f, 0x00, 0x8e, 0xa5, 0x54, 0x65, 0xd5, 0x70, 0x83,
+	0x50, 0xea, 0xe6, 0x12, 0x15, 0x12, 0x66, 0x9f, 0xc8, 0xe1, 0x86, 0x26, 0x9e, 0xc3, 0x4d, 0xfe,
+	0x14, 0xb2, 0x73, 0x55, 0x15, 0xc2, 0xba, 0xbb, 0xe0, 0xda, 0xb9, 0x4b, 0x19, 0xbe, 0xc9, 0x01,
+	0xcc, 0x8a, 0x1b, 0xa5, 0x44, 0x53, 0xec, 0xd0, 0x66, 0xce, 0x22, 0x9d, 0xff, 0x04, 0x93, 0x67,
+	0xca, 0x54, 0xda, 0x90, 0x35, 0x24, 0x55, 0xe9, 0x61, 0x24, 0x55, 0x19, 0x81, 0x25, 0x7b, 0x60,
+	0x84, 0xc2, 0xd4, 0x27, 0x41, 0x53, 0x64, 0x07, 0x32, 0xff, 0x73, 0x04, 0xd9, 0x79, 0xcd, 0x0b,
+	0x71, 0x27, 0x3f, 0x04, 0xc6, 0xb5, 0xbc, 0x94, 0xde, 0x09, 0xbe, 0xc9, 0x97, 0x30, 0xab, 0x65,
+	0xc1, 0x4d, 0x25, 0x1b, 0x3a, 0xde, 0x8c, 0x0e, 0x17, 0x47, 0x0f, 0x7c, 0x01, 0xcf, 0x3c, 0x9b,
+	0x45, 0x05, 0x72, 0xb8, 0x07, 0x92, 0xa1, 0xee, 0xb0, 0xd8, 0x11, 0xd8, 0xef, 0x30, 0x0b, 0xf6,
+	0x16, 0x3e, 0x2f, 0x4b, 0x25, 0xb4, 0xf6, 0xf8, 0x02, 0x69, 0x2b, 0x5a, 0xb4, 0x85, 0xc7, 0x68,
+	0x9f, 0x16, 0xe2, 0x6b, 0xd9, 0x84, 0x3c, 0xf1, 0x4d, 0xbe, 0x05, 0x28, 0x62, 0x5f, 0x3c, 0xc8,
+	0x77, 0x7d, 0xe0, 0x7d, 0xc3, 0x58, 0x47, 0x29, 0xff, 0x2b, 0x85, 0xec, 0xc4, 0x2a, 0xdc, 0xa9,
+	0x2e, 0x0f, 0x21, 0x6b, 0xaf, 0x6c, 0xd4, 0x31, 0x32, 0x1d, 0x61, 0xb9, 0x62, 0xcb, 0xab, 0x1a,
+	0x53, 0x9d, 0x33, 0x47, 0x90, 0x1c, 0xb2, 0xd6, 0x16, 0x9c, 0x4e, 0x10, 0xc7, 0x32, 0x14, 0xc0,
+	0xf2, 0x98, 0x13, 0xd9, 0x18, 0xa5, 0x85, 0x3a, 0x75, 0x31, 0xec, 0x9b, 0x7c, 0x0d, 0x50, 0xb8,
+	0xe1, 0xab, 0x84, 0xa6, 0xb3, 0x5e, 0xa5, 0xc3, 0x54, 0xb2, 0x8e, 0x0a, 0xd9, 0xc0, 0xa2, 0x14,
+	0xba, 0x50, 0x55, 0x8b, 0xbd, 0x99, 0xa3, 0xaf, 0x2e, 0x0b, 0xa1, 0xd8, 0xe9, 0xa3, 0xd0, 0x87,
+	0x62, 0x79, 0xcc, 0x89, 0x6c, 0xed, 0x9b, 0x0b, 0x07, 0x78, 0x81, 0xb3, 0x19, 0x48, 0x9b, 0x5e,
+	0x5d, 0xfd, 0x26, 0x34, 0x5d, 0x22, 0xdf, 0x11, 0xb6, 0xc3, 0x97, 0x6e, 0xdd, 0xe8, 0xaa, 0xd7,
+	0x61, 0xbf, 0x84, 0x2c, 0x88, 0xc9, 0x67, 0x30, 0xe5, 0x38, 0xc2, 0x9a, 0xae, 0x71, 0xf1, 0x56,
+	0x5e, 0xd3, 0x0d, 0x36, 0x0b, 0x52, 0xf2, 0x09, 0x64, 0x57, 0xd2, 0xaa, 0x3d, 0xb8, 0x4d, 0xcd,
+	0xc9, 0xf2, 0xd7, 0xb0, 0x3c, 0xb3, 0xa4, 0xd0, 0xad, 0x6c, 0xb4, 0x20, 0xef, 0xc3, 0x44, 0x1b,
+	0x6e, 0x6e, 0xb4, 0xdf, 0x76, 0x4f, 0x61, 0x53, 0x94, 0x92, 0xca, 0xf7, 0xcf, 0x11, 0x96, 0x6b,
+	0xa4, 0xe1, 0x35, 0x8e, 0x4d, 0xca, 0x1c, 0x41, 0x3e, 0x85, 0x69, 0xcb, 0x77, 0xb5, 0xe4, 0x25,
+	0x1d, 0x63, 0xe8, 0x50, 0x21, 0x9c, 0x0c, 0x16, 0x84, 0xf9, 0x53, 0x58, 0x1d, 0x2b, 0x61, 0x47,
+	0xc8, 0x5d, 0xa5, 0xae, 0xe1, 0xa8, 0x57, 0xda, 0x81, 0xe1, 0x0b, 0x58, 0x07, 0xc3, 0xbb, 0xc2,
+	0x4e, 0xbb, 0xb0, 0xe9, 0x3e, 0x4e, 0xe2, 0xf7, 0xda, 0x7b, 0xfe, 0x18, 0x56, 0x3f, 0x0a, 0xc3,
+	0xab, 0x3a, 0x40, 0x72, 0x63, 0x3c, 0x0e, 0x63, 0x9c, 0xbf, 0x84, 0x75, 0x50, 0xb8, 0x57, 0xc5,
+	0x7a, 0xb5, 0x79, 0x43, 0x8a, 0xa7, 0xb0, 0xfa, 0xa5, 0x2d, 0x3b, 0xb5, 0x19, 0xee, 0x53, 0xc7,
+	0x51, 0xfa, 0x96, 0x5a, 0x05, 0x47, 0xf7, 0x02, 0x4c, 0xfb, 0x71, 0x66, 0x7b, 0xcf, 0x67, 0x40,
+	0x9c, 0x67, 0xb7, 0x83, 0x6f, 0xc7, 0x99, 0xdc, 0xb2, 0xb9, 0xd1, 0x1b, 0x83, 0x47, 0xce, 0x5b,
+	0x3c, 0x7f, 0xff, 0xe1, 0xf0, 0xf3, 0xa1, 0xc3, 0x7f, 0xdd, 0xcd, 0x7e, 0x37, 0x6b, 0x31, 0x2c,
+	0x62, 0x1a, 0xbb, 0xf9, 0xc2, 0x76, 0xd3, 0x29, 0xfc, 0xcf, 0xc5, 0xf9, 0x1e, 0x56, 0xcf, 0x05,
+	0x57, 0xc5, 0x55, 0x08, 0xfd, 0xd5, 0x70, 0xb6, 0xdf, 0xf3, 0xb0, 0x9d, 0xda, 0x39, 0x57, 0x7c,
+	0xab, 0xf7, 0xf6, 0x7f, 0x8c, 0x60, 0xd9, 0x95, 0x90, 0x25, 0x8c, 0xae, 0x7d, 0x15, 0x46, 0xd7,
+	0xf6, 0xd2, 0xbd, 0x54, 0x72, 0x8b, 0x68, 0x32, 0x86, 0x6f, 0x9b, 0x9c, 0x71, 0xdf, 0x98, 0x8c,
+	0x25, 0x46, 0xda, 0xef, 0xa0, 0xe5, 0x97, 0xe1, 0x78, 0xcf, 0x59, 0xa4, 0x6d, 0x9a, 0x46, 0xa2,
+	0xc4, 0x1d, 0x59, 0x4f, 0xe1, 0xb7, 0xd3, 0x1f, 0x45, 0x3a, 0xd9, 0xa4, 0xf8, 0xed, 0xf4, 0xf4,
+	0xd1, 0xdf, 0x09, 0x2c, 0x71, 0xb8, 0x9e, 0x0b, 0xf5, 0xca, 0xde, 0xb8, 0x27, 0x30, 0x71, 0x10,
+	0xc9, 0xc3, 0x5e, 0x2e, 0x3e, 0xe5, 0x83, 0x90, 0x61, 0xef, 0xc0, 0x1c, 0x41, 0x7a, 0x2a, 0x4c,
+	0xb4, 0xe8, 0x6d, 0xdb, 0xc1, 0xa3, 0x01, 0x77, 0x6f, 0xf3, 0xac, 0x2c, 0xa3, 0x4d, 0xef, 0x68,
+	0x44, 0x9b, 0xc1, 0x45, 0x38, 0x09, 0x73, 0x1f, 0x3f, 0x87, 0x1f, 0x7a, 0xc5, 0x5b, 0xc7, 0x2c,
+	0xba, 0x19, 0x2c, 0xcb, 0x77, 0x30, 0x71, 0x9c, 0x18, 0xbd, 0xb7, 0x96, 0x6f, 0x30, 0x73, 0x83,
+	0xd5, 0x49, 0xb4, 0x33, 0x88, 0x9d, 0x44, 0xbb, 0xd3, 0xf7, 0xc3, 0xf4, 0x57, 0xf7, 0xab, 0x76,
+	0x31, 0xc1, 0x1f, 0xb7, 0x27, 0xff, 0x04, 0x00, 0x00, 0xff, 0xff, 0xee, 0x14, 0xa2, 0x9e, 0xc7,
+	0x09, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -1272,6 +1435,7 @@ type EventServiceClient interface {
 	Search(ctx context.Context, in *SearchRequest, opts ...grpc.CallOption) (*ListResponse, error)
 	Get(ctx context.Context, in *DetailRequest, opts ...grpc.CallOption) (*DetailResponse, error)
 	Add(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*CreateResponse, error)
+	UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error)
 	Delete(ctx context.Context, in *DeleteRequest, opts ...grpc.CallOption) (*DeleteResponse, error)
 }
@@ -1311,6 +1475,15 @@ func (c *eventServiceClient) Add(ctx context.Context, in *CreateRequest, opts ..
 	return out, nil
 }
 
+func (c *eventServiceClient) UpdateLocation(ctx context.Context, in *UpdateLocationRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
+	out := new(UpdateResponse)
+	err := c.cc.Invoke(ctx, "/event.EventService/UpdateLocation", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 func (c *eventServiceClient) Update(ctx context.Context, in *UpdateRequest, opts ...grpc.CallOption) (*UpdateResponse, error) {
 	out := new(UpdateResponse)
 	err := c.cc.Invoke(ctx, "/event.EventService/Update", in, out, opts...)
@@ -1334,6 +1507,7 @@ type EventServiceServer interface {
 	Search(context.Context, *SearchRequest) (*ListResponse, error)
 	Get(context.Context, *DetailRequest) (*DetailResponse, error)
 	Add(context.Context, *CreateRequest) (*CreateResponse, error)
+	UpdateLocation(context.Context, *UpdateLocationRequest) (*UpdateResponse, error)
 	Update(context.Context, *UpdateRequest) (*UpdateResponse, error)
 	Delete(context.Context, *DeleteRequest) (*DeleteResponse, error)
 }
@@ -1350,6 +1524,9 @@ func (*UnimplementedEventServiceServer) Get(ctx context.Context, req *DetailRequ
 }
 func (*UnimplementedEventServiceServer) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+}
+func (*UnimplementedEventServiceServer) UpdateLocation(ctx context.Context, req *UpdateLocationRequest) (*UpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateLocation not implemented")
 }
 func (*UnimplementedEventServiceServer) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
@@ -1416,6 +1593,24 @@ func _EventService_Add_Handler(srv interface{}, ctx context.Context, dec func(in
 	return interceptor(ctx, in, info, handler)
 }
 
+func _EventService_UpdateLocation_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateLocationRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(EventServiceServer).UpdateLocation(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/event.EventService/UpdateLocation",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(EventServiceServer).UpdateLocation(ctx, req.(*UpdateLocationRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 func _EventService_Update_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(UpdateRequest)
 	if err := dec(in); err != nil {
@@ -1467,6 +1662,10 @@ var _EventService_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "Add",
 			Handler:    _EventService_Add_Handler,
+		},
+		{
+			MethodName: "UpdateLocation",
+			Handler:    _EventService_UpdateLocation_Handler,
 		},
 		{
 			MethodName: "Update",

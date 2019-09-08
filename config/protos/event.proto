@@ -152,7 +152,7 @@ message UpdateResponse {
   // @inject_tag: bson:"error"
   string error = 2;
   // @inject_tag: bson:"payload"
-  Event payload = 3;
+  bool payload = 3;
 }
 
 message DeleteRequest {

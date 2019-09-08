@@ -50,3 +50,5 @@ dkrv-admin/typings
 # System Files
 dkrv-admin/.DS_Store
 dkrv-admin/Thumbs.db
+
+dkrv-event/vendor

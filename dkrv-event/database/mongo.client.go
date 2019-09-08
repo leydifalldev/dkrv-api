@@ -85,26 +85,26 @@ func (s Store) Create(d interface{}) (string, int32, string) {
 }
 
 //Update update a document
-func (s Store) Update(id string, content interface{}) (*mongo.UpdateResult, int32, string) {
+func (s Store) Update(id string, content bson.D) (bool, int32, string) {
 	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
 	log.Println(id)
-	log.Println(content)
-	update := bson.M{"$set": content}
 	bid, _ := primitive.ObjectIDFromHex(id)
-	res, err := c.UpdateOne(ctx, bson.M{"_id": bid}, update)
+	res, err := c.UpdateOne(ctx, bson.D{{Key: "id", Value: bid}}, content)
 	if err != nil {
 		log.Fatal(err)
-		return res, 500, "DATABASE ERROR: Cannot update document"
+		return false, 500, "DATABASE ERROR: Cannot update document"
 	}
-	return res, 200, "none"
+	log.Println(res.MatchedCount)
+	return (res.ModifiedCount != 0), 200, "none"
 }
 
 //Delete delete document
-func (s Store) Delete(id *bson.D) *mongo.DeleteResult {
+func (s Store) Delete(id string) (bool, int32, string) {
 	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
-	res, err := c.DeleteOne(ctx, id)
+	res, err := c.DeleteOne(ctx, bson.M{"id": id})
 	if err != nil {
 		log.Fatal(err)
+		return false, 500, "Can not delete document"
 	}
-	return res
+	return (res.DeletedCount > 0), 200, "none"
 }

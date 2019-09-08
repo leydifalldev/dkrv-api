@@ -6,11 +6,12 @@ package collection
 import (
 	context "context"
 	fmt "fmt"
+	math "math"
+
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
 	codes "google.golang.org/grpc/codes"
 	status "google.golang.org/grpc/status"
-	math "math"
 )
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -231,12 +232,12 @@ func (m *Product) GetPosition() int32 {
 }
 
 type Collection struct {
-	Id                   string     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name                 string     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Categorycode         string     `protobuf:"bytes,3,opt,name=categorycode,proto3" json:"categorycode,omitempty"`
-	Categoryname         string     `protobuf:"bytes,4,opt,name=categoryname,proto3" json:"categoryname,omitempty"`
-	Placeid              string     `protobuf:"bytes,5,opt,name=placeid,proto3" json:"placeid,omitempty"`
-	Products             []*Product `protobuf:"bytes,6,rep,name=products,proto3" json:"products,omitempty"`
+	Id                   string     `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty" bson:"id"`
+	Name                 string     `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty" bson:"name"`
+	Categorycode         string     `protobuf:"bytes,3,opt,name=categorycode,proto3" json:"categorycode,omitempty" bson:"categorycode"`
+	Categoryname         string     `protobuf:"bytes,4,opt,name=categoryname,proto3" json:"categoryname,omitempty" bson:"categoryname"`
+	Placeid              string     `protobuf:"bytes,5,opt,name=placeid,proto3" json:"placeid,omitempty" bson:"placeid"`
+	Products             []*Product `protobuf:"bytes,6,rep,name=products,proto3" json:"products,omitempty" bson:"products"`
 	XXX_NoUnkeyedLiteral struct{}   `json:"-"`
 	XXX_unrecognized     []byte     `json:"-"`
 	XXX_sizecache        int32      `json:"-"`
