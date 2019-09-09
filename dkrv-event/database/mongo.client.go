@@ -87,9 +87,7 @@ func (s Store) Create(d interface{}) (string, int32, string) {
 //Update update a document
 func (s Store) Update(id string, content bson.D) (bool, int32, string) {
 	c, ctx, _ := getCollection(s.conn, s.dbName, s.collectionName)
-	log.Println(id)
-	bid, _ := primitive.ObjectIDFromHex(id)
-	res, err := c.UpdateOne(ctx, bson.D{{Key: "id", Value: bid}}, content)
+	res, err := c.UpdateOne(ctx, bson.D{{Key: "id", Value: id}}, content)
 	if err != nil {
 		log.Fatal(err)
 		return false, 500, "DATABASE ERROR: Cannot update document"

@@ -58,16 +58,16 @@ func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, 
 func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
 	c := database.GetRepository("dkrv", "event")
 	event := req.GetPayload()
-	id, err := uuid.NewUUID()
+	uuid, err := uuid.NewUUID()
 	if err != nil {
 		log.Println("Cannot not generate uuid for inserting document")
 	}
-	log.Printf(id.String())
-	idr, status, errres := c.Create(event)
+	event.Id = uuid.String()
+	_, status, errres := c.Create(event)
 	return &CreateResponse{
 		Status:  status,
 		Error:   errres,
-		Payload: idr,
+		Payload: event.Id,
 	}, nil
 }
 
