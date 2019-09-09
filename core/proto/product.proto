@@ -4,12 +4,8 @@ option go_package = "product";
 
 message RequestEmpty {}
 
-message Gastronomie { string name = 1; }
-
 message Coordinate {
-  // @inject_tag: bson:"lon"
   float lon = 1;
-  // @inject_tag: bson:"lat"
   float lat = 2;
 }
 
@@ -20,11 +16,6 @@ message Picture { string src = 1; }
 message Gallery {
   int32 main = 1;
   repeated Picture pictures = 2; 
-}
-
-message Price {
-  int64 base = 1;
-  string currency = 2;
 }
 
 message Category {
@@ -47,27 +38,24 @@ message Schedule {
 }
 
 message Product {
-  string name = 1;
-  string id = 2; 
-  string place_ref = 3;
-  string place_name = 4;
-  string place_logo = 5;
-  string category = 6;
+  string id = 1; 
+  string name = 2;
+  repeated string gastronomie = 3;
+  string description = 4;
+  repeated string recipes = 5;
+  int32 spicy_level = 6;
   int32 price = 7;
-  string phone = 8;
-  string description = 9;
-  repeated Gastronomie gastronomie = 10;
-  Location location = 11;
+  float discount = 8;
+  int32 quantity = 9;
+  string size = 10;
+  int32 notation = 11;
   int64 likes = 12;
-  repeated string recipes = 13;
-  repeated Accompaniment accompaniment = 14;
-  int32 discount = 15;
-  string size = 16;
-  int32 quantity = 17;
-  int32 spicy_level = 18;
-  Gallery gallery = 20;
-  repeated Schedule schedule = 21;
-  int32 notation = 22;
+  string place_id = 13;
+  string place_name = 14;
+  string place_logo = 15;
+  string place_zone = 16;
+  Coordinate place_location = 17;
+  Picture picture = 18;
 }
 
 message ListResponse {
