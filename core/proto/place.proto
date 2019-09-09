@@ -11,6 +11,13 @@ message Coordinate {
   float lat = 2;
 }
 
+message Gallery {
+  // @inject_tag: bson:"main"
+  int32 main = 1;
+  // @inject_tag: bson:"pictures"
+  repeated Picture pictures = 2; 
+}
+
 message Accompaniment { string name = 1; }
 
 message Picture { string src = 1; }
@@ -28,7 +35,26 @@ message Services {
 }
 
 message Category {
+  // @inject_tag: bson:"name"
   string name = 1;
+}
+
+message Location {
+  // @inject_tag: bson:"address"
+  string address = 1;
+  // @inject_tag: bson:"cpc"
+  string cpc = 2;
+  // @inject_tag: bson:"zone"
+  string zone = 3;
+  // @inject_tag: bson:"coordinate"
+  Coordinate coordinate = 4;
+}
+
+message Price {
+  // @inject_tag: bson:"base"
+  int64 base = 1;
+  // @inject_tag: bson:"currency"
+  string currency = 2;
 }
 
 message Place {
@@ -39,16 +65,14 @@ message Place {
   string email = 5;
   string description = 6;
   repeated Gastronomie gastronomie = 7;
-  Coordinate location = 8;
-  string address = 9;
-  string cpc = 10;
+  Location location = 8;
+  Price price = 9;
   int32 likes = 11;
   int32 notation = 12;
   string primary_category = 13;
-  repeated Picture pictures = 14;
-  int32 main_picture = 15;
+  // @inject_tag: bson:"gallery"
+  Gallery gallery = 14;
   repeated Schedule schedule = 16;
-  string zone = 17;
   int32 travel_time = 18;
   bool ocean_near = 19;
   Services services = 20;
