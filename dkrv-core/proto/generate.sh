@@ -2,8 +2,11 @@ echo 'OK =========> Copying product proto'
 cp -R ./product.proto ../product
 echo 'OK =========> finish copy product proto to dkrv core'
 cp -R ./product.proto ../../search-engine/src/product/product.proto
-echo 'OK =========> finish copy product proto to search-engine'
-cp -R ./place.proto ../../search-engine/src/place/place.proto
+echo 'OK =========> finish copy place proto to dkrv-place'
+cp -R ./place.proto ../../dkrv-place/place/place.proto
+echo 'OK =========> finish copy place proto to dkrv-place'
+protoc --proto_path=../../dkrv-place/place --proto_path=third_party \
+       --go_out=plugins=grpc:../../dkrv-place/place ../../dkrv-place/place/place.proto
 echo 'OK =========> finish copy place proto to search-engine'
 protoc --proto_path=../product --proto_path=third_party \
        --go_out=plugins=grpc:../product ../product/product.proto

@@ -93,7 +93,7 @@ func (s Store) Update(id string, content bson.D) (bool, int32, string) {
 		return false, 500, "DATABASE ERROR: Cannot update document"
 	}
 	log.Println(res.MatchedCount)
-	return (res.ModifiedCount != 0), 200, "none"
+	return (res.ModifiedCount > 0), 200, "none"
 }
 
 //Delete delete document

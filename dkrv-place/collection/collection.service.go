@@ -3,8 +3,9 @@ package collection
 import (
 	context "context"
 	"log"
-	"store/mongo"
+	"place/repository"
 
+	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson"
 )
 
@@ -12,7 +13,7 @@ import (
 func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error) {
 	var data []*Collection
 	var cpt int64
-	c := mongo.GetRepository("dkrv", "place")
+	c := repository.GetRepository("dkrv", "place")
 	cur, status, err := c.GetList()
 	defer cur.Close(ctx)
 	cpt = 0
@@ -36,7 +37,7 @@ func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error)
 
 //Get return List of info
 func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
-	c := mongo.GetRepository("dkrv", "place")
+	c := repository.GetRepository("dkrv", "place")
 	var p *Collection
 	cur, status, err := c.Get(req.GetId())
 	derr := cur.Decode(&p)
@@ -55,18 +56,25 @@ func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
 
 //Add allows to add info
 func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
-	c := mongo.GetRepository("dkrv", "place")
-	id, status, err := c.Create(req)
+	c := repository.GetRepository("dkrv", "collection")
+	collection := req.GetPayload()
+	uuid, err := uuid.NewUUID()
+	if err != nil {
+		log.Println("Cannot not generate uuid for inserting document")
+	}
+	collection.Id = uuid.String()
+	_, status, errc := c.Create(collection)
+
 	return &CreateResponse{
-		Status: status,
-		Error:  err,
-		Id:     id,
+		Status:  status,
+		Error:   errc,
+		Payload: collection.Id,
 	}, nil
 }
 
 //Update allow to update
 func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
-	c := mongo.GetRepository("dkrv", "place")
+	c := repository.GetRepository("dkrv", "place")
 	update := bson.M{"$set": req.Payload}
 	id, status, _ := c.Update(req.GetId(), update)
 	if id != nil {

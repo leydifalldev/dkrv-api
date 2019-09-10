@@ -105,6 +105,7 @@ func (s *Server) UpdateLocation(ctx context.Context, req *UpdateLocationRequest)
 func (s *Server) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
 	c := database.GetRepository("dkrv", "event")
 	res, status, err := c.Delete(req.GetId())
+
 	return &DeleteResponse{
 		Status:  status,
 		Error:   err,
