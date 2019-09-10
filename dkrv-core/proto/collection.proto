@@ -55,23 +55,24 @@ message CreateRequest {
 
 message CreateResponse {
   int32 status = 1;
-  string error = 3;
-  string payload = 2;
+  string error = 2;
+  string id = 3;
+  bool payload = 4;
 }
 
 message DetailRequest {
-  string id = 4;
+  string id = 1;
 }
 
 message DetailResponse {
   int32 status = 1;
   string error = 2;
-  Collection payload = 4;
+  Collection payload = 3;
 }
 
 message UpdateRequest {
   string id = 1;
-  Collection payload = 3;
+  Collection payload = 2;
 }
 
 message UpdateResponse {
@@ -82,16 +83,16 @@ message UpdateResponse {
 
 message UpdatePlaceRequest {
   string id = 1;
-  Place payload = 2;
+  Collection payload = 2;
 }
 
 message UpdateLocationRequest {
   string id = 1;
-  Location payload = 2;
+  Collection payload = 2;
 }
 
 message DeleteRequest {
-  string id = 3;
+  string id = 1;
 }
 
 message DeleteResponse {
@@ -114,9 +115,9 @@ message SearchParams {
 }
 
 service CollectionService {
-  rpc GetList(Empty) returns (ListResponse);
-  rpc Get(ID) returns (DetailResponse);
+  rpc Search(SearchParams) returns (ListResponse);
+  rpc Get(DetailRequest) returns (DetailResponse);
   rpc Add(CreateRequest) returns (CreateResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
-  rpc Delete(ID) returns (DeleteResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
 }

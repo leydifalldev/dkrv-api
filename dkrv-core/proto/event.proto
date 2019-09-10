@@ -101,105 +101,74 @@ message Event {
 }
 
 message ListResponse {
-  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"total,omitempty"
   int64 total = 3;
-  // @inject_tag: bson:"payload,omitempty"
-  repeated Event payload = 4;
+  repeated Place payload = 4;
 }
 
 message CreateRequest {
-  // @inject_tag: bson:"payload,omitempty"
-  Event payload = 1;
+  Place payload = 1;
 }
 
 message CreateResponse {
-  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error,omitempty"
-  string error = 3;
-  // @inject_tag: bson:"payload,omitempty"
-  string payload = 2;
+  string error = 2;
+  string id = 3;
+  bool payload = 4;
 }
 
 message DetailRequest {
-  // @inject_tag: bson:"id,omitempty"
   string id = 4;
 }
 
 message DetailResponse {
-  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"payload,omitempty"
-  Event payload = 4;
+  Place payload = 4;
 }
 
 message UpdateRequest {
-  // @inject_tag: bson:"id,omitempty"
   string id = 1;
-  // @inject_tag: bson:"payload,omitempty"
-  Event payload = 3;
+  Place payload = 3;
 }
 
 message UpdateResponse {
-  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"payload,omitempty"
   bool payload = 3;
 }
 
 message UpdatePlaceRequest {
-  // @inject_tag: bson:"id,omitempty"
   string id = 1;
-  // @inject_tag: bson:"payload,omitempty"
   Place payload = 2;
 }
 
 message UpdateLocationRequest {
-  // @inject_tag: bson:"id,omitempty"
   string id = 1;
-  // @inject_tag: bson:"payload,omitempty"
   Location payload = 2;
 }
 
 message DeleteRequest {
-  // @inject_tag: bson:"id,omitempty"
   string id = 3;
 }
 
 message DeleteResponse {
-  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"payload,omitempty"
   bool payload = 3;
 }
 
 message SearchRequest {
-  // @inject_tag: bson:"payload,omitempty"
   SearchParams payload = 1;
 }
 
 message SearchParams {
-  // @inject_tag: bson:"q,omitempty"
   string q = 1;
-  // @inject_tag: bson:"from,omitempty"
   int32 from = 2;
-  // @inject_tag: bson:"to,omitempty"
   int32 to = 3;
-  // @inject_tag: bson:"fromdate,omitempty"
   string fromdate = 4;
-  // @inject_tag: bson:"todate,omitempty"
   string todate = 5;
-  // @inject_tag: bson:"category,omitempty"
   repeated string category = 6;
 }
 

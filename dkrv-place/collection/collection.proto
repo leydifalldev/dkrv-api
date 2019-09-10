@@ -35,59 +35,6 @@ message Collection {
 
 message Gastronomie { string name = 1;}
 
-message CreateCollectionRequest {
-  string name = 1;
-}
-
-message ID {
-  string id = 1;
-}
-
-message DeleteResponse {
-  int32 status = 1;
-  string error = 2;
-  string id = 3;
-}
-
-message CreateRequest {
-  Collection payload = 1;
-}
-
-message UpdateRequest {
-  string id = 1;
-  Collection payload = 2;
-}
-message UpdateResponse {
-  int32 status = 1;
-  string error = 2;
-  string id = 3;
-}
-  
-message DetailResponse {
-  int32 status = 1;
-  string error = 2;
-  Collection data = 4;
-}
-  
-message SearchRequest {
-  string q = 1;
-  int32 from = 2;
-  int32 to = 3;
-}
-
-message ListResponse {
-  int32 status = 1;
-  string error = 2;
-  int64 total = 3;
-  repeated Collection data = 4;
-}
-
-message CreateResponse {
-  int32 status = 1;
-  string id = 2;
-  string error = 3;
-}
-
 message FoodCategory {
   string categoryname = 1;
   string categorycode = 2;
@@ -95,10 +42,82 @@ message FoodCategory {
 
 message Empty {}
 
+message ListResponse {
+  int32 status = 1;
+  string error = 2;
+  int64 total = 3;
+  repeated Collection payload = 4;
+}
+
+message CreateRequest {
+  Collection payload = 1;
+}
+
+message CreateResponse {
+  int32 status = 1;
+  string error = 2;
+  string id = 3;
+  bool payload = 4;
+}
+
+message DetailRequest {
+  string id = 1;
+}
+
+message DetailResponse {
+  int32 status = 1;
+  string error = 2;
+  Collection payload = 3;
+}
+
+message UpdateRequest {
+  string id = 1;
+  Collection payload = 2;
+}
+
+message UpdateResponse {
+  int32 status = 1;
+  string error = 2;
+  bool payload = 3;
+}
+
+message UpdatePlaceRequest {
+  string id = 1;
+  Collection payload = 2;
+}
+
+message UpdateLocationRequest {
+  string id = 1;
+  Collection payload = 2;
+}
+
+message DeleteRequest {
+  string id = 1;
+}
+
+message DeleteResponse {
+  int32 status = 1;
+  string error = 2;
+  bool payload = 3;
+}
+
+message SearchRequest {
+  SearchParams payload = 1;
+}
+
+message SearchParams {
+  string q = 1;
+  int32 from = 2;
+  int32 to = 3;
+  string fromdate = 4;
+  string todate = 5;
+  repeated string category = 6;
+}
+
 service CollectionService {
-  rpc GetList(Empty) returns (ListResponse);
-  rpc Get(ID) returns (DetailResponse);
+  rpc Search(SearchParams) returns (ListResponse);
+  rpc Get(DetailRequest) returns (DetailResponse);
   rpc Add(CreateRequest) returns (CreateResponse);
   rpc Update(UpdateRequest) returns (UpdateResponse);
-  rpc Delete(ID) returns (DeleteResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
 }

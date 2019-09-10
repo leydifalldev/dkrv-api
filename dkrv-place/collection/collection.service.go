@@ -9,11 +9,11 @@ import (
 	"go.mongodb.org/mongo-driver/bson"
 )
 
-//GetList return List of info
-func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error) {
+//Search return List of info
+func (s *Server) Search(ctx context.Context, req *SearchParams) (*ListResponse, error) {
 	var data []*Collection
 	var cpt int64
-	c := repository.GetRepository("dkrv", "place")
+	c := repository.GetRepository("dkrv", "collection")
 	cur, status, err := c.GetList()
 	defer cur.Close(ctx)
 	cpt = 0
@@ -28,16 +28,16 @@ func (s *Server) GetList(ctx context.Context, req *Empty) (*ListResponse, error)
 		data = append(data, &p)
 	}
 	return &ListResponse{
-		Status: status,
-		Error:  err,
-		Total:  cpt,
-		Data:   data,
+		Status:  status,
+		Error:   err,
+		Total:   cpt,
+		Payload: data,
 	}, nil
 }
 
 //Get return List of info
-func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
-	c := repository.GetRepository("dkrv", "place")
+func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, error) {
+	c := repository.GetRepository("dkrv", "collection")
 	var p *Collection
 	cur, status, err := c.Get(req.GetId())
 	derr := cur.Decode(&p)
@@ -48,9 +48,9 @@ func (s *Server) Get(ctx context.Context, req *ID) (*DetailResponse, error) {
 		err = "DATABASE ERROR: Cannot get document from database"
 	}
 	return &DetailResponse{
-		Status: status,
-		Error:  err,
-		Data:   p,
+		Status:  status,
+		Error:   err,
+		Payload: p,
 	}, nil
 }
 
@@ -63,35 +63,39 @@ func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, 
 		log.Println("Cannot not generate uuid for inserting document")
 	}
 	collection.Id = uuid.String()
-	_, status, errc := c.Create(collection)
+	res, status, errc := c.Create(collection)
 
 	return &CreateResponse{
 		Status:  status,
 		Error:   errc,
-		Payload: collection.Id,
+		Id:      collection.Id,
+		Payload: res,
 	}, nil
 }
 
 //Update allow to update
 func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
-	c := repository.GetRepository("dkrv", "place")
-	update := bson.M{"$set": req.Payload}
-	id, status, _ := c.Update(req.GetId(), update)
-	if id != nil {
-		log.Println("Hello")
-	}
+	c := repository.GetRepository("dkrv", "collection")
+	collection := req.GetPayload()
+	log.Println(collection)
+	update := bson.D{{Key: "$set", Value: collection}}
+	res, status, err := c.Update(req.GetId(), update)
+
 	return &UpdateResponse{
-		Status: status,
-		Error:  "null",
-		Id:     "done",
+		Status:  status,
+		Error:   err,
+		Payload: res,
 	}, nil
 }
 
 //Delete allow to delete
-func (s *Server) Delete(ctx context.Context, req *ID) (*DeleteResponse, error) {
+func (s *Server) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
+	c := repository.GetRepository("dkrv", "collection")
+	res, status, err := c.Delete(req.GetId())
+
 	return &DeleteResponse{
-		Status: 200,
-		Error:  "null",
-		Id:     "XXXXXXXXX",
+		Status:  status,
+		Error:   err,
+		Payload: res,
 	}, nil
 }

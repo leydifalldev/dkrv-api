@@ -93,64 +93,46 @@ message Gallery {
 }
 
 message ListResponse {
-  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"total,omitempty"
   int64 total = 3;
-  // @inject_tag: bson:"payload,omitempty"
   repeated Place payload = 4;
 }
 
 message CreateRequest {
-  // @inject_tag: bson:"payload,omitempty"
   Place payload = 1;
 }
 
 message CreateResponse {
-  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error,omitempty"
-  string error = 3;
-  // @inject_tag: bson:"payload,omitempty"
-  string payload = 2;
+  string error = 2;
+  string id = 3;
+  bool payload = 4;
 }
 
 message DetailRequest {
-  // @inject_tag: bson:"id,omitempty"
   string id = 4;
 }
 
 message DetailResponse {
-  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"payload,omitempty"
   Place payload = 4;
 }
 
 message UpdateRequest {
-  // @inject_tag: bson:"id,omitempty"
   string id = 1;
-  // @inject_tag: bson:"payload,omitempty"
   Place payload = 3;
 }
 
 message UpdateResponse {
-  // @inject_tag: bson:"status,omitempty"
   int32 status = 1;
-  // @inject_tag: bson:"error,omitempty"
   string error = 2;
-  // @inject_tag: bson:"payload,omitempty"
   bool payload = 3;
 }
 
 message UpdatePlaceRequest {
-  // @inject_tag: bson:"id,omitempty"
   string id = 1;
-  // @inject_tag: bson:"payload,omitempty"
   Place payload = 2;
 }
 

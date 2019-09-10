@@ -63,11 +63,12 @@ func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, 
 		log.Println("Cannot not generate uuid for inserting document")
 	}
 	event.Id = uuid.String()
-	_, status, errres := c.Create(event)
+	res, status, errres := c.Create(event)
 	return &CreateResponse{
 		Status:  status,
 		Error:   errres,
-		Payload: event.Id,
+		Id:      event.Id,
+		Payload: res,
 	}, nil
 }
 

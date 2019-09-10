@@ -24,6 +24,6 @@ func GrpcServer() {
 		log.Printf("grpcServer ===> Error to connect %s", uri)
 	}
 	g := grpc.NewServer()
-	RegisterCollectionServiceServer(g, NewServer())
+	RegisterPlaceServiceServer(g, NewServer())
 	g.Serve(lis)
 }
