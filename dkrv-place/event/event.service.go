@@ -2,8 +2,8 @@ package event
 
 import (
 	context "context"
-	"event/database"
 	"log"
+	"place/repository"
 
 	"github.com/google/uuid"
 	"go.mongodb.org/mongo-driver/bson"
@@ -13,7 +13,7 @@ import (
 func (s *Server) Search(ctx context.Context, req *SearchRequest) (*ListResponse, error) {
 	var data []*Event
 	var cpt int64
-	c := database.GetRepository("dkrv", "event")
+	c := repository.GetRepository("dkrv", "event")
 	cur, status, err := c.GetList()
 	defer cur.Close(ctx)
 	cpt = 0
@@ -37,7 +37,7 @@ func (s *Server) Search(ctx context.Context, req *SearchRequest) (*ListResponse,
 
 //Get return List of info
 func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, error) {
-	c := database.GetRepository("dkrv", "event")
+	c := repository.GetRepository("dkrv", "event")
 	var e *Event
 	cur, status, err := c.Get(req.GetId())
 	derr := cur.Decode(&e)
@@ -56,7 +56,7 @@ func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, 
 
 //Add allows to add info
 func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
-	c := database.GetRepository("dkrv", "event")
+	c := repository.GetRepository("dkrv", "event")
 	event := req.GetPayload()
 	uuid, err := uuid.NewUUID()
 	if err != nil {
@@ -73,7 +73,7 @@ func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, 
 
 //Update allow to update
 func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
-	c := database.GetRepository("dkrv", "event")
+	c := repository.GetRepository("dkrv", "event")
 	event := req.GetPayload()
 	log.Println(event)
 	update := bson.D{{Key: "$set", Value: event}}
@@ -88,7 +88,7 @@ func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateRespons
 
 //UpdateLocation allow to update
 func (s *Server) UpdateLocation(ctx context.Context, req *UpdateLocationRequest) (*UpdateResponse, error) {
-	c := database.GetRepository("dkrv", "event")
+	c := repository.GetRepository("dkrv", "event")
 	placeevent := req.GetPayload()
 	log.Println(placeevent)
 	update := bson.D{{Key: "$set", Value: bson.M{"place.location": placeevent}}}
@@ -103,7 +103,7 @@ func (s *Server) UpdateLocation(ctx context.Context, req *UpdateLocationRequest)
 
 //Delete allow to delete
 func (s *Server) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
-	c := database.GetRepository("dkrv", "event")
+	c := repository.GetRepository("dkrv", "event")
 	res, status, err := c.Delete(req.GetId())
 
 	return &DeleteResponse{
