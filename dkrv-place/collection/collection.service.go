@@ -13,7 +13,7 @@ import (
 func (s *Server) Search(ctx context.Context, req *SearchParams) (*ListResponse, error) {
 	var data []*Collection
 	var cpt int64
-	c := repository.GetRepository("dkrv", "collection")
+	c := repository.GetRepository("place", "collection")
 	cur, status, err := c.GetList()
 	defer cur.Close(ctx)
 	cpt = 0
@@ -37,7 +37,7 @@ func (s *Server) Search(ctx context.Context, req *SearchParams) (*ListResponse, 
 
 //Get return List of info
 func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, error) {
-	c := repository.GetRepository("dkrv", "collection")
+	c := repository.GetRepository("place", "collection")
 	var p *Collection
 	cur, status, err := c.Get(req.GetId())
 	derr := cur.Decode(&p)
@@ -56,7 +56,7 @@ func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, 
 
 //Add allows to add info
 func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
-	c := repository.GetRepository("dkrv", "collection")
+	c := repository.GetRepository("place", "collection")
 	collection := req.GetPayload()
 	uuid, err := uuid.NewUUID()
 	if err != nil {
@@ -75,7 +75,7 @@ func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, 
 
 //Update allow to update
 func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
-	c := repository.GetRepository("dkrv", "collection")
+	c := repository.GetRepository("place", "collection")
 	collection := req.GetPayload()
 	log.Println(collection)
 	update := bson.D{{Key: "$set", Value: collection}}
@@ -90,7 +90,7 @@ func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateRespons
 
 //Delete allow to delete
 func (s *Server) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
-	c := repository.GetRepository("dkrv", "collection")
+	c := repository.GetRepository("place", "collection")
 	res, status, err := c.Delete(req.GetId())
 
 	return &DeleteResponse{

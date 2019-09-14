@@ -15,7 +15,7 @@ func NewServer() *Server {
 	return &Server{}
 }
 
-var uri = "0.0.0.0:7000"
+var uri = "0.0.0.0:2000"
 
 //GrpcServer start server
 func GrpcServer() {

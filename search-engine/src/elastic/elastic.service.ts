@@ -2,7 +2,9 @@ import { Injectable, OnModuleInit, HttpException, Logger } from '@nestjs/common'
 import * as elasticsearch from 'elasticsearch';
 import productMapping from '../product/product.mapping';
 import { SearchParams } from 'elasticsearch';
-import { ID, DeleteResponse, DetailResponse } from 'src/types/common.defs';
+import { CreateResponse, UpdateResponse, DeleteResponse, DetailResponse, ListResponse } from 'src/types/common.defs';
+import { Product } from 'src/product/product.interfaces';
+import { response } from 'express';
 
 @Injectable()
 export class ElasticService implements OnModuleInit {
@@ -12,7 +14,7 @@ export class ElasticService implements OnModuleInit {
     private index: string,
     private type: string,
     private mapping: any,
-    ) {
+  ) {
     this.esclient = new elasticsearch.Client({
       host: this.host, /*'http://elasticsearch_1:9200'*/
     });
@@ -39,7 +41,7 @@ export class ElasticService implements OnModuleInit {
         Logger.log(this.index + 'index already exists');
       } else {
         Logger.log(this.index + ' does not exists ====> creating ...');
-        const createIndexResult = await this.esclient.indices.create({index: this.index});
+        const createIndexResult = await this.esclient.indices.create({ index: this.index });
         if (createIndexResult && createIndexResult.acknowledged) {
           try {
             Logger.log(this.index + ' does not exists ====> creating ...');
@@ -61,10 +63,11 @@ export class ElasticService implements OnModuleInit {
       Logger.log('Creating Mapping index');
       const mappingResult = await this.esclient.indices.putMapping(mappingSchema);
       if (mappingResult) {
-          Logger.log(mappingResult);
-        } else {
-          Logger.log('Successfully Created Index');
-        }
+        Logger.log('mapping creation successfully');
+        Logger.log(mappingResult);
+      } else {
+        Logger.log('Cannot create mapping');
+      }
     } catch (e) {
       Logger.log('Error=====>', e);
     }
@@ -86,33 +89,64 @@ export class ElasticService implements OnModuleInit {
     return resp;
   }
 
-  async search(params: any): Promise<any> {
+  async search(params: any): Promise<ListResponse> {
     const request: SearchParams = {
       index: this.index,
+      _source: true,
       type: this.type,
       q: params.q,
       from: params.from || 0,
       size: params.size || 10,
     };
-    const result = await this.esclient.search(request);
-    return this.formatList(result);
+    try {
+      const resp = await this.esclient.search(request);
+      Logger.log(resp);
+      return {
+        total: resp.hits.hits.length,
+        payload: resp.hits.hits.map(hit => hit._source),
+        status: 200,
+        error: 'none',
+      };
+    } catch (e) {
+      Logger.log(e);
+      return {
+        total: 0,
+        payload: null,
+        status: 500,
+        error: 'level-4',
+      };
+    }
   }
 
-  async add(params: any): Promise<ID> {
+  async add(params: any): Promise<CreateResponse> {
     Logger.log(params);
-    const resp = await this.esclient.index({
-      index: this.index,
-      type: this.type,
-      refresh: 'true',
-      body: params,
-    });
-    Logger.log(resp);
-    return {
-      id: resp._id,
-    };
+    try {
+      const resp = await this.esclient.create({
+        index: this.index,
+        type: this.type,
+        id: params.id,
+        refresh: 'true',
+        body: params,
+      });
+
+      return {
+        id: resp._id,
+        payload: resp.result,
+        status: 200,
+        error: 'none',
+      };
+    } catch (e) {
+        Logger.log(e);
+        return {
+          id: null,
+          payload: 'none',
+          status: 500,
+          error: 'level-4',
+        };
+      }
   }
 
-  async update(params) {
+  async update(params): Promise<UpdateResponse> {
     try {
       const resp = await this.esclient.update({
         index: this.index,
@@ -123,41 +157,65 @@ export class ElasticService implements OnModuleInit {
           doc: params,
         },
       });
-      return resp;
+      return {
+        status: 200,
+        error: 'none',
+        payload: (resp.result === 'updated'),
+      };
     } catch (e) {
       Logger.log(e);
+      return {
+        status: e.statusCode,
+        error: 'none',
+        payload: null,
+      };
     }
   }
 
-  async delete(id): Promise<DeleteResponse> {
+  async delete(id: string): Promise<DeleteResponse> {
+    try {
     const resp = await this.esclient.delete({
       index: this.index,
       type: this.type,
       refresh: 'true',
       id,
     });
-    return {
-      id,
-      msg: resp.result,
-    };
-  }
-
-  async getDetail(id: string): Promise<DetailResponse> {
-    try {
-    Logger.log(id);
-    const resp = await this.esclient.get({
-      index: this.index,
-      type: this.type,
-      id,
-    });
+    Logger.log(resp);
     return {
       status: 200,
-      error: null,
-      data: resp._source,
+      error: 'none',
+      payload: (resp.result === 'deleted'),
     };
+  } catch (e) {
+    Logger.log(e);
+    return {
+      status: 500,
+      payload: null,
+      error: 'level-4',
+    };
+  }
+  }
+
+  async get(id: string): Promise<DetailResponse> {
+    try {
+      const resp = await this.esclient.get({
+        index: this.index,
+        type: this.type,
+        id,
+      });
+      //Logger.log(resp);
+      return {
+        status: 200,
+        error: null,
+        payload: resp._source,
+      };
     } catch (e) {
       Logger.log(e);
-      this.searchErrorHandler(e);
+      return {
+        status: e.statusCode,
+        error: 'level-4',
+        payload: null,
+      };
     }
   }
 

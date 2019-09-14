@@ -1,26 +1,58 @@
 export interface ListResponse {
+  status: number;
+  error: string;
   total: number;
-  data: any[];
+  payload: any[];
+}
+
+export interface CreateRequest<T> {
+  payload: T;
+}
+
+export interface CreateResponse {
+  id: string;
+  status: number;
+  error: string;
+  payload: string;
+}
+
+export interface DetailRequest {
+  id: string;
+}
+
+export interface DeleteRequest {
+  id: string;
 }
 
 export interface DeleteResponse {
+  status: number;
+  payload: boolean;
+  error: string;
+}
+
+export interface UpdateRequest<T> {
   id: string;
-  msg: string;
+  payload: T;
 }
 
 export interface UpdateResponse {
   status: number;
   error: string;
+  payload: boolean;
 }
 
 export interface ID {
   id: string;
 }
 
+export interface DetailRequest {
+  id: string;
+}
+
 export interface DetailResponse {
   status: number;
   error: string;
-  data: any;
+  payload: any;
 }
 
 export interface SearchParams {

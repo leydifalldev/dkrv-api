@@ -40,29 +40,31 @@ message Schedule {
 message Product {
   string id = 1; 
   string name = 2;
-  repeated string gastronomie = 3;
-  string description = 4;
-  repeated string recipes = 5;
-  int32 spicy_level = 6;
-  int32 price = 7;
-  float discount = 8;
-  int32 quantity = 9;
-  string size = 10;
-  int32 notation = 11;
-  int64 likes = 12;
-  string place_id = 13;
-  string place_name = 14;
-  string place_logo = 15;
-  string place_zone = 16;
-  Coordinate place_location = 17;
-  Picture picture = 18;
+  string category = 3;
+  repeated string gastronomies = 4;
+  string description = 5;
+  repeated string recipes = 6;
+  int32 spicy = 7;
+  int32 price = 8;
+  float discount = 9;
+  int32 quantity = 10;
+  string size = 11;
+  int32 notation = 12;
+  int64 likes = 13;
+  string placeid = 14;
+  string placename = 15;
+  string placelogo = 16;
+  string placezone = 17;
+  Coordinate location = 18;
+  Picture picture = 19;
+  bool menu_available = 20;
 }
 
 message ListResponse {
   int32 status = 1;
   string error = 2;
   int64 total = 3;
-  repeated Product data = 4;
+  repeated Product payload = 4;
 }
 
 message CreateRequest {
@@ -82,7 +84,7 @@ message DetailRequest {
 message DetailResponse {
   int32 status = 1;
   string error = 2;
-  Product payload = 4;
+  Product payload = 3;
 }
 
 message UpdateRequest {
@@ -93,7 +95,7 @@ message UpdateRequest {
 message UpdateResponse {
   int32 status = 1;
   string error = 2;
-  Product payload = 3;
+  bool payload = 3;
 }
 
 message DeleteRequest {

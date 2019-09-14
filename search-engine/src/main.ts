@@ -14,14 +14,6 @@ async function bootstrap() {
       protoPath: join(__dirname, 'product/product.proto'),
     },
   });
-  app.connectMicroservice({
-    transport: Transport.GRPC,
-    options: {
-      url: '0.0.0.0:5100',
-      package: 'place',
-      protoPath: join(__dirname, 'place/place.proto'),
-    },
-  });
   await app.startAllMicroservicesAsync();
   await app.listen(9500);
 }

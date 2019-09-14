@@ -4,74 +4,65 @@ const productMapping = {
   include_type_name: true,
   body: {
     properties: {
+      id: {
+        type: 'text',
+      },
       name: {
-      type: 'text',
-      },
-      type: {
-        type: 'long',
-      },
-      place_logo: {
-        type: 'text',
-      },
-      price: {
-        type: 'long',
-      },
-      phone: {
-        type: 'text',
-      },
-      description: {
-        type: 'text',
-      },
-      cooking_time: {
-        type: 'integer',
-      },
-      location: {
-        type: 'geo_point',
-      },
-      address: {
-        type: 'text',
-      },
-      likes: {
-        type: 'integer',
-      },
-      recipes: {
-        type: 'nested',
-      },
-      place_name: {
-        type: 'text',
-      },
-      place_ref: {
-        type: 'text',
-      },
-      menus_link: {
-        type: 'nested',
-      },
-      notation: {
-        type: 'integer',
-      },
-      discount: {
-        type: 'float',
-      },
-      size: {
-        type: 'text',
-      },
-      quantity: {
-        type: 'text',
-      },
-      spicy_level: {
         type: 'text',
       },
       category: {
         type: 'text',
       },
-      pictures: {
+      gastronomies: {
         type: 'nested',
       },
-      main_picture: {
+      recipes: {
+        type: 'nested',
+      },
+      description: {
+        type: 'text',
+      },
+      spicy: {
         type: 'integer',
       },
-      schedule: {
-        type: 'nested',
+      price: {
+        type: 'integer',
+      },
+      discount: {
+        type: 'float',
+      },
+      quantity: {
+        type: 'float',
+      },
+      size: {
+        type: 'text',
+      },
+      notation: {
+        type: 'integer',
+      },
+      likes: {
+        type: 'integer',
+      },
+      placeid: {
+        type: 'text',
+      },
+      placename: {
+        type: 'text',
+      },
+      placelogo: {
+        type: 'text',
+      },
+      placezone: {
+        type: 'text',
+      },
+      location: {
+        type: 'geo_point',
+      },
+      picture: {
+        type: 'text',
+      },
+      menu_available: {
+        type: 'boolean',
       },
     },
   },

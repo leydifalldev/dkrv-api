@@ -104,11 +104,11 @@ message ListResponse {
   int32 status = 1;
   string error = 2;
   int64 total = 3;
-  repeated Place payload = 4;
+  repeated Event payload = 4;
 }
 
 message CreateRequest {
-  Place payload = 1;
+  Event payload = 1;
 }
 
 message CreateResponse {
@@ -125,12 +125,12 @@ message DetailRequest {
 message DetailResponse {
   int32 status = 1;
   string error = 2;
-  Place payload = 4;
+  Event payload = 4;
 }
 
 message UpdateRequest {
   string id = 1;
-  Place payload = 3;
+  Event payload = 3;
 }
 
 message UpdateResponse {
@@ -141,7 +141,7 @@ message UpdateResponse {
 
 message UpdatePlaceRequest {
   string id = 1;
-  Place payload = 2;
+  Event payload = 2;
 }
 
 message UpdateLocationRequest {

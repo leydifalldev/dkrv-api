@@ -1,8 +1,18 @@
 import { Controller, Logger } from '@nestjs/common';
 import { GrpcMethod } from '@nestjs/microservices';
-import { DetailResponse, DeleteResponse, UpdateResponse, ID } from '../types/common.defs';
+import {
+  UpdateRequest,
+  DeleteRequest,
+  DetailRequest,
+  DetailResponse,
+  DeleteResponse,
+  UpdateResponse,
+  CreateResponse,
+  CreateRequest,
+  ListResponse } from '../types/common.defs';
 import { Product } from './product.interfaces';
 import { ProductService } from './product.service';
+import { SearchParams } from 'elasticsearch';
 
 @Controller()
 export class ProductController {
@@ -10,36 +20,30 @@ export class ProductController {
   }
 
   @GrpcMethod('ProductService', 'Search')
-  async search(params): Promise<any> {
-    const resp = await this.productService.search(params);
-    Logger.log(resp);
-    return resp;
+  async search(params: SearchParams): Promise<ListResponse> {
+    return await this.productService.search(params);
   }
 
   @GrpcMethod('ProductService', 'AddProduct')
-  async addProduct(product: Product): Promise<ID> {
-    const response: ID = await this.productService.add(product);
-    Logger.log(response);
-    return response;
+  async addProduct(request: CreateRequest<Product>): Promise<CreateResponse> {
+    return await this.productService.add(request.payload);
   }
 
   @GrpcMethod('ProductService', 'UpdateProduct')
-  async updateProduct(product: Product): Promise<UpdateResponse> {
-    const response: UpdateResponse = await this.productService.update(product);
-    Logger.log(response);
-    return response;
+  async updateProduct(req: UpdateRequest<Product>): Promise<UpdateResponse> {
+    return await this.productService.update(req.payload);
   }
 
   @GrpcMethod('ProductService', 'DeleteProduct')
-  async deleteProduct(product: Product): Promise<DeleteResponse> {
-    const response: DeleteResponse = await this.productService.delete(product);
-    Logger.log(response);
-    return response;
+  async deleteProduct(req: DeleteRequest): Promise<DeleteResponse> {
+    return await this.productService.delete(req.id);
   }
 
   @GrpcMethod('ProductService', 'GetDetail')
-  async getDetail(request: ID): Promise<DetailResponse> {
-    const response: DetailResponse = await this.productService.getDetail(request.id);
-    return response;
+  async getDetail(request: DetailRequest): Promise<DetailResponse> {
+    const resp = await this.productService.get(request.id);
+    Logger.log('res');
+    Logger.log(resp);
+    return resp;
   }
 }
