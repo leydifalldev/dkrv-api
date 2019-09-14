@@ -9,10 +9,10 @@ import {
   UpdateResponse,
   CreateResponse,
   CreateRequest,
-  ListResponse } from '../types/common.defs';
+  ListResponse,
+  SearchParams } from '../types/common.defs';
 import { Product } from './product.interfaces';
 import { ProductService } from './product.service';
-import { SearchParams } from 'elasticsearch';
 
 @Controller()
 export class ProductController {
@@ -41,9 +41,6 @@ export class ProductController {
 
   @GrpcMethod('ProductService', 'GetDetail')
   async getDetail(request: DetailRequest): Promise<DetailResponse> {
-    const resp = await this.productService.get(request.id);
-    Logger.log('res');
-    Logger.log(resp);
-    return resp;
+    return await this.productService.get(request.id);
   }
 }

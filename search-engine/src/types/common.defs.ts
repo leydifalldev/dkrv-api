@@ -13,7 +13,7 @@ export interface CreateResponse {
   id: string;
   status: number;
   error: string;
-  payload: string;
+  payload: boolean;
 }
 
 export interface DetailRequest {

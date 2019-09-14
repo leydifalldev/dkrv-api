@@ -73,8 +73,8 @@ message CreateRequest {
 
 message CreateResponse {
   int32 status = 1;
-  string error = 2;
-  bool payload = 3;
+  string error = 3;
+  string payload = 2;
 }
 
 message DetailRequest {
@@ -119,8 +119,8 @@ message SearchParams {
 
 service ProductService {
   rpc Search(SearchParams) returns (ListResponse);
-  rpc GetDetail(DetailRequest) returns (DetailResponse);
-  rpc AddProduct(CreateRequest) returns (CreateResponse);
-  rpc UpdateProduct(UpdateRequest) returns (UpdateResponse);
-  rpc DeleteProduct(DeleteRequest) returns (DeleteResponse);
+  rpc Get(DetailRequest) returns (DetailResponse);
+  rpc Add(CreateRequest) returns (CreateResponse);
+  rpc Update(UpdateRequest) returns (UpdateResponse);
+  rpc Delete(DeleteRequest) returns (DeleteResponse);
 }

@@ -119,7 +119,6 @@ export class ElasticService implements OnModuleInit {
   }
 
   async add(params: any): Promise<CreateResponse> {
-    Logger.log(params);
     try {
       const resp = await this.esclient.create({
         index: this.index,
@@ -128,10 +127,10 @@ export class ElasticService implements OnModuleInit {
         refresh: 'true',
         body: params,
       });
-
+      Logger.log(resp);
       return {
         id: resp._id,
-        payload: resp.result,
+        payload: (resp.result === 'created'),
         status: 200,
         error: 'none',
       };
@@ -139,8 +138,8 @@ export class ElasticService implements OnModuleInit {
         Logger.log(e);
         return {
           id: null,
-          payload: 'none',
-          status: 500,
+          payload: false,
+          status: e.statusCode,
           error: 'level-4',
         };
       }
