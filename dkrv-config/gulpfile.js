@@ -5,7 +5,7 @@ const clean = require('gulp-clean');
 const multiDest = require('gulp-multi-dest');
 //const searchEnginePath = 
 
-const se = {
+const seConfig = {
   filename: 'search-engine.proto',
   src_folder: 'proto/search-engine/',
   //path: ['../search-engine/src/gateway/proto/', '../dkrv-place/gateway/search-engine/'],
@@ -29,24 +29,24 @@ const se = {
 };
 
 const placeConfig = {
-  filename: 'event.proto',
+  filename: 'place.proto',
   src_folder: 'proto/dkrv-place/',
   //path: ['../search-engine/src/gateway/proto/', '../dkrv-place/gateway/search-engine/'],
   targets: [
     {
-      name: "dkrv-place-event",
+      name: "dkrv-place-place",
       go_proto: true,
-      dest_folder: '../dkrv-place/event/'
+      dest_folder: '../dkrv-place/place/'
     },
     {
-      name: "dkrv-core-event",
+      name: "dkrv-core-place",
       go_proto: true,
-      dest_folder: '../dkrv-core/gateway/event/'
+      dest_folder: '../dkrv-core/gateway/place/'
     }
   ],
 };
 
-const event = {
+const eventConfig = {
   filename: 'event.proto',
   src_folder: 'proto/dkrv-place/',
   //path: ['../search-engine/src/gateway/proto/', '../dkrv-place/gateway/search-engine/'],
@@ -90,18 +90,13 @@ const copyAndGenerateProto = (proto_path_folder, dest_folder, filename) => {
     .on('error', error => console.log(error.message));
 }
 
-function updateSE(cb) {
-  watch([se.src_folder + se.filename], copyAndGenerateSE);
-  cb();
-}
-
 function copyAndGenerateSE(cb) {
-  generate(se)
+  generate(seConfig)
   cb();
 }
 
 function copyAndGenerateEvent(cb) {
-  generate(event)
+  generate(eventConfig)
   cb();
 }
 
@@ -110,10 +105,22 @@ function copyAndGeneratePlace(cb) {
   cb();
 }
 
-function updateEvent(cb) {
-  watch([event.src_folder + event.filename], copyAndGenerateEvent);
+function updateSE(cb) {
+  watch([seConfig.src_folder + seConfig.filename], copyAndGenerateSE);
   cb();
 }
+
+function updateEvent(cb) {
+  watch([eventConfig.src_folder + eventConfig.filename], copyAndGenerateEvent);
+  cb();
+}
+
+function updatePlace(cb) {
+  watch([placeConfig.src_folder + placeConfig.filename], copyAndGenerateEvent);
+  cb();
+}
+
 exports.watchse = series(copyAndGenerateSE, updateSE);
 exports.watchevent = series(copyAndGenerateEvent, updateEvent);
+exports.watchplace = series(copyAndGeneratePlace, updatePlace);
 exports.default = series(copyAndGenerateSE, updateSE);
