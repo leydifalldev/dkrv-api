@@ -1,68 +1,11 @@
 const { src, dest, series, watch, parallel } = require('gulp');
+const seConfig = require("./path_config/se");
+const placeConfig = require("./path_config/place");
+const eventConfig = require("./path_config/event");
 const exec = require('gulp-exec');
 const path = require('path');
-const clean = require('gulp-clean');
 const multiDest = require('gulp-multi-dest');
 //const searchEnginePath = 
-
-const seConfig = {
-  filename: 'search-engine.proto',
-  src_folder: 'proto/search-engine/',
-  //path: ['../search-engine/src/gateway/proto/', '../dkrv-place/gateway/search-engine/'],
-  targets: [
-    {
-      name: "dkrv-core-se",
-      go_proto: true,
-      dest_folder: '../dkrv-core/gateway/se/'
-    },
-    {
-      name: "dkrv-place-se",
-      go_proto: true,
-      dest_folder: '../dkrv-place/gateway/se/'
-    },
-    {
-      name: "search-engine",
-      go_proto: false,
-      dest_folder: '../search-engine/src/gateway/proto/'
-    }
-  ],
-};
-
-const placeConfig = {
-  filename: 'place.proto',
-  src_folder: 'proto/dkrv-place/',
-  //path: ['../search-engine/src/gateway/proto/', '../dkrv-place/gateway/search-engine/'],
-  targets: [
-    {
-      name: "dkrv-place-place",
-      go_proto: true,
-      dest_folder: '../dkrv-place/place/'
-    },
-    {
-      name: "dkrv-core-place",
-      go_proto: true,
-      dest_folder: '../dkrv-core/gateway/place/'
-    }
-  ],
-};
-
-const eventConfig = {
-  filename: 'event.proto',
-  src_folder: 'proto/dkrv-place/',
-  //path: ['../search-engine/src/gateway/proto/', '../dkrv-place/gateway/search-engine/'],
-  targets: [
-    {
-      name: "dkrv-place-event",
-      go_proto: true,
-      dest_folder: '../dkrv-place/event/'
-    },
-    {
-      name: "dkrv-core-event",
-      go_proto: true,
-      dest_folder: '../dkrv-core/gateway/event/'
-    }
-  ],
-};
 
 const generate = (config) => {
   config.targets.map(target => {

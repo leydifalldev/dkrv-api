@@ -1,0 +1,16 @@
+{
+  "filename": "place.proto",
+  "src_folder": "proto/dkrv-place/",
+  "targets": [
+    {
+      "name": "dkrv-place-place",
+      "go_proto": true,
+      "dest_folder": "../dkrv-place/place/"
+    },
+    {
+      "name": "dkrv-core-place",
+      "go_proto": true,
+      "dest_folder": "../dkrv-core/gateway/place/"
+    }
+  ]
+}

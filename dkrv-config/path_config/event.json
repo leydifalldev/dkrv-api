@@ -1,0 +1,16 @@
+{
+  "filename": "event.proto",
+  "src_folder": "proto/dkrv-place/",
+  "targets": [
+    {
+      "name": "dkrv-place-event",
+      "go_proto": true,
+      "dest_folder": "../dkrv-place/event/"
+    },
+    {
+      "name": "dkrv-core-event",
+      "go_proto": true,
+      "dest_folder": "../dkrv-core/gateway/event/"
+    }
+  ]
+}
