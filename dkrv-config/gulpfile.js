@@ -28,6 +28,24 @@ const se = {
   ],
 };
 
+const placeConfig = {
+  filename: 'event.proto',
+  src_folder: 'proto/dkrv-place/',
+  //path: ['../search-engine/src/gateway/proto/', '../dkrv-place/gateway/search-engine/'],
+  targets: [
+    {
+      name: "dkrv-place-event",
+      go_proto: true,
+      dest_folder: '../dkrv-place/event/'
+    },
+    {
+      name: "dkrv-core-event",
+      go_proto: true,
+      dest_folder: '../dkrv-core/gateway/event/'
+    }
+  ],
+};
+
 const event = {
   filename: 'event.proto',
   src_folder: 'proto/dkrv-place/',
@@ -57,14 +75,14 @@ const generate = (config) => {
 
 function copy(source, destination) {
   return src(source, { allowEmpty: true })
-    .pipe(multiDest(destination)).on('error', error => console.log(error));
+    .pipe(multiDest(destination).on('error', error => console.log(error)));
 }
 
 const copyAndGenerateProto = (proto_path_folder, dest_folder, filename) => {
   const protoParams = {
-    proto_path_folder: dest_folder,
+    proto_path_folder,
     go_out_folder: path.join(__dirname, dest_folder),
-    proto_path_file: dest_folder + filename,
+    proto_path_file: proto_path_folder + filename,
   };
   return copy(proto_path_folder + filename, dest_folder)
     .pipe(exec('protoc --proto_path=<%= options.proto_path_folder %> \
@@ -87,11 +105,15 @@ function copyAndGenerateEvent(cb) {
   cb();
 }
 
+function copyAndGeneratePlace(cb) {
+  generate(placeConfig)
+  cb();
+}
+
 function updateEvent(cb) {
   watch([event.src_folder + event.filename], copyAndGenerateEvent);
   cb();
 }
 exports.watchse = series(copyAndGenerateSE, updateSE);
 exports.watchevent = series(copyAndGenerateEvent, updateEvent);
-exports.watchproto = parallel();
 exports.default = series(copyAndGenerateSE, updateSE);
