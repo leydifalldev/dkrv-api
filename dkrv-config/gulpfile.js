@@ -93,4 +93,5 @@ function updateEvent(cb) {
 }
 exports.watchse = series(copyAndGenerateSE, updateSE);
 exports.watchevent = series(copyAndGenerateEvent, updateEvent);
+exports.watchproto = parallel();
 exports.default = series(copyAndGenerateSE, updateSE);
