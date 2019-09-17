@@ -77,8 +77,6 @@ message Place {
   int32 travel_time = 18;
   // @inject_tag: bson:"ocean_near,omitempty"
   bool ocean_near = 19;
-  // @inject_tag: bson:"services,omitempty"
-  Services services = 20;
   // @inject_tag: bson:"temporaly_place,omitempty"
   bool temporaly_place = 21;
   // @inject_tag: bson:"categories,omitempty"

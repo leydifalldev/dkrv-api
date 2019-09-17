@@ -59,7 +59,7 @@ function updateEvent(cb) {
 }
 
 function updatePlace(cb) {
-  watch([placeConfig.src_folder + placeConfig.filename], copyAndGenerateEvent);
+  watch([placeConfig.src_folder + placeConfig.filename], copyAndGeneratePlace);
   cb();
 }
 
