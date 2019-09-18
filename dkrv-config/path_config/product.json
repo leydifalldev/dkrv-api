@@ -1,0 +1,21 @@
+{
+  "filename": "product.proto",
+  "src_folder": "proto/dkrv-place/",
+  "targets": [
+    {
+      "name": "dkrv-place-product",
+      "go_proto": true,
+      "dest_folder": "../dkrv-place/product/"
+    },
+    {
+      "name": "dkrv-core-product",
+      "go_proto": true,
+      "dest_folder": "../dkrv-core/gateway/product/"
+    },
+    {
+      "name": "search-engine",
+      "go_proto": false,
+      "dest_folder": "../search-engine/src/gateway/proto/"
+    }
+  ]
+}

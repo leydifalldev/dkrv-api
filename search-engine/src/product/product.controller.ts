@@ -19,27 +19,27 @@ export class ProductController {
   constructor(private productService: ProductService) {
   }
 
-  @GrpcMethod('ProductService', 'Search')
+  @GrpcMethod('ProductSearchEngine', 'Search')
   async search(params: SearchParams): Promise<ListResponse> {
     return await this.productService.search(params);
   }
 
-  @GrpcMethod('ProductService', 'AddProduct')
+  @GrpcMethod('ProductSearchEngine', 'AddProduct')
   async addProduct(request: CreateRequest<Product>): Promise<CreateResponse> {
     return await this.productService.add(request.payload);
   }
 
-  @GrpcMethod('ProductService', 'UpdateProduct')
+  @GrpcMethod('ProductSearchEngine', 'UpdateProduct')
   async updateProduct(req: UpdateRequest<Product>): Promise<UpdateResponse> {
     return await this.productService.update(req.payload);
   }
 
-  @GrpcMethod('ProductService', 'DeleteProduct')
+  @GrpcMethod('ProductSearchEngine', 'DeleteProduct')
   async deleteProduct(req: DeleteRequest): Promise<DeleteResponse> {
     return await this.productService.delete(req.id);
   }
 
-  @GrpcMethod('ProductService', 'GetDetail')
+  @GrpcMethod('ProductSearchEngine', 'GetDetail')
   async getDetail(request: DetailRequest): Promise<DetailResponse> {
     return await this.productService.get(request.id);
   }

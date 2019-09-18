@@ -1,6 +1,7 @@
 const { src, dest, series, watch, parallel } = require('gulp');
 const seConfig = require("./path_config/se");
 const placeConfig = require("./path_config/place");
+const productConfig = require("./path_config/product");
 const eventConfig = require("./path_config/event");
 const exec = require('gulp-exec');
 const path = require('path');
@@ -38,13 +39,18 @@ function copyAndGenerateSE(cb) {
   cb();
 }
 
-function copyAndGenerateEvent(cb) {
-  generate(eventConfig)
+function copyAndGeneratePlace(cb) {
+  generate(placeConfig)
   cb();
 }
 
-function copyAndGeneratePlace(cb) {
-  generate(placeConfig)
+function copyAndGenerateProduct(cb) {
+  generate(productConfig)
+  cb();
+}
+
+function copyAndGenerateEvent(cb) {
+  generate(eventConfig)
   cb();
 }
 
@@ -53,17 +59,23 @@ function updateSE(cb) {
   cb();
 }
 
-function updateEvent(cb) {
-  watch([eventConfig.src_folder + eventConfig.filename], copyAndGenerateEvent);
-  cb();
-}
-
 function updatePlace(cb) {
   watch([placeConfig.src_folder + placeConfig.filename], copyAndGeneratePlace);
   cb();
 }
 
+function updateProduct(cb) {
+  watch([productConfig.src_folder + productConfig.filename], copyAndGenerateProduct);
+  cb();
+}
+
+function updateEvent(cb) {
+  watch([eventConfig.src_folder + eventConfig.filename], copyAndGenerateEvent);
+  cb();
+}
+
 exports.watchse = series(copyAndGenerateSE, updateSE);
-exports.watchevent = series(copyAndGenerateEvent, updateEvent);
 exports.watchplace = series(copyAndGeneratePlace, updatePlace);
+exports.watchproduct = series(copyAndGenerateProduct, updateProduct);
+exports.watchevent = series(copyAndGenerateEvent, updateEvent);
 exports.default = series(copyAndGenerateSE, updateSE);

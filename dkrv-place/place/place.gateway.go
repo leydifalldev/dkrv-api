@@ -3,6 +3,7 @@ package place
 import (
 	"log"
 	"net"
+	"os"
 
 	grpc "google.golang.org/grpc"
 )
@@ -15,7 +16,7 @@ func NewServer() *Server {
 	return &Server{}
 }
 
-var uri = "0.0.0.0:2000"
+var uri = os.Getenv("DKRV_PLACE_PLACE")
 
 //GrpcServer start server
 func GrpcServer() {

@@ -5,7 +5,7 @@ export const seGrpc = {
   transport: Transport.GRPC,
   options: {
     url: '0.0.0.0:5000',
-    package: 'se',
-    protoPath: join(__dirname, './proto/search-engine.proto'),
+    package: 'product',
+    protoPath: join(__dirname, './proto/product.proto'),
   },
 };
