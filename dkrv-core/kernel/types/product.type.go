@@ -1,8 +1,6 @@
-package product
+package types
 
-import (
-	"github.com/graphql-go/graphql"
-)
+import "github.com/graphql-go/graphql"
 
 //ProductType for Product
 var ProductType = graphql.NewObject(graphql.ObjectConfig{

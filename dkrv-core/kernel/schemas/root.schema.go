@@ -1,6 +1,7 @@
-package kernel
+package schemas
 
 import (
+	"core/kernel/queries"
 	"log"
 
 	"github.com/graphql-go/graphql"
@@ -13,7 +14,7 @@ func GetGraphQLHandler() *handler.Handler {
 	schemaConfig := graphql.SchemaConfig{
 		Query: graphql.NewObject(graphql.ObjectConfig{
 			Name:   "RootQuery",
-			Fields: GetRootFields(),
+			Fields: queries.GetRootFields(),
 		}),
 	}
 

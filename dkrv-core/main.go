@@ -1,7 +1,7 @@
 package main
 
 import (
-	"core/kernel"
+	"core/kernel/schemas"
 	"log"
 	"net/http"
 )
@@ -16,7 +16,7 @@ func main() {
 
 //StartGQLServer start Graphql Server
 func StartGQLServer() error {
-	http.Handle("/graphql", kernel.GetGraphQLHandler())
+	http.Handle("/graphql", schemas.GetGraphQLHandler())
 	log.Println("Initializing server: 9000")
 	http.ListenAndServe(":9000", nil)
 	log.Println("Serve: 9000")
