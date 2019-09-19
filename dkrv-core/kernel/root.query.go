@@ -1,7 +1,7 @@
 package kernel
 
 import (
-	product "core/product"
+	product "core/gateway/product"
 
 	graphql "github.com/graphql-go/graphql"
 )
