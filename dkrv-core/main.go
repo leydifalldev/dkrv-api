@@ -4,7 +4,10 @@ import (
 	"core/kernel/schemas"
 	"log"
 	"net/http"
+	"os"
 )
+
+var coreuri = os.Getenv("DKRV_CORE")
 
 func main() {
 	//gRPCServer()
@@ -17,8 +20,8 @@ func main() {
 //StartGQLServer start Graphql Server
 func StartGQLServer() error {
 	http.Handle("/graphql", schemas.GetGraphQLHandler())
-	log.Println("Initializing server: 9000")
-	http.ListenAndServe(":9000", nil)
+	log.Printf("Initializing server: %s", coreuri)
+	http.ListenAndServe(coreuri, nil)
 	log.Println("Serve: 9000")
 	return nil
 }

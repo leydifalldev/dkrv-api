@@ -1,0 +1,35 @@
+{
+  "gastronomies": [
+    {
+      "code": "uk"
+    }
+  ],
+  "recipes": [
+    {
+      "name": "Steack",
+      "quantity": 1
+    }
+  ],
+  "name": "Hello",
+  "category": "Hello",
+  "description": "Hello",
+  "spicy": 10,
+  "price": 10,
+  "discount": 1.100000023841858,
+  "quantity": 10,
+  "size": "Hello",
+  "notation": 10,
+  "likes": "20",
+  "placeid": "cd1830f8-896d-4b0f-b284-7577109b6c59",
+  "placename": "Hello",
+  "placelogo": "Hello",
+  "placezone": "Hello",
+  "location": {
+    "lon": 1.100000023841858,
+    "lat": 1.100000023841858
+  },
+  "picture": {
+    "src": "Hello"
+  },
+  "menu_available": true
+}

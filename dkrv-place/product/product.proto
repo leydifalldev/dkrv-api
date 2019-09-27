@@ -37,13 +37,18 @@ message Schedule {
   string end_pm = 5;
 }
 
+message Recipes {
+  string name = 1;
+  float quantity = 2;
+}
+
 message Product {
   string id = 1; 
   string name = 2;
   string category = 3;
   repeated string gastronomies = 4;
   string description = 5;
-  repeated string recipes = 6;
+  Recipes recipes = 6;
   int32 spicy = 7;
   int32 price = 8;
   float discount = 9;

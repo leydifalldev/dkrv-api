@@ -10,7 +10,7 @@ import (
 //GetProductFields return product Field
 func GetProductFields() *graphql.Field {
 	return &graphql.Field{
-		Type: graphql.NewList(types.ProductType),
+		Type: graphql.NewList(types.ProductInput),
 		Resolve: func(params graphql.ResolveParams) (interface{}, error) {
 			gateway := product.NewProductGateway()
 			products := gateway.GetAllProducts()

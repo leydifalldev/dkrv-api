@@ -1,6 +1,7 @@
 package schemas
 
 import (
+	"core/kernel/mutations"
 	"core/kernel/queries"
 	"log"
 
@@ -15,6 +16,10 @@ func GetGraphQLHandler() *handler.Handler {
 		Query: graphql.NewObject(graphql.ObjectConfig{
 			Name:   "RootQuery",
 			Fields: queries.GetRootFields(),
+		}),
+		Mutation: graphql.NewObject(graphql.ObjectConfig{
+			Name:   "RootMutation",
+			Fields: mutations.GetRootFields(),
 		}),
 	}
 
