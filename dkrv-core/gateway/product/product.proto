@@ -48,7 +48,7 @@ message Product {
   string category = 3;
   repeated string gastronomies = 4;
   string description = 5;
-  Recipes recipes = 6;
+  repeated Recipes recipes = 6;
   int32 spicy = 7;
   int32 price = 8;
   float discount = 9;

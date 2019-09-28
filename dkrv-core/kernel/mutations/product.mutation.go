@@ -3,37 +3,33 @@ package mutations
 import (
 	"core/gateway/product"
 	"core/kernel/types"
+	"encoding/json"
 	"log"
 
 	"github.com/graphql-go/graphql"
 )
 
 // CreateProductMutation creates a new user and returns it.
-func CreateProductMutation() *graphql.Field {
-	return &graphql.Field{
-		Type: types.ProductInput,
-		Args: graphql.FieldConfigArgument{
-			"id": &graphql.ArgumentConfig{
+func CreateProductMutation() *graphql.Object {
+	return graphql.NewObject(graphql.ObjectConfig{
+		Name: "Product",
+		Fields: graphql.Fields{
+			"id": &graphql.Field{
 				Type: graphql.NewNonNull(graphql.String),
 			},
-			"name": &graphql.ArgumentConfig{
-				Type: graphql.NewNonNull(graphql.String),
+			"name": &graphql.Field{
+				Type: graphql.String,
 			},
-			"recipes": &graphql.ArgumentConfig{
-				Type: graphql.NewList(graphql.String),
+			"recipes": &graphql.Field{
+				Type: graphql.NewList(types.RecipeType),
+				Resolve: func(p graphql.ResolveParams) (interface{}, error) {
+					newProduct, _ := p.Source.(*product.Product)
+					log.Printf("fetching comments of post with id: %d", newProduct.Id)
+					gateway := product.NewProductGateway()
+					resp := gateway.AddProduct(newProduct)
+					return json.Marshal(resp)
+				},
 			},
 		},
-		Resolve: func(params graphql.ResolveParams) (interface{}, error) {
-			product := &product.Product{
-				Id:   params.Args["id"].(string),
-				Name: params.Args["name"].(string),
-			}
-
-			log.Println(params.Args["recipes"].([]interface{}))
-
-			// Add your user in database here
-
-			return product, nil
-		},
-	}
+	})
 }

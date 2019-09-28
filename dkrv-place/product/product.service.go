@@ -2,6 +2,7 @@ package product
 
 import (
 	context "context"
+	"encoding/json"
 	"log"
 	"place/repository"
 
@@ -66,6 +67,8 @@ func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, 
 		log.Println("Cannot not generate uuid for inserting document")
 	}
 	product.Id = uuid.String()
+	productString, _ := json.Marshal(product)
+	log.Println(string(productString))
 	res, status, errc := c.Create(product)
 
 	esclient := NewESClient()
