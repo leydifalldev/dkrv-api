@@ -29,7 +29,7 @@ func GetGraphQLHandler() *handler.Handler {
 		Name: "RootMutation",
 		Fields: graphql.Fields{
 			"createProduct": &graphql.Field{
-				Type: types.ProductType,
+				Type: types.ProductInput,
 				Args: graphql.FieldConfigArgument{
 					"name": &graphql.ArgumentConfig{
 						Type: graphql.NewNonNull(graphql.String),
