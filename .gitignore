@@ -7,6 +7,7 @@ search-engine/node_modules/
 dkrv-config/node_modules/
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
+dkrv-core/node_modules
 # compiled output
 dkrv-admin/dist
 dkrv-admin/tmp
