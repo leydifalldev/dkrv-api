@@ -1,12 +1,10 @@
-import { Transport } from '@nestjs/microservices';
+import { Transport, ClientOptions } from '@nestjs/microservices';
 import { join } from 'path';
 
-const PORT = process.env.SEARCH_ENGINE;
-
-export const seGrpc = {
+export const grpcClientOptions: ClientOptions = {
   transport: Transport.GRPC,
   options: {
-    url: PORT,
+    url: process.env.DKRV_PLACE_PLACE,
     package: 'gateway',
     protoPath: join(__dirname, './gateway.proto'),
   },

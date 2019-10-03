@@ -3,6 +3,7 @@ package event
 import (
 	context "context"
 	"log"
+	"place/gateway"
 	"place/repository"
 
 	"github.com/google/uuid"
@@ -10,8 +11,8 @@ import (
 )
 
 //Search return List of info
-func (s *Server) Search(ctx context.Context, req *SearchRequest) (*ListResponse, error) {
-	var data []*Event
+func (s *Server) Search(ctx context.Context, req *gateway.EventSearchParams) (*gateway.EventListResponse, error) {
+	var data []*gateway.Event
 	var cpt int64
 	c := repository.GetRepository("place", "event")
 	cur, status, err := c.GetList()
@@ -19,7 +20,7 @@ func (s *Server) Search(ctx context.Context, req *SearchRequest) (*ListResponse,
 	cpt = 0
 	for cur.Next(context.TODO()) {
 		cpt++
-		var e Event
+		var e gateway.Event
 		err := cur.Decode(&e)
 		if err != nil {
 			log.Fatal(err)
@@ -27,18 +28,18 @@ func (s *Server) Search(ctx context.Context, req *SearchRequest) (*ListResponse,
 
 		data = append(data, &e)
 	}
-	return &ListResponse{
-		Status:  status,
-		Error:   err,
-		Total:   cpt,
-		Payload: data,
+	return &gateway.EventListResponse{
+		Status: status,
+		Error:  err,
+		Total:  cpt,
+		Events: data,
 	}, nil
 }
 
 //Get return List of info
-func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, error) {
+func (s *Server) Get(ctx context.Context, req *gateway.EventDetailRequest) (*gateway.EventDetailResponse, error) {
 	c := repository.GetRepository("place", "event")
-	var e *Event
+	var e *gateway.Event
 	cur, status, err := c.Get(req.GetId())
 	derr := cur.Decode(&e)
 	if derr != nil {
@@ -47,69 +48,68 @@ func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, 
 		status = 404
 		err = "DATABASE ERROR: Cannot get document from database"
 	}
-	return &DetailResponse{
-		Status:  status,
-		Error:   err,
-		Payload: e,
+	return &gateway.EventDetailResponse{
+		Status: status,
+		Error:  err,
+		Event:  e,
 	}, nil
 }
 
 //Add allows to add info
-func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
+func (s *Server) Add(ctx context.Context, req *gateway.EventCreateRequest) (*gateway.EventCreateResponse, error) {
 	c := repository.GetRepository("place", "event")
-	event := req.GetPayload()
+	event := req.GetEvent()
 	uuid, err := uuid.NewUUID()
 	if err != nil {
 		log.Println("Cannot not generate uuid for inserting document")
 	}
 	event.Id = uuid.String()
 	res, status, errres := c.Create(event)
-	return &CreateResponse{
+	return &gateway.EventCreateResponse{
 		Status:  status,
 		Error:   errres,
-		Id:      event.Id,
-		Payload: res,
+		Created: res,
 	}, nil
 }
 
 //Update allow to update
-func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
+func (s *Server) Update(ctx context.Context, req *gateway.EventUpdateRequest) (*gateway.EventUpdateResponse, error) {
 	c := repository.GetRepository("place", "event")
-	event := req.GetPayload()
+	event := req.GetEvent()
 	log.Println(event)
 	update := bson.D{{Key: "$set", Value: event}}
-	res, status, err := c.Update(req.GetId(), update)
+	res, status, err := c.Update(event.Id, update)
 
-	return &UpdateResponse{
+	return &gateway.EventUpdateResponse{
 		Status:  status,
 		Error:   err,
-		Payload: res,
+		Updated: res,
 	}, nil
 }
 
 //UpdateLocation allow to update
-func (s *Server) UpdateLocation(ctx context.Context, req *UpdateLocationRequest) (*UpdateResponse, error) {
+func (s *Server) UpdateLocation(ctx context.Context, req *gateway.UpdateLocationRequest) (*gateway.EventUpdateResponse, error) {
 	c := repository.GetRepository("place", "event")
 	placeevent := req.GetPayload()
 	log.Println(placeevent)
 	update := bson.D{{Key: "$set", Value: bson.M{"place.location": placeevent}}}
 	res, status, err := c.Update(req.GetId(), update)
 
-	return &UpdateResponse{
+	return &gateway.EventUpdateResponse{
 		Status:  status,
 		Error:   err,
-		Payload: res,
+		Updated: res,
 	}, nil
 }
 
 //Delete allow to delete
-func (s *Server) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
+func (s *Server) Delete(ctx context.Context, req *gateway.EventDeleteRequest) (*gateway.EventDeleteResponse, error) {
 	c := repository.GetRepository("place", "event")
 	res, status, err := c.Delete(req.GetId())
 
-	return &DeleteResponse{
+	return &gateway.EventDeleteResponse{
 		Status:  status,
 		Error:   err,
-		Payload: res,
+		Deleted: res,
 	}, nil
 }

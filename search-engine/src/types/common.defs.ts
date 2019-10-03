@@ -2,7 +2,9 @@ export interface ListResponse {
   status: number;
   error: string;
   total: number;
-  payload: any[];
+  products?: any[];
+  places?: any[];
+  events?: any[];
 }
 
 export interface CreateRequest<T> {

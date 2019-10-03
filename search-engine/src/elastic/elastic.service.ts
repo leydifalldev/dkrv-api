@@ -103,7 +103,7 @@ export class ElasticService implements OnModuleInit {
       Logger.log(resp);
       return {
         total: resp.hits.hits.length,
-        payload: resp.hits.hits.map(hit => hit._source),
+        products: resp.hits.hits.map(hit => hit._source),
         status: 200,
         error: 'none',
       };
@@ -111,7 +111,7 @@ export class ElasticService implements OnModuleInit {
       Logger.log(e);
       return {
         total: 0,
-        payload: null,
+        products: null,
         status: 500,
         error: 'level-4',
       };

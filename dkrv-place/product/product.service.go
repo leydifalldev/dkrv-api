@@ -4,6 +4,7 @@ import (
 	context "context"
 	"encoding/json"
 	"log"
+	"place/gateway"
 	"place/repository"
 
 	"github.com/google/uuid"
@@ -11,9 +12,9 @@ import (
 )
 
 //Search return List of info
-func (s *Server) Search(ctx context.Context, req *SearchParams) (*ListResponse, error) {
+func (s *Server) Search(ctx context.Context, req *gateway.SearchParams) (*gateway.ProductListResponse, error) {
 	log.Println("Search")
-	var data []*Product
+	var data []*gateway.Product
 	var cpt int64
 	c := repository.GetRepository("place", "product")
 	cur, status, err := c.GetList()
@@ -21,47 +22,48 @@ func (s *Server) Search(ctx context.Context, req *SearchParams) (*ListResponse, 
 	cpt = 0
 	for cur.Next(context.TODO()) {
 		cpt++
-		var p Product
+		var p gateway.Product
 		err := cur.Decode(&p)
 		if err != nil {
-			log.Fatal(err)
+			log.Println(err)
 		}
 
 		data = append(data, &p)
 	}
-	return &ListResponse{
-		Status:  status,
-		Error:   err,
-		Total:   cpt,
-		Payload: data,
+	log.Println(data)
+	return &gateway.ProductListResponse{
+		Status:   status,
+		Error:    err,
+		Total:    cpt,
+		Products: data,
 	}, nil
 }
 
 //Get return List of info
-func (s *Server) Get(ctx context.Context, req *DetailRequest) (*DetailResponse, error) {
+func (s *Server) Get(ctx context.Context, req *gateway.ProductDetailRequest) (*gateway.ProductDetailResponse, error) {
 	c := repository.GetRepository("place", "product")
-	var p *Product
+	var p *gateway.Product
 	cur, status, err := c.Get(req.GetId())
 	derr := cur.Decode(&p)
 	if derr != nil {
 		//log.Fatal(derr)
 		log.Println(derr)
-		status = 404
-		err = "DATABASE ERROR: Cannot get document from database"
+		status = 500
+		err = "Impossible to get document"
 	}
 
-	return &DetailResponse{
+	return &gateway.ProductDetailResponse{
 		Status:  status,
 		Error:   err,
-		Payload: p,
+		Product: p,
 	}, nil
 }
 
 //Add allows to add info
-func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, error) {
+func (s *Server) Add(ctx context.Context, req *gateway.ProductCreateRequest) (*gateway.ProductCreateResponse, error) {
 
 	c := repository.GetRepository("place", "product")
-	product := req.GetPayload()
+	product := req.GetProduct()
 	uuid, err := uuid.NewUUID()
 	if err != nil {
 		log.Println("Cannot not generate uuid for inserting document")
@@ -75,36 +77,36 @@ func (s *Server) Add(ctx context.Context, req *CreateRequest) (*CreateResponse, 
 	out := esclient.InsertProduct(product)
 	log.Println("se out")
 	log.Println(out)
-	return &CreateResponse{
+	return &gateway.ProductCreateResponse{
 		Status:  status,
 		Error:   errc,
-		Payload: res,
+		Created: res,
 	}, nil
 }
 
 //Update allow to update
-func (s *Server) Update(ctx context.Context, req *UpdateRequest) (*UpdateResponse, error) {
+func (s *Server) Update(ctx context.Context, req *gateway.ProductUpdateRequest) (*gateway.ProductUpdateResponse, error) {
 	c := repository.GetRepository("place", "product")
-	product := req.GetPayload()
+	product := req.GetProduct()
 	log.Println(product)
 	update := bson.D{{Key: "$set", Value: product}}
-	res, status, err := c.Update(req.GetId(), update)
+	res, status, err := c.Update(product.Id, update)
 
-	return &UpdateResponse{
+	return &gateway.ProductUpdateResponse{
 		Status:  status,
 		Error:   err,
-		Payload: res,
+		Updated: res,
 	}, nil
 }
 
 //Delete allow to delete
-func (s *Server) Delete(ctx context.Context, req *DeleteRequest) (*DeleteResponse, error) {
+func (s *Server) Delete(ctx context.Context, req *gateway.ProductDeleteRequest) (*gateway.ProductDeleteResponse, error) {
 	c := repository.GetRepository("place", "product")
 	res, status, err := c.Delete(req.GetId())
 
-	return &DeleteResponse{
+	return &gateway.ProductDeleteResponse{
 		Status:  status,
 		Error:   err,
-		Payload: res,
+		Deleted: res,
 	}, nil
 }

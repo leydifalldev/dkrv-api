@@ -3,6 +3,7 @@ package product
 import (
 	context "context"
 	"log"
+	"place/gateway"
 
 	"google.golang.org/grpc"
 )
@@ -20,13 +21,13 @@ func StartGRPCService(uri string) {
 //SEClient define the search-engine struct
 type SEClient struct {
 	conn   *grpc.ClientConn
-	client ProductSearchEngineClient
+	client gateway.SearchEngineClient
 }
 
 //NewESClient return SEClient
 func NewESClient() *SEClient {
 	conn := GRPCConnect(esuri)
-	client := NewProductSearchEngineClient(conn)
+	client := gateway.NewSearchEngineClient(conn)
 	return &SEClient{conn: conn, client: client}
 }
 
@@ -41,10 +42,10 @@ func GRPCConnect(uri string) *grpc.ClientConn {
 }
 
 //InsertProduct insert data to search-engine
-func (se *SEClient) InsertProduct(product *Product) *CreateResponse {
+func (se *SEClient) InsertProduct(product *gateway.Product) *gateway.ProductCreateResponse {
 	defer se.conn.Close()
-	req := &CreateRequest{
-		Payload: product,
+	req := &gateway.ProductCreateRequest{
+		Product: product,
 	}
 	result, err := se.client.AddProduct(context.Background(), req)
 	if err != nil {

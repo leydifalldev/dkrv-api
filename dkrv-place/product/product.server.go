@@ -4,6 +4,7 @@ import (
 	"log"
 	"net"
 	"os"
+	"place/gateway"
 
 	grpc "google.golang.org/grpc"
 )
@@ -25,6 +26,6 @@ func GrpcServer() {
 		log.Printf("grpcServer ===> Error to connect %s", producturi)
 	}
 	g := grpc.NewServer()
-	RegisterProductServiceServer(g, NewServer())
+	gateway.RegisterProductServiceServer(g, NewServer())
 	g.Serve(lis)
 }
