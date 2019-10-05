@@ -1,7 +1,7 @@
 import { Resolver, Query, Mutation, Args, ResolveProperty, Parent } from '@nestjs/graphql';
 import { Logger, OnModuleInit } from '@nestjs/common';
 import { Client, ClientGrpc } from '@nestjs/microservices';
-import { grpcClientOptions } from '../../gateway/place.grpcclient';
+import { PlaceGrpcClientOptions, ProductGrpcClientOptions } from '../../gateway';
 import { Observable } from 'rxjs';
 import {
   Place,
@@ -10,31 +10,28 @@ import {
   PlaceUpdateResponse,
   PlaceDetailResponse,
   PlaceListResponse,
+  Product,
 } from '../objects';
-import { PlaceInput, ProductInput } from '../inputs';
-
-interface PlaceService {
-  search({}): Observable<PlaceListResponse>;
-  get(id): Observable<PlaceDetailResponse>;
-  add(PlaceInput): Observable<PlaceCreateResponse>;
-  update(PlaceInput): Observable<PlaceUpdateResponse>;
-  delete(IdInput): Observable<PlaceDeleteResponse>;
-}
+import { PlaceInput } from '../inputs';
+import { IPlaceService, IProductService } from '../interfaces';
 
 @Resolver(of => Place)
 export class PlaceResolver implements OnModuleInit {
-  @Client(grpcClientOptions) private readonly client: ClientGrpc;
-  private placeService: PlaceService;
+  @Client(PlaceGrpcClientOptions) private readonly placeclient: ClientGrpc;
+  private placeService: IPlaceService;
+  @Client(ProductGrpcClientOptions) private readonly productclient: ClientGrpc;
+  private productService: IProductService;
 
   onModuleInit() {
-    this.placeService = this.client.getService<PlaceService>('PlaceService');
+    this.placeService = this.placeclient.getService<IPlaceService>('PlaceService');
+    this.productService = this.productclient.getService<IProductService>('ProductService');
   }
 
   @Query(returns => [Place])
   async places(): Promise<Place[]> {
     const response: PlaceListResponse = await this.placeService.search({}).toPromise();
     Logger.log(response);
-    return response.places;
+    return response.places || [];
   }
 
   @Mutation(returns => PlaceDetailResponse)
@@ -67,6 +64,14 @@ export class PlaceResolver implements OnModuleInit {
     const response: PlaceDeleteResponse = await this.placeService.delete({id}).toPromise();
     Logger.log(response);
     return response;
+  }
+
+  @ResolveProperty()
+  async products(@Parent() place: Place) {
+    const { id } = place;
+    Logger.log(id);
+    const response = await this.productService.getByQuery({ placeid: id }).toPromise();
+    return response.products || [];
   }
 
   /*@ResolveProperty('product')

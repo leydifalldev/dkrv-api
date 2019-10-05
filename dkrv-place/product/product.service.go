@@ -59,6 +59,34 @@ func (s *Server) Get(ctx context.Context, req *gateway.ProductDetailRequest) (*g
 	}, nil
 }
 
+//GetByQuery return List of info
+func (s *Server) GetByQuery(ctx context.Context, filter *gateway.ProductFilter) (*gateway.ProductListResponse, error) {
+	c := repository.GetRepository("place", "product")
+	var data []*gateway.Product
+	var cpt int64
+	log.Println(filter)
+	cur, status, err := c.GetProductByQuery(filter)
+	defer cur.Close(ctx)
+	cpt = 0
+	for cur.Next(context.TODO()) {
+		cpt++
+		var p gateway.Product
+		err := cur.Decode(&p)
+		if err != nil {
+			log.Println(err)
+		}
+
+		data = append(data, &p)
+	}
+	log.Println(data)
+	return &gateway.ProductListResponse{
+		Status:   status,
+		Error:    err,
+		Total:    cpt,
+		Products: data,
+	}, nil
+}
+
 //Add allows to add info
 func (s *Server) Add(ctx context.Context, req *gateway.ProductCreateRequest) (*gateway.ProductCreateResponse, error) {
 

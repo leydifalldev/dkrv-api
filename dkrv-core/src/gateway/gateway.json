@@ -5,6 +5,7 @@
     {
       "name": "dkrv-place",
       "go_proto": true,
+      "go_filename": "gateway.pb.go",
       "dest_folder": "../dkrv-place/gateway/"
     },
     {

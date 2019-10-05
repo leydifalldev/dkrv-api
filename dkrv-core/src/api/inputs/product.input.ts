@@ -1,6 +1,7 @@
 import { Field, Int, InputType, Float } from 'type-graphql';
 import { RecipeInput } from './recipe.input';
 import { CoordinateInput } from './coordinate.input';
+import { PictureInput } from './picture.input';
 
 @InputType()
 export class ProductInput {
@@ -58,8 +59,8 @@ export class ProductInput {
   @Field(type => CoordinateInput, { nullable: true })
   location?: CoordinateInput;
 
-  @Field(type => String, { nullable: true })
-  picture?: string;
+  @Field(type => PictureInput, { nullable: true })
+  picture?: PictureInput;
 
   @Field(type => Boolean, { nullable: true })
   menuAvailable?: boolean;

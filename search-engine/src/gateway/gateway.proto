@@ -106,7 +106,7 @@ message Product {
   // @inject_tag: bson:"notation,omitempty"
   int32 notation = 12;
   // @inject_tag: bson:"likes,omitempty"
-  int64 likes = 13;
+  int32 likes = 13;
   // @inject_tag: bson:"placeid,omitempty"
   string placeid = 14;
   // @inject_tag: bson:"placename,omitempty"
@@ -122,6 +122,31 @@ message Product {
   // @inject_tag: bson:"menu_available,omitempty"
   bool menu_available = 20;
 }
+
+
+message ProductFilter {
+  // @inject_tag: bson:"id,omitempty"
+  string id = 1;
+  // @inject_tag: bson:"name,omitempty"
+  string name = 2;
+  // @inject_tag: bson:"category,omitempty"
+  string category = 3;
+  // @inject_tag: bson:"gastronomies,omitempty"
+  repeated string gastronomies = 4;
+  // @inject_tag: bson:"spicy,omitempty"
+  int32 spicy = 5;
+  // @inject_tag: bson:"price,omitempty"
+  int32 price = 6;
+  // @inject_tag: bson:"discount,omitempty"
+  float discount = 7;
+  // @inject_tag: bson:"placeid,omitempty"
+  string placeid = 8;
+  // @inject_tag: bson:"placename,omitempty"
+  string placename = 9;
+  // @inject_tag: bson:"menu_available,omitempty"
+  bool menu_available = 10;
+}
+
 
 message Place {
   // @inject_tag: bson:"id,omitempty"
@@ -372,6 +397,7 @@ message EventSearchParams {
 service ProductService {
   rpc Search(SearchParams) returns (ProductListResponse);
   rpc Get(ProductDetailRequest) returns (ProductDetailResponse);
+  rpc GetByQuery(ProductFilter) returns (ProductListResponse);
   rpc Add(ProductCreateRequest) returns (ProductCreateResponse);
   rpc Update(ProductUpdateRequest) returns (ProductUpdateResponse);
   rpc Delete(ProductDeleteRequest) returns (ProductDeleteResponse);
@@ -387,7 +413,7 @@ service PlaceService {
 
 service SearchEngine {
   rpc Search(ProductSearchParams) returns (ProductListResponse);
-  rpc GetDetail(ProductDetailRequest) returns (ProductDetailResponse);
+  rpc GetProduct(ProductDetailRequest) returns (ProductDetailResponse);
   rpc AddProduct(ProductCreateRequest) returns (ProductCreateResponse);
   rpc UpdateProduct(ProductUpdateRequest) returns (ProductUpdateResponse);
   rpc DeleteProduct(ProductDeleteRequest) returns (ProductDeleteResponse);

@@ -32,6 +32,18 @@ type Mutation {
   createPlace(place: PlaceInput!): PlaceCreateResponse!
   updatePlace(place: PlaceInput!): PlaceUpdateResponse!
   deletePlace(id: String!): PlaceDeleteResponse!
+  getProduct(id: String!): ProductDetailResponse!
+  createProduct(product: ProductInput!): ProductCreateResponse!
+  updateProduct(product: ProductInput!): ProductUpdateResponse!
+  deleteProduct(id: String!): ProductDeleteResponse!
+}
+
+type Picture {
+  src: String!
+}
+
+input PictureInput {
+  src: String!
 }
 
 type Place {
@@ -48,6 +60,7 @@ type Place {
   travelTime: Int
   oceanNear: Boolean
   temporalyPlace: Boolean
+  products: [Product!]
 }
 
 type PlaceCreateResponse {
@@ -91,6 +104,44 @@ type PlaceUpdateResponse {
   updated: Boolean
 }
 
+type Product {
+  id: String
+  name: String
+  category: String
+  gastronomies: [String!]
+  description: String
+  recipes: [Recipe!]
+  spicy: Int
+  price: Float
+  discount: Float
+  quantity: Int
+  size: Int
+  notation: Int
+  likes: Int
+  placeid: String
+  placename: String
+  placelogo: String
+  placezone: String
+  location: Coordinate
+  picture: Picture
+  menuAvailable: Boolean
+}
+
+type ProductCreateResponse {
+  status: Int
+  created: Boolean
+}
+
+type ProductDeleteResponse {
+  status: Int
+  deleted: Boolean
+}
+
+type ProductDetailResponse {
+  status: Int
+  product: Product!
+}
+
 input ProductInput {
   id: String
   name: String
@@ -110,12 +161,29 @@ input ProductInput {
   placelogo: String
   placezone: String
   location: CoordinateInput
-  picture: String
+  picture: PictureInput
   menuAvailable: Boolean
+}
+
+type ProductListResponse {
+  status: Int
+  products: [Product!]!
+}
+
+type ProductUpdateResponse {
+  status: Int
+  updated: Boolean
 }
 
 type Query {
   places: [Place!]!
+  products: [Product!]!
+}
+
+type Recipe {
+  name: String!
+  code: String!
+  quantity: Float
 }
 
 input RecipeInput {

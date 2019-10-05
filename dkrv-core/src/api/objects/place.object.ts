@@ -1,5 +1,6 @@
 import { Field, Int, ObjectType } from 'type-graphql';
 import { Location } from './location.object';
+import { Product } from './product.object';
 
 @ObjectType()
 export class Place {
@@ -41,4 +42,7 @@ export class Place {
 
   @Field(type => Boolean, { nullable: true })
   temporalyPlace?: boolean;
+
+  @Field(type => [Product], { nullable: true })
+  products?: Product[];
 }

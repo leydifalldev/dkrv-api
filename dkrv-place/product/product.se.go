@@ -3,6 +3,7 @@ package product
 import (
 	context "context"
 	"log"
+	"os"
 	"place/gateway"
 
 	"google.golang.org/grpc"
@@ -10,7 +11,7 @@ import (
 
 //URL is the grpc esearch address
 //var URL = "search-engine:5000"
-var esuri = "0.0.0.0:5500"
+var esuri = os.Getenv("SEARCH_ENGINE")
 
 //StartGRPCService is the function for starting grpc service
 func StartGRPCService(uri string) {

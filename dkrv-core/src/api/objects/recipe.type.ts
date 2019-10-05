@@ -1,4 +1,4 @@
-import { Field, Int, ObjectType } from 'type-graphql';
+import { Field, Int, ObjectType, Float } from 'type-graphql';
 
 @ObjectType()
 export class Recipe {
@@ -8,6 +8,6 @@ export class Recipe {
   @Field(type => String)
   code?: string;
 
-  @Field(type => String, { nullable: true })
+  @Field(type => Float, { nullable: true })
   quantity?: number;
 }
