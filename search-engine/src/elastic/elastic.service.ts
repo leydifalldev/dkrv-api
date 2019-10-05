@@ -3,8 +3,6 @@ import * as elasticsearch from 'elasticsearch';
 import productMapping from '../product/product.mapping';
 import { SearchParams } from 'elasticsearch';
 import { CreateResponse, UpdateResponse, DeleteResponse, DetailResponse, ListResponse } from 'src/types/common.defs';
-import { Product } from 'src/product/product.interfaces';
-import { response } from 'express';
 
 @Injectable()
 export class ElasticService implements OnModuleInit {
@@ -16,7 +14,7 @@ export class ElasticService implements OnModuleInit {
     private mapping: any,
   ) {
     this.esclient = new elasticsearch.Client({
-      host: this.host, /*'http://elasticsearch_1:9200'*/
+      host: 'http://elasticsearch_primary:9200'
     });
   }
 
@@ -135,14 +133,14 @@ export class ElasticService implements OnModuleInit {
         error: 'none',
       };
     } catch (e) {
-        Logger.log(e);
-        return {
-          id: null,
-          payload: false,
-          status: e.statusCode,
-          error: 'level-4',
-        };
-      }
+      Logger.log(e);
+      return {
+        id: null,
+        payload: false,
+        status: e.statusCode,
+        error: 'level-4',
+      };
+    }
   }
 
   async update(params): Promise<UpdateResponse> {
@@ -173,26 +171,26 @@ export class ElasticService implements OnModuleInit {
 
   async delete(id: string): Promise<DeleteResponse> {
     try {
-    const resp = await this.esclient.delete({
-      index: this.index,
-      type: this.type,
-      refresh: 'true',
-      id,
-    });
-    Logger.log(resp);
-    return {
-      status: 200,
-      error: 'none',
-      payload: (resp.result === 'deleted'),
-    };
-  } catch (e) {
-    Logger.log(e);
-    return {
-      status: 500,
-      payload: null,
-      error: 'level-4',
-    };
-  }
+      const resp = await this.esclient.delete({
+        index: this.index,
+        type: this.type,
+        refresh: 'true',
+        id,
+      });
+      Logger.log(resp);
+      return {
+        status: 200,
+        error: 'none',
+        payload: (resp.result === 'deleted'),
+      };
+    } catch (e) {
+      Logger.log(e);
+      return {
+        status: 500,
+        payload: null,
+        error: 'level-4',
+      };
+    }
   }
 
   async get(id: string): Promise<DetailResponse> {
