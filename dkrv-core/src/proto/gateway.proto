@@ -1,0 +1,428 @@
+syntax = "proto3";
+package gateway;
+option go_package = "gateway";
+
+message RequestEmpty {}
+
+message Price {
+  // @inject_tag: bson:"base,omitempty"
+  int64 base = 1;
+  // @inject_tag: bson:"currency,omitempty"
+  string currency = 2;
+}
+
+message Artist {
+  // @inject_tag: bson:"id,omitempty"
+  string id = 1;
+  // @inject_tag: bson:"name,omitempty"
+  string name = 2;
+  // @inject_tag: bson:"picture,omitempty"
+  string picture = 3;
+} 
+
+message Coordinate {
+  // @inject_tag: bson:"lon,omitempty"
+  float lon = 1;
+  // @inject_tag: bson:"lat,omitempty"
+  float lat = 2;
+}
+
+message Accompaniment {
+  // @inject_tag: bson:"name,omitempty"
+  string name = 1;
+}
+
+message Picture {
+  // @inject_tag: bson:"src,omitempty"
+  string src = 1; 
+}
+
+message Gallery {
+  // @inject_tag: bson:"main,omitempty"
+  int32 main = 1;
+  // @inject_tag: bson:"pictures,omitempty"
+  repeated Picture pictures = 2; 
+}
+
+message Category {
+  // @inject_tag: bson:"name,omitempty"
+  string name = 1;
+}
+
+message Location {
+  // @inject_tag: bson:"address,omitempty"
+  string address = 1;
+  // @inject_tag: bson:"cpc,omitempty"
+  string cpc = 2;
+  // @inject_tag: bson:"zone,omitempty"
+  string zone = 3;
+  // @inject_tag: bson:"location,omitempty"
+  Coordinate location = 4;
+}
+
+message Schedule {
+  // @inject_tag: bson:"date,omitempty"
+  float date = 1;
+  // @inject_tag: bson:"start_am,omitempty"
+  float start_am = 2;
+  // @inject_tag: bson:"end_am,omitempty"
+  float end_am = 3;
+  // @inject_tag: bson:"start_pm,omitempty"
+  float start_pm = 4;
+  // @inject_tag: bson:"end_pm,omitempty"
+  float end_pm = 5;
+}
+
+message Recipes {
+  // @inject_tag: bson:"name,omitempty"
+  string name = 1;
+  // @inject_tag: bson:"quantity,omitempty"
+  float quantity = 2;
+}
+
+message Product {
+  // @inject_tag: bson:"id,omitempty"
+  string id = 1;
+  // @inject_tag: bson:"name,omitempty"
+  string name = 2;
+  // @inject_tag: bson:"category,omitempty"
+  string category = 3;
+  // @inject_tag: bson:"gastronomies,omitempty"
+  repeated string gastronomies = 4;
+  // @inject_tag: bson:"description,omitempty"
+  string description = 5;
+  // @inject_tag: bson:"recipes,omitempty"
+  repeated Recipes recipes = 6;
+  // @inject_tag: bson:"spicy,omitempty"
+  int32 spicy = 7;
+  // @inject_tag: bson:"price,omitempty"
+  int32 price = 8;
+  // @inject_tag: bson:"discount,omitempty"
+  float discount = 9;
+  // @inject_tag: bson:"quantity,omitempty"
+  int32 quantity = 10;
+  // @inject_tag: bson:"size,omitempty"
+  string size = 11;
+  // @inject_tag: bson:"notation,omitempty"
+  int32 notation = 12;
+  // @inject_tag: bson:"likes,omitempty"
+  int32 likes = 13;
+  // @inject_tag: bson:"placeid,omitempty"
+  string placeid = 14;
+  // @inject_tag: bson:"placename,omitempty"
+  string placename = 15;
+  // @inject_tag: bson:"placelogo,omitempty"
+  string placelogo = 16;
+  // @inject_tag: bson:"placezone,omitempty"
+  string placezone = 17;
+  // @inject_tag: bson:"location,omitempty"
+  Coordinate location = 18;
+  // @inject_tag: bson:"picture,omitempty"
+  Picture picture = 19;
+  // @inject_tag: bson:"menu_available,omitempty"
+  bool menu_available = 20;
+}
+
+
+message ProductFilter {
+  // @inject_tag: bson:"id,omitempty"
+  string id = 1;
+  // @inject_tag: bson:"name,omitempty"
+  string name = 2;
+  // @inject_tag: bson:"category,omitempty"
+  string category = 3;
+  // @inject_tag: bson:"gastronomies,omitempty"
+  repeated string gastronomies = 4;
+  // @inject_tag: bson:"spicy,omitempty"
+  int32 spicy = 5;
+  // @inject_tag: bson:"price,omitempty"
+  int32 price = 6;
+  // @inject_tag: bson:"discount,omitempty"
+  float discount = 7;
+  // @inject_tag: bson:"placeid,omitempty"
+  string placeid = 8;
+  // @inject_tag: bson:"placename,omitempty"
+  string placename = 9;
+  // @inject_tag: bson:"menu_available,omitempty"
+  bool menu_available = 10;
+}
+
+
+message Place {
+  // @inject_tag: bson:"id,omitempty"
+  string id = 1;
+  // @inject_tag: bson:"name,omitempty"
+  string name = 2;
+  // @inject_tag: bson:"logo,omitempty"
+  string logo = 3;
+  // @inject_tag: bson:"phone,omitempty"
+  string phone = 4;
+  // @inject_tag: bson:"email,omitempty"
+  string email = 5;
+  // @inject_tag: bson:"description,omitempty"
+  string description = 6;
+  // @inject_tag: bson:"gastronomie,omitempty"
+  repeated string gastronomie = 7;
+  // @inject_tag: bson:"location,omitempty"
+  Location location = 8;
+  // @inject_tag: bson:"likes,omitempty"
+  int32 likes = 11;
+  // @inject_tag: bson:"notation,omitempty"
+  int32 notation = 12;
+  // @inject_tag: bson:"schedule,omitempty"
+  repeated Schedule schedule = 16;
+  // @inject_tag: bson:"travel_time,omitempty"
+  int32 travel_time = 18;
+  // @inject_tag: bson:"ocean_near,omitempty"
+  bool ocean_near = 19;
+  // @inject_tag: bson:"temporaly_place,omitempty"
+  bool temporaly_place = 21;
+  // @inject_tag: bson:"categories,omitempty"
+  repeated string categories = 22;
+}
+
+message Event {
+  // @inject_tag: bson:"id,omitempty"
+  string id = 1;
+  // @inject_tag: bson:"name,omitempty"
+  string name = 2;
+  // @inject_tag: bson:"phone,omitempty"
+  string phone = 4;
+  // @inject_tag: bson:"email,omitempty"
+  string email = 5;
+  // @inject_tag: bson:"place,omitempty"
+  Place place = 6;
+  // @inject_tag: bson:"date,omitempty"
+  string date = 7;
+  // @inject_tag: bson:"categories,omitempty"
+  Category categories = 8;
+  // @inject_tag: bson:"description,omitempty"
+  string description = 9;
+  // @inject_tag: bson:"price,omitempty"
+  Price price = 10;
+  // @inject_tag: bson:"nbplace,omitempty"
+  int64 nbplace = 11;
+  // @inject_tag: bson:"likes,omitempty"
+  int64 likes = 12;
+  // @inject_tag: bson:"gallery,omitempty"
+  Gallery gallery = 13;
+  // @inject_tag: bson:"artists,omitempty"
+  repeated Artist artists = 14;
+  // @inject_tag: bson:"hosts,omitempty"
+  repeated Artist hosts = 15;
+}
+
+message ProductListResponse {
+  int32 status = 1;
+  string error = 2;
+  int64 total = 3;
+  repeated Product products = 4;
+}
+
+message ProductCreateRequest {
+  Product product = 1;
+}
+
+message ProductCreateResponse {
+  int32 status = 1;
+  string error = 2;
+  bool created = 4;
+}
+
+message ProductDetailRequest {
+  string id = 4;
+}
+
+message ProductDetailResponse {
+  int32 status = 1;
+  string error = 2;
+  Product product = 3;
+}
+
+message ProductUpdateRequest {
+  Product product = 1;
+}
+
+message ProductUpdateResponse {
+  int32 status = 1;
+  string error = 2;
+  bool updated = 3;
+}
+
+message ProductDeleteRequest {
+  string id = 3;
+}
+
+message ProductDeleteResponse {
+  int32 status = 1;
+  string error = 2;
+  bool deleted = 3;
+}
+
+message SearchParams {
+  string q = 1;
+  int32 from = 2;
+  int32 to = 3;
+  string fromdate = 4;
+  string todate = 5;
+  repeated string category = 6;
+}
+
+message ProductSearchParams {
+  string q = 1;
+  int32 from = 2;
+  int32 to = 3;
+  string fromdate = 4;
+  string todate = 5;
+  repeated string category = 6;
+}
+
+message UpdateLocationRequest {
+  string id = 1;
+  Location payload = 2;
+}
+
+message PlaceListResponse {
+  int32 status = 1;
+  string error = 2;
+  int64 total = 3;
+  repeated Place places = 4;
+}
+
+message PlaceCreateRequest {
+  Place place = 1;
+}
+
+message PlaceCreateResponse {
+  int32 status = 1;
+  string error = 2;
+  bool created = 4;
+}
+
+message PlaceDetailRequest {
+  string id = 4;
+}
+
+message PlaceDetailResponse {
+  int32 status = 1;
+  string error = 2;
+  Place place = 3;
+}
+
+message PlaceUpdateRequest {
+  Place place = 1;
+}
+
+message PlaceUpdateResponse {
+  int32 status = 1;
+  string error = 2;
+  bool updated = 3;
+}
+
+message PlaceDeleteRequest {
+  string id = 3;
+}
+
+message PlaceDeleteResponse {
+  int32 status = 1;
+  string error = 2;
+  bool deleted = 3;
+}
+
+message PlaceSearchParams {
+  string q = 1;
+  int32 from = 2;
+  int32 to = 3;
+  string fromdate = 4;
+  string todate = 5;
+  repeated string category = 6;
+}
+
+message EventListResponse {
+  int32 status = 1;
+  string error = 2;
+  int64 total = 3;
+  repeated Event events = 4;
+}
+
+message EventCreateRequest {
+  Event event = 1;
+}
+
+message EventCreateResponse {
+  int32 status = 1;
+  string error = 2;
+  bool created = 4;
+}
+
+message EventDetailRequest {
+  string id = 4;
+}
+
+message EventDetailResponse {
+  int32 status = 1;
+  string error = 2;
+  Event event = 3;
+}
+
+message EventUpdateRequest {
+  Event event = 1;
+}
+
+message EventUpdateResponse {
+  int32 status = 1;
+  string error = 2;
+  bool updated = 3;
+}
+
+message EventDeleteRequest {
+  string id = 3;
+}
+
+message EventDeleteResponse {
+  int32 status = 1;
+  string error = 2;
+  bool deleted = 3;
+}
+
+message EventSearchParams {
+  string q = 1;
+  int32 from = 2;
+  int32 to = 3;
+  string fromdate = 4;
+  string todate = 5;
+  repeated string category = 6;
+}
+
+service ProductService {
+  rpc Search(SearchParams) returns (ProductListResponse);
+  rpc Get(ProductDetailRequest) returns (ProductDetailResponse);
+  rpc GetByQuery(ProductFilter) returns (ProductListResponse);
+  rpc Add(ProductCreateRequest) returns (ProductCreateResponse);
+  rpc Update(ProductUpdateRequest) returns (ProductUpdateResponse);
+  rpc Delete(ProductDeleteRequest) returns (ProductDeleteResponse);
+}
+
+service PlaceService {
+  rpc Search(SearchParams) returns (PlaceListResponse);
+  rpc Get(PlaceDetailRequest) returns (PlaceDetailResponse);
+  rpc Add(PlaceCreateRequest) returns (PlaceCreateResponse);
+  rpc Update(PlaceUpdateRequest) returns (PlaceUpdateResponse);
+  rpc Delete(PlaceDeleteRequest) returns (PlaceDeleteResponse);
+}
+
+service SearchEngine {
+  rpc Search(ProductSearchParams) returns (ProductListResponse);
+  rpc GetProduct(ProductDetailRequest) returns (ProductDetailResponse);
+  rpc AddProduct(ProductCreateRequest) returns (ProductCreateResponse);
+  rpc UpdateProduct(ProductUpdateRequest) returns (ProductUpdateResponse);
+  rpc DeleteProduct(ProductDeleteRequest) returns (ProductDeleteResponse);
+}
+
+service EventService {
+  rpc Search(EventSearchParams) returns (EventListResponse);
+  rpc Get(EventDetailRequest) returns (EventDetailResponse);
+  rpc Add(EventCreateRequest) returns (EventCreateResponse);
+  rpc Update(EventUpdateRequest) returns (EventUpdateResponse);
+  rpc Delete(EventDeleteRequest) returns (EventDeleteResponse);
+}

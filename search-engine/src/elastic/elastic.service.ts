@@ -1,6 +1,5 @@
 import { Injectable, OnModuleInit, HttpException, Logger } from '@nestjs/common';
 import * as elasticsearch from 'elasticsearch';
-import productMapping from '../product/product.mapping';
 import { SearchParams } from 'elasticsearch';
 import { CreateResponse, UpdateResponse, DeleteResponse, DetailResponse, ListResponse } from 'src/types/common.defs';
 
@@ -14,7 +13,7 @@ export class ElasticService implements OnModuleInit {
     private mapping: any,
   ) {
     this.esclient = new elasticsearch.Client({
-      host: 'http://elasticsearch_primary:9200'
+      host: process.env.ELASTICSEARCH_PRIMARY || 'http://localhost:9200'
     });
   }
 

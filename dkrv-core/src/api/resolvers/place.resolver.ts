@@ -37,7 +37,7 @@ export class PlaceResolver implements OnModuleInit {
   @Mutation(returns => PlaceDetailResponse)
   async getPlace(@Args('id') id: string) {
     Logger.log(id);
-    const response: PlaceDetailResponse = await this.placeService.get({id}).toPromise();
+    const response: PlaceDetailResponse = await this.placeService.get({ id }).toPromise();
     Logger.log(response);
     return response;
   }
@@ -45,7 +45,7 @@ export class PlaceResolver implements OnModuleInit {
   @Mutation(returns => PlaceCreateResponse)
   async createPlace(@Args('place') place: PlaceInput) {
     Logger.log(place);
-    const response: PlaceCreateResponse = await this.placeService.add({place}).toPromise();
+    const response: PlaceCreateResponse = await this.placeService.add({ place }).toPromise();
     Logger.log(response);
     return response;
   }
@@ -53,7 +53,7 @@ export class PlaceResolver implements OnModuleInit {
   @Mutation(returns => PlaceUpdateResponse)
   async updatePlace(@Args('place') place: PlaceInput) {
     Logger.log(place);
-    const response: PlaceUpdateResponse = await this.placeService.update({place}).toPromise();
+    const response: PlaceUpdateResponse = await this.placeService.update({ place }).toPromise();
     Logger.log(response);
     return response;
   }
@@ -61,7 +61,7 @@ export class PlaceResolver implements OnModuleInit {
   @Mutation(returns => PlaceDeleteResponse)
   async deletePlace(@Args('id') id: string) {
     Logger.log(id);
-    const response: PlaceDeleteResponse = await this.placeService.delete({id}).toPromise();
+    const response: PlaceDeleteResponse = await this.placeService.delete({ id }).toPromise();
     Logger.log(response);
     return response;
   }
