@@ -6,6 +6,6 @@ import { LoggingInterceptor } from './shared/logging.interceptor';
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
   app.useGlobalInterceptors(new LoggingInterceptor());
-  await app.listen(3000);
+  await app.listen(5000);
 }
 bootstrap();

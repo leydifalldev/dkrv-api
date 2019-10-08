@@ -2,6 +2,7 @@ package repository
 
 import (
 	"context"
+	"fmt"
 	"log"
 	"os"
 	"time"
@@ -12,7 +13,8 @@ import (
 )
 
 func getClient() *mongo.Client {
-	uri := os.Getenv("MONGO_HOST")
+	uri := fmt.Sprintf("%s%s", "mongodb://", os.Getenv("DKRV_MONGO"))
+	log.Println(uri)
 	clientOptions := options.Client().ApplyURI(uri)
 	// Connect to MongoDB
 	client, err := mongo.Connect(context.TODO(), clientOptions)
