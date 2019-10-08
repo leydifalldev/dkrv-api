@@ -1,15 +1,15 @@
-version: '3'
+version: "3"
 
 services:
   search-engine:
     hostname: search-engine
     build: ./search-engine
     entrypoint: /usr/src/app/startdev.sh
-    volumes: 
+    volumes:
       - ./search-engine/src:/usr/src/app/src:ro
-    ports: 
+    ports:
       - 9500:5500
-    networks: 
+    networks:
       - dkrv-network
     env_file:
       - ./dkrv.env
@@ -17,37 +17,47 @@ services:
       - elasticsearch_primary
   dkrv-place:
     hostname: dkrv-place
-    build: 
+    build:
       context: ./dkrv-place
-    ports: 
+    ports:
       - 5200:5200
       - 5300:5300
       - 5400:5400
-    networks: 
+    networks:
       - dkrv-network
     depends_on:
       - mongo
     env_file:
       - ./dkrv.env
   webserver:
-    build: 
+    build:
       context: ./dkrv-config/nginx
     container_name: webserver
     ports:
       - "9000:80"
     depends_on: # Link services to access http://app and  http://api inside the container
       - dkrv-core
-    networks: 
+    networks:
       - dkrv-network
+  dkrv-bo:
+    hostname: dkrv-bo
+    build:
+      context: ./dkrv-bo
+    ports:
+      - "3000"
+    networks:
+      - dkrv-network
+    env_file:
+      - ./dkrv.env
   dkrv-core:
     hostname: dkrv-core
     build: ./dkrv-core
     entrypoint: /usr/src/app/startdev.sh
     volumes:
       - ./dkrv-core/src:/usr/src/app/src:ro
-    ports: 
+    ports:
       - "5000"
-    networks: 
+    networks:
       - dkrv-network
     env_file:
       - ./dkrv.env
@@ -60,7 +70,7 @@ services:
       - .dkrv-data/mongo:/data/db
     ports:
       - "5600:27017"
-    networks: 
+    networks:
       - dkrv-network
   elasticsearch_primary:
     hostname: elasticsearch_primary
