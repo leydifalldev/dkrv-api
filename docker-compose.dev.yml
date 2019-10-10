@@ -44,7 +44,7 @@ services:
     build:
       context: ./dkrv-bo
     ports:
-      - "3000"
+      - "3200:3000"
     networks:
       - dkrv-network
     env_file:

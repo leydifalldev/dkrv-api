@@ -1,24 +1,17 @@
 import React from "react";
+import 'materialize-css/dist/css/materialize.min.css';
 import logo from "./logo.svg";
+import 'jquery';
+import 'materialize-css/dist/js/materialize.js';
 import "./App.css";
+import { Modal, Button } from 'react-materialize';
+import { MainLayout } from './layouts/main';
 
 function App() {
+  const trigger = <Button>Open Modal</Button>;
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code> src / App.js </code> and save to reload.{" "}
-        </p>{" "}
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React{" "}
-        </a>{" "}
-      </header>{" "}
+      <MainLayout/>
     </div>
   );
 }
