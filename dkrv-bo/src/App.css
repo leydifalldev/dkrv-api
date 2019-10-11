@@ -20,3 +20,25 @@
 .App-link {
   color: #09d3ac;
 }
+
+.main-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.side-nav-container {
+  width: 250px;
+}
+
+.content-container {
+  flex-grow: 2;
+  background: #09d3ac;
+  height: 1000px;
+  padding: 0px !important;
+}
+
+.nav-wrapper {
+  padding: 0px 25px;
+}
+
+.nav-title {}
