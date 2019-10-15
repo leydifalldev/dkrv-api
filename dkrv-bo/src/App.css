@@ -31,7 +31,7 @@
 
 .side-nav-container {
   width: 290px;
-  max-width: 200px; 
+  max-width: 200px;
 }
 
 .content-container {
@@ -65,4 +65,9 @@
 
 .sidenav {
   width: 200px !important;
+}
+
+.tabs .col .row {
+  margin-left: 0px !important;
+  margin-right: 0px !important;
 }
