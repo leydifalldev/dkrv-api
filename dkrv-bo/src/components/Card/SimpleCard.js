@@ -9,7 +9,7 @@ export const SimpleCard = ({ label, img }) => {
         <img src={src || noPicture} onError={e => setSrc(noPicture)} />
       </div>
       <div style={titleStyle} className="card-content">
-        <span>{label || "undefine"}</span>
+        <span>{label}</span>
       </div>
     </div>
   );

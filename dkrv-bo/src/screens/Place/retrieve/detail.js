@@ -3,26 +3,28 @@ import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { Tabs, Tab } from "react-materialize";
 import { RETRIEVE_PLACE_DETAIL } from "../../../network/index";
-import { SimpleCard } from "../../../components/Card";
+import { SimpleCard } from "../../components/Card";
 import { LikesStatCard, TotalVisitCard } from "../../components/Card";
 
 export const PlaceDetail = () => {
   let { id } = useParams();
 
-  const { loading, error, place } = useQuery(RETRIEVE_PLACE_DETAIL, {
+  const { loading, error, data } = useQuery(RETRIEVE_PLACE_DETAIL, {
     variables: { id }
   });
 
-  return (
+  return data ? (
     <div className="row">
       <div className="col s3">
-        <SimpleCard label={"name"} />
+        <SimpleCard label={data.getPlace.place.name} />
       </div>
       <div className="col s9">
         <StatPanel />
         <PlaceInfoTabs />
       </div>
     </div>
+  ) : (
+    <span>Veuillez patientez svp</span>
   );
 };
 
