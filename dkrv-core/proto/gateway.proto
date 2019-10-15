@@ -179,6 +179,8 @@ message Place {
   bool temporaly_place = 21;
   // @inject_tag: bson:"categories,omitempty"
   repeated string categories = 22;
+  // @inject_tag: bson:"picture,omitempty"
+  string picture = 23;
 }
 
 message Event {

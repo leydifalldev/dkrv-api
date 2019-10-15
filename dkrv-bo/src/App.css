@@ -21,20 +21,23 @@
   color: #09d3ac;
 }
 
-.main-container {
+#body-container {
   display: flex;
-  flex-direction: row;
+}
+
+.navbar-fixed {
+  z-index: 1005;
 }
 
 .side-nav-container {
-  width: 250px;
+  width: 290px;
+  max-width: 200px; 
 }
 
 .content-container {
   flex-grow: 2;
-  background: #09d3ac;
   height: 1000px;
-  padding: 0px !important;
+  padding: 20px !important;
 }
 
 .nav-wrapper {
@@ -42,3 +45,24 @@
 }
 
 .nav-title {}
+
+.collapsible {
+  margin: 20px 20px;
+}
+
+.accordion-label-info {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  height: 30px;
+  margin-bottom: 10px;
+}
+
+.accordion-label-info .info {
+  margin-left: 5px;
+}
+
+.sidenav {
+  width: 200px !important;
+}

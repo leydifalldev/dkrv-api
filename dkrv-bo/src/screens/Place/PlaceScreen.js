@@ -1,14 +1,18 @@
 import React from "react";
-import { MainTopNav } from "../../components/Nav";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
+import { PlaceList, PlaceDetail } from './retrieve';
 
 export const PlaceScreen = () => {
   let { path } = useRouteMatch();
+  console.log('path', path);
   return (
-    <Switch>
-      <Route exact path={path}>
-        <MainTopNav />
-      </Route>
-    </Switch>
+    <div>
+      <Switch>
+        <Route path={`${path}/list`}>
+          <PlaceList />
+        </Route>
+        <Route path={`${path}/:id`} children={<PlaceDetail/>}/>
+      </Switch>
+    </div>
   );
 };

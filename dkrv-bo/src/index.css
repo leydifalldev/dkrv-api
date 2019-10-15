@@ -7,10 +7,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-.sidenav {
-  width: 250px !important;
-}
-
 .main-container {
   padding: 0px !important;
 }

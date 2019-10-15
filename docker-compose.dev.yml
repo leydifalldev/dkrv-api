@@ -47,8 +47,13 @@ services:
       - "3200:3000"
     networks:
       - dkrv-network
+    volumes:
+      - ./dkrv-bo/src:/app/src:ro
+      - ./dkrv-bo/public:/app/public:ro
     env_file:
       - ./dkrv.env
+    depends_on:
+      - dkrv-core
   dkrv-core:
     hostname: dkrv-core
     build: ./dkrv-core
@@ -67,7 +72,7 @@ services:
     container_name: mongo
     image: mongo
     volumes:
-      - .dkrv-data/mongo:/data/db
+      - ./dkrv-data/mongo:/data/db
     ports:
       - "5600:27017"
     networks:

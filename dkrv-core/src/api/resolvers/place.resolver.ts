@@ -34,7 +34,7 @@ export class PlaceResolver implements OnModuleInit {
     return response.places || [];
   }
 
-  @Mutation(returns => PlaceDetailResponse)
+  @Query(returns => PlaceDetailResponse)
   async getPlace(@Args('id') id: string) {
     Logger.log(id);
     const response: PlaceDetailResponse = await this.placeService.get({ id }).toPromise();

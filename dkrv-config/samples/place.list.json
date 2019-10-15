@@ -1,0 +1,72 @@
+[{
+  gastronomie: [
+    "Japonnaise"
+  ],
+  name: "La gallete",
+  logo: "/no-logo.jpg",
+  phone: "221.878.44.33",
+  email: "direction@lagalette.com",
+  description: "La galette est une boulangerie",
+  location: {
+    address: "12 av pompidou, dakar",
+    cpc: "12 av pompidou, dakar",
+    zone: "Plateau",
+    coordinate: {
+      lat: 2.3
+      lng: 3
+    }
+  },
+  likes: 10,
+  notation: 10,
+  travelTime: 0,
+  oceanNear: false,
+  temporalyPlace: false
+},
+{
+  gastronomie: [
+    "Kaolackoise"
+  ],
+  name: "Sombi",
+  logo: "/no-logo.jpg",
+  phone: "221.978.44.33",
+  email: "direction@testa.com",
+  description: "Testa est une boulangerie",
+  location: {
+    address: "12 av degaulle, kaolack",
+    cpc: "12 av degaulle, kaolack",
+    zone: "Centre ville",
+    coordinate: {
+      lat: 2.3
+      lng: 3
+    }
+  },
+  likes: 10,
+  notation: 10,
+  travelTime: 0,
+  oceanNear: false,
+  temporalyPlace: false
+},
+{
+  gastronomie: [
+    "Italienne"
+  ],
+  name: "Pizza King",
+  logo: "/no-logo.jpg",
+  phone: "221.908.44.33",
+  email: "direction@pizza-king.com",
+  description: "Pizza King est une pizzeria",
+  location: {
+    address: "12 av de touba, Dakar",
+    cpc: "12 av de touba, kaolack",
+    zone: "Centre ville",
+    coordinate: {
+      lat: 2.3
+      lng: 3
+    }
+  },
+  likes: 10,
+  notation: 10,
+  travelTime: 0,
+  oceanNear: false,
+  temporalyPlace: false
+}]
