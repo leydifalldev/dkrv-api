@@ -1,7 +1,7 @@
 import React from "react";
 import { Formik } from "formik";
 import * as Yup from "yup";
-import { TextInput, TextArea } from "../../..";
+import { TextInput, TextArea } from "../../components/FormFields";
 
 const Form = props => {
   const {
@@ -15,7 +15,7 @@ const Form = props => {
   } = props;
   return (
     <form className="row" onSubmit={handleSubmit}>
-      <div className="col-md-6">
+      <div className="col s6">
         <TextInput
           label={"Nom Restaurant"}
           name={"name"}
@@ -53,7 +53,7 @@ const Form = props => {
           touched={touched.address}
         />
       </div>
-      <div className="col-md-6">
+      <div className="col s6">
         <TextInput
           label={"Nom gérant"}
           name={"manager"}
@@ -94,7 +94,7 @@ const validationSchema = Yup.object().shape({
   manager: Yup.string().required("Veuillez renseigner le nom du gérant")
 });
 
-class StepOne extends React.Component {
+export class CreatePlaceScreen extends React.Component {
   render() {
     const { initialValues, onSubmit, prev } = this.props;
     return (
@@ -107,5 +107,3 @@ class StepOne extends React.Component {
     );
   }
 }
-
-export default StepOne;

@@ -3,10 +3,10 @@ import { Button, Icon } from "react-materialize";
 
 export const MainTopNav = ({ title, onClick }) => (
   <div className="navbar-fixed">
-    <nav style={{color: '#372374'}}>
+    <nav style={{ color: "#372374" }}>
       <div className="nav-wrapper">
-        <span href="#" className="left">
-          {title}
+        <span href="#" className="left navbar-top-title">
+          DKRV
         </span>
         <ul id="nav-mobile" class="right hide-on-med-and-down">
           <li>
@@ -28,5 +28,5 @@ export const MainTopNav = ({ title, onClick }) => (
 );
 
 const navTopStyle = {
-  color: '#372374',
-}
+  color: "#372374"
+};

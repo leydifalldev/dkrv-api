@@ -9,21 +9,22 @@ const TextInput = ({
   handleBlur,
   value
 }) => (
-    <Fragment>
-      <div className="d-flex justify-content-between">
-        <label htmlFor="name">{label}</label>
-        {error && touched && <span className="h-75 align-self-center badge badge-danger">{error}</span>}
+  <Fragment>
+    <div className="input-field">
+      <div className="">
+        {error && touched && <span className="">{error}</span>}
       </div>
-      <div className="form-group">
-        <input
-          type="text"
-          className="form-control form-control-lg"
-          onChange={handleChange}
-          onBlur={handleBlur}
-          value={value}
-          name={name}
-        />
-      </div>
-    </Fragment>
-  )
+      <input
+        placeholder="Placeholder"
+        id="first_name"
+        type="text"
+        class="validate"
+        onChange={handleChange}
+        onBlur={handleBlur}
+        value={value}
+        name={name}
+      />
+    </div>
+  </Fragment>
+);
 export default TextInput;

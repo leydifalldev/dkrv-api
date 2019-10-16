@@ -6,6 +6,24 @@
   height: 40vmin;
 }
 
+/*NAVBAR*/
+.sidenav-item-link {
+  margin-bottom: 20px;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #6F6F6F;
+}
+
+.navbar-top-title {
+  font-size: 19px;
+}
+
+.breadcrumb {
+  text-align: left;
+}
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -70,4 +88,35 @@
 .tabs .col .row {
   margin-left: 0px !important;
   margin-right: 0px !important;
+}
+
+.collection-header {
+  text-align: right;
+}
+
+.collection-label {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.collection-item-content {
+  display: flex;
+  justify-content: space-between;
+}
+
+.collection.with-header .collection-item {
+  font-weight: 600;
+}
+
+.schedule-table {
+  line-height: 0.5;
+}
+
+.schedule-table td,
+.schedule-table th {
+  text-align: center;
+}
+
+.collapsible-without-margin {
+  margin: 0px;
 }

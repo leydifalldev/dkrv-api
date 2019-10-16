@@ -1,15 +1,20 @@
 import React, { useState } from "react";
 
-export const SimpleCard = ({ label, img }) => {
+export const SimpleCard = ({ title, label, img }) => {
   const [src, setSrc] = useState(img);
   const noPicture = "/assets/img/no-img.png";
   return (
     <div className="card">
       <div className="card-image">
         <img src={src || noPicture} onError={e => setSrc(noPicture)} />
+        <span class="card-title">Card Title</span>
+        <a class="btn-floating halfway-fab waves-effect waves-light red">
+          <i class="material-icons">add</i>
+        </a>
       </div>
-      <div style={titleStyle} className="card-content">
-        <span>{label}</span>
+      <div className="card-content">
+        <span class="card-title">{title}</span>
+        <p>{label}</p>
       </div>
     </div>
   );

@@ -23,7 +23,7 @@ export class Place {
   description?: string;
 
   @Field(type => String, { nullable: true })
-  gastronomie?: string[];
+  gastronomies?: string[];
 
   @Field(type => Location, { nullable: true })
   location?: Location;
