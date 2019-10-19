@@ -1,9 +1,11 @@
-import gql from 'graphql-tag';
+import gql from "graphql-tag";
 
 export const RETRIEVE_PLACE_LIST = gql`
-  query{
-    places{
+  query {
+    places {
       id
       name
+      description
     }
-}`;
+  }
+`;

@@ -1,61 +1,111 @@
-import React, { useState, useEffect } from "react";
-import { SimpleCard } from "../../components/Card";
-import {
-  Tabs,
-  Tab,
-  Collapsible,
-  CollapsibleItem,
-  Icon
-} from "react-materialize";
+import React from "react";
+import PropTypes from "prop-types";
+import { makeStyles, useTheme } from "@material-ui/core/styles";
+import Grid from "@material-ui/core/Grid";
+import Tabs from "@material-ui/core/Tabs";
+import Tab from "@material-ui/core/Tab";
+import Paper from "@material-ui/core/Paper";
+import Typography from "@material-ui/core/Typography";
+import Box from "@material-ui/core/Box";
+import { ExpandedCard } from "../../components/Card";
+import SwipeableViews from "react-swipeable-views";
+import AppBar from "@material-ui/core/AppBar";
 
-export const CollectionPanel = () => (
-  <div className="row">
-    <div className="col s2">
-      <SimpleCard style={cardStyle} />
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <Typography
+      component="div"
+      role="tabpanel"
+      hidden={value !== index}
+      id={`scrollable-auto-tabpanel-${index}`}
+      aria-labelledby={`scrollable-auto-tab-${index}`}
+      {...other}
+    >
+      <Box p={3}>{children}</Box>
+      <Typography>fdfd</Typography>
+    </Typography>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.any.isRequired,
+  value: PropTypes.any.isRequired
+};
+const a11yProps = index => {
+  return {
+    id: `full-width-tab-${index}`,
+    "aria-controls": `full-width-tabpanel-${index}`
+  };
+};
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.palette.background.paper
+  }
+}));
+
+export const CollectionPanel = () => {
+  const classes = useStyles();
+  const theme = useTheme();
+  const [value, setValue] = React.useState(0);
+
+  const handleChange = (event, newValue) => {
+    setValue(newValue);
+  };
+
+  const handleChangeIndex = index => {
+    setValue(index);
+  };
+
+  return (
+    <div className={classes.root}>
+      <AppBar position="static" color="default">
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          indicatorColor="primary"
+          textColor="primary"
+          variant="scrollable"
+          scrollButtons="auto"
+          aria-label="scrollable auto tabs example"
+        >
+          <Tab label="Crêpes" {...a11yProps(0)} />
+          <Tab label="Pizzas" {...a11yProps(1)} />
+          <Tab label="Hamburger" {...a11yProps(2)} />
+          <Tab label="Charwarma" {...a11yProps(3)} />
+        </Tabs>
+      </AppBar>
+      <SwipeableViews
+        axis={theme.direction === "rtl" ? "x-reverse" : "x"}
+        index={value}
+        onChangeIndex={handleChangeIndex}
+      >
+        <TabPanel value={value} index={0} dir={theme.direction}>
+          <Grid container spacing={3}>
+            <Grid item xs={12} sm={3}>
+              <ExpandedCard />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <ExpandedCard />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <ExpandedCard />
+            </Grid>
+            <Grid item xs={12} sm={3}>
+              <ExpandedCard />
+            </Grid>
+          </Grid>
+        </TabPanel>
+        <TabPanel value={value} index={1} dir={theme.direction}>
+          Item Two
+        </TabPanel>
+        <TabPanel value={value} index={2} dir={theme.direction}>
+          Item Three
+        </TabPanel>
+      </SwipeableViews>
     </div>
-  </div>
-);
-
-export const PlaceCollectionTabs = () => (
-  <Tabs className="tabs" options={{ swipeable: true }}>
-    <Tab title="Fast food" className="">
-      <PlaceCollectionPanel />
-    </Tab>
-    <Tab title="Desserts" className="red">
-      Test 2
-    </Tab>
-    <Tab title="Boissons" className="green">
-      Test 3
-    </Tab>
-  </Tabs>
-);
-
-const PlaceCollectionPanel = () => (
-  <Collapsible className="collapsible-without-margin">
-    <CollapsibleItem header="Burger" icon={<Icon />}>
-      <CollectionPanel />
-    </CollapsibleItem>
-    <CollapsibleItem
-      header="Yeah, you do seem to have a little 'shit creek' ac…"
-      icon={<Icon />}
-    >
-      Yeah, you do seem to have a little 'shit creek' action going.
-    </CollapsibleItem>
-    <CollapsibleItem
-      header="You know, FYI, you can buy a paddle. Did you not p…"
-      icon={<Icon />}
-    >
-      You know, FYI, you can buy a paddle. Did you not plan for this
-      contingency?
-    </CollapsibleItem>
-  </Collapsible>
-);
-
-const cardStyle = {
-  border: "1px solid rgba(0,0,0,.125)",
-  transition: "none",
-  backgroundColor: "#FFFFFF",
-  boxShadow: "0 .125rem .25rem rgba(0,0,0,.075)",
-  backgroundClip: "border-box",
-  borderRadius: ".25em"
+  );
 };

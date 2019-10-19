@@ -1,30 +1,18 @@
 import React from "react";
-import { Button, Icon, Breadcrumb } from "react-materialize";
-import { MainSideNav } from "./components/Nav";
+import Button from "@material-ui/core/Button";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PlaceScreen } from "./Place/PlaceScreen";
+import { TopNavBar } from "./_views/TopNavBar";
 
 export const MainLayout = () => (
   <Router class="main-container">
-    <MainTopNav title="DKRV" />
+    <TopNavBar />
     <div id="body-container">
-      <div class="side-nav-container">
-        <MainSideNav />
-      </div>
       <div class="content-container">
-        <MainBreadcrumb />
         <ContentLayout />
       </div>
     </div>
   </Router>
-);
-
-const MainBreadcrumb = () => (
-  <Breadcrumb className="breadcrumb teal">
-    <a href="#">One</a>
-    <a href="#">Two</a>
-    <a href="#">Three</a>
-  </Breadcrumb>
 );
 
 export const MainTopNav = ({ title, onClick }) => (
@@ -38,7 +26,6 @@ export const MainTopNav = ({ title, onClick }) => (
           <li>
             <Button style={loginButtonStyle} node="a">
               Déconnexion
-              <Icon right>fingerprint</Icon>
             </Button>
           </li>
         </ul>

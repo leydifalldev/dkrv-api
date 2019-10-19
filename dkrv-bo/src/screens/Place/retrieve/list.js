@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { useQuery } from "@apollo/react-hooks";
-import { SimpleCard } from "../../../components/Card";
+import { Thumbnail } from "../../components/Thumbnails";
 import { RETRIEVE_PLACE_LIST } from "../../../network";
 import { Link } from "react-router-dom";
 
@@ -25,7 +25,12 @@ const ListCard = ({ items }) => (
     {items.map(item => (
       <div className="col s2">
         <Link to={{ pathname: "/place/" + item.id }} key={item.id}>
-          <SimpleCard style={cardStyle} key={item.id} item={item} />
+          <Thumbnail
+            style={cardStyle}
+            key={item.id}
+            title={item.name}
+            description={item.description}
+          />
         </Link>
       </div>
     ))}

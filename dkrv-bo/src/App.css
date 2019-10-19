@@ -40,7 +40,7 @@
 }
 
 #body-container {
-  display: flex;
+  display: inline;
 }
 
 .navbar-fixed {
@@ -48,14 +48,35 @@
 }
 
 .side-nav-container {
-  width: 290px;
-  max-width: 200px;
+  height: 100%;
+  /* Full-height: remove this if you want "auto" height */
+  width: 160px;
+  /* Set the width of the sidebar */
+  position: fixed;
+  /* Fixed Sidebar (stay in place on scroll) */
+  z-index: 1;
+  /* Stay on top */
+  top: 0;
+  /* Stay at the top */
+  left: 0;
+  background-color: #111;
+  /* Black */
+  overflow-x: hidden;
+  /* Disable horizontal scroll */
+  padding-top: 20px;
 }
 
 .content-container {
-  flex-grow: 2;
-  height: 1000px;
   padding: 20px !important;
+  margin-left: 200px;
+}
+
+.place-collection-tab {
+  height: 100%;
+}
+
+.place-info-tab {
+  height: 500px;
 }
 
 .nav-wrapper {
@@ -108,9 +129,7 @@
   font-weight: 600;
 }
 
-.schedule-table {
-  line-height: 0.5;
-}
+.schedule-table {}
 
 .schedule-table td,
 .schedule-table th {

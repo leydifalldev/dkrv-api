@@ -1,5 +1,5 @@
 export { CardPanel } from "./Panel";
-export { SimpleCard } from "./SimpleCard";
+export { ExpandedCard } from "./ExpandedCard";
 export { LikesStatCard } from "./Likes";
 export { StatCard } from "./Stat";
 export { NotationPanel } from "./Notation";
