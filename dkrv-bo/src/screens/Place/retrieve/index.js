@@ -1,2 +1,2 @@
-export { PlaceDetail } from './detail';
-export { PlaceList } from './list';
+export { PlaceDetail } from "./detail";
+export { PlaceListLayout } from "./list";

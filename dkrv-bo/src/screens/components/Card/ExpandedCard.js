@@ -19,7 +19,7 @@ import Skeleton from "@material-ui/lab/Skeleton";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 345
+    maxWidth: 380
   },
   media: {
     height: 0,
@@ -40,7 +40,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const ExpandedCard = ({ picture }) => {
+export const ExpandedCard = ({ picture, ...props }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -49,7 +49,7 @@ export const ExpandedCard = ({ picture }) => {
   };
 
   return (
-    <Card className={classes.card}>
+    <Card classes={classes.card}>
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>

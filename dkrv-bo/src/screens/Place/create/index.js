@@ -1,1 +1,1 @@
-export { CreatePlaceScreen } from "./place.addmeta";
+export { CreatePlaceModal } from "./_views/ModalForm";

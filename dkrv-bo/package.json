@@ -12,6 +12,7 @@
     "@material-ui/lab": "^4.0.0-alpha.29",
     "apollo-boost": "^0.4.4",
     "formik": "^1.5.8",
+    "formik-material-ui": "^0.0.22",
     "graphql": "^14.5.8",
     "jquery": "^3.4.1",
     "react": "^16.10.2",

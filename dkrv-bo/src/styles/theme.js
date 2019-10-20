@@ -20,7 +20,6 @@ export const theme = createMuiTheme({
   overrides: {
     MuiPaper: {
       root: {
-        backgroundColor: "transparent",
         boxShadow: "none !important"
       }
     },
@@ -33,7 +32,25 @@ export const theme = createMuiTheme({
     },
     MuiBox: {
       root: {
-        backgroundColor: "transparent"
+        backgroundColor: "transparent",
+        padding: 24
+      }
+    },
+    MuiList: {
+      root: {
+        boxShadow: "0 0.75rem 1.5rem rgba(18,38,63,.03) !important",
+        border: "1px solid #edf2f9"
+      }
+    },
+    MuiListItemText: {
+      primary: {
+        color: "#F76D1E",
+        fontWeight: 600
+      },
+      secondary: {
+        color: "#000000",
+        fontWeight: 500,
+        fontSize: "17px"
       }
     }
   },

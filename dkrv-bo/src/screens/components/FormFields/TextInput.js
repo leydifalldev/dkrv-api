@@ -1,30 +1,50 @@
 import React, { Fragment } from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import IconButton from "@material-ui/core/IconButton";
+import clsx from "clsx";
+import InputAdornment from "@material-ui/core/InputAdornment";
+import TextField from "@material-ui/core/TextField";
 
-const TextInput = ({
+const useStyles = makeStyles(theme => ({
+  root: {
+    display: "flex",
+    flexWrap: "wrap"
+  },
+  margin: {
+    margin: theme.spacing(1)
+  },
+  textField: {
+    flexBasis: 200
+  }
+}));
+
+export const TextInput = ({
   label,
   name,
   error,
+  placeholder,
   touched,
+  endornment,
   handleChange,
   handleBlur,
   value
-}) => (
-  <Fragment>
-    <div className="input-field">
-      <div className="">
-        {error && touched && <span className="">{error}</span>}
-      </div>
-      <input
-        placeholder="Placeholder"
-        id="first_name"
-        type="text"
-        class="validate"
-        onChange={handleChange}
-        onBlur={handleBlur}
-        value={value}
-        name={name}
-      />
-    </div>
-  </Fragment>
-);
+}) => {
+  const classes = useStyles();
+  return (
+    <TextField
+      id={name}
+      className={clsx(classes.margin, classes.textField)}
+      variant="outlined"
+      label={label}
+      value={value}
+      onChange={handleChange}
+      helperText={name}
+      InputProps={{
+        endAdornment: endornment ? (
+          <InputAdornment position="end">{endornment}</InputAdornment>
+        ) : null
+      }}
+    />
+  );
+};
 export default TextInput;

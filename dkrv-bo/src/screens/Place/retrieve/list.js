@@ -2,8 +2,15 @@ import React, { Fragment } from "react";
 import { useQuery } from "@apollo/react-hooks";
 import { Thumbnail } from "../../components/Thumbnails";
 import { RETRIEVE_PLACE_LIST } from "../../../network";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import { SearchNavBar } from "../_views/SearchNavBar";
 
+export const PlaceListLayout = () => (
+  <Fragment>
+    <SearchNavBar />
+    <PlaceList />
+  </Fragment>
+);
 export const PlaceList = () => {
   const { loading, error, data } = useQuery(RETRIEVE_PLACE_LIST);
   console.log(data);
@@ -20,22 +27,29 @@ const ErrorPanel = () => (
   </div>
 );
 
-const ListCard = ({ items }) => (
-  <div className="row">
-    {items.map(item => (
-      <div className="col s2">
-        <Link to={{ pathname: "/place/" + item.id }} key={item.id}>
+const ListCard = ({ items }) => {
+  let history = useHistory();
+
+  const goTo = id => {
+    history.push(`/place/${id}`);
+  };
+
+  return (
+    <div className="row">
+      {items.map(item => (
+        <div className="col s2">
           <Thumbnail
+            goTo={() => goTo(item.id)}
             style={cardStyle}
             key={item.id}
             title={item.name}
             description={item.description}
           />
-        </Link>
-      </div>
-    ))}
-  </div>
-);
+        </div>
+      ))}
+    </div>
+  );
+};
 
 const placeContainerStyle = {
   backgroundColor: "#f8f9fa !important"

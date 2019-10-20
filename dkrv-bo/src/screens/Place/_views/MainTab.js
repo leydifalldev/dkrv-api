@@ -7,8 +7,11 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
+import { VerticalTabs } from "./VerticalTab";
 import { CollectionPanel } from "./CollectionPanel";
 import { ScheduleTable } from "./Schedule";
+import { ListProductsPanel } from "./ListProductPanel";
+import { EventsPanel } from "./EventsPanel";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -44,13 +47,10 @@ const useStyles = makeStyles(theme => ({
   root: {
     backgroundColor: theme.palette.background.paper,
     width: "%100"
-  },
-  MuiBox: {
-    root: {}
   }
 }));
 
-export const MainTab = () => {
+export const MainTab = ({ data }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -74,7 +74,7 @@ export const MainTab = () => {
           variant="fullWidth"
           aria-label="full width tabs example"
         >
-          <Tab label="Services" {...a11yProps(0)} />
+          <Tab label="Products" {...a11yProps(0)} />
           <Tab label="Évènements" {...a11yProps(1)} />
           <Tab label="Horaires" {...a11yProps(2)} />
         </Tabs>
@@ -83,15 +83,12 @@ export const MainTab = () => {
         axis={theme.direction === "rtl" ? "x-reverse" : "x"}
         index={value}
         onChangeIndex={handleChangeIndex}
-        classes={classes.MuiBox.root}
       >
         <TabPanel value={value} index={0} dir={theme.direction}>
-          <CollectionPanel />
-          <CollectionPanel />
-          <CollectionPanel />
+          <ListProductsPanel products={data.products} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <ScheduleTable />
+          <EventsPanel />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           <ScheduleTable />

@@ -1,7 +1,6 @@
 import React from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import { PlaceList, PlaceDetail } from "./retrieve";
-import { CreatePlaceScreen } from "./create";
+import { PlaceListLayout, PlaceDetail } from "./retrieve";
 
 export const PlaceScreen = () => {
   let { path } = useRouteMatch();
@@ -10,10 +9,7 @@ export const PlaceScreen = () => {
     <div>
       <Switch>
         <Route path={`${path}/list`}>
-          <PlaceList />
-        </Route>
-        <Route path={`${path}/create`}>
-          <CreatePlaceScreen />
+          <PlaceListLayout />
         </Route>
         <Route path={`${path}/:id`} children={<PlaceDetail />} />
       </Switch>
