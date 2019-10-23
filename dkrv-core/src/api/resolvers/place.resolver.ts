@@ -1,7 +1,17 @@
-import { Resolver, Query, Mutation, Args, ResolveProperty, Parent } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveProperty,
+  Parent,
+} from '@nestjs/graphql';
 import { Logger, OnModuleInit } from '@nestjs/common';
 import { Client, ClientGrpc } from '@nestjs/microservices';
-import { PlaceGrpcClientOptions, ProductGrpcClientOptions } from '../../gateway';
+import {
+  PlaceGrpcClientOptions,
+  ProductGrpcClientOptions,
+} from '../../gateway';
 import { Observable } from 'rxjs';
 import {
   Place,
@@ -23,13 +33,19 @@ export class PlaceResolver implements OnModuleInit {
   private productService: IProductService;
 
   onModuleInit() {
-    this.placeService = this.placeclient.getService<IPlaceService>('PlaceService');
-    this.productService = this.productclient.getService<IProductService>('ProductService');
+    this.placeService = this.placeclient.getService<IPlaceService>(
+      'PlaceService',
+    );
+    this.productService = this.productclient.getService<IProductService>(
+      'ProductService',
+    );
   }
 
   @Query(returns => [Place])
   async places(): Promise<Place[]> {
-    const response: PlaceListResponse = await this.placeService.search({}).toPromise();
+    const response: PlaceListResponse = await this.placeService
+      .search({})
+      .toPromise();
     Logger.log(response);
     return response.places || [];
   }
@@ -37,7 +53,9 @@ export class PlaceResolver implements OnModuleInit {
   @Query(returns => Place)
   async getPlace(@Args('id') id: string) {
     Logger.log(id);
-    const response: PlaceDetailResponse = await this.placeService.get({ id }).toPromise();
+    const response: PlaceDetailResponse = await this.placeService
+      .get({ id })
+      .toPromise();
     Logger.log(response);
     return response.place;
   }
@@ -45,15 +63,19 @@ export class PlaceResolver implements OnModuleInit {
   @Mutation(returns => Boolean)
   async createPlace(@Args('place') place: PlaceInput) {
     Logger.log(place);
-    const response: PlaceCreateResponse = await this.placeService.add({ place }).toPromise();
+    const response: PlaceCreateResponse = await this.placeService
+      .add({ place })
+      .toPromise();
     Logger.log(response);
-    return response.created;
+    return response.payload;
   }
 
   @Mutation(returns => Boolean)
   async updatePlace(@Args('place') place: PlaceInput) {
     Logger.log(place);
-    const response: PlaceUpdateResponse = await this.placeService.update({ place }).toPromise();
+    const response: PlaceUpdateResponse = await this.placeService
+      .update({ place })
+      .toPromise();
     Logger.log(response);
     return response.updated;
   }
@@ -61,7 +83,9 @@ export class PlaceResolver implements OnModuleInit {
   @Mutation(returns => Boolean)
   async deletePlace(@Args('id') id: string) {
     Logger.log(id);
-    const response: PlaceDeleteResponse = await this.placeService.delete({ id }).toPromise();
+    const response: PlaceDeleteResponse = await this.placeService
+      .delete({ id })
+      .toPromise();
     Logger.log(response);
     return response.deleted;
   }
@@ -70,7 +94,9 @@ export class PlaceResolver implements OnModuleInit {
   async products(@Parent() place: Place) {
     const { id } = place;
     Logger.log(id);
-    const response = await this.productService.getByQuery({ placeid: id }).toPromise();
+    const response = await this.productService
+      .getByQuery({ placeid: id })
+      .toPromise();
     return response.products || [];
   }
 

@@ -59,6 +59,7 @@ func (s *Server) Get(ctx context.Context, req *gateway.PlaceDetailRequest) (*gat
 //Add allows to add info
 func (s *Server) Add(ctx context.Context, req *gateway.PlaceCreateRequest) (*gateway.PlaceCreateResponse, error) {
 	c := repository.GetRepository("place", "place")
+	var payload = "null"
 	place := req.GetPlace()
 	uuid, err := uuid.NewUUID()
 	if err != nil {
@@ -66,11 +67,14 @@ func (s *Server) Add(ctx context.Context, req *gateway.PlaceCreateRequest) (*gat
 	}
 	place.Id = uuid.String()
 	res, status, errc := c.Create(place)
-
+	if res {
+		payload = place.Id
+	}
+	log.Println(payload)
 	return &gateway.PlaceCreateResponse{
 		Status:  status,
 		Error:   errc,
-		Created: res,
+		Payload: payload,
 	}, nil
 }
 

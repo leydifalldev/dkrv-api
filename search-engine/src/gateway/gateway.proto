@@ -296,7 +296,7 @@ message PlaceCreateRequest {
 message PlaceCreateResponse {
   int32 status = 1;
   string error = 2;
-  bool created = 4;
+  string payload = 3;
 }
 
 message PlaceDetailRequest {

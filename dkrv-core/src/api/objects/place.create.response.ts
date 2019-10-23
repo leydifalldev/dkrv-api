@@ -6,5 +6,5 @@ export class PlaceCreateResponse {
   status: number;
 
   @Field(type => Boolean, { nullable: true })
-  created: boolean;
+  payload: string;
 }

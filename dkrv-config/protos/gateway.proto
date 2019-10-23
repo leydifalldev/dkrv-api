@@ -18,7 +18,7 @@ message Artist {
   string name = 2;
   // @inject_tag: bson:"picture,omitempty"
   string picture = 3;
-}
+} 
 
 message Coordinate {
   // @inject_tag: bson:"lon,omitempty"
@@ -34,14 +34,14 @@ message Accompaniment {
 
 message Picture {
   // @inject_tag: bson:"src,omitempty"
-  string src = 1;
+  string src = 1; 
 }
 
 message Gallery {
   // @inject_tag: bson:"main,omitempty"
   int32 main = 1;
   // @inject_tag: bson:"pictures,omitempty"
-  repeated Picture pictures = 2;
+  repeated Picture pictures = 2; 
 }
 
 message Category {
@@ -123,6 +123,7 @@ message Product {
   bool menu_available = 20;
 }
 
+
 message ProductFilter {
   // @inject_tag: bson:"id,omitempty"
   string id = 1;
@@ -145,6 +146,7 @@ message ProductFilter {
   // @inject_tag: bson:"menu_available,omitempty"
   bool menu_available = 10;
 }
+
 
 message Place {
   // @inject_tag: bson:"id,omitempty"
@@ -219,7 +221,9 @@ message ProductListResponse {
   repeated Product products = 4;
 }
 
-message ProductCreateRequest { Product product = 1; }
+message ProductCreateRequest {
+  Product product = 1;
+}
 
 message ProductCreateResponse {
   int32 status = 1;
@@ -227,7 +231,9 @@ message ProductCreateResponse {
   bool created = 4;
 }
 
-message ProductDetailRequest { string id = 4; }
+message ProductDetailRequest {
+  string id = 4;
+}
 
 message ProductDetailResponse {
   int32 status = 1;
@@ -235,7 +241,9 @@ message ProductDetailResponse {
   Product product = 3;
 }
 
-message ProductUpdateRequest { Product product = 1; }
+message ProductUpdateRequest {
+  Product product = 1;
+}
 
 message ProductUpdateResponse {
   int32 status = 1;
@@ -243,7 +251,9 @@ message ProductUpdateResponse {
   bool updated = 3;
 }
 
-message ProductDeleteRequest { string id = 3; }
+message ProductDeleteRequest {
+  string id = 3;
+}
 
 message ProductDeleteResponse {
   int32 status = 1;
@@ -281,7 +291,9 @@ message PlaceListResponse {
   repeated Place places = 4;
 }
 
-message PlaceCreateRequest { Place place = 1; }
+message PlaceCreateRequest {
+  Place place = 1;
+}
 
 message PlaceCreateResponse {
   int32 status = 1;
@@ -289,7 +301,9 @@ message PlaceCreateResponse {
   bool created = 4;
 }
 
-message PlaceDetailRequest { string id = 4; }
+message PlaceDetailRequest {
+  string id = 4;
+}
 
 message PlaceDetailResponse {
   int32 status = 1;
@@ -297,7 +311,9 @@ message PlaceDetailResponse {
   Place place = 3;
 }
 
-message PlaceUpdateRequest { Place place = 1; }
+message PlaceUpdateRequest {
+  Place place = 1;
+}
 
 message PlaceUpdateResponse {
   int32 status = 1;
@@ -305,7 +321,9 @@ message PlaceUpdateResponse {
   bool updated = 3;
 }
 
-message PlaceDeleteRequest { string id = 3; }
+message PlaceDeleteRequest {
+  string id = 3;
+}
 
 message PlaceDeleteResponse {
   int32 status = 1;
@@ -329,7 +347,9 @@ message EventListResponse {
   repeated Event events = 4;
 }
 
-message EventCreateRequest { Event event = 1; }
+message EventCreateRequest {
+  Event event = 1;
+}
 
 message EventCreateResponse {
   int32 status = 1;
@@ -337,7 +357,9 @@ message EventCreateResponse {
   bool created = 4;
 }
 
-message EventDetailRequest { string id = 4; }
+message EventDetailRequest {
+  string id = 4;
+}
 
 message EventDetailResponse {
   int32 status = 1;
@@ -345,7 +367,9 @@ message EventDetailResponse {
   Event event = 3;
 }
 
-message EventUpdateRequest { Event event = 1; }
+message EventUpdateRequest {
+  Event event = 1;
+}
 
 message EventUpdateResponse {
   int32 status = 1;
@@ -353,7 +377,9 @@ message EventUpdateResponse {
   bool updated = 3;
 }
 
-message EventDeleteRequest { string id = 3; }
+message EventDeleteRequest {
+  string id = 3;
+}
 
 message EventDeleteResponse {
   int32 status = 1;

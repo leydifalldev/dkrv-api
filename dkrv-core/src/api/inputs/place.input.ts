@@ -4,9 +4,6 @@ import { LocationInput } from './location.input';
 @InputType()
 export class PlaceInput {
   @Field(type => String, { nullable: true })
-  id: string;
-
-  @Field(type => String, { nullable: true })
   name: string;
 
   @Field(type => String, { nullable: true })

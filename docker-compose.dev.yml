@@ -17,12 +17,20 @@ services:
       - elasticsearch_primary
   dkrv-place:
     hostname: dkrv-place
+    restart: unless-stopped
     build:
       context: ./dkrv-place
+      dockerfile: Dockerfile.dev
     ports:
       - 5200:5200
       - 5300:5300
       - 5400:5400
+    volumes:
+      - ./dkrv-place:/home/dkrv-place
+    working_dir: /home/dkrv-place
+    command: bash -c "GO111MODULE=on go mod download && make serve"
+    environment:
+      DEBUG: "true"
     networks:
       - dkrv-network
     depends_on:

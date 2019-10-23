@@ -6,7 +6,7 @@ export class Location {
   @Field(type => String)
   address: string;
 
-  @Field(type => String)
+  @Field(type => String, { nullable: true })
   cpc: string;
 
   @Field(type => String)

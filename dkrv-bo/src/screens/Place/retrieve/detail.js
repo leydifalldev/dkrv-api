@@ -29,6 +29,8 @@ export const PlaceDetail = () => {
     variables: { id }
   });
 
+  console.log(data);
+
   return data && data.getPlace ? (
     <div className={classes.root}>
       <Grid container spacing={3}>

@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import Grid from "@material-ui/core/Grid";
 import { useQuery } from "@apollo/react-hooks";
 import { Thumbnail } from "../../components/Thumbnails";
 import { RETRIEVE_PLACE_LIST } from "../../../network";
@@ -35,9 +36,15 @@ const ListCard = ({ items }) => {
   };
 
   return (
-    <div className="row">
+    <Grid
+      container
+      direction="row"
+      justify="flex-start"
+      alignItems="flex-start"
+      spacing={0}
+    >
       {items.map(item => (
-        <div className="col s2">
+        <Grid item xs={12} sm={2}>
           <Thumbnail
             goTo={() => goTo(item.id)}
             style={cardStyle}
@@ -45,9 +52,9 @@ const ListCard = ({ items }) => {
             title={item.name}
             description={item.description}
           />
-        </div>
+        </Grid>
       ))}
-    </div>
+    </Grid>
   );
 };
 
