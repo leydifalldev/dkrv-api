@@ -72,8 +72,8 @@ func (s *Server) Add(ctx context.Context, req *gateway.PlaceCreateRequest) (*gat
 	}
 	log.Println(payload)
 	return &gateway.PlaceCreateResponse{
-		Status:  status,
-		Error:   errc,
+		Status: status,
+		Error:  errc,
 		Payload: payload,
 	}, nil
 }

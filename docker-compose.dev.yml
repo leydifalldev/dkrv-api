@@ -39,7 +39,7 @@ services:
       - ./dkrv.env
   webserver:
     build:
-      context: ./dkrv-config/nginx
+      context: ./dkrv-webserver
     container_name: webserver
     ports:
       - "9000:80"
@@ -65,7 +65,7 @@ services:
   dkrv-core:
     hostname: dkrv-core
     build: ./dkrv-core
-    entrypoint: /usr/src/app/startdev.sh
+    command: "npm run start:dev"
     volumes:
       - ./dkrv-core/src:/usr/src/app/src:ro
     ports:

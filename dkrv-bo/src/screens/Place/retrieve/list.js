@@ -41,7 +41,7 @@ const ListCard = ({ items }) => {
       direction="row"
       justify="flex-start"
       alignItems="flex-start"
-      spacing={0}
+      spacing={1}
     >
       {items.map(item => (
         <Grid item xs={12} sm={2}>

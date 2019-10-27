@@ -10,6 +10,7 @@ import { AddressPanel } from "../_views/AddressPanel";
 import { DetailsThumbnail } from "../_views/DetailsThumbnail";
 import { DetailsBar } from "../_views/DetailsBar";
 import { ListProductsPanel } from "../_views/ListProductPanel";
+import { PlaceProvider } from "../store/place.store";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -32,24 +33,26 @@ export const PlaceDetail = () => {
   console.log(data);
 
   return data && data.getPlace ? (
-    <div className={classes.root}>
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <DetailsBar id={data.getPlace.id} name={data.getPlace.name} />
+    <PlaceProvider value={data.getPlace}>
+      <div className={classes.root}>
+        <Grid container spacing={3}>
+          <Grid item xs={12}>
+            <DetailsBar id={data.getPlace.id} name={data.getPlace.name} />
+          </Grid>
+          <Grid item xs={12} sm={3}>
+            <DetailsThumbnail
+              title={data.getPlace.name}
+              label={data.getPlace.description}
+            />
+            <PlaceInfoPanel info={data.getPlace} />
+            <AddressPanel location={data.getPlace.location} />
+          </Grid>
+          <Grid item xs={12} sm={9}>
+            <MainTab data={data.getPlace} />
+          </Grid>
         </Grid>
-        <Grid item xs={12} sm={3}>
-          <DetailsThumbnail
-            title={data.getPlace.name}
-            label={data.getPlace.description}
-          />
-          <PlaceInfoPanel info={data.getPlace} />
-          <AddressPanel location={data.getPlace.location} />
-        </Grid>
-        <Grid item xs={12} sm={9}>
-          <MainTab data={data.getPlace} />
-        </Grid>
-      </Grid>
-    </div>
+      </div>
+    </PlaceProvider>
   ) : (
     <span>Veuillez patientez svp</span>
   );

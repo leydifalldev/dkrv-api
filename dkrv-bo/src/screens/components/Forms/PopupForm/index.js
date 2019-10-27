@@ -1,0 +1,1 @@
+export { ModalFormComponent } from "./ModalFormComponent";

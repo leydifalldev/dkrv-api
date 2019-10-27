@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "prebuild": "rimraf dist",
-    "build": "nest build",
+    "build": "nest build --watch --webpack",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:devwatch": "tsc-watch -p tsconfig.build.json --onSuccess \"ts-node src/main.ts\"",
@@ -36,11 +36,12 @@
     "graphql": "^14.5.8",
     "graphql-tools": "^4.0.5",
     "grpc": "^1.24.0",
-    "helmet": "^3.21.1",
+    "helmet": "^3.21.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.0",
     "rxjs": "^6.5.3",
     "session": "^0.1.0",
+    "stream": "^0.0.2",
     "tsc-watch": "^4.0.0",
     "type-graphql": "^0.17.5"
   },
@@ -52,6 +53,7 @@
     "@types/jest": "^24.0.18",
     "@types/node": "^12.7.5",
     "@types/supertest": "^2.0.8",
+    "copy-webpack-plugin": "^5.0.4",
     "gulp": "^4.0.2",
     "gulp-clean": "^0.4.0",
     "gulp-exec": "^4.0.0",
@@ -59,13 +61,16 @@
     "jest": "^24.9.0",
     "path": "^0.12.7",
     "prettier": "^1.18.2",
+    "proto-loader": "^0.2.0",
     "supertest": "^4.0.2",
     "ts-jest": "^24.1.0",
     "ts-loader": "^6.1.1",
     "ts-node": "^8.4.1",
     "tsconfig-paths": "^3.9.0",
     "tslint": "^5.20.0",
-    "typescript": "^3.6.3"
+    "typescript": "^3.6.3",
+    "webpack-node-externals": "^1.7.2",
+    "webpack-shell-plugin": "^0.5.0"
   },
   "jest": {
     "moduleFileExtensions": [

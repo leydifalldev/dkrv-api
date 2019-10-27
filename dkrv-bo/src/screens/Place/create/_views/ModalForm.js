@@ -19,17 +19,16 @@ import { CREATE_PLACE_DETAIL } from "../../../../network";
 export const CreatePlaceModal = () => {
   const [createPlace] = useMutation(CREATE_PLACE_DETAIL);
   const [open, setOpen] = React.useState(false);
-
+  const history = useHistory();
   const handleClickOpen = () => {
     setOpen(true);
   };
 
   const handleSubmit = async (values, actions) => {
     console.log(values);
-    let result = await createPlace({ variables: { placeInput: values } });
-    console.log("result log", result);
-    let history = useHistory();
-    history.push(`/place/${result.createPlace}`);
+    const { data } = await createPlace({ variables: { placeInput: values } });
+    console.log("result log", data);
+    history.push(`/place/${data.createPlace}`);
   };
 
   const handleClose = () => {

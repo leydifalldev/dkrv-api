@@ -24,7 +24,6 @@ const CreatePlaceForm = ({ handleSubmit }) => {
     />
   );
 };
-
 const RenderForm = props => (
   <form onSubmit={props.handleSubmit}>
     <TextField

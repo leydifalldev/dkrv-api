@@ -1,21 +1,20 @@
 {
   "filename": "gateway.proto",
   "src_folder": "./src/gateway/",
-  "targets": [
-    {
+  "targets": [{
       "name": "dkrv-place",
-      "go_proto": true,
+      "environment": "go",
       "go_filename": "gateway.pb.go",
       "dest_folder": "../dkrv-place/gateway/"
     },
     {
       "name": "search-engine",
-      "go_proto": false,
+      "environment": "js",
       "dest_folder": "../search-engine/src/gateway/"
     },
     {
       "name": "dkrv-core-dist",
-      "go_proto": false,
+      "environment": "js",
       "dest_folder": "./dist/gateway/"
     }
   ]

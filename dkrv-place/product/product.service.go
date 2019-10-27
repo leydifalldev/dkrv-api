@@ -101,10 +101,6 @@ func (s *Server) Add(ctx context.Context, req *gateway.ProductCreateRequest) (*g
 	log.Println(string(productString))
 	res, status, errc := c.Create(product)
 
-	esclient := NewESClient()
-	out := esclient.InsertProduct(product)
-	log.Println("se out")
-	log.Println(out)
 	return &gateway.ProductCreateResponse{
 		Status:  status,
 		Error:   errc,

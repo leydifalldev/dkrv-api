@@ -293,7 +293,7 @@ message PlaceCreateRequest {
   Place place = 1;
 }
 
-message PlaceCreateResponse {
+message PlaceCreateResponse{
   int32 status = 1;
   string error = 2;
   string payload = 3;

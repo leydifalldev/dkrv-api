@@ -14,6 +14,7 @@ import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { makeStyles } from "@material-ui/core/styles";
 import Skeleton from "@material-ui/lab/Skeleton";
 import { EmptyPanel } from "./EmptyPanel";
+import { NavBarProductPlace } from "../_views/NavBarProductPlace";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -38,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const ListProductsPanel = ({ products }) => {
+export const ListProducts = ({ products }) => {
   return products && products.length > 0 ? (
     <Grid container spacing={3}>
       {products.map(product => (
@@ -47,6 +48,16 @@ export const ListProductsPanel = ({ products }) => {
     </Grid>
   ) : (
     <EmptyPanel label={"Veuillez ajouter des produits"} />
+  );
+};
+
+export const ListProductsPanel = () => {
+  const products = [];
+  return (
+    <div>
+      <NavBarProductPlace />
+      <ListProducts products={products} />
+    </div>
   );
 };
 

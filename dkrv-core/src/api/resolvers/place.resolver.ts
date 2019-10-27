@@ -60,7 +60,7 @@ export class PlaceResolver implements OnModuleInit {
     return response.place;
   }
 
-  @Mutation(returns => Boolean)
+  @Mutation(returns => String)
   async createPlace(@Args('place') place: PlaceInput) {
     Logger.log(place);
     const response: PlaceCreateResponse = await this.placeService

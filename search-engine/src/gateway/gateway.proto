@@ -85,42 +85,44 @@ message Product {
   string id = 1;
   // @inject_tag: bson:"name,omitempty"
   string name = 2;
+  // @inject_tag: bson:"type,omitempty"
+  string type = 3;
   // @inject_tag: bson:"category,omitempty"
-  string category = 3;
+  repeated string category = 4;
   // @inject_tag: bson:"gastronomies,omitempty"
-  repeated string gastronomies = 4;
+  repeated string gastronomies = 5;
   // @inject_tag: bson:"description,omitempty"
-  string description = 5;
+  string description = 6;
   // @inject_tag: bson:"recipes,omitempty"
-  repeated Recipes recipes = 6;
+  repeated Recipes recipes = 7;
   // @inject_tag: bson:"spicy,omitempty"
-  int32 spicy = 7;
+  int32 spicy = 8;
   // @inject_tag: bson:"price,omitempty"
-  int32 price = 8;
+  int32 price = 9;
   // @inject_tag: bson:"discount,omitempty"
-  float discount = 9;
+  float discount = 10;
   // @inject_tag: bson:"quantity,omitempty"
-  int32 quantity = 10;
+  int32 quantity = 11;
   // @inject_tag: bson:"size,omitempty"
-  string size = 11;
+  string size = 12;
   // @inject_tag: bson:"notation,omitempty"
-  int32 notation = 12;
+  int32 notation = 13;
   // @inject_tag: bson:"likes,omitempty"
-  int32 likes = 13;
+  int32 likes = 14;
   // @inject_tag: bson:"placeid,omitempty"
-  string placeid = 14;
+  string placeid = 15;
   // @inject_tag: bson:"placename,omitempty"
-  string placename = 15;
+  string placename = 16;
   // @inject_tag: bson:"placelogo,omitempty"
-  string placelogo = 16;
+  string placelogo = 17;
   // @inject_tag: bson:"placezone,omitempty"
-  string placezone = 17;
+  string placezone = 18;
   // @inject_tag: bson:"location,omitempty"
-  Coordinate location = 18;
+  Coordinate location = 19;
   // @inject_tag: bson:"picture,omitempty"
-  Picture picture = 19;
+  Picture picture = 20;
   // @inject_tag: bson:"menu_available,omitempty"
-  bool menu_available = 20;
+  bool menu_available = 21;
 }
 
 
@@ -293,7 +295,7 @@ message PlaceCreateRequest {
   Place place = 1;
 }
 
-message PlaceCreateResponse {
+message PlaceCreateResponse{
   int32 status = 1;
   string error = 2;
   string payload = 3;
