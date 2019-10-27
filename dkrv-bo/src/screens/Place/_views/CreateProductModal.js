@@ -4,6 +4,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { ModalFormComponent } from "../../components/Forms/PopupForm";
 import { TextInput } from "../../components/Forms/TextInput";
 import { SelectInput } from "../../components/Forms/SelectInput";
+import { ChipsInput } from "../../components/Forms/ChipsInput";
 
 const types = [
   {
@@ -123,6 +124,12 @@ const ProductForm = props => (
       InputProps={{
         startAdornment: <InputAdornment position="start">%</InputAdornment>
       }}
+    />
+    <ChipsInput
+      name="recipes"
+      label="Recette"
+      handleChange={props.handleChange}
+      value={props.values.recipes}
     />
     <TextInput
       onChange={props.handleChange}
