@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useRef } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Chip from "@material-ui/core/Chip";
 import Paper from "@material-ui/core/Paper";
@@ -11,6 +11,17 @@ import Input from "@material-ui/core/Input";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
+
+const chips = [
+  {
+    priority: 0,
+    name: "Repas"
+  },
+  {
+    priority: 1,
+    name: "Tomates"
+  }
+];
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,38 +37,81 @@ const useStyles = makeStyles(theme => ({
 
 export const ChipsInput = props => {
   const classes = useStyles();
+  const inputEl = useRef(null);
   let items = [];
   let tmp = "";
-  const [data, setChipData] = React.useState([
-    { key: 0, label: "Angular" },
-    { key: 1, label: "jQuery" },
-    { key: 2, label: "Polymer" },
-    { key: 3, label: "React" },
-    { key: 4, label: "Vue.js" }
-  ]);
+  const [chips, setChip] = React.useState([]);
+  const [inputVal, setInputValue] = React.useState("");
 
   const addChip = () => {
-    items = [...items, tmp];
-    setChipData(items);
-    console.log(items);
-    console.log(data);
+    console.log("handleChange", inputVal);
+    const chip = {
+      priority: chips.length,
+      name: inputVal
+    };
+    setChip([...chips, chip]);
+    setInputValue("");
+    console.log(chips);
+    props.handleChange(chips);
+    //console.log(items);
+    //console.log(data);
   };
 
   const handleChange = e => {
-    const target = e.target;
-    tmp = target.value;
-    console.log("handleChange", tmp);
+    setInputValue(e.target.value);
   };
 
   const handleDelete = chipToDelete => () => {
-    if (chipToDelete.label === "React") {
-      alert("Why would you want to delete React?! :)");
-      return;
-    }
-
-    setChipData(chips => chips.filter(chip => chip.key !== chipToDelete.key));
+    setChip(chips =>
+      chips.filter(chip => chip.priority !== chipToDelete.priority)
+    );
   };
 
+  return (
+    <div>
+      <TextField
+        id="outlined-adornment-password"
+        variant="outlined"
+        type="text"
+        label="Recette"
+        ref={inputEl}
+        value={inputVal}
+        fullWidth
+        onChange={handleChange}
+        InputProps={{
+          endAdornment: (
+            <InputAdornment position="end">
+              <Fab
+                onClick={addChip}
+                edge="end"
+                color="secondary"
+                variant="extended"
+                size="small"
+              >
+                <AddIcon />
+                Ajouter
+              </Fab>
+            </InputAdornment>
+          )
+        }}
+      />
+      <Paper className={classes.root}>
+        {chips.map(chip => {
+          return (
+            <Chip
+              key={chip.priority}
+              label={chip.name}
+              onDelete={handleDelete(chip)}
+              className={classes.chip}
+            />
+          );
+        })}
+      </Paper>
+    </div>
+  );
+};
+
+export const Chips = arrayHelpers => {
   return (
     <div>
       <TextField
@@ -84,16 +138,9 @@ export const ChipsInput = props => {
           )
         }}
       />
-      <Paper className={classes.root}>
-        {items.map(data => {
-          return (
-            <Chip
-              key={data.key}
-              label={data.label}
-              onDelete={handleDelete(data)}
-              className={classes.chip}
-            />
-          );
+      <Paper>
+        {chips.map(chip => {
+          return <Chip key={chip.priority} label={chip.name} />;
         })}
       </Paper>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
-import { useParams } from "react-router-dom";
+import { Switch, Route, useRouteMatch, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { RETRIEVE_PLACE_DETAIL } from "../../../network/index";
 import { PlaceInfoPanel } from "../_views/InfoPanel";
@@ -11,6 +11,7 @@ import { DetailsThumbnail } from "../_views/DetailsThumbnail";
 import { DetailsBar } from "../_views/DetailsBar";
 import { ListProductsPanel } from "../_views/ListProductPanel";
 import { PlaceProvider } from "../store/place.store";
+import AddProductLayout from "./product/add.product";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,15 +23,16 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const PlaceDetail = () => {
+const PlaceDetail = () => {
   const classes = useStyles();
+  let { path, url } = useRouteMatch();
   let { id } = useParams();
 
   const { loading, error, data } = useQuery(RETRIEVE_PLACE_DETAIL, {
     variables: { id }
   });
 
-  console.log(data);
+  console.log("path", path);
 
   return data && data.getPlace ? (
     <PlaceProvider value={data.getPlace}>
@@ -48,7 +50,16 @@ export const PlaceDetail = () => {
             <AddressPanel location={data.getPlace.location} />
           </Grid>
           <Grid item xs={12} sm={9}>
-            <MainTab data={data.getPlace} />
+            <Switch>
+              <Route
+                path={`${path}/product/add`}
+                children={<AddProductLayout />}
+              />
+              <Route
+                path={`${path}/`}
+                children={<MainTab data={data.getPlace} />}
+              />
+            </Switch>
           </Grid>
         </Grid>
       </div>
@@ -109,3 +120,5 @@ const schedule = [
     end_pm: 22
   }
 ];
+
+export default PlaceDetail;

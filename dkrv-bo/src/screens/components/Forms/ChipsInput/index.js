@@ -1,1 +1,1 @@
-export { ChipsInput } from "./ChipsInputComponent";
+export { ChipsInput, Chips } from "./ChipsInputComponent";

@@ -1,10 +1,10 @@
 import React, { Fragment, useContext } from "react";
 import PlaceContext from "../store/place.store";
 import InputAdornment from "@material-ui/core/InputAdornment";
+import { FieldArray } from "formik";
 import { ModalFormComponent } from "../../components/Forms/PopupForm";
 import { TextInput } from "../../components/Forms/TextInput";
 import { SelectInput } from "../../components/Forms/SelectInput";
-import { ChipsInput } from "../../components/Forms/ChipsInput";
 
 const types = [
   {
@@ -125,12 +125,7 @@ const ProductForm = props => (
         startAdornment: <InputAdornment position="start">%</InputAdornment>
       }}
     />
-    <ChipsInput
-      name="recipes"
-      label="Recette"
-      handleChange={props.handleChange}
-      value={props.values.recipes}
-    />
+
     <TextInput
       onChange={props.handleChange}
       onBlur={props.handleBlur}
@@ -201,6 +196,7 @@ export const CreateProductModal = () => {
     name: "",
     discount: 0,
     description: "",
+    recipes: [],
     temporalyPlace: false,
     placeid: place.id,
     placename: place.name,

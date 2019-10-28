@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Route, useRouteMatch } from "react-router-dom";
-import { PlaceListLayout, PlaceDetail } from "./retrieve";
+import { PlaceListLayout } from "./list";
+import PlaceDetail from "./details";
 
 export const PlaceScreen = () => {
   let { path } = useRouteMatch();
