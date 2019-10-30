@@ -32,22 +32,22 @@ const PlaceDetail = () => {
     variables: { id }
   });
 
-  console.log("path", path);
+  const place = data ? data.getPlace : null;
 
-  return data && data.getPlace ? (
-    <PlaceProvider value={data.getPlace}>
+  return place ? (
+    <PlaceProvider value={place}>
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <DetailsBar id={data.getPlace.id} name={data.getPlace.name} />
+            <DetailsBar id={place.id} name={place.name} />
           </Grid>
           <Grid item xs={12} sm={3}>
             <DetailsThumbnail
-              title={data.getPlace.name}
-              label={data.getPlace.description}
+              title={place.name}
+              label={place.description}
             />
-            <PlaceInfoPanel info={data.getPlace} />
-            <AddressPanel location={data.getPlace.location} />
+            <PlaceInfoPanel info={place} />
+            <AddressPanel location={place.location} />
           </Grid>
           <Grid item xs={12} sm={9}>
             <Switch>
@@ -57,7 +57,7 @@ const PlaceDetail = () => {
               />
               <Route
                 path={`${path}/`}
-                children={<MainTab data={data.getPlace} />}
+                children={<MainTab data={place} />}
               />
             </Switch>
           </Grid>

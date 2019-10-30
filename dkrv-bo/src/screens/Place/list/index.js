@@ -44,7 +44,7 @@ const ListCard = ({ items }) => {
       spacing={1}
     >
       {items.map(item => (
-        <Grid item xs={12} sm={2}>
+        <Grid item xs={12} sm={3}>
           <Thumbnail
             goTo={() => goTo(item.id)}
             style={cardStyle}

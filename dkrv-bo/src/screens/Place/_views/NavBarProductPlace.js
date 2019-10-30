@@ -1,4 +1,5 @@
-import React from "react";
+import React, {useContext} from "react";
+import { useHistory, Link } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import IconButton from "@material-ui/core/IconButton";
@@ -9,6 +10,7 @@ import { fade, makeStyles } from "@material-ui/core/styles";
 import MenuIcon from "@material-ui/icons/Menu";
 import SearchIcon from "@material-ui/icons/Search";
 import AddIcon from "@material-ui/icons/Add";
+import PlaceContext from "../store/place.store";
 import { CreateProductModal } from "./CreateProductModal";
 
 const useStyles = makeStyles(theme => ({
@@ -66,30 +68,21 @@ const useStyles = makeStyles(theme => ({
 
 export const NavBarProductPlace = () => {
   const classes = useStyles();
-  const handleClickOpen = () => {};
+  let history = useHistory();
+  const {id} = useContext(PlaceContext);
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-          <IconButton
-            variant="outlined"
-            color="primary"
-            startIcon={<AddIcon />}
-            onClick={handleClickOpen}
-            edge="start"
-            className={classes.menuButton}
-            color="inherit"
-            aria-label="open drawer"
-          >
-            <MenuIcon />
-          </IconButton>
+  
           <Typography
             className={classes.title}
             variant="h6"
             noWrap
           ></Typography>
-          <CreateProductModal />
+            <Button onClick={() => history.push(`/place/${id}/product/add`)}>Ajouter produit</Button>
+          
           <div className={classes.search}>
             <div className={classes.searchIcon}>
               <SearchIcon />
