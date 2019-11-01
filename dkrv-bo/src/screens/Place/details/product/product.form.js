@@ -1,5 +1,6 @@
 import React, { Fragment, useContext } from "react";
 import { Formik } from "formik";
+import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
 import PlaceContext from "../../store/place.store";
 import InputAdornment from "@material-ui/core/InputAdornment";
@@ -79,11 +80,24 @@ const spicyLevel = [
   }
 ];
 
+const useStyles = makeStyles(theme => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
 const handleSubmit = async (values, actions) => {
   console.log(values);
 };
 
-const ProductForm = props => (
+const ProductForm = props => {
+  return (
+  <div>
   <Grid >
   <form>
     <Grid item xs={12} sm={6}>
@@ -203,7 +217,9 @@ const ProductForm = props => (
     </Grid>
   </form>
   </Grid>
+  </div>
 );
+}
 
 export const AddProductToPlace = () => {
   const place = useContext(PlaceContext);

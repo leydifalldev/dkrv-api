@@ -45,12 +45,33 @@ export const theme = createMuiTheme({
     MuiListItemText: {
       primary: {
         color: "#F76D1E",
-        fontWeight: 600
+        fontWeight: 600,
+        fontSize: "13px"
       },
       secondary: {
         color: "#000000",
         fontWeight: 500,
-        fontSize: "17px"
+        fontSize: "13px"
+      }
+    },
+    MuiAvatar: {
+      root: {
+        height: 30,
+        width: 30,
+      }
+    },
+    MuiSvgIcon:{
+      root: {
+        height: "0.9em",
+        width: "0.9em"
+      }
+    },
+    MuiInputBase: {
+
+    },
+    MuiTabs: {
+      root: {
+        height: 47
       }
     }
   },

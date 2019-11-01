@@ -68,19 +68,7 @@ export const DetailsThumbnail = ({ picture, title, description, ...props }) => {
       ) : (
         <Skeleton variant="rect" height={250} width="100%" />
       )}
-      <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          {description}
-        </Typography>
-      </CardContent>
-      <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon />
-        </IconButton>
-        <IconButton aria-label="share">
-          <ShareIcon />
-        </IconButton>
-      </CardActions>
+
     </Card>
   );
 };
