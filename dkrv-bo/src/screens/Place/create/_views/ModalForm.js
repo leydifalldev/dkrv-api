@@ -11,7 +11,6 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import AddIcon from "@material-ui/icons/Add";
 import { useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
-import CreatePlaceForm from "./Form";
 import { Formik } from "formik";
 import * as Yup from "yup";
 import { CREATE_PLACE_DETAIL } from "../../../../network";
@@ -34,17 +33,6 @@ export const CreatePlaceModal = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  const validationSchema = Yup.object().shape({
-    name: Yup.string().required("Veuillez renseigner le nom"),
-    phone: Yup.string()
-      .length(9, "Numéro de téléphone invalide")
-      .required("Veuillez saisir un numéro de téléphone"),
-    email: Yup.string()
-      .email("L'email est invalide")
-      .required("Veuillez renseigner l'email"),
-    address: Yup.string().required("Veuillez renseigner le nom du gérant")
-  });
 
   const renderSubmit = props => (
     <DialogActions>

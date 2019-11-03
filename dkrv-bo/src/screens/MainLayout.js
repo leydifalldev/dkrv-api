@@ -129,7 +129,7 @@ const MainDrawer = ({ classes, isOpen, handleDrawerClose, theme }) => (
         [classes.drawerClose]: !isOpen
       })
     }}
-    isOpen={isOpen}
+    open={isOpen}
   >
     <div className={classes.toolbar}>
       <IconButton onClick={handleDrawerClose}>

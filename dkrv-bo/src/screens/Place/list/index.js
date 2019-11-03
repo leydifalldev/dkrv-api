@@ -13,7 +13,7 @@ export const PlaceListLayout = () => (
   </Fragment>
 );
 export const PlaceList = () => {
-  const { loading, error, data } = useQuery(RETRIEVE_PLACE_LIST);
+  const { data } = useQuery(RETRIEVE_PLACE_LIST);
   console.log(data);
   return data && data.places.length ? (
     <ListCard style={placeContainerStyle} items={data.places} />

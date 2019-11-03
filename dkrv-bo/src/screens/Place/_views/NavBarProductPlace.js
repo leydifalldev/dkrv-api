@@ -1,17 +1,11 @@
-import React, {useContext} from "react";
-import { useHistory, Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import MenuIcon from "@material-ui/icons/Menu";
-import SearchIcon from "@material-ui/icons/Search";
-import AddIcon from "@material-ui/icons/Add";
 import PlaceContext from "../store/place.store";
-import { CreateProductModal } from "./CreateProductModal";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -69,33 +63,24 @@ const useStyles = makeStyles(theme => ({
 export const NavBarProductPlace = () => {
   const classes = useStyles();
   let history = useHistory();
-  const {id} = useContext(PlaceContext);
+  const { id } = useContext(PlaceContext);
 
   return (
     <div className={classes.root}>
       <AppBar position="static" color="default">
         <Toolbar>
-  
           <Typography
             className={classes.title}
             variant="h6"
             noWrap
           ></Typography>
-            <Button onClick={() => history.push(`/place/${id}/product/add`)}>Ajouter produit</Button>
-          
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput
-              }}
-              inputProps={{ "aria-label": "search" }}
-            />
-          </div>
+          <Button
+            variant="outlined"
+            color="secondary"
+            onClick={() => history.push(`/place/${id}/product/add`)}
+          >
+            Ajouter produit
+          </Button>
         </Toolbar>
       </AppBar>
     </div>
