@@ -92,7 +92,7 @@ services:
     environment:
       - node.name=elasticsearch_primary
       - cluster.initial_master_nodes=elasticsearch_primary
-      - cluster.name=docker-cluster
+      - cluster.name=dkrv-cluster
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
     ulimits:

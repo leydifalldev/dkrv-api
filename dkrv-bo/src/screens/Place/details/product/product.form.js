@@ -80,6 +80,11 @@ const spicyLevel = [
   }
 ];
 
+const suggession = [
+  { title: 'Tomates', year: 1994 },
+  { title: 'Viandes', year: 1972 },
+];
+
 const handleSubmit = values => {
   console.log(values);
 };
@@ -194,7 +199,7 @@ const ProductForm = props => {
           value={props.values.description}
           name="description"
           label="Description"
-          error={props.errors.name}
+          error={props.errors.description}
           placeholder="Description"
           variant="outlined"
           margin="normal"
@@ -206,9 +211,16 @@ const ProductForm = props => {
       <Grid item xs={12}>
         <SuggestForm
           onChange={props.handleChange}
+          setFieldValue={props.setFieldValue}
           value={props.values.recipes}
+          options={suggession}
+          filterSelectedOptions
+          getOptionLabel={option => option.title}
           name="recipes"
           id="recipes"
+          label="Recipes"
+          error={props.errors.recipes}
+          onBlur={props.handleBlur}
         />
       </Grid>
       <div>
