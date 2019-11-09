@@ -17,6 +17,22 @@ services:
       - elasticsearch_primary
     links:
       - elasticsearch_primary
+  dkrv-se:
+    hostname: dkrv-se
+    build: ./dkrv-se
+    entrypoint: /usr/src/app/start.sh
+    volumes: 
+      - ./dkrv-se:/usr/src/app:ro
+    ports: 
+      - 9600:6000
+    networks: 
+      - dkrv-network
+    env_file:
+      - ./dkrv.env
+    depends_on:
+      - elasticsearch_primary
+    links:
+      - elasticsearch_primary
   dkrv-core:
     hostname: dkrv-core
     build: ./dkrv-core

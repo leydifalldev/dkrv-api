@@ -58,8 +58,10 @@ const productMapping = {
       location: {
         type: 'geo_point',
       },
-      picture: {
-        type: 'keyword',
+      pictures: {
+        properties: {
+          type: 'keyword',
+        },
       },
       menu_available: {
         type: 'boolean',

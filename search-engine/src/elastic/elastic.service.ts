@@ -13,7 +13,7 @@ export class ElasticService implements OnModuleInit {
     private mapping: any,
   ) {
     this.esclient = new elasticsearch.Client({
-      host: process.env.ELASTICSEARCH_PRIMARY || 'http://localhost:9200'
+      host: process.env.ELASTICSEARCH_PRIMARY || 'http://localhost:9200',
     });
   }
 

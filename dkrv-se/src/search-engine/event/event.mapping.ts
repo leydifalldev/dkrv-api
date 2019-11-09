@@ -27,17 +27,30 @@ const eventMapping = {
       price: {
         type: 'nested',
       },
-      phone: {
-        type: 'keyword',
-      },
-      email: {
-        type: 'keyword',
+      manager: {
+        properties: {
+          id: {
+            type: 'keyword',
+          },
+          name: {
+            type: 'keyword',
+          },
+          phone: {
+            type: 'keyword',
+          },
+          email: {
+            type: 'keyword',
+          },
+          picture: {
+            type: 'keyword',
+          },
+        },
       },
       address: {
         type: 'keyword',
       },
-      category: {
-        type: 'keyword',
+      categories: {
+        type: 'nested',
       },
       description: {
         type: 'text',
@@ -51,11 +64,11 @@ const eventMapping = {
       logo: {
         type: 'keyword',
       },
-      placezone: {
-        type: 'keyword',
-      },
       location: {
         type: 'geo_point',
+      },
+      hosts: {
+        type: 'nested',
       },
       pictures: {
         properties: {

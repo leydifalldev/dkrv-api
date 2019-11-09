@@ -1,0 +1,116 @@
+version: "3"
+
+services:
+  search-engine:
+    hostname: search-engine
+    build: ./search-engine
+    entrypoint: /usr/src/app/startdev.sh
+    volumes:
+      - ./search-engine/src:/usr/src/app/src:ro
+    ports:
+      - 9500:5500
+    networks:
+      - dkrv-network
+    env_file:
+      - ./dkrv.env
+    depends_on:
+      - elasticsearch_primary
+  dkrv-place:
+    hostname: dkrv-place
+    restart: unless-stopped
+    build:
+      context: ./dkrv-place
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5200:5200
+      - 5300:5300
+      - 5400:5400
+    volumes:
+      - ./dkrv-place:/home/dkrv-place
+    working_dir: /home/dkrv-place
+    command: bash -c "GO111MODULE=on go mod download && make serve"
+    environment:
+      DEBUG: "true"
+    networks:
+      - dkrv-network
+    depends_on:
+      - mongo
+    env_file:
+      - ./dkrv.env
+  webserver:
+    build:
+      context: ./dkrv-webserver
+    container_name: webserver
+    ports:
+      - "9000:80"
+    depends_on: # Link services to access http://app and  http://api inside the container
+      - dkrv-core
+    networks:
+      - dkrv-network
+  dkrv-bo:
+    hostname: dkrv-bo
+    build:
+      context: ./dkrv-bo
+    ports:
+      - "3200:3000"
+    networks:
+      - dkrv-network
+    volumes:
+      - ./dkrv-bo/src:/app/src:ro
+      - ./dkrv-bo/public:/app/public:ro
+    env_file:
+      - ./dkrv.env
+    depends_on:
+      - dkrv-core
+  dkrv-core:
+    hostname: dkrv-core
+    build: ./dkrv-core
+    command: "npm run start:dev"
+    volumes:
+      - ./dkrv-core/src:/usr/src/app/src:ro
+    ports:
+      - "5000"
+    networks:
+      - dkrv-network
+    env_file:
+      - ./dkrv.env
+    depends_on:
+      - search-engine
+  mongo:
+    container_name: mongo
+    image: mongo
+    volumes:
+      - ./dkrv-data/mongo:/data/db
+    ports:
+      - "5600:27017"
+    networks:
+      - dkrv-network
+  elasticsearch_primary:
+    hostname: elasticsearch_primary
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
+    container_name: elasticsearch_primary
+    environment:
+      - node.name=elasticsearch_primary
+      - cluster.initial_master_nodes=elasticsearch_primary
+      - cluster.name=dkrv-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch_primary_data:/usr/share/elasticsearch/data
+    ports:
+      - 7200:9200
+    networks:
+      - dkrv-network
+
+volumes:
+  elasticsearch_primary_data:
+    driver: local
+  esdata02:
+    driver: local
+
+networks:
+  dkrv-network: {}

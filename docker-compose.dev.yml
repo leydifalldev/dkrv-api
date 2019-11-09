@@ -1,20 +1,6 @@
 version: "3"
 
 services:
-  search-engine:
-    hostname: search-engine
-    build: ./search-engine
-    entrypoint: /usr/src/app/startdev.sh
-    volumes:
-      - ./search-engine/src:/usr/src/app/src:ro
-    ports:
-      - 9500:5500
-    networks:
-      - dkrv-network
-    env_file:
-      - ./dkrv.env
-    depends_on:
-      - elasticsearch_primary
   dkrv-place:
     hostname: dkrv-place
     restart: unless-stopped
@@ -37,9 +23,21 @@ services:
       - mongo
     env_file:
       - ./dkrv.env
+  dkrv-se:
+    hostname: dkrv-se
+    build: ./dkrv-se
+    volumes: 
+      - ./dkrv-se/src:/usr/src/app/src:ro
+    ports: 
+      - 9600:6000
+    networks: 
+      - dkrv-network
+    env_file:
+      - ./dkrv.env
+    depends_on: ['elasticsearch_primary']
   webserver:
     build:
-      context: ./dkrv-webserver
+      context: ./dkrv-webserver/nginx
     container_name: webserver
     ports:
       - "9000:80"
@@ -47,21 +45,6 @@ services:
       - dkrv-core
     networks:
       - dkrv-network
-  dkrv-bo:
-    hostname: dkrv-bo
-    build:
-      context: ./dkrv-bo
-    ports:
-      - "3200:3000"
-    networks:
-      - dkrv-network
-    volumes:
-      - ./dkrv-bo/src:/app/src:ro
-      - ./dkrv-bo/public:/app/public:ro
-    env_file:
-      - ./dkrv.env
-    depends_on:
-      - dkrv-core
   dkrv-core:
     hostname: dkrv-core
     build: ./dkrv-core
@@ -74,8 +57,6 @@ services:
       - dkrv-network
     env_file:
       - ./dkrv.env
-    depends_on:
-      - search-engine
   mongo:
     container_name: mongo
     image: mongo
@@ -102,7 +83,12 @@ services:
     volumes:
       - elasticsearch_primary_data:/usr/share/elasticsearch/data
     ports:
-      - 7200:9200
+      - 5800:9200
+    healthcheck:
+        test: ["CMD", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
+        interval: 30s
+        timeout: 30s
+        retries: 3
     networks:
       - dkrv-network
 

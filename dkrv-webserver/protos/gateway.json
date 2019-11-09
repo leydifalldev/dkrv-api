@@ -21,6 +21,11 @@
       "name": "dkrv-core-dist",
       "environment": "js",
       "dest_folder": "./dist/gateway/"
+    },
+    {
+      "name": "search-engine-dist",
+      "environment": "js",
+      "dest_folder": "../search-engine/dist/gateway/"
     }
   ]
 }

@@ -8,6 +8,8 @@ import (
 	fmt "fmt"
 	proto "github.com/golang/protobuf/proto"
 	grpc "google.golang.org/grpc"
+	codes "google.golang.org/grpc/codes"
+	status "google.golang.org/grpc/status"
 	math "math"
 )
 
@@ -3172,6 +3174,29 @@ type ProductServiceServer interface {
 	Delete(context.Context, *ProductDeleteRequest) (*ProductDeleteResponse, error)
 }
 
+// UnimplementedProductServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedProductServiceServer struct {
+}
+
+func (*UnimplementedProductServiceServer) Search(ctx context.Context, req *SearchParams) (*ProductListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (*UnimplementedProductServiceServer) Get(ctx context.Context, req *ProductDetailRequest) (*ProductDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (*UnimplementedProductServiceServer) GetByQuery(ctx context.Context, req *ProductFilter) (*ProductListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetByQuery not implemented")
+}
+func (*UnimplementedProductServiceServer) Add(ctx context.Context, req *ProductCreateRequest) (*ProductCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+}
+func (*UnimplementedProductServiceServer) Update(ctx context.Context, req *ProductUpdateRequest) (*ProductUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (*UnimplementedProductServiceServer) Delete(ctx context.Context, req *ProductDeleteRequest) (*ProductDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+
 func RegisterProductServiceServer(s *grpc.Server, srv ProductServiceServer) {
 	s.RegisterService(&_ProductService_serviceDesc, srv)
 }
@@ -3390,6 +3415,26 @@ type PlaceServiceServer interface {
 	Delete(context.Context, *PlaceDeleteRequest) (*PlaceDeleteResponse, error)
 }
 
+// UnimplementedPlaceServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedPlaceServiceServer struct {
+}
+
+func (*UnimplementedPlaceServiceServer) Search(ctx context.Context, req *SearchParams) (*PlaceListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (*UnimplementedPlaceServiceServer) Get(ctx context.Context, req *PlaceDetailRequest) (*PlaceDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (*UnimplementedPlaceServiceServer) Add(ctx context.Context, req *PlaceCreateRequest) (*PlaceCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+}
+func (*UnimplementedPlaceServiceServer) Update(ctx context.Context, req *PlaceUpdateRequest) (*PlaceUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (*UnimplementedPlaceServiceServer) Delete(ctx context.Context, req *PlaceDeleteRequest) (*PlaceDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
+}
+
 func RegisterPlaceServiceServer(s *grpc.Server, srv PlaceServiceServer) {
 	s.RegisterService(&_PlaceService_serviceDesc, srv)
 }
@@ -3586,6 +3631,26 @@ type SearchEngineServer interface {
 	DeleteProduct(context.Context, *ProductDeleteRequest) (*ProductDeleteResponse, error)
 }
 
+// UnimplementedSearchEngineServer can be embedded to have forward compatible implementations.
+type UnimplementedSearchEngineServer struct {
+}
+
+func (*UnimplementedSearchEngineServer) Search(ctx context.Context, req *ProductSearchParams) (*ProductListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (*UnimplementedSearchEngineServer) GetProduct(ctx context.Context, req *ProductDetailRequest) (*ProductDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetProduct not implemented")
+}
+func (*UnimplementedSearchEngineServer) AddProduct(ctx context.Context, req *ProductCreateRequest) (*ProductCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddProduct not implemented")
+}
+func (*UnimplementedSearchEngineServer) UpdateProduct(ctx context.Context, req *ProductUpdateRequest) (*ProductUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateProduct not implemented")
+}
+func (*UnimplementedSearchEngineServer) DeleteProduct(ctx context.Context, req *ProductDeleteRequest) (*ProductDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method DeleteProduct not implemented")
+}
+
 func RegisterSearchEngineServer(s *grpc.Server, srv SearchEngineServer) {
 	s.RegisterService(&_SearchEngine_serviceDesc, srv)
 }
@@ -3780,6 +3845,26 @@ type EventServiceServer interface {
 	Add(context.Context, *EventCreateRequest) (*EventCreateResponse, error)
 	Update(context.Context, *EventUpdateRequest) (*EventUpdateResponse, error)
 	Delete(context.Context, *EventDeleteRequest) (*EventDeleteResponse, error)
+}
+
+// UnimplementedEventServiceServer can be embedded to have forward compatible implementations.
+type UnimplementedEventServiceServer struct {
+}
+
+func (*UnimplementedEventServiceServer) Search(ctx context.Context, req *EventSearchParams) (*EventListResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Search not implemented")
+}
+func (*UnimplementedEventServiceServer) Get(ctx context.Context, req *EventDetailRequest) (*EventDetailResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Get not implemented")
+}
+func (*UnimplementedEventServiceServer) Add(ctx context.Context, req *EventCreateRequest) (*EventCreateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Add not implemented")
+}
+func (*UnimplementedEventServiceServer) Update(ctx context.Context, req *EventUpdateRequest) (*EventUpdateResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Update not implemented")
+}
+func (*UnimplementedEventServiceServer) Delete(ctx context.Context, req *EventDeleteRequest) (*EventDeleteResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Delete not implemented")
 }
 
 func RegisterEventServiceServer(s *grpc.Server, srv EventServiceServer) {

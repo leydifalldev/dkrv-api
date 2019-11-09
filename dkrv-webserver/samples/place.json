@@ -25,15 +25,6 @@
     }
   ],
   "main_picture": 10,
-  "schedule": [
-    {
-      "date": "Hello",
-      "start_am": "Hello",
-      "end_am": "Hello",
-      "start_pm": "Hello",
-      "end_pm": "Hello"
-    }
-  ],
   "zone": "Hello",
   "travel_time": 10,
   "ocean_near": true,

@@ -1,8 +1,8 @@
 import { Injectable, OnModuleInit, HttpException, Logger } from '@nestjs/common';
 import * as elasticsearch from 'elasticsearch';
 import { SearchParams } from 'elasticsearch';
-import { ServiceResponse } from 'src/types/common.defs';
-import { ProductInput, PlaceInput } from 'src/api/inputs';
+import { ServiceResponse } from '../types/common.defs';
+import { ProductInput, PlaceInput } from '../api/inputs';
 
 @Injectable()
 export class ElasticService implements OnModuleInit {
