@@ -1,0 +1,1 @@
+{"version":3,"file":"product.elastic.js","sourceRoot":"","sources":["../../src/search-engine/product.elastic.ts"],"names":[],"mappings":";;;;;;;;;;;AAAA,2CAA4C;AAC5C,uDAA+C;AAC/C,uDAAmD;AAGnD,IAAa,cAAc,GAA3B,MAAa,cAAe,SAAQ,gCAAc;IAChD;QACE,KAAK,CAAC,uBAAuB,EAAE,MAAM,EAAE,SAAS,EAAE,yBAAc,CAAC,CAAC;IACpE,CAAC;CACF,CAAA;AAJY,cAAc;IAD1B,mBAAU,EAAE;;GACA,cAAc,CAI1B;AAJY,wCAAc"}

@@ -54,3 +54,6 @@ dkrv-admin/.DS_Store
 dkrv-admin/Thumbs.db
 dkrv-data/
 dkrv-event/vendor
+
+dkrv-se/.DS_Store
+dkrv-se/node_modules

@@ -1,0 +1,27 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var place_create_response_1 = require("./place.create.response");
+exports.PlaceCreateResponse = place_create_response_1.PlaceCreateResponse;
+var place_delete_reponse_1 = require("./place.delete.reponse");
+exports.PlaceDeleteResponse = place_delete_reponse_1.PlaceDeleteResponse;
+var place_list_response_1 = require("./place.list.response");
+exports.PlaceListResponse = place_list_response_1.PlaceListResponse;
+var place_detail_reponse_1 = require("./place.detail.reponse");
+exports.PlaceDetailResponse = place_detail_reponse_1.PlaceDetailResponse;
+var place_update_response_1 = require("./place.update.response");
+exports.PlaceUpdateResponse = place_update_response_1.PlaceUpdateResponse;
+var product_create_response_1 = require("./product.create.response");
+exports.ProductCreateResponse = product_create_response_1.ProductCreateResponse;
+var product_delete_response_1 = require("./product.delete.response");
+exports.ProductDeleteResponse = product_delete_response_1.ProductDeleteResponse;
+var product_list_response_1 = require("./product.list.response");
+exports.ProductListResponse = product_list_response_1.ProductListResponse;
+var product_detail_response_1 = require("./product.detail.response");
+exports.ProductDetailResponse = product_detail_response_1.ProductDetailResponse;
+var product_update_response_1 = require("./product.update.response");
+exports.ProductUpdateResponse = product_update_response_1.ProductUpdateResponse;
+var place_object_1 = require("./place.object");
+exports.Place = place_object_1.Place;
+var product_object_1 = require("./product.object");
+exports.Product = product_object_1.Product;
+//# sourceMappingURL=index.js.map
