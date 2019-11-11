@@ -178,11 +178,13 @@ const TopNavBar = ({ classes, isOpen, handleDrawerOpen }) => (
           [classes.hide]: isOpen
         })}
       >
-        <MenuIcon />
+        <img
+          height="50"
+          width="50"
+          src="/assets/img/dkrv-logo-3.svg"
+          alt="dkrv-logo-3"
+        />
       </IconButton>
-      <Typography variant="h6" noWrap>
-        DKRV
-      </Typography>
     </Toolbar>
   </AppBar>
 );

@@ -4,9 +4,9 @@ import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import { ColorlibConnector } from "./Connector";
 import { useStyles } from "./styles";
-import { CustomStepIcon } from './Icons';
+import { CustomStepIcon } from "./Icons";
 
-export const StepperComponent = ({stepsConfig}) => {
+export const StepperComponent = ({ stepsConfig }) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -22,7 +22,7 @@ export const StepperComponent = ({stepsConfig}) => {
     setActiveStep(0);
   };
 
-  return (stepsConfig && stepsConfig.steps.length && stepsConfig.steps.length > 0) ? (
+  return stepsConfig && stepsConfig.steps && stepsConfig.steps.length > 0 ? (
     <div className={classes.root}>
       <Stepper
         alternativeLabel
@@ -31,13 +31,21 @@ export const StepperComponent = ({stepsConfig}) => {
       >
         {stepsConfig.steps.map(step => (
           <Step key={step.name}>
-            <StepLabel icon={step.icon} StepIconComponent={CustomStepIcon}>{step.name}</StepLabel>
+            <StepLabel icon={step.icon} StepIconComponent={CustomStepIcon}>
+              {step.name}
+            </StepLabel>
           </Step>
         ))}
       </Stepper>
       <div className={classes.instructions}>
-        {React.cloneElement(stepsConfig.steps[activeStep].component, {handleNext, handleBack, handleReset})}
+        {React.cloneElement(stepsConfig.steps[activeStep].component, {
+          handleNext,
+          handleBack,
+          handleReset
+        })}
       </div>
     </div>
-  ) : <h4>Mauvaise configuration du stepper</h4>;
+  ) : (
+    <h4>Mauvaise configuration du stepper</h4>
+  );
 };
