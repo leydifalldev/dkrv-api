@@ -1,5 +1,6 @@
 const eventMapping = {
   index: 'event',
+  type: 'event',
   include_type_name: true,
   body: {
     properties: {

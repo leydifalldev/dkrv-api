@@ -3357,21 +3357,49 @@
         "version": "a05800075a4226afd9d743622c9a7c7c49c770521c493a39cf9bb4b70bc85f32",
         "signature": "22038c8bcf8e57ad2b2a5eee73e18e4fe42441de6a43944323e96ae5f90a63bd"
       },
+      "../node_modules/@elastic/elasticsearch/lib/connection.d.ts": {
+        "version": "853f27607bc13aa62466e3c9d723670f619b52c65dc134b81c96b81415c5bdc5",
+        "signature": "853f27607bc13aa62466e3c9d723670f619b52c65dc134b81c96b81415c5bdc5"
+      },
+      "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts": {
+        "version": "c821e9e799a7bbbd2e67dae1fa20fbd7aa60a96352af8b9840840d3d33e872d1",
+        "signature": "c821e9e799a7bbbd2e67dae1fa20fbd7aa60a96352af8b9840840d3d33e872d1"
+      },
+      "../node_modules/@elastic/elasticsearch/lib/serializer.d.ts": {
+        "version": "f4229f0e988d729eb95906628696302feb490e7fa9dbb7480ad2682fa4ed2c36",
+        "signature": "f4229f0e988d729eb95906628696302feb490e7fa9dbb7480ad2682fa4ed2c36"
+      },
+      "../node_modules/@elastic/elasticsearch/lib/transport.d.ts": {
+        "version": "efd2b1a9d3f9dc5e667ab068d5f7581b7739d095f7d365ed9302ef34080edb05",
+        "signature": "efd2b1a9d3f9dc5e667ab068d5f7581b7739d095f7d365ed9302ef34080edb05"
+      },
+      "../node_modules/@elastic/elasticsearch/api/requestparams.d.ts": {
+        "version": "e44e1912dab5cdd8d4a841b41da28bc151d5f453c35dd00a513e66867c04faaf",
+        "signature": "e44e1912dab5cdd8d4a841b41da28bc151d5f453c35dd00a513e66867c04faaf"
+      },
+      "../node_modules/@elastic/elasticsearch/lib/errors.d.ts": {
+        "version": "acc589e68e781bb6a1710df61af1f4191214e37886e7299e57579c009004aa0b",
+        "signature": "acc589e68e781bb6a1710df61af1f4191214e37886e7299e57579c009004aa0b"
+      },
+      "../node_modules/@elastic/elasticsearch/index.d.ts": {
+        "version": "0cd90b1589cc0925c4df5531e5ee1e1c3d3de3d8ff232ef21e1d3fb3bdda854a",
+        "signature": "0cd90b1589cc0925c4df5531e5ee1e1c3d3de3d8ff232ef21e1d3fb3bdda854a"
+      },
       "../src/types/common.defs.ts": {
         "version": "64f9930ed1eb6626c30f34407d14228f1c45eb288a703291658250fd4c314ad7",
         "signature": "adc967a123f3ae7ded6c2b517040372d584f0531b978c310d1c554934026a019"
       },
       "../src/search-engine/elastic.service.ts": {
-        "version": "08813906730a211251c99c2716bbfc8037e829485a07362066851ea02409ea93",
-        "signature": "202e5613021719e56177fa679bd5d12c953fffb68cce0d5b87f8a0416222a3f2"
+        "version": "8039231777584eaf4caf72fb53adc256f94df6ca0bebc662b073327c3eea176e",
+        "signature": "565c02b4325527997e1960ecdb32c2f060f660981f4d940530e36e437db165c8"
       },
       "../src/search-engine/place/place.service.ts": {
         "version": "c729d5f779ca2b84f7328ed1b86ef4d99cd27f05670f0cf2163e74f30c16009d",
         "signature": "42f11038362df6d482c3fd82fe9efe97435cbcc1b2001f0a86b2e27789280c3e"
       },
       "../src/api/resolvers/place.resolver.ts": {
-        "version": "ab25d5e1d6d91b32fe71a2e390321e6f3a559fd14762f658736cafde32764058",
-        "signature": "27708ca3974aacc9097924a83156e12b020e8be26d15935fa0d7f8aea0e0ba19"
+        "version": "8a365ba0ed0d3c7153e0e637fa7ae7722194f8c4302c984ce51e067af68fc6bb",
+        "signature": "0d1bffcabe114cbf592923ea7d232b17076ffc8e57a713b32f5b56961ea83b63"
       },
       "../node_modules/@nestjs/microservices/interfaces/client-grpc.interface.d.ts": {
         "version": "192735b3685518f37991fd140b0f13f5f2e2d3ad1c0f618689f5437f8328ec1c",
@@ -3682,19 +3710,31 @@
         "signature": "f31e2438efeae62abb8b2b946f674b164b0b4c1804a5ff9209894b120de2911d"
       },
       "../src/search-engine/product/product.mapping.ts": {
-        "version": "fda9cf164918ca288d5c9146be2d0c2c29563096bb1e09dbd8a573adc7c4ba5e",
-        "signature": "a46de5b9a048a31abe6c2194186fa2404ae4bad105f3be6a61b3755449002e74"
+        "version": "2c7b9fb475b6e9321b1e8cca0d0a64f8e5ec16b4d10de598cf83547197943aaf",
+        "signature": "f2d4501e8b7975de90fa6993c29c584f09256696d98561f4bbbbaf36763d95ea"
       },
       "../src/search-engine/product/product.service.ts": {
         "version": "797b699d04a2cecf4174add89d6623e05b831bc0f6725b9383bbd25f37a9a832",
         "signature": "aa38c81a021fade7dd1b0e5f167a3bbda693e40569b2f2cd29d8c01e693396c0"
       },
-      "../src/search-engine/elastic.controller.ts": {
-        "version": "a755da027a784bb934aecc7fcf939156c404c8833610049a3693e16adb57d6d8",
-        "signature": "d0a29a727bf053ddca7342b862f6615fdfa2cde71b80be76239cf4e41c20bbcd"
+      "../src/search-engine/user/user.mapping.ts": {
+        "version": "fab708f6871f97429b911ab6ee039e4a2313f4fc9f052c6b7f423951937ed307",
+        "signature": "7bf5ac63f1ecc27b59b445047eeb387e747cd688fab4d216cba061a24b067f37"
+      },
+      "../src/search-engine/user/user.service.ts": {
+        "version": "c0134e5c2e92eaca7b76d0da68466c76d68d77218c82794ddb01449e2e86ad67",
+        "signature": "c9141682cb2febb0d952167b108db655983ada422c19230b679cbfd7dc64480e"
+      },
+      "../src/search-engine/event/event.mapping.ts": {
+        "version": "6712e2af14c33ed3eebd721be36104ff693a862f380c59884e53cecf9fa1390b",
+        "signature": "90ae8f8f9726f469844677e4511cce149d54e43d9fe0fad1f24e4732c8dbe12e"
+      },
+      "../src/search-engine/event/event.service.ts": {
+        "version": "fb281618698b1ef31edfafaa4277bdc028ab58f643e8d06d6c51a23d553ddae2",
+        "signature": "104c84a0102e1053e591eeb13ee947850e0b1426dced88a39176dc6f5626d85b"
       },
       "../src/search-engine/search-engine.module.ts": {
-        "version": "bc5721155c7127436168c57eea369a912c5612bd7fec0a7fdb01854af2693545",
+        "version": "7fb1d4160b924cf99362ab508a9a2d8d9817534100f88b57cc42671ed2133579",
         "signature": "8a2137c997b1194c2627a1005feb451a0f46410d474a317193f8018d24e9565d"
       },
       "../src/app.module.ts": {
@@ -3702,7 +3742,7 @@
         "signature": "b82491e2990291580288c5602d4c017238977749d52b17391f0e45d9a29be644"
       },
       "../src/main.ts": {
-        "version": "eba55ea18e8b24642208a3de568a2dd8dd22b66008c8a5fa31653c3e600889a1",
+        "version": "77b2f5d93c19be5ab8fba94d8b7f204bc89013a12fafa1e65966ccfa0d93e680",
         "signature": "8e609bb71c20b858c77f0e9f90bb1319db8477b13f9f965f1a1e18524bf50881"
       },
       "../src/api/objects/event.create.response.ts": {
@@ -3732,6 +3772,10 @@
       "../src/gateway/index.ts": {
         "version": "f5fdfcdb4e82525041450401c1d8ae4ac09e71e87ed7a1b0420bfe4aa7326c85",
         "signature": "36b213b73e2a81b2e2a303964d66db71a231494750c58ef84ae4078411308553"
+      },
+      "../src/search-engine/elastic.type.ts": {
+        "version": "1f2556a96d17b507fba3abed7ee6e4324b5cc0bf06eac0c8b01806da1f2d5772",
+        "signature": "abd546fcd69ff6a42f0dd0b1aba64f00d36af05ed3efd3068afb07a16304353c"
       },
       "../src/shared/transform.interceptor.ts": {
         "version": "2f7d8b69ed62954ad7e7b96cc967eab6f81e55ccfb15208db1316e449cc4612b",
@@ -11260,6 +11304,71 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
+      "../node_modules/@elastic/elasticsearch/lib/connection.d.ts": [
+        "../node_modules/@types/node/url.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts",
+        "../node_modules/@types/node/http.d.ts",
+        "../node_modules/@types/node/tls.d.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts": [
+        "../node_modules/@types/node/tls.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/connection.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/transport.d.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/lib/serializer.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/lib/transport.d.ts": [
+        "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/connection.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/serializer.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/api/requestparams.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/lib/errors.d.ts": [
+        "../node_modules/@elastic/elasticsearch/lib/transport.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/index.d.ts": [
+        "../node_modules/@types/node/events.d.ts",
+        "../node_modules/@types/node/tls.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/transport.d.ts",
+        "../node_modules/@types/node/url.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/connection.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/serializer.d.ts",
+        "../node_modules/@elastic/elasticsearch/api/requestparams.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/errors.d.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/types/common.defs.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
@@ -11268,6 +11377,7 @@
       ],
       "../src/search-engine/elastic.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../node_modules/@elastic/elasticsearch/index.d.ts",
         "../src/types/common.defs.ts",
         "../src/api/inputs/index.ts",
         "../node_modules/@types/node/fs.d.ts",
@@ -11987,8 +12097,31 @@
         "../node_modules/@types/node/util.d.ts",
         "../node_modules/@types/node/ts3.2/util.d.ts"
       ],
-      "../src/search-engine/elastic.controller.ts": [
+      "../src/search-engine/user/user.mapping.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/search-engine/user/user.service.ts": [
         "../node_modules/@nestjs/common/index.d.ts",
+        "../src/search-engine/user/user.mapping.ts",
+        "../src/search-engine/elastic.service.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/search-engine/event/event.mapping.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/search-engine/event/event.service.ts": [
+        "../node_modules/@nestjs/common/index.d.ts",
+        "../src/search-engine/event/event.mapping.ts",
+        "../src/search-engine/elastic.service.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -11998,7 +12131,8 @@
         "../node_modules/@nestjs/common/index.d.ts",
         "../src/search-engine/product/product.service.ts",
         "../src/search-engine/place/place.service.ts",
-        "../src/search-engine/elastic.controller.ts",
+        "../src/search-engine/user/user.service.ts",
+        "../src/search-engine/event/event.service.ts",
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -12065,6 +12199,12 @@
       ],
       "../src/gateway/index.ts": [
         "../src/gateway/gateway.grpc.client.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../src/search-engine/elastic.type.ts": [
         "../node_modules/@types/node/fs.d.ts",
         "../node_modules/@types/node/ts3.2/fs.d.ts",
         "../node_modules/@types/node/util.d.ts",
@@ -20001,7 +20141,73 @@
         "../src/api/inputs/recipe.input.ts",
         "../src/api/inputs/schedule.input.ts"
       ],
+      "../node_modules/@elastic/elasticsearch/lib/connection.d.ts": [
+        "../node_modules/@types/node/url.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts",
+        "../node_modules/@types/node/http.d.ts",
+        "../node_modules/@types/node/tls.d.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts": [
+        "../node_modules/@types/node/tls.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/connection.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/transport.d.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/lib/serializer.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/lib/transport.d.ts": [
+        "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/connection.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/serializer.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/api/requestparams.d.ts": [
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/lib/errors.d.ts": [
+        "../node_modules/@elastic/elasticsearch/lib/transport.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
+      "../node_modules/@elastic/elasticsearch/index.d.ts": [
+        "../node_modules/@types/node/events.d.ts",
+        "../node_modules/@types/node/tls.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/transport.d.ts",
+        "../node_modules/@types/node/url.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/connection.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/serializer.d.ts",
+        "../node_modules/@elastic/elasticsearch/api/requestparams.d.ts",
+        "../node_modules/@elastic/elasticsearch/lib/errors.d.ts",
+        "../node_modules/@types/node/ts3.2/index.d.ts",
+        "../node_modules/@types/node/fs.d.ts",
+        "../node_modules/@types/node/ts3.2/fs.d.ts",
+        "../node_modules/@types/node/util.d.ts",
+        "../node_modules/@types/node/ts3.2/util.d.ts"
+      ],
       "../src/search-engine/elastic.service.ts": [
+        "../node_modules/@elastic/elasticsearch/index.d.ts",
         "../src/types/common.defs.ts",
         "../src/api/inputs/index.ts",
         "../node_modules/@nestjs/common/index.d.ts"
@@ -20636,6 +20842,12 @@
         "../node_modules/@nestjs/common/index.d.ts"
       ],
       "../src/search-engine/product/product.service.ts": [
+        "../src/search-engine/elastic.service.ts"
+      ],
+      "../src/search-engine/user/user.service.ts": [
+        "../src/search-engine/elastic.service.ts"
+      ],
+      "../src/search-engine/event/event.service.ts": [
         "../src/search-engine/elastic.service.ts"
       ],
       "../src/api/resolvers/index.ts": [
@@ -22566,7 +22778,15 @@
       "../src/api/inputs/schedule.input.ts",
       "../src/api/inputs/index.ts",
       "../src/search-engine/place/place.mapping.ts",
+      "../node_modules/@elastic/elasticsearch/lib/connection.d.ts",
+      "../node_modules/@elastic/elasticsearch/lib/pool/index.d.ts",
+      "../node_modules/@elastic/elasticsearch/lib/serializer.d.ts",
+      "../node_modules/@elastic/elasticsearch/lib/transport.d.ts",
+      "../node_modules/@elastic/elasticsearch/api/requestparams.d.ts",
+      "../node_modules/@elastic/elasticsearch/lib/errors.d.ts",
+      "../node_modules/@elastic/elasticsearch/index.d.ts",
       "../src/types/common.defs.ts",
+      "../src/search-engine/elastic.service.ts",
       "../src/search-engine/place/place.service.ts",
       "../src/api/resolvers/place.resolver.ts",
       "../node_modules/@nestjs/microservices/interfaces/client-grpc.interface.d.ts",
@@ -22648,10 +22868,12 @@
       "../src/api/api.module.ts",
       "../src/search-engine/product/product.mapping.ts",
       "../src/search-engine/product/product.service.ts",
-      "../src/search-engine/elastic.controller.ts",
+      "../src/search-engine/user/user.mapping.ts",
+      "../src/search-engine/user/user.service.ts",
+      "../src/search-engine/event/event.mapping.ts",
+      "../src/search-engine/event/event.service.ts",
       "../src/search-engine/search-engine.module.ts",
       "../src/app.module.ts",
-      "../src/main.ts",
       "../src/api/objects/event.create.response.ts",
       "../src/api/objects/event.detail.response.ts",
       "../src/api/objects/event.list.response.ts",
@@ -22659,6 +22881,7 @@
       "../src/api/objects/schedule.type.ts",
       "../src/api/resolvers/index.ts",
       "../src/gateway/index.ts",
+      "../src/search-engine/elastic.type.ts",
       "../src/shared/transform.interceptor.ts",
       "../node_modules/@types/anymatch/index.d.ts",
       "../node_modules/@babel/types/lib/index.d.ts",
@@ -22782,7 +23005,7 @@
       "../node_modules/@types/webpack/index.d.ts",
       "../node_modules/@types/yargs-parser/index.d.ts",
       "../node_modules/@types/yargs/index.d.ts",
-      "../src/search-engine/elastic.service.ts"
+      "../src/main.ts"
     ]
   },
   "version": "3.7.2"

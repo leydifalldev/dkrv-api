@@ -7,15 +7,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const product_service_1 = require("./product/product.service");
-const place_service_1 = require("./place/place.service");
-const elastic_controller_1 = require("./elastic.controller");
 let SearchEngineModule = class SearchEngineModule {
 };
 SearchEngineModule = __decorate([
     common_1.Module({
-        controllers: [elastic_controller_1.SearchEngineController],
-        providers: [place_service_1.PlaceStore, product_service_1.ProductStore],
+        providers: [],
     })
 ], SearchEngineModule);
 exports.SearchEngineModule = SearchEngineModule;

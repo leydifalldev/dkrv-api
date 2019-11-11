@@ -3,6 +3,7 @@ import {
   OnModuleInit,
   HttpException,
   Logger,
+  HttpStatus,
 } from '@nestjs/common';
 import {
   Client,
@@ -38,7 +39,6 @@ export class ElasticService implements OnModuleInit {
           try {
             Logger.log('CREATE MAPPING IN PROGRESS ...');
             await this.putMapping(this.mapping);
-            Logger.log(`MAPPING ADDED for ${this.index}`);
           } catch (e) {
             Logger.log(this.index + ' error ', e);
           }
@@ -60,11 +60,9 @@ export class ElasticService implements OnModuleInit {
       const mappingResult = await this.esclient.indices.putMapping(
         mappingSchema,
       );
-      Logger.log('mappingResult LOG');
-      Logger.log(mappingResult);
-      if (mappingResult) {
-        Logger.log('mapping creation successfully');
-        Logger.log(mappingResult);
+      Logger.log(mappingResult.statusCode === HttpStatus.OK);
+      if (mappingResult.statusCode === HttpStatus.OK) {
+        Logger.log(`MAPPING SUCCESSFULLY ADDED for ${mappingSchema.index}`);
       } else {
         Logger.log('Cannot create mapping');
       }

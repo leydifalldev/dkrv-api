@@ -1,15 +1,15 @@
-version: '3'
+version: "3"
 
 services:
   search-engine:
     hostname: search-engine
     build: ./search-engine
     entrypoint: /usr/src/app/start.sh
-    volumes: 
+    volumes:
       - ./search-engine:/usr/src/app:ro
-    ports: 
+    ports:
       - 9500:5000
-    networks: 
+    networks:
       - dkrv-network
     env_file:
       - ./dkrv.env
@@ -17,32 +17,38 @@ services:
       - elasticsearch_primary
     links:
       - elasticsearch_primary
-  dkrv-se:
-    hostname: dkrv-se
-    build: ./dkrv-se
-    entrypoint: /usr/src/app/start.sh
-    volumes: 
-      - ./dkrv-se:/usr/src/app:ro
-    ports: 
-      - 9600:6000
-    networks: 
+  dkrv-place:
+    hostname: dkrv-place
+    restart: unless-stopped
+    build:
+      context: ./dkrv-place
+      dockerfile: Dockerfile.dev
+    ports:
+      - 5200:5200
+      - 5300:5300
+      - 5400:5400
+    volumes:
+      - ./dkrv-place:/home/dkrv-place
+    working_dir: /home/dkrv-place
+    command: bash -c "GO111MODULE=on go mod download && make serve"
+    environment:
+      DEBUG: "true"
+    networks:
       - dkrv-network
+    depends_on:
+      - mongo
     env_file:
       - ./dkrv.env
-    depends_on:
-      - elasticsearch_primary
-    links:
-      - elasticsearch_primary
   dkrv-core:
     hostname: dkrv-core
     build: ./dkrv-core
-    container_name: 'dkrv-core'
-    restart: 'always'
-    volumes: 
+    container_name: "dkrv-core"
+    restart: "always"
+    volumes:
       - ./dkrv-core:/app
     ports:
       - 9000:9000
-    networks: 
+    networks:
       - dkrv-network
     depends_on:
       - search-engine
@@ -77,5 +83,3 @@ volumes:
 
 networks:
   dkrv-network: {}
-
-   

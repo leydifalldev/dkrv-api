@@ -1,17 +1,16 @@
 import { OnModuleInit } from '@nestjs/common';
-import * as elasticsearch from 'elasticsearch';
-import { ServiceResponse } from 'src/types/common.defs';
-import { PlaceInput } from 'src/api/inputs';
+import { Client } from '@elastic/elasticsearch';
+import { ServiceResponse } from '../types/common.defs';
+import { PlaceInput } from '../api/inputs';
 export declare class ElasticService implements OnModuleInit {
     private index;
     private mapping;
-    protected readonly esclient: elasticsearch.Client;
+    protected readonly esclient: Client;
     constructor(index: string, mapping: any);
     onModuleInit(): void;
-    ping(): void;
     config(): Promise<void>;
     putMapping(mappingSchema: any): Promise<void>;
-    getClient(): any;
+    getClient(): Client;
     formatList(esresult: any): any;
     search(params: any): Promise<ServiceResponse>;
     add(params: PlaceInput): Promise<ServiceResponse>;

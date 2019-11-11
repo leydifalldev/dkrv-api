@@ -9,8 +9,7 @@ COPY tsconfig.build.json .
 COPY tslint.json .
 COPY ./src ./src
 COPY ./proto ./proto
-COPY ./startdev.sh ./startdev.sh
-RUN chmod +x startdev.sh
 RUN yarn add node-pre-gyp
 RUN yarn
 EXPOSE 5000
+CMD ["yarn", "start:dev"]

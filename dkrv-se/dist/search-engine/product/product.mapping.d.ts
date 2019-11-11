@@ -58,8 +58,10 @@ declare const productMapping: {
             location: {
                 type: string;
             };
-            picture: {
-                type: string;
+            pictures: {
+                properties: {
+                    type: string;
+                };
             };
             menu_available: {
                 type: string;

@@ -1,56 +1,42 @@
 "use strict";
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
 Object.defineProperty(exports, "__esModule", { value: true });
 const common_1 = require("@nestjs/common");
-const elasticsearch = require("elasticsearch");
-let ElasticService = class ElasticService {
+const elasticsearch_1 = require("@elastic/elasticsearch");
+class ElasticService {
     constructor(index, mapping) {
         this.index = index;
         this.mapping = mapping;
-        this.esclient = new elasticsearch.Client({
-            host: process.env.ELASTICSEARCH_PRIMARY || 'http://localhost:5800',
+        this.esclient = new elasticsearch_1.Client({
+            node: process.env.ELASTICSEARCH_PRIMARY || 'http://localhost:5800',
         });
     }
     onModuleInit() {
         this.config();
     }
-    ping() {
-        this.esclient.ping({ requestTimeout: 3000 })
-            .catch(err => {
-            throw new common_1.HttpException({
-                status: 'error',
-                message: 'Unable to reach Elasticsearch cluster',
-            }, 500);
-        });
-    }
     async config() {
         try {
             const result = await this.esclient.indices.exists({ index: this.index });
-            if (result) {
-                common_1.Logger.log(this.index + 'index already exists');
-            }
-            else {
+            if (result.statusCode === 404) {
                 common_1.Logger.log(this.index + ' does not exists ====> creating ...');
-                const createIndexResult = await this.esclient.indices.create({ index: this.index });
-                if (createIndexResult && createIndexResult.acknowledged) {
+                const createIndexResult = await this.esclient.indices.create({
+                    index: this.index,
+                });
+                if (createIndexResult.statusCode === 200) {
                     try {
-                        common_1.Logger.log(this.index + ' does not exists ====> creating ...');
-                        const updateMappingResult = await this.putMapping(this.mapping);
-                        common_1.Logger.log(this.index + ' creation result ====>');
-                        common_1.Logger.log(updateMappingResult);
+                        common_1.Logger.log('CREATE MAPPING IN PROGRESS ...');
+                        await this.putMapping(this.mapping);
+                        common_1.Logger.log(`MAPPING ADDED for ${this.index}`);
                     }
                     catch (e) {
                         common_1.Logger.log(this.index + ' error ', e);
                     }
                 }
+                else {
+                    common_1.Logger.log(`CREATE INDEX FAILED for ${this.index}`);
+                }
+            }
+            else {
+                common_1.Logger.log(this.index + ' INDEX ALREADY EXISTS');
             }
         }
         catch (e) {
@@ -60,7 +46,10 @@ let ElasticService = class ElasticService {
     async putMapping(mappingSchema) {
         try {
             common_1.Logger.log('Creating Mapping index');
+            common_1.Logger.log(mappingSchema);
             const mappingResult = await this.esclient.indices.putMapping(mappingSchema);
+            common_1.Logger.log('mappingResult LOG');
+            common_1.Logger.log(mappingResult);
             if (mappingResult) {
                 common_1.Logger.log('mapping creation successfully');
                 common_1.Logger.log(mappingResult);
@@ -90,7 +79,6 @@ let ElasticService = class ElasticService {
     async search(params) {
         const request = {
             index: this.index,
-            _source: true,
             q: params.q,
             from: params.from || 0,
             size: params.size || 10,
@@ -99,8 +87,8 @@ let ElasticService = class ElasticService {
             const resp = await this.esclient.search(request);
             common_1.Logger.log(resp);
             return {
-                total: resp.hits.hits.length,
-                payload: resp.hits.hits.map(hit => hit._source),
+                total: resp.body.hits.total,
+                payload: resp.body.hits.hits.map(hit => hit._source),
                 status: 200,
                 error: 'none',
             };
@@ -123,11 +111,11 @@ let ElasticService = class ElasticService {
                 refresh: 'true',
                 body: params,
             });
-            common_1.Logger.log('resp log', resp);
+            common_1.Logger.log('resp log', resp.body);
             return {
-                payload: resp._id,
+                payload: resp.body,
                 status: 200,
-                error: !(resp.result === 'created'),
+                error: 'none',
             };
         }
         catch (e) {
@@ -152,7 +140,7 @@ let ElasticService = class ElasticService {
             return {
                 status: 200,
                 error: 'none',
-                payload: (resp.result === 'updated'),
+                payload: resp.body,
             };
         }
         catch (e) {
@@ -175,7 +163,7 @@ let ElasticService = class ElasticService {
             return {
                 status: 200,
                 error: 'none',
-                payload: (resp.result === 'deleted'),
+                payload: resp.body,
             };
         }
         catch (e) {
@@ -194,9 +182,9 @@ let ElasticService = class ElasticService {
                 id,
             });
             return {
-                status: 200,
+                status: resp.statusCode,
                 error: null,
-                payload: resp._source,
+                payload: resp.body,
             };
         }
         catch (e) {
@@ -224,10 +212,6 @@ let ElasticService = class ElasticService {
             };
         }
     }
-};
-ElasticService = __decorate([
-    common_1.Injectable(),
-    __metadata("design:paramtypes", [String, Object])
-], ElasticService);
+}
 exports.ElasticService = ElasticService;
 //# sourceMappingURL=elastic.service.js.map

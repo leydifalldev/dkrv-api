@@ -1,40 +1,55 @@
-const userMapping = {
-  index: 'user',
-  type: 'user',
+const eventMapping = {
+  index: 'event',
   include_type_name: true,
   body: {
     properties: {
       id: {
         type: 'keyword',
       },
-      fullname: {
+      name: {
         type: 'keyword',
       },
-      firstname: {
+      start_date: {
         type: 'date',
       },
-      lastname: {
+      end_date: {
         type: 'date',
       },
-      gender: {
+      placeid: {
         type: 'keyword',
       },
-      birthdate: {
-        type: 'keyword',
-      },
-      address: {
+      placename: {
         type: 'keyword',
       },
       zone: {
         type: 'keyword',
       },
-      email: {
-        type: 'keyword',
-      },
-      roles: {
+      price: {
         type: 'nested',
       },
-      permissions: {
+      manager: {
+        properties: {
+          id: {
+            type: 'keyword',
+          },
+          name: {
+            type: 'keyword',
+          },
+          phone: {
+            type: 'keyword',
+          },
+          email: {
+            type: 'keyword',
+          },
+          picture: {
+            type: 'keyword',
+          },
+        },
+      },
+      address: {
+        type: 'keyword',
+      },
+      categories: {
         type: 'nested',
       },
       description: {
@@ -52,6 +67,9 @@ const userMapping = {
       location: {
         type: 'geo_point',
       },
+      hosts: {
+        type: 'nested',
+      },
       pictures: {
         properties: {
           src: {
@@ -63,4 +81,4 @@ const userMapping = {
   },
 };
 
-export default userMapping;
+export default eventMapping;

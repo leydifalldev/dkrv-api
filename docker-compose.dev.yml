@@ -1,40 +1,6 @@
 version: "3"
 
 services:
-  dkrv-place:
-    hostname: dkrv-place
-    restart: unless-stopped
-    build:
-      context: ./dkrv-place
-      dockerfile: Dockerfile.dev
-    ports:
-      - 5200:5200
-      - 5300:5300
-      - 5400:5400
-    volumes:
-      - ./dkrv-place:/home/dkrv-place
-    working_dir: /home/dkrv-place
-    command: bash -c "GO111MODULE=on go mod download && make serve"
-    environment:
-      DEBUG: "true"
-    networks:
-      - dkrv-network
-    depends_on:
-      - mongo
-    env_file:
-      - ./dkrv.env
-  dkrv-se:
-    hostname: dkrv-se
-    build: ./dkrv-se
-    volumes: 
-      - ./dkrv-se/src:/usr/src/app/src:ro
-    ports: 
-      - 9600:6000
-    networks: 
-      - dkrv-network
-    env_file:
-      - ./dkrv.env
-    depends_on: ['elasticsearch_primary']
   webserver:
     build:
       context: ./dkrv-webserver/nginx
@@ -48,7 +14,6 @@ services:
   dkrv-core:
     hostname: dkrv-core
     build: ./dkrv-core
-    command: "npm run start:dev"
     volumes:
       - ./dkrv-core/src:/usr/src/app/src:ro
     ports:
@@ -85,10 +50,11 @@ services:
     ports:
       - 5800:9200
     healthcheck:
-        test: ["CMD", "curl --silent --fail localhost:9200/_cluster/health || exit 1"]
-        interval: 30s
-        timeout: 30s
-        retries: 3
+      test:
+        ["CMD", "curl --silent --fail localhost:5800/_cluster/health || exit 1"]
+      interval: 30s
+      timeout: 30s
+      retries: 3
     networks:
       - dkrv-network
 

@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const productMapping = {
-    index: 'food',
+    index: 'product',
     type: 'product',
     include_type_name: true,
     body: {
@@ -60,8 +60,10 @@ const productMapping = {
             location: {
                 type: 'geo_point',
             },
-            picture: {
-                type: 'keyword',
+            pictures: {
+                properties: {
+                    type: 'keyword',
+                },
             },
             menu_available: {
                 type: 'boolean',

@@ -1,6 +1,6 @@
 import { Place } from '../objects';
 import { PlaceInput } from '../inputs';
-import { PlaceStore } from 'src/search-engine/place/place.service';
+import { PlaceStore } from '../../search-engine/place/place.service';
 export declare class PlaceResolver {
     private placeStore;
     constructor(placeStore: PlaceStore);

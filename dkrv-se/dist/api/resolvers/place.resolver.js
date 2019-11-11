@@ -28,14 +28,12 @@ let PlaceResolver = class PlaceResolver {
     }
     async getPlace(id) {
         common_1.Logger.log(id);
-        const response = await this.placeStore
-            .get(id);
+        const response = await this.placeStore.get(id);
         common_1.Logger.log(response);
         return response.payload;
     }
     async createPlace(place) {
-        const response = await this.placeStore
-            .add(place);
+        const response = await this.placeStore.add(place);
         return response.payload;
     }
 };

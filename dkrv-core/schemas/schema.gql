@@ -29,8 +29,6 @@ input LocationInput {
 
 type Mutation {
   createPlace(place: PlaceInput!): String!
-  updatePlace(place: PlaceInput!): Boolean!
-  deletePlace(id: String!): Boolean!
   getProduct(id: String!): ProductDetailResponse!
   createProduct(product: ProductInput!): ProductCreateResponse!
   updateProduct(product: ProductInput!): ProductUpdateResponse!

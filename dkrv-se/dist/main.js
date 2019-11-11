@@ -23,7 +23,7 @@ async function bootstrap() {
         windowMs: 15 * 60 * 1000,
         max: 100,
     }));
-    await app.listen(6000);
+    await app.listen(4000);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map
