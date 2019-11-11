@@ -2,19 +2,10 @@ import React from "react";
 import clsx from "clsx";
 import PropTypes from "prop-types";
 import { useColorlibStepIconStyles } from "./styles";
-import VideoLabelIcon from "@material-ui/icons/VideoLabel";
-import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
-import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
 
-export const ColorlibStepIcon = props => {
+export const CustomStepIcon = props => {
   const classes = useColorlibStepIconStyles();
   const { active, completed } = props;
-
-  const icons = {
-    1: <FormatAlignJustifyIcon />,
-    2: <AddPhotoAlternateIcon />,
-    3: <VideoLabelIcon />
-  };
 
   return (
     <div
@@ -23,12 +14,12 @@ export const ColorlibStepIcon = props => {
         [classes.completed]: completed
       })}
     >
-      {icons[String(props.icon)]}
+      {props.icon}
     </div>
   );
 };
 
-ColorlibStepIcon.propTypes = {
+CustomStepIcon.propTypes = {
   active: PropTypes.bool,
   completed: PropTypes.bool,
   icon: PropTypes.node

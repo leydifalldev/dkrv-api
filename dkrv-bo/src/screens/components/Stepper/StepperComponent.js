@@ -2,22 +2,11 @@ import React from "react";
 import StepLabel from "@material-ui/core/StepLabel";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
-import { ColorlibStepIcon } from "./Icons";
 import { ColorlibConnector } from "./Connector";
-import GroupAddIcon from "@material-ui/icons/GroupAdd";
 import { useStyles } from "./styles";
+import { CustomStepIcon } from './Icons';
 
-const Test = () => <div>Test</div>;
-
-const steps = {
-  label: "Ajout product",
-  steps: [
-    { name: "Fiche produit", component: <Test /> },
-    { name: "Photos", component: <Test /> }
-  ]
-};
-
-export const StepperComponent = () => {
+export const StepperComponent = ({stepsConfig}) => {
   const classes = useStyles();
   const [activeStep, setActiveStep] = React.useState(0);
 
@@ -33,22 +22,22 @@ export const StepperComponent = () => {
     setActiveStep(0);
   };
 
-  return (
+  return (stepsConfig && stepsConfig.steps.length && stepsConfig.steps.length > 0) ? (
     <div className={classes.root}>
       <Stepper
         alternativeLabel
         activeStep={activeStep}
         connector={<ColorlibConnector />}
       >
-        {steps.steps.map(step => (
+        {stepsConfig.steps.map(step => (
           <Step key={step.name}>
-            <StepLabel icon={<GroupAddIcon />}>{step.name}</StepLabel>
+            <StepLabel icon={step.icon} StepIconComponent={CustomStepIcon}>{step.name}</StepLabel>
           </Step>
         ))}
       </Stepper>
       <div className={classes.instructions}>
-        {React.cloneElement(steps.steps[activeStep].component)}
+        {React.cloneElement(stepsConfig.steps[activeStep].component, {handleNext, handleBack, handleReset})}
       </div>
     </div>
-  );
+  ) : <h4>Mauvaise configuration du stepper</h4>;
 };
