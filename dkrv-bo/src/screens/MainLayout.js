@@ -1,5 +1,6 @@
 import React from "react";
 import clsx from "clsx";
+import { SnackbarProvider } from 'notistack';
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -192,10 +193,12 @@ const TopNavBar = ({ classes, isOpen, handleDrawerOpen }) => (
 const LayoutContent = ({ classes }) => (
   <main className={classes.content}>
     <div className={classes.toolbar} />
+    <SnackbarProvider>
     <Switch>
       <Route path="/place">
         <PlaceScreen />
       </Route>
     </Switch>
+    </SnackbarProvider>
   </main>
 );

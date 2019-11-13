@@ -7,7 +7,7 @@ import InputAdornment from "@material-ui/core/InputAdornment";
 import { TextInput } from "../../../components/Forms/TextInput";
 import { SelectInput } from "../../../components/Forms/SelectInput";
 import { Grid } from "@material-ui/core";
-import { SuggestForm } from "../../../components/Forms/Form/SuggestForm";
+import { SuggestInput } from "../../../components/FormFields";
 
 const types = [
   {
@@ -209,7 +209,7 @@ const ProductForm = props => {
         />
       </Grid>
       <Grid item xs={12}>
-        <SuggestForm
+        <SuggestInput
           onChange={props.handleChange}
           setFieldValue={props.setFieldValue}
           value={props.values.recipes}

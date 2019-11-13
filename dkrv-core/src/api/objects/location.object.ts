@@ -1,17 +1,11 @@
-import { Field, ObjectType } from 'type-graphql';
+import { Field, ObjectType, Float } from 'type-graphql';
 import { Coordinate } from './coordinate.type';
 
 @ObjectType()
 export class Location {
-  @Field(type => String)
-  address: string;
+  @Field(type => Float, { nullable: true })
+  lat: number;
 
-  @Field(type => String, { nullable: true })
-  cpc: string;
-
-  @Field(type => String)
-  zone: string;
-
-  @Field(type => Coordinate, { nullable: true })
-  coordinate: string;
+  @Field(type => Float, { nullable: true })
+  lng: number;
 }

@@ -31,6 +31,7 @@ export class PlaceResolver {
 
   @Mutation(returns => String)
   async createPlace(@Args('place') place: PlaceInput) {
+    Logger.log(place);
     const response: ServiceResponse = await this.placeStore.add(place);
     Logger.log(response);
     if (response.status === 400) {

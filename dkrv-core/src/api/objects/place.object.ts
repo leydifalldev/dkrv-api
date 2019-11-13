@@ -1,29 +1,42 @@
 import { Field, Int, ObjectType } from 'type-graphql';
 import { Location } from './location.object';
 import { Product } from './product.object';
+import { Picture } from './picture';
 
 @ObjectType()
 export class Place {
-  @Field(type => String, { nullable: true })
+  @Field(type => String)
   id: string;
 
   @Field(type => String, { nullable: true })
   name: string;
 
   @Field(type => String, { nullable: true })
-  logo?: string;
-
-  @Field(type => String, { nullable: true })
   phone: string;
 
-  @Field({ nullable: true })
+  @Field(type => String, { nullable: true })
   email?: string;
 
-  @Field({ nullable: true })
+  @Field(type => String, { nullable: true })
   description?: string;
+
+  @Field(type => [String])
+  categories: string[];
 
   @Field(type => String, { nullable: true })
   gastronomies?: string[];
+
+  @Field(type => Int, { nullable: true })
+  notation?: number;
+
+  @Field(type => Boolean, { nullable: true })
+  oceanear?: boolean;
+
+  @Field(type => String)
+  address: string;
+
+  @Field(type => String)
+  zone: string;
 
   @Field(type => Location, { nullable: true })
   location?: Location;
@@ -31,17 +44,14 @@ export class Place {
   @Field(type => Int, { nullable: true })
   likes?: number;
 
-  @Field(type => Int, { nullable: true })
-  notation?: number;
-
-  @Field(type => Int, { nullable: true })
-  travelTime?: number;
-
   @Field(type => Boolean, { nullable: true })
-  oceanNear?: boolean;
+  temporaly?: boolean;
 
-  @Field(type => Boolean, { nullable: true })
-  temporalyPlace?: boolean;
+  @Field(type => String, { nullable: true })
+  logo?: string;
+
+  @Field(type => [Picture], { nullable: true })
+  pictures?: Picture;
 
   @Field(type => [Product], { nullable: true })
   products?: Product[];

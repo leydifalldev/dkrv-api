@@ -126,7 +126,7 @@ export class ElasticService implements OnModuleInit {
       });
       Logger.log('resp log', resp.body);
       return {
-        payload: resp.body,
+        payload: resp.body._id,
         status: 200,
         error: 'none',
       };

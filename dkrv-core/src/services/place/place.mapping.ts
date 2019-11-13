@@ -19,11 +19,8 @@ const placeMapping = {
       description: {
         type: 'text',
       },
-      type: {
-        type: 'keyword',
-      },
-      category: {
-        type: 'keyword',
+      categories: {
+        type: 'nested',
       },
       gastronomies: {
         type: 'nested',
@@ -31,14 +28,8 @@ const placeMapping = {
       notation: {
         type: 'integer',
       },
-      travel_time: {
-        type: 'integer',
-      },
-      ocean_near: {
+      oceanear: {
         type: 'boolean',
-      },
-      likes: {
-        type: 'integer',
       },
       address: {
         type: 'keyword',
@@ -46,13 +37,13 @@ const placeMapping = {
       zone: {
         type: 'keyword',
       },
-      cpc: {
-        type: 'keyword',
-      },
       location: {
         type: 'geo_point',
       },
-      temporaly_place: {
+      likes: {
+        type: 'integer',
+      },
+      temporaly: {
         type: 'boolean',
       },
       logo: {

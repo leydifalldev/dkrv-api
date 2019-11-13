@@ -2,8 +2,10 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import TextField from "@material-ui/core/TextField";
 import { TextInput } from "../../../components/Forms/TextInput";
+import { SuggestInput } from "../../../components/FormFields";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
+import { useSnackbar } from 'notistack';
 import { useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
@@ -11,8 +13,14 @@ import { Grid } from "@material-ui/core";
 import * as Yup from "yup";
 import { CREATE_PLACE_DETAIL } from "../../../../network";
 
+const catSuggession = [
+  { title: 'Tomates', year: 1994 },
+  { title: 'Viandes', year: 1972 },
+];
+
 export const CreatePlaceModal = () => {
   const [createPlace, error, loading] = useMutation(CREATE_PLACE_DETAIL);
+  const { enqueueSnackbar } = useSnackbar();
   const handleSubmit = async (values, actions) => {
     console.log(values);
     try {
@@ -20,9 +28,15 @@ export const CreatePlaceModal = () => {
         variables: { placeInput: values }
       });
     } catch (e) {
-      console.log("result error log", e.graphQLErrors);
-      const errorsMessage = e.graphQLErrors.map(error => error.message);
-      console.log(errorsMessage);
+      if (e.networkError) {
+        enqueueSnackbar(String(e.networkError), {variant: 'error'});
+      }
+      if (e.graphQLErrors) {
+        e.graphQLErrors.map(error => {
+          enqueueSnackbar(error.message, {variant: 'error'});
+        });
+      }
+      //console.log(errorsMessage);
     }
   };
 
@@ -84,8 +98,8 @@ export const CreatePlaceModal = () => {
             type="text"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
-            value={props.values.location.address}
-            name="location.address"
+            value={props.values.address}
+            name="address"
             label="Adresse"
             placeholder="Placeholder"
             variant="outlined"
@@ -96,8 +110,8 @@ export const CreatePlaceModal = () => {
             type="text"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
-            value={props.values.location.zone}
-            name="location.zone"
+            value={props.values.zone}
+            name="zone"
             label="Zone"
             placeholder="Placeholder"
             variant="outlined"
@@ -108,8 +122,8 @@ export const CreatePlaceModal = () => {
           <FormControlLabel
             control={
               <Switch
-                name="oceanNear"
-                checked={props.values.oceanNear}
+                name="oceanear"
+                checked={props.values.oceanear}
                 onChange={props.handleChange}
               />
             }
@@ -118,8 +132,8 @@ export const CreatePlaceModal = () => {
           <FormControlLabel
             control={
               <Switch
-                name="temporalyPlace"
-                checked={props.values.temporalyPlace}
+                name="temporaly"
+                checked={props.values.temporaly}
                 onChange={props.handleChange}
               />
             }
@@ -142,6 +156,21 @@ export const CreatePlaceModal = () => {
             fullWidth
           />
         </Grid>
+        <Grid item sm={12} style={styleGridItem}>
+          <SuggestInput
+            onChange={props.handleChange}
+            setFieldValue={props.setFieldValue}
+            value={props.values.categories}
+            options={catSuggession}
+            filterSelectedOptions
+            getOptionLabel={option => option.title}
+            name="categories"
+            id="categories"
+            label="Categories"
+            error={props.errors.categories}
+            onBlur={props.handleBlur}
+          />
+        </Grid>
       </Grid>
       {renderSubmit()}
     </form>
@@ -151,9 +180,10 @@ export const CreatePlaceModal = () => {
     <Formik
       initialValues={{
         name: "",
-        location: { address: "" },
-        oceanNear: false,
-        temporalyPlace: false
+        address: "",
+        zone: "",
+        oceanear: false,
+        temporaly: false
       }}
       onSubmit={handleSubmit}
       render={RenderForm}
