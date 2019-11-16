@@ -1,10 +1,10 @@
 import { Injectable } from '@nestjs/common';
-import userMapping from './user.mapping';
+import profilMapping from './profil.mapping';
 import { ElasticService } from '../elastic.service';
 
 @Injectable()
-export class UserStore extends ElasticService {
+export class ProfilStore extends ElasticService {
   constructor() {
-    super('user', userMapping);
+    super('profil', profilMapping);
   }
 }

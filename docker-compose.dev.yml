@@ -46,6 +46,7 @@ services:
       - cluster.name=dkrv-cluster
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - transport.tcp.port=5800
     ulimits:
       memlock:
         soft: -1
@@ -53,7 +54,7 @@ services:
     volumes:
       - elasticsearch_primary_data:/usr/share/elasticsearch/data
     ports:
-      - 5800:9200
+      - 5800
     healthcheck:
       test:
         ["CMD", "curl --fail elasticsearch_primary:9200 || exit 1"]

@@ -3,27 +3,22 @@ import gql from "graphql-tag";
 export const RETRIEVE_PLACE_DETAIL = gql`
   query getPlaceDetail($id: String!) {
     getPlace(id: $id) {
-      id
       name
       logo
       phone
       email
       description
+      address
+      zone
       location {
-        address
-        cpc
-        zone
-        coordinate {
-          lng
-          lat
-        }
+        lng
+        lat
       }
       gastronomies
       likes
       notation
-      travelTime
-      oceanNear
-      temporalyPlace
+      oceanear
+      temporaly
       products {
         id
         name

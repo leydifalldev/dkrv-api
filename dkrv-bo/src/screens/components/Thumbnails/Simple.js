@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Thumbnail = ({ title, subheader, description, goTo }) => {
+export const Thumbnail = ({ title, subtitle, description, goTo }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -58,7 +58,7 @@ export const Thumbnail = ({ title, subheader, description, goTo }) => {
           </IconButton>
         }
         title={title || "NR"}
-        subheader={subheader || "NR"}
+        subheader={subtitle || "NR"}
       />
       <CardMedia
         className={classes.media}

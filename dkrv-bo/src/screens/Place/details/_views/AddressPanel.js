@@ -17,7 +17,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const AddressPanel = ({ location }) => {
+export const AddressPanel = ({ coordinate, address, zone }) => {
   const classes = useStyles();
 
   return (
@@ -30,16 +30,8 @@ export const AddressPanel = ({ location }) => {
         </ListItemAvatar>
         <ListItemText
           primary="Adresse exacte"
-          secondary={location.address || "Non Rens."}
+          secondary={address || "Non Rens."}
         />
-      </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <LocationSearchingIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Adresse CPC" secondary={location.email} />
       </ListItem>
       <ListItem>
         <ListItemAvatar>
@@ -47,7 +39,7 @@ export const AddressPanel = ({ location }) => {
             <MapIcon />
           </Avatar>
         </ListItemAvatar>
-        <ListItemText primary="Zone" secondary={location.zone} />
+        <ListItemText primary="Zone" secondary={zone} />
       </ListItem>
       <ListItem>
         <ListItemAvatar>
@@ -55,11 +47,11 @@ export const AddressPanel = ({ location }) => {
             <GpsFixedIcon />
           </Avatar>
         </ListItemAvatar>
-        {location.coordinate ? (
+        {coordinate ? (
           <ListItemText
             primary="Coordonnées"
-            secondary={`Lon: ${location.coordinate.lon ||
-              "NR"} - Lat: ${location.coordinate.lat || "NR"}`}
+            secondary={`Lon: ${coordinate.lon ||
+              "NR"} - Lat: ${coordinate.lat || "NR"}`}
           />
         ) : (
           <span>Coordonnées non renseignées</span>

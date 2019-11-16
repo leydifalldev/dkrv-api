@@ -1,6 +1,6 @@
-const userMapping = {
-  index: 'user',
-  type: 'user',
+const profilMapping = {
+  index: 'profil',
+  type: 'profil',
   include_type_name: true,
   body: {
     properties: {
@@ -63,4 +63,4 @@ const userMapping = {
   },
 };
 
-export default userMapping;
+export default profilMapping;

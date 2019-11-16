@@ -245,11 +245,8 @@ export const AddProductToPlace = () => {
     temporalyPlace: false,
     placeid: place.id,
     placename: place.name,
-    placezone: place.location.zone,
-    location:
-      place.location && place.location.coordinate
-        ? place.location.coordinate
-        : null
+    placezone: place.zone,
+    location: place.location
   };
 
   return (

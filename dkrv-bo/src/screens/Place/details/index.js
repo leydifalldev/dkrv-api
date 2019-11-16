@@ -6,10 +6,9 @@ import { useQuery } from "@apollo/react-hooks";
 import { RETRIEVE_PLACE_DETAIL } from "../../../network/index";
 import { PlaceInfoPanel } from "../_views/InfoPanel";
 import { MainTab } from "../_views/MainTab";
-import { AddressPanel } from "../_views/AddressPanel";
+import { AddressPanel } from "./_views/AddressPanel";
 import { DetailsThumbnail } from "../_views/DetailsThumbnail";
 import { DetailsBar } from "../_views/DetailsBar";
-import { ListProductsPanel } from "../_views/ListProductPanel";
 import { PlaceProvider } from "../store/place.store";
 import AddProductLayout from "./product/add.product";
 

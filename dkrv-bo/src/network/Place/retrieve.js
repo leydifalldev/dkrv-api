@@ -6,6 +6,7 @@ export const RETRIEVE_PLACE_LIST = gql`
       id
       name
       description
+      categories
     }
   }
 `;

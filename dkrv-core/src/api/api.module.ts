@@ -4,7 +4,7 @@ import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from '../shared/logging.interceptor';
 import { PlaceResolver } from './resolvers/place.resolver';
 import { ProductResolver } from './resolvers/product.resolver';
-import { PlaceStore } from '../services/place/place.service';
+import { PlaceStore, ProductStore, ProfilStore, EventStore } from '../services';
 
 @Module({
   imports: [
@@ -18,6 +18,9 @@ import { PlaceStore } from '../services/place/place.service';
       useClass: LoggingInterceptor,
     },
     PlaceStore,
+    ProductStore,
+    ProfilStore,
+    EventStore,
     PlaceResolver,
     ProductResolver,
   ],

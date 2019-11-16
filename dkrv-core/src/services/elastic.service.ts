@@ -75,16 +75,17 @@ export class ElasticService implements OnModuleInit {
     return this.esclient;
   }
 
-  formatList(esresult) {
-    const data = esresult.hits.hits.map((hit: any) => {
+  toListResponse(hits) {
+    const data = hits.hits.map((hit: any) => {
       hit._source.id = hit._id;
-      return hit._source;
+      return {id: hit._id, ...hit._source};
     });
-    const resp: any = {
+    return {
+      status: 200,
+      error: null,
       total: data.length,
-      data,
+      payload: data,
     };
-    return resp;
   }
 
   async search(params: any): Promise<ServiceResponse> {
@@ -95,22 +96,19 @@ export class ElasticService implements OnModuleInit {
       size: params.size || 10,
     };
     try {
-      const resp: ApiResponse<
-        SearchResponse<Source>
+      const result: ApiResponse<
+        SearchResponse<any>
       > = await this.esclient.search(request);
-      Logger.log(resp);
-      return {
-        total: resp.body.hits.total,
-        payload: resp.body.hits.hits.map(hit => hit._source),
-        status: 200,
-        error: 'none',
-      };
+      Logger.log('result');
+      Logger.log(result);
+      const { body:  { hits }} = result;
+      return this.toListResponse(hits);
     } catch (e) {
       Logger.log(e);
       return {
         total: 0,
         payload: null,
-        status: 500,
+        status: e.statusCode,
         error: 'level-4',
       };
     }
@@ -153,7 +151,7 @@ export class ElasticService implements OnModuleInit {
       return {
         status: 200,
         error: 'none',
-        payload: resp.body,
+        payload: resp.body._source,
       };
     } catch (e) {
       Logger.log(e);
@@ -176,7 +174,7 @@ export class ElasticService implements OnModuleInit {
       return {
         status: 200,
         error: 'none',
-        payload: resp.body,
+        payload: resp.body._source,
       };
     } catch (e) {
       Logger.log(e);
@@ -190,15 +188,14 @@ export class ElasticService implements OnModuleInit {
 
   async get(id: string): Promise<ServiceResponse> {
     try {
-      const resp = await this.esclient.get({
+      const { body, statusCode } = await this.esclient.get({
         index: this.index,
         id,
       });
-      //Logger.log(resp);
       return {
-        status: resp.statusCode,
+        status: statusCode,
         error: null,
-        payload: resp.body,
+        payload: body._source,
       };
     } catch (e) {
       Logger.log(e);

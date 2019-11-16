@@ -31,6 +31,10 @@ export class ElasticService implements OnModuleInit {
       });
   }
 
+  async idsync(id) {
+    const resp = await this.update({id});
+  }
+
   async config() {
     try {
       const result = await this.esclient.indices.exists({ index: this.index });
