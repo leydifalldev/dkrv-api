@@ -1,11 +1,14 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
-import InputBase from "@material-ui/core/InputBase";
-import SearchIcon from "@material-ui/icons/Search";
-import { CreatePlaceModal } from "../create/_views/ModalForm";
+import { Search, Add } from "@material-ui/icons";
+import {
+  AppBar,
+  Toolbar,
+  InputBase,
+  Typography,
+  Button
+} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   grow: {
@@ -66,6 +69,11 @@ const useStyles = makeStyles(theme => ({
 
 export const SearchNavBar = () => {
   const classes = useStyles();
+  let history = useHistory();
+
+  const goTo = () => {
+    history.push(`/place/create`);
+  };
 
   return (
     <div className={classes.grow}>
@@ -76,7 +84,7 @@ export const SearchNavBar = () => {
           </Typography>
           <div className={classes.search}>
             <div className={classes.searchIcon}>
-              <SearchIcon />
+              <Search />
             </div>
             <InputBase
               placeholder="Search…"
@@ -89,7 +97,15 @@ export const SearchNavBar = () => {
           </div>
           <div className={classes.grow} />
           <div className={classes.sectionDesktop}>
-            <CreatePlaceModal />
+            <Button
+              variant="contained"
+              color="secondary"
+              className={classes.button}
+              onClick={goTo}
+              startIcon={<Add />}
+            >
+              Nouvelle Place
+            </Button>
           </div>
         </Toolbar>
       </AppBar>

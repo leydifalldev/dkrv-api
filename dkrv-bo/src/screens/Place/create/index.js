@@ -1,1 +1,1 @@
-export { CreatePlaceModal } from "./_views/ModalForm";
+export { CreatePlaceStepper } from "./_views/CreatePlaceStepper";

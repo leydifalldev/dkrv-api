@@ -2,6 +2,7 @@ import { Field, Int, InputType } from 'type-graphql';
 import { LocationInput } from './location.input';
 import { Picture } from '../objects/picture';
 import { PictureInput } from './picture.input';
+import { GastronomyInput } from './gastronomy.input';
 
 @InputType()
 export class PlaceInput {
@@ -20,8 +21,8 @@ export class PlaceInput {
   @Field(type => [String])
   categories: string[];
 
-  @Field(type => String, { nullable: true })
-  gastronomies?: string[];
+  @Field(type => [GastronomyInput], { nullable: true })
+  gastronomies?: GastronomyInput[];
 
   @Field(type => Int, { nullable: true })
   notation?: number;
@@ -49,5 +50,4 @@ export class PlaceInput {
 
   @Field(type => [PictureInput], { nullable: true })
   pictures?: PictureInput;
-
 }

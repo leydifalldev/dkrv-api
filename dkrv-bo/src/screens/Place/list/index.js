@@ -4,7 +4,7 @@ import { useQuery } from "@apollo/react-hooks";
 import { PlaceThumbnail } from "./_views/PlaceThumbnail";
 import { RETRIEVE_PLACE_LIST } from "../../../network";
 import { useHistory } from "react-router-dom";
-import { SearchNavBar } from "../_views/SearchNavBar";
+import { SearchNavBar } from "./_views/SearchNavBar";
 
 export const PlaceListLayout = () => (
   <Fragment>
@@ -19,22 +19,14 @@ export const PlaceList = () => {
   const goTo = id => {
     history.push(`/place/${id}`);
   };
+
   console.log(data);
   return data && data.places && data.places.length ? (
-    <Grid
-      style={placeContainerStyle}
-      container
-      direction="row"
-      justify="flex-start"
-      alignItems="flex-start"
-      spacing={1}
-    >
+    <div style={placeContainerStyle}>
       {data.places.map(place => (
-        <Grid item xs={12} sm={3}>
-          <PlaceThumbnail place={place}/>
-        </Grid>
+        <PlaceThumbnail place={place} />
       ))}
-    </Grid>
+    </div>
   ) : (
     <ErrorPanel />
   );
@@ -47,5 +39,7 @@ const ErrorPanel = () => (
 );
 
 const placeContainerStyle = {
-  backgroundColor: "#f8f9fa !important"
+  backgroundColor: "#f8f9fa !important",
+  display: "flex",
+  flexWrap: "wrap"
 };

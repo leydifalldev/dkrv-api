@@ -67,7 +67,7 @@ export class ElasticService implements OnModuleInit {
         Logger.log('Cannot create mapping');
       }
     } catch (e) {
-      Logger.log('Error=====>', e);
+      Logger.log('Error =====> ', e);
     }
   }
 
@@ -78,7 +78,7 @@ export class ElasticService implements OnModuleInit {
   toListResponse(hits) {
     const data = hits.hits.map((hit: any) => {
       hit._source.id = hit._id;
-      return {id: hit._id, ...hit._source};
+      return { id: hit._id, ...hit._source };
     });
     return {
       status: 200,
@@ -99,9 +99,9 @@ export class ElasticService implements OnModuleInit {
       const result: ApiResponse<
         SearchResponse<any>
       > = await this.esclient.search(request);
-      Logger.log('result');
-      Logger.log(result);
-      const { body:  { hits }} = result;
+      const {
+        body: { hits },
+      } = result;
       return this.toListResponse(hits);
     } catch (e) {
       Logger.log(e);

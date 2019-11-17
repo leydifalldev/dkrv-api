@@ -1,6 +1,6 @@
 import React from "react";
-import { EmptyPanel } from "./EmptyPanel";
+import { EmptyPanel } from "../../../components";
 
-export const EventsPanel = () => (
+export const EventTab = () => (
   <EmptyPanel label={"Veuillez ajouter des évènements"} />
 );

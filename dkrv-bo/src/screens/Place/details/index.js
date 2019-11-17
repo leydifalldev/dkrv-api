@@ -4,13 +4,13 @@ import Grid from "@material-ui/core/Grid";
 import { Switch, Route, useRouteMatch, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { RETRIEVE_PLACE_DETAIL } from "../../../network/index";
-import { PlaceInfoPanel } from "../_views/InfoPanel";
-import { MainTab } from "../_views/MainTab";
+import { PlaceInfoPanel } from "./_views/InfoPanel";
+import { PlaceDetailsTabs } from "./_views/PlaceDetailsTabs";
 import { AddressPanel } from "./_views/AddressPanel";
-import { DetailsThumbnail } from "../_views/DetailsThumbnail";
-import { DetailsBar } from "../_views/DetailsBar";
+import { DetailsThumbnail } from "./_views/DetailsThumbnail";
+import { DetailsBar } from "./_views/DetailsBar";
 import { PlaceProvider } from "../store/place.store";
-import AddProductLayout from "./product/add.product";
+import CreateProductStepper from "./Product/CreateProductStepper";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,10 +41,7 @@ const PlaceDetail = () => {
             <DetailsBar id={place.id} name={place.name} />
           </Grid>
           <Grid item xs={12} sm={3}>
-            <DetailsThumbnail
-              title={place.name}
-              label={place.description}
-            />
+            <DetailsThumbnail title={place.name} label={place.description} />
             <PlaceInfoPanel info={place} />
             <AddressPanel location={place.location} />
           </Grid>
@@ -52,11 +49,11 @@ const PlaceDetail = () => {
             <Switch>
               <Route
                 path={`${path}/product/add`}
-                children={<AddProductLayout />}
+                children={<CreateProductStepper />}
               />
               <Route
                 path={`${path}/`}
-                children={<MainTab data={place} />}
+                children={<PlaceDetailsTabs data={place} />}
               />
             </Switch>
           </Grid>

@@ -5,9 +5,11 @@ import { LoggingInterceptor } from '../shared/logging.interceptor';
 import { PlaceResolver } from './resolvers/place.resolver';
 import { ProductResolver } from './resolvers/product.resolver';
 import { PlaceStore, ProductStore, ProfilStore, EventStore } from '../services';
+import { Upload } from './inputs/upload.input';
 
 @Module({
   imports: [
+    Upload,
     GraphQLModule.forRoot({
       autoSchemaFile: './schemas/schema.gql',
     }),

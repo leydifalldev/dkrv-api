@@ -1,0 +1,1 @@
+export { PlacePicturesUpload } from "./PicturesUpload";

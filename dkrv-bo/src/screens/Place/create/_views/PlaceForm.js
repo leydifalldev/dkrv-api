@@ -5,35 +5,48 @@ import { TextInput } from "../../../components/Forms/TextInput";
 import { SuggestInput } from "../../../components/FormFields";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Switch from "@material-ui/core/Switch";
-import { useSnackbar } from 'notistack';
+import { useSnackbar } from "notistack";
 import { useMutation } from "@apollo/react-hooks";
 import { useHistory } from "react-router-dom";
 import { Formik } from "formik";
 import { Grid } from "@material-ui/core";
 import * as Yup from "yup";
 import { CREATE_PLACE_DETAIL } from "../../../../network";
+const country = require("./country.json");
 
 const catSuggession = [
-  { title: 'Tomates', year: 1994 },
-  { title: 'Viandes', year: 1972 },
+  { name: "Restaurant" },
+  { name: "Pub" },
+  { name: "Discothèque" },
+  { name: "Hotel" },
+  { name: "Terasse" },
+  { name: "Fast food" },
+  { name: "Bar" }
 ];
 
-export const CreatePlaceModal = () => {
+export const PlaceForm = ({
+  handleNext,
+  handleBack,
+  handleReset,
+  setStepperStore
+}) => {
   const [createPlace, error, loading] = useMutation(CREATE_PLACE_DETAIL);
   const { enqueueSnackbar } = useSnackbar();
   const handleSubmit = async (values, actions) => {
     console.log(values);
     try {
-      await createPlace({
+      const result = await createPlace({
         variables: { placeInput: values }
       });
+      setStepperStore({ placeid: result.data.createPlace });
+      handleNext();
     } catch (e) {
       if (e.networkError) {
-        enqueueSnackbar(String(e.networkError), {variant: 'error'});
+        enqueueSnackbar(String(e.networkError), { variant: "error" });
       }
       if (e.graphQLErrors) {
         e.graphQLErrors.map(error => {
-          enqueueSnackbar(error.message, {variant: 'error'});
+          enqueueSnackbar(error.message, { variant: "error" });
         });
       }
       //console.log(errorsMessage);
@@ -161,12 +174,29 @@ export const CreatePlaceModal = () => {
             onChange={props.handleChange}
             setFieldValue={props.setFieldValue}
             value={props.values.categories}
+            handleValue={value => value.name}
             options={catSuggession}
             filterSelectedOptions
-            getOptionLabel={option => option.title}
+            getOptionLabel={option => option.name}
             name="categories"
             id="categories"
             label="Categories"
+            error={props.errors.categories}
+            onBlur={props.handleBlur}
+          />
+        </Grid>
+        <Grid item sm={12} style={styleGridItem}>
+          <SuggestInput
+            onChange={props.handleChange}
+            setFieldValue={props.setFieldValue}
+            value={props.values.categories}
+            options={country}
+            filterSelectedOptions
+            handleValue={value => value}
+            getOptionLabel={option => option.name}
+            name="gastronomies"
+            id="gastronomies"
+            label="gastronomies"
             error={props.errors.categories}
             onBlur={props.handleBlur}
           />

@@ -5,16 +5,12 @@ import clsx from "clsx";
 import Stepper from "@material-ui/core/Stepper";
 import Step from "@material-ui/core/Step";
 import StepLabel from "@material-ui/core/StepLabel";
-import Check from "@material-ui/icons/Check";
-import SettingsIcon from "@material-ui/icons/Settings";
-import GroupAddIcon from "@material-ui/icons/GroupAdd";
-import VideoLabelIcon from "@material-ui/icons/VideoLabel";
+import { VideoLabel, Check } from "@material-ui/icons";
 import StepConnector from "@material-ui/core/StepConnector";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+
 import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
-import { AddProductToPlace } from "./product.form";
+import { AddProductToPlace } from "./AddProductToPlace";
 
 const Test = () => <h2>HelLo component</h2>;
 
@@ -81,7 +77,7 @@ function ColorlibStepIcon(props) {
   const icons = {
     1: <FormatAlignJustifyIcon />,
     2: <AddPhotoAlternateIcon />,
-    3: <VideoLabelIcon />
+    3: <VideoLabel />
   };
 
   return (

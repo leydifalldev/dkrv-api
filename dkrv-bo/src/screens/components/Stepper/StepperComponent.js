@@ -1,14 +1,13 @@
 import React from "react";
-import StepLabel from "@material-ui/core/StepLabel";
-import Stepper from "@material-ui/core/Stepper";
-import Step from "@material-ui/core/Step";
+import { StepLabel, Stepper, Step } from "@material-ui/core";
 import { ColorlibConnector } from "./Connector";
-import { useStyles } from "./styles";
+import { stepperStyles, componentStyle } from "./styles";
 import { CustomStepIcon } from "./Icons";
 
 export const StepperComponent = ({ stepsConfig }) => {
-  const classes = useStyles();
+  const classes = stepperStyles();
   const [activeStep, setActiveStep] = React.useState(0);
+  const [stepperStore, setStepperStore] = React.useState({});
 
   const handleNext = () => {
     setActiveStep(prevActiveStep => prevActiveStep + 1);
@@ -41,7 +40,9 @@ export const StepperComponent = ({ stepsConfig }) => {
         {React.cloneElement(stepsConfig.steps[activeStep].component, {
           handleNext,
           handleBack,
-          handleReset
+          handleReset,
+          stepperStore,
+          setStepperStore
         })}
       </div>
     </div>

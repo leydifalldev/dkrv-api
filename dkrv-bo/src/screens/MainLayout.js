@@ -1,6 +1,6 @@
 import React from "react";
 import clsx from "clsx";
-import { SnackbarProvider } from 'notistack';
+import { SnackbarProvider } from "notistack";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import Drawer from "@material-ui/core/Drawer";
 import AppBar from "@material-ui/core/AppBar";
@@ -20,6 +20,7 @@ import InboxIcon from "@material-ui/icons/MoveToInbox";
 import MailIcon from "@material-ui/icons/Mail";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PlaceScreen } from "./Place/PlaceScreen";
+import RootContext from "./RootStore";
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -194,11 +195,11 @@ const LayoutContent = ({ classes }) => (
   <main className={classes.content}>
     <div className={classes.toolbar} />
     <SnackbarProvider>
-    <Switch>
-      <Route path="/place">
-        <PlaceScreen />
-      </Route>
-    </Switch>
+      <Switch>
+        <Route path="/place">
+          <PlaceScreen />
+        </Route>
+      </Switch>
     </SnackbarProvider>
   </main>
 );

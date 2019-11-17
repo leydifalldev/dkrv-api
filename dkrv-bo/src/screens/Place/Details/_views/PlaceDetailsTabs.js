@@ -7,11 +7,9 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
-import { VerticalTabs } from "./VerticalTab";
-import { CollectionPanel } from "./CollectionPanel";
 import { ScheduleTable } from "./Schedule";
 import { ListProductsPanel } from "./ListProductPanel";
-import { EventsPanel } from "./EventsPanel";
+import { EventTab } from "./EventTab";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -50,7 +48,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const MainTab = ({ data }) => {
+export const PlaceDetailsTabs = ({ data }) => {
   const classes = useStyles();
   const theme = useTheme();
   const [value, setValue] = React.useState(0);
@@ -88,7 +86,7 @@ export const MainTab = ({ data }) => {
           <ListProductsPanel products={data.products} />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <EventsPanel />
+          <EventTab />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           <ScheduleTable />

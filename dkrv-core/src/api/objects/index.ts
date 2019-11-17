@@ -11,5 +11,6 @@ export { ProductListResponse } from './product.list.response';
 export { ProductDetailResponse } from './product.detail.response';
 export { ProductUpdateResponse } from './product.update.response';
 
+export { File } from './file';
 export { Place } from './place.object';
 export { Product } from './product.object';

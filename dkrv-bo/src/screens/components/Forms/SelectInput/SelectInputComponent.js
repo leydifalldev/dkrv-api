@@ -1,14 +1,13 @@
 import React from "react";
 import clsx from "clsx";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
-import InputLabel from "@material-ui/core/InputLabel";
-import Select from "@material-ui/core/Select";
-import NativeSelect from "@material-ui/core/NativeSelect";
-import FormControl from "@material-ui/core/FormControl";
-import TextField from "@material-ui/core/TextField";
-import MenuItem from "@material-ui/core/MenuItem";
-import InputBase from "@material-ui/core/InputBase";
-import InputAdornment from "@material-ui/core/InputAdornment";
+import {
+  InputLabel,
+  TextField,
+  MenuItem,
+  InputAdornment,
+  makeStyles,
+  withStyles
+} from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
   root: {

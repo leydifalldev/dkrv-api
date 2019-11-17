@@ -1,10 +1,13 @@
 import React from "react";
 import { makeStyles, withStyles } from "@material-ui/core/styles";
 
-export const useStyles = makeStyles(theme => ({
+export const stepperStyles = makeStyles(theme => ({
   root: {
     width: "100%",
-    backgroundColor: "#FFFFFF"
+    backgroundColor: "#FFFFFF",
+    padding: 50,
+    border: "1px solid #EFEFEF",
+    borderRadius: 5
   },
   button: {
     marginRight: theme.spacing(1)
