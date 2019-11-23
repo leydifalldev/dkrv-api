@@ -1,17 +1,11 @@
 import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 
 import { Logger } from '@nestjs/common';
-import {
-  Place,
-  PlaceCreateResponse,
-  PlaceDetailResponse,
-  PlaceListResponse,
-} from '../objects';
+import { Place } from '../objects';
 import { PlaceInput } from '../inputs';
 import { PlaceStore } from '../../services';
 import { ServiceResponse } from '../../types/common.defs';
 import { File } from '../objects';
-import { Upload } from '../inputs/upload.input';
 
 @Resolver(of => Place)
 export class PlaceResolver {
@@ -41,18 +35,6 @@ export class PlaceResolver {
       return Error('Bad Request');
     }
     return response.payload;
-  }
-
-  @Mutation(returns => File)
-  async uploadPictures(@Args('pictures') pictures: [Upload!]!)  {
-    Logger.log(pictures);
-    //const response: ServiceResponse = await this.placeStore.add(place);
-    //Logger.log(response);
-    /*if (response.status === 400) {
-      return Error('Bad Request');
-    }
-    return response.payload;
-    */
   }
   /*@ResolveProperty('product')
   async addProduct(@Args('id') product: ProductInput, @Parent() place: PlaceInput) {

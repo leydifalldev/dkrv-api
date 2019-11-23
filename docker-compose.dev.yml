@@ -11,6 +11,9 @@ services:
       - dkrv-core
     networks:
       - dkrv-network
+    volumes:
+      - ./dkrv-data/files:/www/media
+      - ./dkrv-webserver/nginx/nginx.dev.conf:/etc/nginx/nginx.conf
     env_file: 
       - ./dkrv.env
   dkrv-core:
@@ -18,6 +21,7 @@ services:
     build: ./dkrv-core
     volumes:
       - ./dkrv-core/src:/usr/src/app/src:ro
+      - ./dkrv-data/files:/usr/src/app/upload
     ports:
       - "5000"
     networks:

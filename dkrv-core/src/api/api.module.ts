@@ -5,13 +5,18 @@ import { LoggingInterceptor } from '../shared/logging.interceptor';
 import { PlaceResolver } from './resolvers/place.resolver';
 import { ProductResolver } from './resolvers/product.resolver';
 import { PlaceStore, ProductStore, ProfilStore, EventStore } from '../services';
-import { Upload } from './inputs/upload.input';
+import { UploadController } from './controllers/fileUploader';
+import { MulterModule } from '@nestjs/platform-express';
+import { MulterConfigService } from '../services';
 
 @Module({
+  controllers: [UploadController],
   imports: [
-    Upload,
     GraphQLModule.forRoot({
       autoSchemaFile: './schemas/schema.gql',
+    }),
+    MulterModule.registerAsync({
+      useClass: MulterConfigService,
     }),
   ],
   providers: [
