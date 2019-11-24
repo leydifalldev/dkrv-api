@@ -10,14 +10,14 @@ const stepsConfig = {
   label: "Ajout product",
   steps: [
     {
-      name: "Fiche produit",
-      component: <PlaceForm />,
-      icon: <FormatAlignJustifyIcon />
-    },
-    {
       name: "Photos",
       component: <PlacePicturesUpload />,
       icon: <AddPhotoAlternateIcon />
+    },
+    {
+      name: "Fiche produit",
+      component: <PlaceForm />,
+      icon: <FormatAlignJustifyIcon />
     }
   ]
 };

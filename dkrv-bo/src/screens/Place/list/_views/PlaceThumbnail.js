@@ -1,5 +1,5 @@
 import React from "react";
-import { Thumbnail } from "../../../components/Thumbnails";
+import { Thumbnail } from "../../../components";
 import { useHistory } from "react-router-dom";
 
 export const PlaceThumbnail = ({ place }) => {
@@ -14,7 +14,7 @@ export const PlaceThumbnail = ({ place }) => {
       style={cardStyle}
       key={place.id}
       title={place.name}
-      subtitle={place.categories.join("-")}
+      subtitle={place.categories[0]}
     />
   );
 };
