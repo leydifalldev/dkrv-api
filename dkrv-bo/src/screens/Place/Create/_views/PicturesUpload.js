@@ -4,44 +4,61 @@ import { useMutation } from "@apollo/react-hooks";
 import { CloudUpload } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
 import { UPLOAD_PICTURES } from "../../../../network";
+import axios from "axios";
+
+const sendRequest = file => {
+  return new Promise((resolve, reject) => {
+    const req = new XMLHttpRequest();
+
+    const formData = new FormData();
+    formData.append("file", file, file.name);
+
+    req.open("POST", "http://localhost:8000/upload");
+    req.send(formData);
+  });
+};
 
 export const PlacePicturesUpload = ({ stepperStore }) => {
   let [files, setFiles] = useState();
 
   const { enqueueSnackbar } = useSnackbar();
 
-  const onSubmit = async () => {
-    console.log(files);
+  const onSub = async () => {
+    console.log("files log", files);
+    var formData = new FormData();
+
+    files.map((file, index) => {
+      formData.append(`file${index}`, file);
+    });
+
     try {
-      const response = await fetch("http://localhost:3400/upload", {
-        // Your POST endpoint
+      const resp = await axios({
+        url: "http://localhost:3400/upload",
         method: "POST",
+        data: formData,
         headers: {
           "Content-Type": "multipart/form-data"
-        },
-        body: {
-          multiplefiles: files
-        } // This is your file object
+        }
       });
-
-      console.log("response log", response);
+      console.log("response log", resp);
     } catch (e) {
-      enqueueSnackbar(String(e), { variant: "error" });
+      console.log(e);
     }
   };
 
-  const onSub = test => {
-    console.log("test", test);
-  };
-
   return (
-    <form onSubmit={onSub}>
+    <form>
       <div>GraphQL Test</div>
-      <input type="file" multiple />
+      <input
+        name="multiplefiles"
+        type="file"
+        multiple
+        onChange={e => setFiles(e.target.files)}
+      />
       <Button
-        type="submit"
         variant="contained"
         color="default"
+        onClick={onSub}
         startIcon={<CloudUpload />}
       >
         Upload
