@@ -38,6 +38,7 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 	log.Print(formdata)
 	for i, _ := range files {
 		file, err := files[i].Open()
+		log.Print(file)
 		defer file.Close()
 		if err != nil {
 			fmt.Fprintln(w, err)

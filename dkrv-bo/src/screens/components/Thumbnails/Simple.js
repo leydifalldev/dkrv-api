@@ -1,10 +1,5 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
-import CardMedia from "@material-ui/core/CardMedia";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
+import {Card, CardHeader, CardMedia, Avatar, CardActions, IconButton, Button, makeStyles} from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Skeleton from "@material-ui/lab/Skeleton";
@@ -28,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const Thumbnail = ({ title, subtitle, description, goTo, style }) => {
+export const Thumbnail = ({ title, subtitle, src, description, goTo, btngroup, style, leftButtonAction }) => {
   const classes = useStyles();
   const [expanded, setExpanded] = React.useState(false);
 
@@ -36,9 +31,13 @@ export const Thumbnail = ({ title, subtitle, description, goTo, style }) => {
     setExpanded(!expanded);
   };
 
+  const leftButtonAction = () => {
+    leftButtonAction()
+  }
+
   return (
     <Card style={style} onClick={goTo} className={classes.card}>
-      <CardHeader
+      {(title && subtitle) ? <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
             R
@@ -51,19 +50,19 @@ export const Thumbnail = ({ title, subtitle, description, goTo, style }) => {
         }
         title={title || "NR"}
         subheader={subtitle || "NR"}
-      />
-      <ThumbnailImage classes={classes} />
+      />: null }
+      <ThumbnailImage src={src} classes={classes} />
     </Card>
   );
 };
 
-const ThumbnailImage = (src, height, classes) =>
+const ThumbnailImage = ({src, height, classes}) =>
   src ? (
-    <Skeleton variant="rect" className={classes.media} height={height || 180} />
-  ) : (
     <CardMedia
       className={classes.media}
-      image="/static/images/cards/paella.jpg"
+      image={src}
       title="Paella dish"
     />
+  ) : (
+    <Skeleton variant="rect" className={classes.media} height={height || 180} />
   );

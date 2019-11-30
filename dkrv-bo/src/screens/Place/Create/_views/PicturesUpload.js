@@ -1,39 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, Fragment } from "react";
 import { useSnackbar } from "notistack";
-import { useMutation } from "@apollo/react-hooks";
+import uuid from 'react-uuid';
 import { CloudUpload } from "@material-ui/icons";
 import { Button } from "@material-ui/core";
-import { UPLOAD_PICTURES } from "../../../../network";
 import axios from "axios";
+import { Thumbnail } from "../../../components";
 
-const sendRequest = file => {
-  return new Promise((resolve, reject) => {
-    const req = new XMLHttpRequest();
-
-    const formData = new FormData();
-    formData.append("file", file, file.name);
-
-    req.open("POST", "http://localhost:8000/upload");
-    req.send(formData);
-  });
-};
-
-export const PlacePicturesUpload = ({ stepperStore }) => {
-  let [files, setFiles] = useState();
-
+export const PlacePicturesUpload = ({ stepperStore, host }) => {
+  let [files, setFiles] = useState([]);
+  var formData = new FormData();
   const { enqueueSnackbar } = useSnackbar();
 
   const onSub = async () => {
-    console.log("files log", files);
-    var formData = new FormData();
-
-    files.map((file, index) => {
-      formData.append(`file${index}`, file);
-    });
-
     try {
       const resp = await axios({
-        url: "http://localhost:3400/upload",
+        url: host || "http://localhost:3400/upload",
         method: "POST",
         data: formData,
         headers: {
@@ -46,14 +27,29 @@ export const PlacePicturesUpload = ({ stepperStore }) => {
     }
   };
 
+  const addFileToQueue = newfiles => {
+    newfiles = newfiles.map(newfile => {
+      newfile.local = URL.createObjectURL(newfile);
+      return newfile;
+    });
+    setFiles([...files, ...newfiles]);
+    console.log("newfiles seco", files);
+  }
+
+  const removeFromQueue = fileToRemove => {
+    //files = files.filter(file => file.name = fileToRemove.name);
+    //setFiles(files);
+    console.log('files LOG', fileToRemove);
+  };
+
   return (
     <form>
-      <div>GraphQL Test</div>
+      <div style={imagePanelStyle}>{files ? files.map((image, index) => <Thumbnail key={index} leftButton={ButtonGroup} style={thumbnailStyle} src={image.local}/>):<span>Panel vide</span>}</div>
       <input
         name="multiplefiles"
         type="file"
         multiple
-        onChange={e => setFiles(e.target.files)}
+        onChange={e => addFileToQueue(Array.from(e.target.files))}
       />
       <Button
         variant="contained"
@@ -66,3 +62,25 @@ export const PlacePicturesUpload = ({ stepperStore }) => {
     </form>
   );
 };
+
+const ButtonGroup = ({leftButtonAction}) => (
+  <CardActions>
+    <Button onClick={leftButtonAction} size="small" color="primary">Supprimer</Button>
+    <Button size="small" color="primary">Principale</Button>
+  </CardActions>
+);
+
+const imagePanelStyle = {
+  display: "flex",
+  flexWrap: "wrap"
+}
+
+const thumbnailStyle = {
+  width: 200,
+  marginLeft: 5
+}
+
+const UploaderThumbnail = () => {
+
+}
+

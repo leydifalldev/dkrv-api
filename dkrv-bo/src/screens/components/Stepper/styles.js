@@ -5,7 +5,7 @@ export const stepperStyles = makeStyles(theme => ({
   root: {
     width: "100%",
     backgroundColor: "#FFFFFF",
-    padding: 50,
+    padding: 30,
     border: "1px solid #EFEFEF",
     borderRadius: 5
   },
