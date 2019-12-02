@@ -1,16 +1,10 @@
 import React from "react";
-import Button from "@material-ui/core/Button";
-import TextField from "@material-ui/core/TextField";
+import { Formik } from "formik";
+import { Grid, FormControlLabel, TextField, Button, Switch } from "@material-ui/core";
 import { TextInput } from "../../../components/Forms/TextInput";
 import { SuggestInput } from "../../../components/FormFields";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Switch from "@material-ui/core/Switch";
 import { useSnackbar } from "notistack";
 import { useMutation } from "@apollo/react-hooks";
-import { useHistory } from "react-router-dom";
-import { Formik } from "formik";
-import { Grid } from "@material-ui/core";
-import * as Yup from "yup";
 import { CREATE_PLACE_DETAIL } from "../../../../network";
 const country = require("./country.json");
 
@@ -38,7 +32,7 @@ export const PlaceForm = ({
       const result = await createPlace({
         variables: { placeInput: values }
       });
-      setStepperStore({ placeid: result.data.createPlace });
+      setStepperStore({ placeid: result.data.createPlace, ...values });
       handleNext();
     } catch (e) {
       if (e.networkError) {

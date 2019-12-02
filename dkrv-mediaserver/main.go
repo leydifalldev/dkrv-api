@@ -34,7 +34,7 @@ func uploadHandler(w http.ResponseWriter, r *http.Request) {
 
 	formdata := r.MultipartForm
 	files := formdata.File["multiplefiles"]
-	log.Print("files log")
+	//id := formdata.
 	log.Print(formdata)
 	for i, _ := range files {
 		file, err := files[i].Open()
