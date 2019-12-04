@@ -22,7 +22,7 @@ export const PlaceForm = ({
   handleNext,
   handleBack,
   handleReset,
-  setStepperStore
+  addToStore
 }) => {
   const [createPlace, error, loading] = useMutation(CREATE_PLACE_DETAIL);
   const { enqueueSnackbar } = useSnackbar();
@@ -32,7 +32,7 @@ export const PlaceForm = ({
       const result = await createPlace({
         variables: { placeInput: values }
       });
-      setStepperStore({ placeid: result.data.createPlace, ...values });
+      addToStore({ placeid: result.data.createPlace, ...values });
       handleNext();
     } catch (e) {
       if (e.networkError) {

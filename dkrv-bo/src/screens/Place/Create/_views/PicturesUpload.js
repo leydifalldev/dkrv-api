@@ -11,4 +11,4 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const PlacePicturesUpload = ({ stepperStore, handleNext }) => <PicturesUploader host={"localhost:9400/upload"} store={stepperStore} handleDone={handleNext}/>;
+export const PlacePicturesUpload = ({ addToStore, stepperStore, handleNext }) => <PicturesUploader host={"localhost:9400/upload"} addToStore={addToStore} store={stepperStore} handleDone={handleNext}/>;

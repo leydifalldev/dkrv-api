@@ -1,6 +1,5 @@
 import React, { useState, Fragment } from "react";
 import { useSnackbar } from "notistack";
-import uuid from "react-uuid";
 import { CloudUpload } from "@material-ui/icons";
 import {
   Button,
@@ -19,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const PicturesUploader = ({ store, host, handleDone }) => {
+export const PicturesUploader = ({ addToStore, store, host, handleDone }) => {
   const classes = useStyles();
   let [files, setFiles] = useState([]);
   let [mainPicture, setMainPicture] = useState(0);
@@ -46,6 +45,7 @@ export const PicturesUploader = ({ store, host, handleDone }) => {
       console.log("response log", resp);
       if (resp.status === 200) {
         enqueueSnackbar("Photos ajoutées", { variant: "success" });
+        //addToStore(files);
         handleDone();
       }
     } catch (e) {

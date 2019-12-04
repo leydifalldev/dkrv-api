@@ -1,7 +1,7 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListItemText, ListItemAvatar, Avatar, ButtonGroup, Grid, Button} from '@material-ui/core';
-import { Image, Work, BeachAccess } from '@material-ui/icons';
+import { List, ListItem, ListItemText, ListItemAvatar, Avatar, ButtonGroup, Grid, Button, Typography} from '@material-ui/core';
+import { Image, Phone, AlternateEmailSharp, LocationOn, Map, Pool, AvTimer, Class, Fastfood} from '@material-ui/icons';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,19 +15,28 @@ export const ResumePanel = ({stepperStore}) => {
   console.log("props", stepperStore);
   return (
     <div>
+      <Typography variant="h2" gutterBottom>{stepperStore.name}</Typography>
       <List className={classes.root}>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <Image />
+              <Class />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={"Nom restaurant"} secondary={stepperStore.name} />
+          <ListItemText primary={"Categories"} secondary={stepperStore.catagories ? stepperStore.catagories.join("-") : null} />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <Image />
+              <Fastfood />
+            </Avatar>
+          </ListItemAvatar>
+          <ListItemText primary={"Gastronomies"} secondary={stepperStore.gastronomies ? stepperStore.gastronomies.join("-") : null} />
+        </ListItem>
+        <ListItem>
+          <ListItemAvatar>
+            <Avatar>
+              <Phone />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={"Téléphone"} secondary={stepperStore.phone} />
@@ -35,7 +44,7 @@ export const ResumePanel = ({stepperStore}) => {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <Image />
+              <AlternateEmailSharp />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={"Email"} secondary={stepperStore.email} />
@@ -43,23 +52,7 @@ export const ResumePanel = ({stepperStore}) => {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <Image />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary={"Email"} secondary={stepperStore.email} />
-        </ListItem>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <Image />
-            </Avatar>
-          </ListItemAvatar>
-          <ListItemText primary={"Email"} secondary={stepperStore.email} />
-        </ListItem>
-        <ListItem>
-          <ListItemAvatar>
-            <Avatar>
-              <Image />
+              <LocationOn />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={"Adresse"} secondary={stepperStore.address} />
@@ -67,7 +60,7 @@ export const ResumePanel = ({stepperStore}) => {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <Image />
+              <Map />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={"Zone"} secondary={stepperStore.zone} />
@@ -75,7 +68,7 @@ export const ResumePanel = ({stepperStore}) => {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <Image />
+              <Pool />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={"À proximité de l'océan"} secondary={stepperStore.oceanear ? "Oui": "Non"} />
@@ -83,7 +76,7 @@ export const ResumePanel = ({stepperStore}) => {
         <ListItem>
           <ListItemAvatar>
             <Avatar>
-              <Image />
+              <AvTimer />
             </Avatar>
           </ListItemAvatar>
           <ListItemText primary={"Emplacement temporaire"} secondary={stepperStore.temporaly ? "Oui": "Non"} />

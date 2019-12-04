@@ -21,6 +21,11 @@ export const StepperComponent = ({ stepsConfig }) => {
     setActiveStep(0);
   };
 
+  const addToStore = (data) => {
+    const newData = [...stepperStore, data];
+    setStepperStore(newData);
+  }
+
   return stepsConfig && stepsConfig.steps && stepsConfig.steps.length > 0 ? (
     <div className={classes.root}>
       <Stepper
@@ -42,7 +47,7 @@ export const StepperComponent = ({ stepsConfig }) => {
           handleBack,
           handleReset,
           stepperStore,
-          setStepperStore
+          addToStore
         })}
       </div>
     </div>
