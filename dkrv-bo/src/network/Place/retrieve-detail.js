@@ -10,11 +10,15 @@ export const RETRIEVE_PLACE_DETAIL = gql`
       description
       address
       zone
+      categories
       location {
         lng
         lat
       }
-      gastronomies
+      gastronomies {
+        code
+        name
+      }
       likes
       notation
       oceanear

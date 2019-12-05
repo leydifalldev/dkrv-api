@@ -10,6 +10,7 @@ export const StepperComponent = ({ stepsConfig }) => {
   const [stepperStore, setStepperStore] = React.useState({});
 
   const handleNext = () => {
+    console.log("handleNext LOG");
     setActiveStep(prevActiveStep => prevActiveStep + 1);
   };
 
@@ -21,10 +22,12 @@ export const StepperComponent = ({ stepsConfig }) => {
     setActiveStep(0);
   };
 
-  const addToStore = (data) => {
-    const newData = [...stepperStore, data];
+  const addToStore = data => {
+    const newData = { ...stepperStore, ...data };
+    console.log("newData LOG", newData);
     setStepperStore(newData);
-  }
+    console.log("addToStore LOG", newData);
+  };
 
   return stepsConfig && stepsConfig.steps && stepsConfig.steps.length > 0 ? (
     <div className={classes.root}>

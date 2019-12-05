@@ -1,6 +1,12 @@
 import React from "react";
 import { Formik } from "formik";
-import { Grid, FormControlLabel, TextField, Button, Switch } from "@material-ui/core";
+import {
+  Grid,
+  FormControlLabel,
+  TextField,
+  Button,
+  Switch
+} from "@material-ui/core";
 import { TextInput } from "../../../components/Forms/TextInput";
 import { SuggestInput } from "../../../components/FormFields";
 import { useSnackbar } from "notistack";

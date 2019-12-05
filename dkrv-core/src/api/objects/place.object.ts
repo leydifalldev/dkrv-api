@@ -2,6 +2,7 @@ import { Field, Int, ObjectType } from 'type-graphql';
 import { Location } from './location.object';
 import { Product } from './product.object';
 import { Picture } from './picture';
+import { Country } from './country.object';
 
 @ObjectType()
 export class Place {
@@ -23,8 +24,8 @@ export class Place {
   @Field(type => [String])
   categories: string[];
 
-  @Field(type => String, { nullable: true })
-  gastronomies?: string[];
+  @Field(type => Country, { nullable: true })
+  gastronomies?: Country[];
 
   @Field(type => Int, { nullable: true })
   notation?: number;

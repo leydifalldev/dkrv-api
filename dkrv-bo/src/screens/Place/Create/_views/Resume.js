@@ -1,21 +1,45 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { List, ListItem, ListItemText, ListItemAvatar, Avatar, ButtonGroup, Grid, Button, Typography} from '@material-ui/core';
-import { Image, Phone, AlternateEmailSharp, LocationOn, Map, Pool, AvTimer, Class, Fastfood} from '@material-ui/icons';
+import React from "react";
+import { useHistory } from "react-router-dom";
+import { makeStyles } from "@material-ui/core/styles";
+import {
+  List,
+  ListItem,
+  ListItemText,
+  ListItemAvatar,
+  Avatar,
+  ButtonGroup,
+  Grid,
+  Button,
+  Typography
+} from "@material-ui/core";
+import {
+  Image,
+  Phone,
+  AlternateEmailSharp,
+  LocationOn,
+  Map,
+  Pool,
+  AvTimer,
+  Class,
+  Fastfood
+} from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-  },
+    width: "100%",
+    backgroundColor: theme.palette.background.paper
+  }
 }));
 
-export const ResumePanel = ({stepperStore}) => {
+export const ResumePanel = ({ stepperStore }) => {
   const classes = useStyles();
+  const history = useHistory();
   console.log("props", stepperStore);
   return (
     <div>
-      <Typography variant="h2" gutterBottom>{stepperStore.name}</Typography>
+      <Typography variant="h2" gutterBottom>
+        {stepperStore.name}
+      </Typography>
       <List className={classes.root}>
         <ListItem>
           <ListItemAvatar>
@@ -23,7 +47,12 @@ export const ResumePanel = ({stepperStore}) => {
               <Class />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={"Categories"} secondary={stepperStore.catagories ? stepperStore.catagories.join("-") : null} />
+          <ListItemText
+            primary={"Categories"}
+            secondary={
+              stepperStore.catagories ? stepperStore.catagories.join("-") : null
+            }
+          />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
@@ -31,7 +60,14 @@ export const ResumePanel = ({stepperStore}) => {
               <Fastfood />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={"Gastronomies"} secondary={stepperStore.gastronomies ? stepperStore.gastronomies.join("-") : null} />
+          <ListItemText
+            primary={"Gastronomies"}
+            secondary={
+              stepperStore.gastronomies
+                ? stepperStore.gastronomies.join("-")
+                : null
+            }
+          />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
@@ -71,7 +107,10 @@ export const ResumePanel = ({stepperStore}) => {
               <Pool />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={"À proximité de l'océan"} secondary={stepperStore.oceanear ? "Oui": "Non"} />
+          <ListItemText
+            primary={"À proximité de l'océan"}
+            secondary={stepperStore.oceanear ? "Oui" : "Non"}
+          />
         </ListItem>
         <ListItem>
           <ListItemAvatar>
@@ -79,15 +118,25 @@ export const ResumePanel = ({stepperStore}) => {
               <AvTimer />
             </Avatar>
           </ListItemAvatar>
-          <ListItemText primary={"Emplacement temporaire"} secondary={stepperStore.temporaly ? "Oui": "Non"} />
+          <ListItemText
+            primary={"Emplacement temporaire"}
+            secondary={stepperStore.temporaly ? "Oui" : "Non"}
+          />
         </ListItem>
       </List>
       <Grid item>
-      <ButtonGroup color="primary" aria-label="contained primary button group">
-        <Button>Modifier</Button>
-        <Button>Terminer</Button>
-      </ButtonGroup>
-    </Grid>
-  </div>
+        <ButtonGroup
+          color="primary"
+          aria-label="contained primary button group"
+        >
+          <Button>Modifier</Button>
+          <Button
+            onClick={() => history.push(`/place/${stepperStore.placeid}`)}
+          >
+            Terminer
+          </Button>
+        </ButtonGroup>
+      </Grid>
+    </div>
   );
-}
+};

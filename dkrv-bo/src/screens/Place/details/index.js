@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
+import { useSnackbar } from "notistack";
 import Grid from "@material-ui/core/Grid";
 import { Switch, Route, useRouteMatch, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
@@ -24,28 +25,33 @@ const useStyles = makeStyles(theme => ({
 
 const PlaceDetail = () => {
   const classes = useStyles();
+  const { enqueueSnackbar } = useSnackbar();
   let { path, url } = useRouteMatch();
   let { id } = useParams();
+  const [place, setPlace] = useState({});
 
   const { loading, error, data } = useQuery(RETRIEVE_PLACE_DETAIL, {
     variables: { id }
   });
+  if (error) {
+    if (error.networkError) {
+      enqueueSnackbar(String(error.networkError), { variant: "error" });
+    }
+    if (error.graphQLErrors) {
+      error.graphQLErrors.map(error => {
+        enqueueSnackbar(error.message, { variant: "error" });
+      });
+    }
+  }
 
-  const place = data ? data.getPlace : null;
-
-  return place ? (
-    <PlaceProvider value={place}>
+  return data && data.getPlace ? (
+    <PlaceProvider value={data.getPlace}>
       <div className={classes.root}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
-            <DetailsBar id={place.id} name={place.name} />
+            <DetailsBar data={data.getPlace} />
           </Grid>
-          <Grid item xs={12} sm={3}>
-            <DetailsThumbnail title={place.name} label={place.description} />
-            <PlaceInfoPanel info={place} />
-            <AddressPanel location={place.location} />
-          </Grid>
-          <Grid item xs={12} sm={9}>
+          <Grid item xs={12} sm={12}>
             <Switch>
               <Route
                 path={`${path}/product/add`}
@@ -53,7 +59,7 @@ const PlaceDetail = () => {
               />
               <Route
                 path={`${path}/`}
-                children={<PlaceDetailsTabs data={place} />}
+                children={<PlaceDetailsTabs data={data.getPlace} />}
               />
             </Switch>
           </Grid>

@@ -18,6 +18,11 @@ export const theme = createMuiTheme({
     }
   },
   overrides: {
+    MuiTypography: {
+      h3: {
+        fontFamily: "Futura"
+      }
+    },
     MuiPaper: {
       root: {
         boxShadow: "none !important"
@@ -38,8 +43,8 @@ export const theme = createMuiTheme({
     },
     MuiList: {
       root: {
-        boxShadow: "0 0.75rem 1.5rem rgba(18,38,63,.03) !important",
-        border: "1px solid #edf2f9"
+        //boxShadow: "0 0.75rem 1.5rem rgba(18,38,63,.03) !important",
+        border: "none"
       }
     },
     MuiListItemText: {
@@ -57,18 +62,22 @@ export const theme = createMuiTheme({
     MuiAvatar: {
       root: {
         height: 30,
-        width: 30,
+        width: 30
       }
     },
-    MuiSvgIcon:{
+    MuiMenuItem: {
+      root: {
+        lineHeight: 2.5,
+        color: "#ffffff"
+      }
+    },
+    MuiSvgIcon: {
       root: {
         height: "0.9em",
         width: "0.9em"
       }
     },
-    MuiInputBase: {
-
-    },
+    MuiInputBase: {},
     MuiTabs: {
       root: {
         height: 47

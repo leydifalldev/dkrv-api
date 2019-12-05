@@ -2,22 +2,25 @@ import React from "react";
 import clsx from "clsx";
 import { SnackbarProvider } from "notistack";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
-import Drawer from "@material-ui/core/Drawer";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import List from "@material-ui/core/List";
-import CssBaseline from "@material-ui/core/CssBaseline";
-import Typography from "@material-ui/core/Typography";
-import Divider from "@material-ui/core/Divider";
-import IconButton from "@material-ui/core/IconButton";
-import MenuIcon from "@material-ui/icons/Menu";
-import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-import ChevronRightIcon from "@material-ui/icons/ChevronRight";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemIcon from "@material-ui/core/ListItemIcon";
-import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
+import {
+  AppBar,
+  Drawer,
+  Toolbar,
+  MenuList,
+  MenuItem,
+  CssBaseline,
+  Typography,
+  Divider,
+  IconButton,
+  ListItemIcon
+} from "@material-ui/core";
+import {
+  Menu,
+  ChevronLeft,
+  ChevronRight,
+  PriorityHigh,
+  Send
+} from "@material-ui/icons";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PlaceScreen } from "./Place/PlaceScreen";
 import RootContext from "./RootStore";
@@ -55,6 +58,7 @@ const useStyles = makeStyles(theme => ({
   },
   drawerOpen: {
     width: drawerWidth,
+    backgroundColor: "#4A148C",
     transition: theme.transitions.create("width", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.enteringScreen
@@ -87,7 +91,7 @@ const useStyles = makeStyles(theme => ({
 export const MainLayout = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -101,11 +105,6 @@ export const MainLayout = () => {
     <Router>
       <div className={classes.root}>
         <CssBaseline />
-        <TopNavBar
-          classes={classes}
-          isOpen={open}
-          handleDrawerOpen={handleDrawerOpen}
-        />
         <MainDrawer
           classes={classes}
           isOpen={open}
@@ -133,39 +132,29 @@ const MainDrawer = ({ classes, isOpen, handleDrawerClose, theme }) => (
     }}
     open={isOpen}
   >
-    <div className={classes.toolbar}>
-      <IconButton onClick={handleDrawerClose}>
-        {theme.direction === "rtl" ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-      </IconButton>
-    </div>
+    <div className={classes.toolbar}></div>
     <Divider />
-    <List>
-      {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-        <ListItem button key={text}>
-          <ListItemIcon>
-            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-          </ListItemIcon>
-          <ListItemText primary={text} />
-        </ListItem>
-      ))}
-    </List>
-    <Divider />
-    <List>
-      {["All mail", "Trash", "Spam"].map((text, index) => (
-        <ListItem button key={text}>
-          <ListItemIcon>
-            {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-          </ListItemIcon>
-          <ListItemText primary={text} />
-        </ListItem>
-      ))}
-    </List>
+    <MenuList>
+      <MenuItem>
+        <ListItemIcon>
+          <Send fontSize="small" />
+        </ListItemIcon>
+        <Typography variant="inherit">Nouvelle place</Typography>
+      </MenuItem>
+      <MenuItem>
+        <ListItemIcon>
+          <PriorityHigh fontSize="small" />
+        </ListItemIcon>
+        <Typography variant="inherit">List Place</Typography>
+      </MenuItem>
+    </MenuList>
   </Drawer>
 );
 
 const TopNavBar = ({ classes, isOpen, handleDrawerOpen }) => (
   <AppBar
     position="fixed"
+    color="default"
     className={clsx(classes.appBar, {
       [classes.appBarShift]: isOpen
     })}
@@ -193,7 +182,6 @@ const TopNavBar = ({ classes, isOpen, handleDrawerOpen }) => (
 
 const LayoutContent = ({ classes }) => (
   <main className={classes.content}>
-    <div className={classes.toolbar} />
     <SnackbarProvider>
       <Switch>
         <Route path="/place">

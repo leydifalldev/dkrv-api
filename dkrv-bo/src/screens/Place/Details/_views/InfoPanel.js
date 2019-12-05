@@ -1,46 +1,45 @@
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
+import MaterialTable from "material-table";
 import List from "@material-ui/core/List";
-import ListItem from "@material-ui/core/ListItem";
-import ListItemText from "@material-ui/core/ListItemText";
-import ListItemAvatar from "@material-ui/core/ListItemAvatar";
-import Avatar from "@material-ui/core/Avatar";
-import ImageIcon from "@material-ui/icons/Image";
-import WorkIcon from "@material-ui/icons/Work";
-import BeachAccessIcon from "@material-ui/icons/BeachAccess";
-import PhoneIcon from "@material-ui/icons/Phone";
-import AlternateEmailIcon from "@material-ui/icons/AlternateEmail";
+import {
+  ListItem,
+  ListItemIcon,
+  ListItemText,
+  ListSubheader
+} from "@material-ui/core";
 
-const useStyles = makeStyles(theme => ({
-  root: {
-    width: "100%",
-    backgroundColor: theme.palette.background.paper
-  }
-}));
-
-export const PlaceInfoPanel = ({ info }) => {
-  const classes = useStyles();
+export const InfoPanel = () => {
+  const [state, setState] = React.useState({
+    columns: [
+      { title: "Name", field: "name" },
+      { title: "Surname", field: "surname" }
+    ],
+    data: [
+      { name: "Mehmet", surname: "Baran" },
+      {
+        name: "Zerya Betül",
+        surname: "Baran"
+      }
+    ]
+  });
 
   return (
-    <List className={classes.root}>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <PhoneIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText
-          primary="Téléphone"
-          secondary={info.phone || "Non Rens."}
-        />
+    <List
+      component="nav"
+      aria-labelledby="nested-list-subheader"
+      subheader={
+        <ListSubheader component="div" id="nested-list-subheader">
+          Nested List Items
+        </ListSubheader>
+      }
+    >
+      <ListItem button>
+        <ListItemIcon></ListItemIcon>
+        <ListItemText primary="Sent mail" />
       </ListItem>
-      <ListItem>
-        <ListItemAvatar>
-          <Avatar>
-            <AlternateEmailIcon />
-          </Avatar>
-        </ListItemAvatar>
-        <ListItemText primary="Email" secondary={info.email} />
+      <ListItem button>
+        <ListItemIcon></ListItemIcon>
+        <ListItemText primary="Drafts" />
       </ListItem>
     </List>
   );
