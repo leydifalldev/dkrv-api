@@ -8,7 +8,7 @@ import Tab from "@material-ui/core/Tab";
 import Typography from "@material-ui/core/Typography";
 import Box from "@material-ui/core/Box";
 import { FichePlace } from "./FichePlace";
-import { ListProductsPanel } from "./ListProductPanel";
+import { ProductTab } from "../Product";
 import { EventTab } from "./EventTab";
 
 function TabPanel(props) {
@@ -88,7 +88,7 @@ export const PlaceDetailsTabs = ({ data }) => {
           <FichePlace />
         </TabPanel>
         <TabPanel value={value} index={1} dir={theme.direction}>
-          <ListProductsPanel products={data.products} />
+          <ProductTab products={data.products} />
         </TabPanel>
         <TabPanel value={value} index={2} dir={theme.direction}>
           <EventTab />

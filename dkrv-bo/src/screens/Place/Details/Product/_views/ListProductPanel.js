@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import Grid from "@material-ui/core/Grid";
 import Card from "@material-ui/core/Card";
-import CardHeader from "@material-ui/core/CardHeader";
+import { CardHeader, Divider } from "@material-ui/core";
 import CardMedia from "@material-ui/core/CardMedia";
 import CardContent from "@material-ui/core/CardContent";
 import CardActions from "@material-ui/core/CardActions";
@@ -13,8 +13,9 @@ import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { makeStyles } from "@material-ui/core/styles";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { EmptyPanel } from "../../../components";
-import { NavBarProductPlace } from "../_views/NavBarProductPlace";
+import { EmptyPanel } from "../../../../components";
+import { NavBarProductPlace } from "../List/NavBarProductPlace";
+import CreateProductStepper from "../Add/CreateProductStepper";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -40,7 +41,10 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const ListProducts = ({ products }) => {
-  return products && products.length > 0 ? (
+  return (
+    <div>
+  <NavBarProductPlace />
+   {products && products.length > 0 ? (
     <Grid container spacing={3}>
       {products.map(product => (
         <RenderProduct product={product} />
@@ -48,15 +52,29 @@ export const ListProducts = ({ products }) => {
     </Grid>
   ) : (
     <EmptyPanel label={"Veuillez ajouter des produits"} />
-  );
+  )}
+  </div>
+  )
 };
 
 export const ListProductsPanel = () => {
+  const [template, setTemplate] = useState(0);
   const products = [];
+
+  const _renderTemplate = (tpl) => {
+    switch(tpl) {
+      case 0:
+        return <ListProducts products={products}/>
+      case 1:
+        return <CreateProductStepper/>
+      default:
+        return null;
+    }
+  }
+
   return (
     <div>
-      <NavBarProductPlace />
-      <ListProducts products={products} />
+      {_renderTemplate(template)}
     </div>
   );
 };

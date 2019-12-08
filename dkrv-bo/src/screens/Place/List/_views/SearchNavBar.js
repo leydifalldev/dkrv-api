@@ -104,7 +104,7 @@ export const SearchNavBar = () => {
               onClick={goTo}
               startIcon={<Add />}
             >
-              Nouvelle Place
+              Ajouter
             </Button>
           </div>
         </Toolbar>

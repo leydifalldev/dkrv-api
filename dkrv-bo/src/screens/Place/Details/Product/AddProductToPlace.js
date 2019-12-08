@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { Formik } from "formik";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import PlaceContext from "../../store/place.store";
+import PlaceContext from "../Context";
 import InputAdornment from "@material-ui/core/InputAdornment";
 import { TextInput } from "../../../components/Forms/TextInput";
 import { SelectInput } from "../../../components/Forms/SelectInput";

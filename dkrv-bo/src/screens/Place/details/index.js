@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 import Grid from "@material-ui/core/Grid";
-import { Switch, Route, useRouteMatch, useParams } from "react-router-dom";
+import { useRouteMatch, useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { RETRIEVE_PLACE_DETAIL } from "../../../network/index";
 import { PlaceInfoPanel } from "./_views/InfoPanel";
@@ -10,8 +10,8 @@ import { PlaceDetailsTabs } from "./_views/PlaceDetailsTabs";
 import { AddressPanel } from "./_views/AddressPanel";
 import { DetailsThumbnail } from "./_views/DetailsThumbnail";
 import { DetailsBar } from "./_views/DetailsBar";
-import { PlaceProvider } from "../store/place.store";
-import CreateProductStepper from "./Product/CreateProductStepper";
+import { PlaceProvider } from "./Context";
+import CreateProductStepper from "./Product/Add/CreateProductStepper";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -52,16 +52,7 @@ const PlaceDetail = () => {
             <DetailsBar data={data.getPlace} />
           </Grid>
           <Grid item xs={12} sm={12}>
-            <Switch>
-              <Route
-                path={`${path}/product/add`}
-                children={<CreateProductStepper />}
-              />
-              <Route
-                path={`${path}/`}
-                children={<PlaceDetailsTabs data={data.getPlace} />}
-              />
-            </Switch>
+            <PlaceDetailsTabs data={data.getPlace} />
           </Grid>
         </Grid>
       </div>

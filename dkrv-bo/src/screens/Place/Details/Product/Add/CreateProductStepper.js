@@ -10,7 +10,7 @@ import StepConnector from "@material-ui/core/StepConnector";
 
 import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
 import AddPhotoAlternateIcon from "@material-ui/icons/AddPhotoAlternate";
-import { AddProductToPlace } from "./AddProductToPlace";
+import { AddProductToPlace } from "../AddProductToPlace";
 
 const Test = () => <h2>HelLo component</h2>;
 

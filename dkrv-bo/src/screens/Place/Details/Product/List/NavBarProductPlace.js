@@ -5,7 +5,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import { PlaceContext } from "../../../../context";
+import PlaceContext from "../../Context";
 
 const useStyles = makeStyles(theme => ({
   root: {

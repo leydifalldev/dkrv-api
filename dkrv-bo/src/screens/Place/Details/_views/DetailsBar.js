@@ -91,17 +91,14 @@ export const DetailsBar = ({ data }) => {
           <Grid xs={2}>
             <InfoItem label={"Téléphone"} value={data.phone} />
           </Grid>
-          <Grid xs={2}>
+          <Grid xs={3}>
             <InfoItem label={"Email"} value={data.email} />
-          </Grid>
-          <Grid xs={2}>
-            <InfoItem label={"Zone"} value={data.zone} />
           </Grid>
           <Grid xs={2}>
             <InfoItem label={"Téléphone"} value={data.phone} />
           </Grid>
           <Grid xs={4}>
-            <InfoItem label={"Adresse"} value={data.address} />
+            <InfoItem label={"Adresse"} value={`${data.address} - ${data.zone}`} />
           </Grid>
         </Grid>
       </AppBar>
