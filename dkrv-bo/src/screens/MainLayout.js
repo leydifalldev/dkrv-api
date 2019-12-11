@@ -14,16 +14,9 @@ import {
   IconButton,
   ListItemIcon
 } from "@material-ui/core";
-import {
-  Menu,
-  ChevronLeft,
-  ChevronRight,
-  PriorityHigh,
-  Send
-} from "@material-ui/icons";
+import { PriorityHigh, Send } from "@material-ui/icons";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PlaceScreen } from "./Place/PlaceScreen";
-import RootContext from "./RootStore";
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -93,10 +86,6 @@ export const MainLayout = () => {
   const theme = useTheme();
   const [open, setOpen] = React.useState(true);
 
-  const handleDrawerOpen = () => {
-    setOpen(true);
-  };
-
   const handleDrawerClose = () => {
     setOpen(false);
   };
@@ -151,6 +140,18 @@ const MainDrawer = ({ classes, isOpen, handleDrawerClose, theme }) => (
   </Drawer>
 );
 
+const LayoutContent = ({ classes }) => (
+  <main className={classes.content}>
+    <SnackbarProvider>
+      <Switch>
+        <Route path="/place">
+          <PlaceScreen />
+        </Route>
+      </Switch>
+    </SnackbarProvider>
+  </main>
+);
+/*
 const TopNavBar = ({ classes, isOpen, handleDrawerOpen }) => (
   <AppBar
     position="fixed"
@@ -178,16 +179,4 @@ const TopNavBar = ({ classes, isOpen, handleDrawerOpen }) => (
       </IconButton>
     </Toolbar>
   </AppBar>
-);
-
-const LayoutContent = ({ classes }) => (
-  <main className={classes.content}>
-    <SnackbarProvider>
-      <Switch>
-        <Route path="/place">
-          <PlaceScreen />
-        </Route>
-      </Switch>
-    </SnackbarProvider>
-  </main>
-);
+);*/

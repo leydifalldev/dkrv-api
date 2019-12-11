@@ -1,12 +1,9 @@
 import React from "react";
-import clsx from "clsx";
 import {
-  InputLabel,
   TextField,
   MenuItem,
   InputAdornment,
-  makeStyles,
-  withStyles
+  makeStyles
 } from "@material-ui/core";
 
 const useStyles = makeStyles(theme => ({
@@ -18,7 +15,6 @@ const useStyles = makeStyles(theme => ({
 }));
 
 export const SelectInput = props => {
-  const classes = useStyles();
   return props.options ? (
     <TextField
       select

@@ -1,8 +1,10 @@
 import React from "react";
 import { Typography } from "@material-ui/core";
-import VideoLabelIcon from "@material-ui/icons/VideoLabel";
-import FormatAlignJustifyIcon from "@material-ui/icons/FormatAlignJustify";
-import { AddPhotoAlternate, AssignmentTurnedIn } from "@material-ui/icons";
+import {
+  AddPhotoAlternate,
+  AssignmentTurnedIn,
+  FormatAlignJustify
+} from "@material-ui/icons";
 import { StepperComponent } from "../../../components/Stepper";
 import { PlaceForm } from "./PlaceForm";
 import { PlacePicturesUpload } from "./PicturesUpload";
@@ -14,7 +16,7 @@ const stepsConfig = {
     {
       name: "Fiche produit",
       component: <PlaceForm />,
-      icon: <FormatAlignJustifyIcon />
+      icon: <FormatAlignJustify />
     },
     {
       name: "Photos",

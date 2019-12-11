@@ -1,7 +1,7 @@
 import React from "react";
 import { StepLabel, Stepper, Step } from "@material-ui/core";
 import { ColorlibConnector } from "./Connector";
-import { stepperStyles, componentStyle } from "./styles";
+import { stepperStyles } from "./styles";
 import { CustomStepIcon } from "./Icons";
 
 export const StepperComponent = ({ stepsConfig }) => {

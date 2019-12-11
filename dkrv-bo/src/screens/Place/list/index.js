@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Grid from "@material-ui/core/Grid";
 import { useQuery } from "@apollo/react-hooks";
 import { PlaceThumbnail } from "./_views/PlaceThumbnail";
 import { RETRIEVE_PLACE_LIST } from "../../../network";

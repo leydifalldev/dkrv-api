@@ -1,4 +1,4 @@
-import { Resolver, Query, Mutation, Args} from '@nestjs/graphql';
+import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Logger, OnModuleInit } from '@nestjs/common';
 import { Client, ClientGrpc } from '@nestjs/microservices';
 import { ProductGrpcClientOptions } from '../../gateway/gateway.grpc.client';
@@ -13,19 +13,27 @@ import {
 } from '../objects';
 import { ProductInput } from '../inputs';
 import { IProductService } from '../interfaces';
+import { ServiceResponse } from '../../types/common.defs';
+import { ProductStore } from '../../services';
 
 @Resolver(of => Product)
 export class ProductResolver implements OnModuleInit {
+  constructor(private productStore: ProductStore) {}
+
   @Client(ProductGrpcClientOptions) private readonly client: ClientGrpc;
   private productService: IProductService;
 
   onModuleInit() {
-    this.productService = this.client.getService<IProductService>('ProductService');
+    this.productService = this.client.getService<IProductService>(
+      'ProductService',
+    );
   }
 
   @Query(returns => [Product])
   async products(): Promise<Product[]> {
-    const response: ProductListResponse = await this.productService.search({}).toPromise();
+    const response: ProductListResponse = await this.productService
+      .search({})
+      .toPromise();
     Logger.log(response);
     return response.products || [];
   }
@@ -33,23 +41,27 @@ export class ProductResolver implements OnModuleInit {
   @Mutation(returns => ProductDetailResponse)
   async getProduct(@Args('id') id: string) {
     Logger.log(id);
-    const response: ProductDetailResponse = await this.productService.get({id}).toPromise();
+    const response: ProductDetailResponse = await this.productService
+      .get({ id })
+      .toPromise();
     Logger.log(response);
     return response;
   }
 
-  @Mutation(returns => ProductCreateResponse)
+  @Mutation(returns => String)
   async createProduct(@Args('product') product: ProductInput) {
     Logger.log(product);
-    const response: ProductCreateResponse = await this.productService.add({product}).toPromise();
+    const response: ServiceResponse = await this.productStore.add(product);
     Logger.log(response);
-    return response;
+    return response.payload;
   }
 
   @Mutation(returns => ProductUpdateResponse)
   async updateProduct(@Args('product') product: ProductInput) {
     Logger.log(product);
-    const response: ProductUpdateResponse = await this.productService.update({product}).toPromise();
+    const response: ProductUpdateResponse = await this.productService
+      .update({ product })
+      .toPromise();
     Logger.log(response);
     return response;
   }
@@ -57,7 +69,9 @@ export class ProductResolver implements OnModuleInit {
   @Mutation(returns => ProductDeleteResponse)
   async deleteProduct(@Args('id') id: string) {
     Logger.log(id);
-    const response: ProductDeleteResponse = await this.productService.delete({id}).toPromise();
+    const response: ProductDeleteResponse = await this.productService
+      .delete({ id })
+      .toPromise();
     Logger.log(response);
     return response;
   }

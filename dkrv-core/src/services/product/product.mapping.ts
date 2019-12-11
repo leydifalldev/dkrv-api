@@ -10,14 +10,17 @@ const productMapping = {
       name: {
         type: 'keyword',
       },
-      category: {
+      categories: {
         type: 'keyword',
       },
       gastronomies: {
         type: 'nested',
       },
+      collection: {
+        type: 'keyword',
+      },
       recipes: {
-        type: 'nested',
+        type: 'keyword',
       },
       description: {
         type: 'text',
@@ -26,7 +29,7 @@ const productMapping = {
         type: 'integer',
       },
       price: {
-        type: 'integer',
+        type: 'float',
       },
       discount: {
         type: 'float',
@@ -59,9 +62,7 @@ const productMapping = {
         type: 'geo_point',
       },
       pictures: {
-        properties: {
-          type: 'keyword',
-        },
+        type: 'object',
       },
       menu_available: {
         type: 'boolean',

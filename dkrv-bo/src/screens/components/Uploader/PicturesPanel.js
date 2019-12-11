@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from "react";
+import React, { useState } from "react";
 import { useSnackbar } from "notistack";
 import { CloudUpload } from "@material-ui/icons";
 import {
@@ -35,7 +35,7 @@ export const PicturesUploader = ({ addToStore, store, host, handleDone }) => {
     formData.append("main", mainPicture);
     try {
       const resp = await axios({
-        url: 'http://localhost:3400/upload',
+        url: "http://localhost:3400/upload",
         method: "POST",
         data: formData,
         headers: {
@@ -142,9 +142,9 @@ const UploaderThumbnail = ({
   </Card>
 );
 
-const ThumbnailImage = ({ src, height, classes }) =>
+/*const ThumbnailImage = ({ src, height, classes }) =>
   src ? (
     <CardMedia className={classes.media} image={src} title="Paella dish" />
   ) : (
     <Skeleton variant="rect" className={classes.media} height={height || 180} />
-  );
+  );*/

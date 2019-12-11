@@ -2,7 +2,6 @@ import React from "react";
 import { Grid } from "@material-ui/core";
 import { PlaceSchedule } from "./Schedule";
 import { DetailsThumbnail } from "./DetailsThumbnail";
-import { InfoPanel } from "./InfoPanel";
 import { GastronomyPanel } from "./GastronomyPanel";
 
 export const FichePlace = () => {

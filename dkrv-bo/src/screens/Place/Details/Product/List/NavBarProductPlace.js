@@ -60,7 +60,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const NavBarProductPlace = () => {
+export const NavBarProductPlace = ({ setTemplate }) => {
   const classes = useStyles();
   let history = useHistory();
   const { id } = useContext(PlaceContext);
@@ -77,7 +77,7 @@ export const NavBarProductPlace = () => {
           <Button
             variant="outlined"
             color="secondary"
-            onClick={() => history.push(`/place/${id}/product/add`)}
+            onClick={() => setTemplate(1)}
           >
             Ajouter produit
           </Button>

@@ -40,11 +40,6 @@ export const Thumbnail = ({
   style
 }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
-  };
 
   return (
     <Card style={style} onClick={goTo} className={classes.card}>

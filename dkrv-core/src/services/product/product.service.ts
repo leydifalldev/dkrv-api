@@ -7,4 +7,16 @@ export class ProductStore extends ElasticService {
   constructor() {
     super('product', productMapping);
   }
+
+  getProductsByPlace = ({ placeid }) => {
+    return this.search({
+      body: {
+        query: {
+          match: {
+            placeid,
+          },
+        },
+      },
+    });
+  };
 }

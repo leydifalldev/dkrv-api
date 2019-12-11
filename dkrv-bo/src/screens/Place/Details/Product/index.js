@@ -1,21 +1,21 @@
 import React, { useState } from "react";
-import Grid from "@material-ui/core/Grid";
-import Card from "@material-ui/core/Card";
-import { CardHeader, Divider } from "@material-ui/core";
-import CardMedia from "@material-ui/core/CardMedia";
-import CardContent from "@material-ui/core/CardContent";
-import CardActions from "@material-ui/core/CardActions";
-import Avatar from "@material-ui/core/Avatar";
-import IconButton from "@material-ui/core/IconButton";
+import {
+  Avatar,
+  Card,
+  CardHeader,
+  CardMedia,
+  CardContent,
+  CardActions,
+  IconButton
+} from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { makeStyles } from "@material-ui/core/styles";
 import Skeleton from "@material-ui/lab/Skeleton";
-import { EmptyPanel } from "../../../components";
 import CreateProductStepper from "./Add/CreateProductStepper";
-import { ListProducts } from "./List"; 
+import { ListProducts } from "./List";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -42,24 +42,19 @@ const useStyles = makeStyles(theme => ({
 
 export const ProductTab = () => {
   const [template, setTemplate] = useState(0);
-  const products = [];
 
-  const _renderTemplate = (tpl) => {
-    switch(tpl) {
+  const _renderTemplate = tpl => {
+    switch (tpl) {
       case 0:
-        return <ListProducts products={products}/>
+        return <ListProducts setTemplate={setTemplate} />;
       case 1:
-        return <CreateProductStepper/>
+        return <CreateProductStepper />;
       default:
         return null;
     }
-  }
+  };
 
-  return (
-    <div>
-      {_renderTemplate(template)}
-    </div>
-  );
+  return <div>{_renderTemplate(template)}</div>;
 };
 
 export const ProductThumbnail = ({ product }) => {

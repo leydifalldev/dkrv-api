@@ -1,6 +1,5 @@
-import React from "react";
 import StepConnector from "@material-ui/core/StepConnector";
-import { makeStyles, withStyles } from "@material-ui/core/styles";
+import { withStyles } from "@material-ui/core/styles";
 
 export const ColorlibConnector = withStyles({
   alternativeLabel: {

@@ -13,7 +13,6 @@ import {
   Typography
 } from "@material-ui/core";
 import {
-  Image,
   Phone,
   AlternateEmailSharp,
   LocationOn,

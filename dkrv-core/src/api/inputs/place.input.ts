@@ -3,6 +3,7 @@ import { LocationInput } from './location.input';
 import { Picture } from '../objects/picture';
 import { PictureInput } from './picture.input';
 import { GastronomyInput } from './gastronomy.input';
+import { ProductInput } from './product.input';
 
 @InputType()
 export class PlaceInput {
@@ -50,4 +51,7 @@ export class PlaceInput {
 
   @Field(type => [PictureInput], { nullable: true })
   pictures?: PictureInput;
+
+  @Field(type => [ProductInput], { nullable: true })
+  products?: ProductInput[];
 }

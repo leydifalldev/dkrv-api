@@ -1,15 +1,17 @@
 import React, { useContext } from "react";
 import { Formik } from "formik";
-import { makeStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
-import PlaceContext from "../Context";
+import { useSnackbar } from "notistack";
+import PlaceContext from "../../Context";
 import InputAdornment from "@material-ui/core/InputAdornment";
-import { TextInput } from "../../../components/Forms/TextInput";
-import { SelectInput } from "../../../components/Forms/SelectInput";
-import { Grid } from "@material-ui/core";
-import { SuggestInput } from "../../../components/FormFields";
+//import { TextInput } from "../../../../components/Forms/TextInput";
+import { Grid, TextField, Switch } from "@material-ui/core";
+import { useMutation } from "@apollo/react-hooks";
+import { ADD_PRODUCT } from "../../../../../network";
+import { SelectInput } from "../../../../components/Forms/SelectInput";
+import { SuggestInput } from "../../../../components/FormFields";
 
-const types = [
+const categories = [
   {
     value: "food",
     label: "Repas"
@@ -33,80 +35,92 @@ const collections = [
 
 const sizes = [
   {
-    value: "small",
+    value: "SMALL",
     label: "Petite"
   },
   {
-    value: "medium",
+    value: "MEDIUM",
     label: "Moyenne"
   },
   {
-    value: "big",
+    value: "BIG",
     label: "Grande"
   }
 ];
 
 const quantities = [
   {
-    value: "1",
+    value: 1,
     label: "1"
   },
   {
-    value: "2",
+    value: 2,
     label: "2"
   },
   {
-    value: "3",
+    value: 3,
     label: "3"
   }
 ];
 
 const spicyLevel = [
   {
-    value: "0",
+    value: 0,
     label: "Non épicé"
   },
   {
-    value: "1",
+    value: 1,
     label: "Légèrement épicé"
   },
   {
-    value: "2",
+    value: 2,
     label: "Épicé"
   },
   {
-    value: "3",
+    value: 3,
     label: "Très épicé"
   }
 ];
 
-const suggession = [
-  { title: 'Tomates', year: 1994 },
-  { title: 'Viandes', year: 1972 },
+const recipes = [
+  {
+    value: "tomate",
+    label: "Tomate"
+  },
+  {
+    value: "viande",
+    label: "Viande"
+  },
+  {
+    value: "poulet",
+    label: "Poulet"
+  },
+  {
+    value: "salade",
+    label: "Salade"
+  }
 ];
-
-const handleSubmit = values => {
-  console.log(values);
-};
 
 const ProductForm = props => {
   return (
     <form autoComplete="no-completion" onSubmit={props.handleSubmit}>
       <Grid style={styleGrid}>
         <Grid style={styleGridItem} sm={4}>
-          <TextInput
+          <TextField
+            type="text"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
             value={props.values.name}
             name="name"
             label="Nom"
-            error={props.errors.name}
+            helperText={props.errors.name}
             placeholder="Placeholder"
             variant="outlined"
             margin="normal"
             fullWidth
           />
-          <TextInput
+          <TextField
+            type="number"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
             value={props.values.price}
@@ -123,7 +137,8 @@ const ProductForm = props => {
               )
             }}
           />
-          <TextInput
+          <TextField
+            type="number"
             onChange={props.handleChange}
             onBlur={props.handleBlur}
             value={props.values.discount}
@@ -142,15 +157,6 @@ const ProductForm = props => {
           />
         </Grid>
         <Grid item sm={4} style={styleGridItem}>
-          <SelectInput
-            fullWidth
-            name="type"
-            label={"Type de product"}
-            onChange={props.handleChange}
-            value={props.values.type}
-            margin="normal"
-            options={types}
-          />
           <SelectInput
             fullWidth
             name="collection"
@@ -172,6 +178,7 @@ const ProductForm = props => {
         </Grid>
         <Grid item sm={4} style={styleGridItem}>
           <SelectInput
+            type="number"
             fullWidth
             name="quantity"
             label={"Quantité"}
@@ -193,7 +200,7 @@ const ProductForm = props => {
         </Grid>
       </Grid>
       <Grid item xs={12}>
-        <TextInput
+        <TextField
           onChange={props.handleChange}
           onBlur={props.handleBlur}
           value={props.values.description}
@@ -213,13 +220,30 @@ const ProductForm = props => {
           onChange={props.handleChange}
           setFieldValue={props.setFieldValue}
           value={props.values.recipes}
-          options={suggession}
+          options={recipes}
           filterSelectedOptions
-          getOptionLabel={option => option.title}
+          handleValue={value => value.value}
+          getOptionLabel={option => option.label}
           name="recipes"
           id="recipes"
           label="Recipes"
           error={props.errors.recipes}
+          onBlur={props.handleBlur}
+        />
+      </Grid>
+      <Grid item xs={12}>
+        <SuggestInput
+          onChange={props.handleChange}
+          setFieldValue={props.setFieldValue}
+          value={props.values.categories}
+          options={categories}
+          filterSelectedOptions
+          handleValue={value => value.value}
+          getOptionLabel={option => option.label}
+          name="categories"
+          id="categories"
+          label="Categories"
+          error={props.errors.categories}
           onBlur={props.handleBlur}
         />
       </Grid>
@@ -235,14 +259,35 @@ const ProductForm = props => {
   );
 };
 
-export const AddProductToPlace = () => {
+export const AddProductToPlace = ({ handleNext }) => {
+  const [createProduct, error, loading] = useMutation(ADD_PRODUCT);
+  const { enqueueSnackbar } = useSnackbar();
+  const handleSubmit = async (values, actions) => {
+    console.log(values);
+    try {
+      const result = await createProduct({
+        variables: { productInput: values }
+      });
+      console.log("result product log", result);
+      handleNext();
+    } catch (e) {
+      if (e.networkError) {
+        enqueueSnackbar(String(e.networkError), { variant: "error" });
+      }
+      if (e.graphQLErrors) {
+        e.graphQLErrors.map(error => {
+          enqueueSnackbar(error.message, { variant: "error" });
+        });
+      }
+      //console.log(errorsMessage);
+    }
+  };
   const place = useContext(PlaceContext);
   console.log("place context", place);
   const initialValues = {
     name: "",
     discount: 0,
     description: "",
-    temporalyPlace: false,
     placeid: place.id,
     placename: place.name,
     placezone: place.zone,
@@ -268,3 +313,5 @@ const styleGridItem = {
   paddingRight: 5,
   paddingLeft: 5
 };
+
+export default AddProductToPlace;

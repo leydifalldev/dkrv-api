@@ -65,12 +65,7 @@ export const theme = createMuiTheme({
         width: 30
       }
     },
-    MuiMenuItem: {
-      root: {
-        lineHeight: 2.5,
-        color: "#ffffff"
-      }
-    },
+
     MuiSvgIcon: {
       root: {
         height: "0.9em",

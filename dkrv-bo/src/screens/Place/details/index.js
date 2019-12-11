@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import { useSnackbar } from "notistack";
 import Grid from "@material-ui/core/Grid";
-import { useRouteMatch, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { useQuery } from "@apollo/react-hooks";
 import { RETRIEVE_PLACE_DETAIL } from "../../../network/index";
-import { PlaceInfoPanel } from "./_views/InfoPanel";
 import { PlaceDetailsTabs } from "./_views/PlaceDetailsTabs";
-import { AddressPanel } from "./_views/AddressPanel";
-import { DetailsThumbnail } from "./_views/DetailsThumbnail";
 import { DetailsBar } from "./_views/DetailsBar";
-import { PlaceProvider } from "./Context";
-import CreateProductStepper from "./Product/Add/CreateProductStepper";
+import PlaceContext, { PlaceProvider } from "./Context";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,13 +22,11 @@ const useStyles = makeStyles(theme => ({
 const PlaceDetail = () => {
   const classes = useStyles();
   const { enqueueSnackbar } = useSnackbar();
-  let { path, url } = useRouteMatch();
   let { id } = useParams();
-  const [place, setPlace] = useState({});
-
   const { loading, error, data } = useQuery(RETRIEVE_PLACE_DETAIL, {
     variables: { id }
   });
+
   if (error) {
     if (error.networkError) {
       enqueueSnackbar(String(error.networkError), { variant: "error" });

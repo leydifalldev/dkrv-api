@@ -14,7 +14,7 @@ services:
     volumes:
       - ./dkrv-data/files:/www/media
       - ./dkrv-webserver/nginx/nginx.dev.conf:/etc/nginx/nginx.conf
-    env_file: 
+    env_file:
       - ./dkrv.env
   dkrv-core:
     hostname: dkrv-core
@@ -26,8 +26,8 @@ services:
       - "5000"
     networks:
       - dkrv-network
-    depends_on: ['elasticsearch_primary']
-    env_file: 
+    depends_on: ["elasticsearch_primary"]
+    env_file:
       - ./dkrv.env
   mongo:
     container_name: mongo
@@ -38,7 +38,7 @@ services:
       - "5600:27017"
     networks:
       - dkrv-network
-    env_file: 
+    env_file:
       - ./dkrv.env
   elasticsearch_primary:
     hostname: elasticsearch_primary
@@ -50,7 +50,6 @@ services:
       - cluster.name=dkrv-cluster
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - transport.tcp.port=5800
     ulimits:
       memlock:
         soft: -1
@@ -58,20 +57,53 @@ services:
     volumes:
       - elasticsearch_primary_data:/usr/share/elasticsearch/data
     ports:
-      - 5800
+      - 5800:9200
     healthcheck:
-      test:
-        ["CMD", "curl --fail elasticsearch_primary:9200 || exit 1"]
+      test: ["CMD", "curl --fail elasticsearch_primary:5800 || exit 1"]
       interval: 30s
       timeout: 30s
       retries: 3
     networks:
       - dkrv-network
-    env_file: 
+    env_file:
       - ./dkrv.env
+  elasticsearch_secondary:
+    hostname: elasticsearch_secondary
+    image: docker.elastic.co/elasticsearch/elasticsearch:7.3.0
+    container_name: elasticsearch_secondary
+    environment:
+      - node.name=elasticsearch_secondary
+      - cluster.initial_master_nodes=elasticsearch_secondary
+      - cluster.name=dkrv-cluster
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - transport.tcp.port=5800
+      - "discovery.zen.ping.unicast.hosts=elasticsearch_primary"
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+    volumes:
+      - elasticsearch_secondary_data:/usr/share/elasticsearch/data
+    networks:
+      - dkrv-network
+    env_file:
+      - ./dkrv.env
+  kibana:
+    image: "docker.elastic.co/kibana/kibana:7.3.0"
+    container_name: kibana
+    environment:
+      SERVER_NAME: kibana.local
+      ELASTICSEARCH_HOSTS: http://elasticsearch_primary:9200
+    ports:
+      - "5601:5601"
+    networks:
+      - dkrv-network
 
 volumes:
   elasticsearch_primary_data:
+    driver: local
+  elasticsearch_secondary_data:
     driver: local
   esdata02:
     driver: local

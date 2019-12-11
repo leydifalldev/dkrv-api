@@ -8,11 +8,14 @@ export class ProductInput {
   @Field(type => String, { nullable: true })
   id: string;
 
-  @Field(type => String, { nullable: true })
+  @Field(type => String)
   name: string;
 
-  @Field(type => String, { nullable: true })
-  category?: string;
+  @Field(type => [String])
+  categories?: string[];
+
+  @Field(type => String)
+  collection?: string;
 
   @Field(type => [String], { nullable: true })
   gastronomies: string[];
@@ -20,23 +23,23 @@ export class ProductInput {
   @Field(type => String, { nullable: true })
   description?: string;
 
-  @Field(type => [RecipeInput], { nullable: true })
-  recipes?: RecipeInput[];
+  @Field(type => [String], { nullable: true })
+  recipes?: string[];
 
   @Field(type => Int, { nullable: true })
-  spicy?: number[];
+  spicy?: number;
 
-  @Field(type => Float, { nullable: true })
-  price?: number;
+  @Field(type => Float)
+  price: number;
 
-  @Field(type => Float, { nullable: true })
+  @Field(type => Float)
   discount?: number;
 
   @Field(type => Int, { nullable: true })
   quantity?: number;
 
-  @Field(type => Int, { nullable: true })
-  size?: number;
+  @Field(type => String, { nullable: true })
+  size?: string;
 
   @Field(type => Int, { nullable: true })
   notation?: number;
@@ -44,8 +47,8 @@ export class ProductInput {
   @Field(type => Int, { nullable: true })
   likes?: number;
 
-  @Field(type => String, { nullable: true })
-  placeid?: string;
+  @Field(type => String)
+  placeid: string;
 
   @Field(type => String, { nullable: true })
   placename?: string;
@@ -59,8 +62,8 @@ export class ProductInput {
   @Field(type => LocationInput, { nullable: true })
   location?: LocationInput;
 
-  @Field(type => PictureInput, { nullable: true })
-  picture?: PictureInput;
+  @Field(type => [String], { nullable: true })
+  picture?: string[];
 
   @Field(type => Boolean, { nullable: true })
   menuAvailable?: boolean;

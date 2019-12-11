@@ -14,6 +14,7 @@ import {
 } from '@elastic/elasticsearch';
 import { ServiceResponse } from '../types/common.defs';
 import { ProductInput, PlaceInput } from '../api/inputs';
+import { throwError } from 'rxjs';
 
 export class ElasticService implements OnModuleInit {
   protected readonly esclient: Client;
@@ -60,11 +61,13 @@ export class ElasticService implements OnModuleInit {
       const mappingResult = await this.esclient.indices.putMapping(
         mappingSchema,
       );
+      Logger.log('mappingResult LOG');
+      Logger.log(mappingResult);
       Logger.log(mappingResult.statusCode === HttpStatus.OK);
       if (mappingResult.statusCode === HttpStatus.OK) {
         Logger.log(`MAPPING SUCCESSFULLY ADDED for ${mappingSchema.index}`);
       } else {
-        Logger.log('Cannot create mapping');
+        throw new Error('Cannot create mapping');
       }
     } catch (e) {
       Logger.log('Error =====> ', e);
@@ -94,6 +97,7 @@ export class ElasticService implements OnModuleInit {
       q: params.q,
       from: params.from || 0,
       size: params.size || 10,
+      body: params.body,
     };
     try {
       const result: ApiResponse<
@@ -114,7 +118,7 @@ export class ElasticService implements OnModuleInit {
     }
   }
 
-  async add(params: PlaceInput): Promise<ServiceResponse> {
+  async add(params: any): Promise<ServiceResponse> {
     Logger.log(params);
     try {
       const resp = await this.esclient.index({
@@ -192,10 +196,11 @@ export class ElasticService implements OnModuleInit {
         index: this.index,
         id,
       });
+      Logger.log('body get', body);
       return {
         status: statusCode,
         error: null,
-        payload: body._source,
+        payload: { ...body._source, id },
       };
     } catch (e) {
       Logger.log(e);

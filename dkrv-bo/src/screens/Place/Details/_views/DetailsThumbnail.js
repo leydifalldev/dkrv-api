@@ -1,14 +1,7 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import {
-  Card,
-  CardMedia,
-  CardHeader,
-  Avatar,
-  IconButton
-} from "@material-ui/core";
+import { Card, CardMedia } from "@material-ui/core";
 import { red } from "@material-ui/core/colors";
-import MoreVertIcon from "@material-ui/icons/MoreVert";
 import Skeleton from "@material-ui/lab/Skeleton";
 
 const useStyles = makeStyles(theme => ({

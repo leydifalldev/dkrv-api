@@ -7,16 +7,12 @@ import {
   AppBar,
   Button,
   ButtonGroup,
-  IconButton,
-  List,
   Divider,
   ListItem,
-  ListItemIcon,
   ListItemText,
   ListItemAvatar,
   Grid
 } from "@material-ui/core";
-import { Menu, Image, Work, BeachAccess } from "@material-ui/icons";
 import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles(theme => ({
@@ -98,7 +94,10 @@ export const DetailsBar = ({ data }) => {
             <InfoItem label={"Téléphone"} value={data.phone} />
           </Grid>
           <Grid xs={4}>
-            <InfoItem label={"Adresse"} value={`${data.address} - ${data.zone}`} />
+            <InfoItem
+              label={"Adresse"}
+              value={`${data.address} - ${data.zone}`}
+            />
           </Grid>
         </Grid>
       </AppBar>

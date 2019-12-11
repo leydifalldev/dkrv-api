@@ -1,15 +1,25 @@
-import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
+import {
+  Resolver,
+  Query,
+  Mutation,
+  Args,
+  ResolveProperty,
+  Parent,
+} from '@nestjs/graphql';
 
 import { Logger } from '@nestjs/common';
-import { Place } from '../objects';
+import { Place, Product } from '../objects';
 import { PlaceInput } from '../inputs';
-import { PlaceStore } from '../../services';
+import { PlaceStore, ProductStore } from '../../services';
 import { ServiceResponse } from '../../types/common.defs';
 import { File } from '../objects';
 
 @Resolver(of => Place)
 export class PlaceResolver {
-  constructor(private placeStore: PlaceStore) {}
+  constructor(
+    private placeStore: PlaceStore,
+    private productStore: ProductStore,
+  ) {}
 
   @Query(returns => [Place])
   async places(): Promise<Place[]> {
@@ -41,4 +51,18 @@ export class PlaceResolver {
     //const { id } = place;
     //return await this.postsService.findAll({ authorId: id });
   }*/
+  @ResolveProperty('products', () => [Product!]!)
+  async getProducts(@Parent() place) {
+    Logger.log('ResolveProperty log');
+    Logger.log(place);
+    const { id } = place;
+    const response: ServiceResponse = await this.productStore.getProductsByPlace(
+      {
+        placeid: id,
+      },
+    );
+    Logger.log('ResolveProperty response log');
+    Logger.log(response);
+    return response.payload || [];
+  }
 }
