@@ -89,9 +89,9 @@ services:
       - dkrv-network
     env_file:
       - ./dkrv.env
-  kibana:
+  dkrv-kibana:
     image: "docker.elastic.co/kibana/kibana:7.3.0"
-    container_name: kibana
+    container_name: dkrv-kibana
     environment:
       SERVER_NAME: kibana.local
       ELASTICSEARCH_HOSTS: http://elasticsearch_primary:9200

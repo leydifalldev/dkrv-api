@@ -3,3 +3,4 @@ export { PlaceInput } from './place.input';
 export { ProductInput } from './product.input';
 export { RecipeInput } from './recipe.input';
 export { ScheduleInput } from './schedule.input';
+export { ProfilInput } from './profil/profil.input';

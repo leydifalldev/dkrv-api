@@ -16,6 +16,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import Skeleton from "@material-ui/lab/Skeleton";
 import CreateProductStepper from "./Add/CreateProductStepper";
 import { ListProducts } from "./List";
+import { NavBarProductPlace } from "./_views/NavBarProductPlace";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,7 +55,12 @@ export const ProductTab = () => {
     }
   };
 
-  return <div>{_renderTemplate(template)}</div>;
+  return (
+    <div>
+      <NavBarProductPlace setTemplate={setTemplate}/>
+      {_renderTemplate(template)}
+    </div>
+  );
 };
 
 export const ProductThumbnail = ({ product }) => {

@@ -43,7 +43,6 @@ const useStyles = makeStyles(theme => ({
 export const ListProducts = ({ products }) => {
   return (
     <div>
-  <NavBarProductPlace />
    {products && products.length > 0 ? (
     <Grid container spacing={3}>
       {products.map(product => (
