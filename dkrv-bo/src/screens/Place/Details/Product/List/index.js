@@ -24,6 +24,8 @@ export const ListProducts = ({ setTemplate }) => {
     variables: { id: place.id }
   });
 
+  console.log(data);
+
   if (error) {
     if (error.networkError) {
       enqueueSnackbar(String(error.networkError), { variant: "error" });
@@ -34,12 +36,11 @@ export const ListProducts = ({ setTemplate }) => {
       });
     }
   }
-  if (loading) {
-    return <InfoPanel label={"Chargement en cours ..."} />;
-  } 
-  return data && data.getPlace ? 
-  <ProductContainer products={data.getPlace} />:<InfoPanel label={"Chargement en cours ..."} />
-
+  return data && data.getPlace ? (
+    <ProductContainer products={data.getPlace.products} />
+  ) : (
+    <InfoPanel label={"Chargement en cours ..."} />
+  );
 };
 
 const ProductContainer = ({ products }) => {

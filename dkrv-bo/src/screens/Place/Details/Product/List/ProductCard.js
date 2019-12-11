@@ -21,7 +21,13 @@ import { MoreVert } from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    maxWidth: 345
+    width: 345
+  },
+  cardInfoLine: {
+    width: "100%",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "space-between"
   },
   media: {
     height: 0,
@@ -71,11 +77,22 @@ export const ProductCard = ({ product }) => {
         <Skeleton variant="rect" height={250} width="100%" />
       )}
       <CardContent>
-        <Typography variant="body2" color="textSecondary" component="p">
-          This impressive paella is a perfect party dish and a fun meal to cook
-          together with your guests. Add 1 cup of frozen peas along with the
-          mussels, if you like.
-        </Typography>
+        <div className={classes.cardInfoLine}>
+          <Typography variant="p">Prix</Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {product && product.price
+              ? `${product.price} FCFA`
+              : "Non renseignés"}
+          </Typography>
+        </div>
+        <div className={classes.cardInfoLine}>
+          <Typography variant="p">Ingrediens</Typography>
+          <Typography variant="body2" color="textSecondary" component="p">
+            {product && product.recipes
+              ? product.recipes.join("-")
+              : "Non renseignés"}
+          </Typography>
+        </div>
       </CardContent>
     </Card>
   );
