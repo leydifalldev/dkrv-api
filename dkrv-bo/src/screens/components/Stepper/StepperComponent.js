@@ -4,14 +4,20 @@ import { ColorlibConnector } from "./Connector";
 import { stepperStyles } from "./styles";
 import { CustomStepIcon } from "./Icons";
 
-export const StepperComponent = ({ stepsConfig }) => {
+export const StepperComponent = ({ stepsConfig, onFinish }) => {
   const classes = stepperStyles();
   const [activeStep, setActiveStep] = React.useState(0);
   const [stepperStore, setStepperStore] = React.useState({});
 
   const handleNext = () => {
-    console.log("handleNext LOG");
-    setActiveStep(prevActiveStep => prevActiveStep + 1);
+    console.log("activeStep LOG", activeStep);
+    console.log("stepsConfig.steps.length LOG", stepsConfig.steps.length);
+    if ((activeStep + 1) < stepsConfig.steps.length) {
+      setActiveStep(prevActiveStep => prevActiveStep + 1);
+    } else {
+      console.log("onFinish");
+      onFinish();
+    }
   };
 
   const handleBack = () => {

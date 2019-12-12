@@ -96,7 +96,7 @@ export class ElasticService implements OnModuleInit {
       index: this.index,
       q: params.q,
       from: params.from || 0,
-      size: params.size || 10,
+      size: params.size || 100,
       body: params.body,
     };
     try {

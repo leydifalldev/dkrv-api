@@ -21,7 +21,10 @@ import { MoreVert } from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    width: 345
+    width: 300,
+    marginTop: 4,
+    marginLeft: 2,
+    marginRight: 2
   },
   cardInfoLine: {
     width: "100%",

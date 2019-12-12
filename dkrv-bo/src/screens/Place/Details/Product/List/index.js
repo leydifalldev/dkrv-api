@@ -1,12 +1,11 @@
 import React, { useContext } from "react";
 import PlaceContext from "../../Context";
 import { useSnackbar } from "notistack";
-import { Grid } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 import { useQuery } from "@apollo/react-hooks";
 import { RETRIEVE_PRODUCTS_LIST } from "../../../../../network";
 import { ProductCard } from "./ProductCard";
-import { EmptyPanel, InfoPanel } from "../../../../components";
+import { InfoPanel } from "../../../../components";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -61,5 +60,6 @@ const ProductContainer = ({ products }) => {
 
 const containerStyle = {
   display: "flex",
-  flexDirection: "row"
+  flexDirection: "row",
+  flexWrap: "wrap"
 };

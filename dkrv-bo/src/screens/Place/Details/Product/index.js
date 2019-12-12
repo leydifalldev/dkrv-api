@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   Avatar,
   Card,
@@ -8,15 +8,20 @@ import {
   CardActions,
   IconButton
 } from "@material-ui/core";
+import { useSnackbar } from "notistack";
 import { red } from "@material-ui/core/colors";
+import { useQuery } from "@apollo/react-hooks";
+import PlaceContext from "../Context";
 import FavoriteIcon from "@material-ui/icons/Favorite";
 import ShareIcon from "@material-ui/icons/Share";
 import MoreVertIcon from "@material-ui/icons/MoreVert";
 import { makeStyles } from "@material-ui/core/styles";
 import Skeleton from "@material-ui/lab/Skeleton";
 import CreateProductStepper from "./Add/CreateProductStepper";
-import { ListProducts } from "./List";
 import { NavBarProductPlace } from "./_views/NavBarProductPlace";
+import { RETRIEVE_PRODUCTS_LIST } from "../../../../network";
+import { ProductCard } from "./List/ProductCard";
+import { InfoPanel } from "../../../components";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -41,15 +46,45 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
+const containerStyle = {
+  display: "flex",
+  flexDirection: "row",
+  flexWrap: "wrap"
+};
+
 export const ProductTab = () => {
   const [template, setTemplate] = useState(0);
+  const place = useContext(PlaceContext);
+  const { enqueueSnackbar } = useSnackbar();
+
+  const { loading, error, data, refetch } = useQuery(RETRIEVE_PRODUCTS_LIST, {
+    variables: { id: place.id }
+  });
+
+  console.log("RETRIEVE_PRODUCTS_LIST", data);
+
+  const _getListTpl = () => {
+    refetch()
+    setTemplate(0);
+  }
+
+  if (error) {
+    if (error.networkError) {
+      enqueueSnackbar(String(error.networkError), { variant: "error" });
+    }
+    if (error.graphQLErrors) {
+      error.graphQLErrors.map(error => {
+        enqueueSnackbar(error.message, { variant: "error" });
+      });
+    }
+  }
 
   const _renderTemplate = tpl => {
     switch (tpl) {
       case 0:
-        return <ListProducts setTemplate={setTemplate} />;
+        return <ProductListPanel products={(data && data.getPlace) ? data.getPlace.products : []} setTemplate={setTemplate} />;
       case 1:
-        return <CreateProductStepper />;
+        return <CreateProductStepper setTemplate={_getListTpl}/>;
       default:
         return null;
     }
@@ -61,6 +96,22 @@ export const ProductTab = () => {
       {_renderTemplate(template)}
     </div>
   );
+};
+
+const ProductListPanel = ({ products }) => {
+  const classes = useStyles();
+
+  if (products && products.length > 0) {
+    return (
+      <div style={containerStyle}>
+        {products.map(product => (
+          <ProductCard product={product} classes={classes.card} />
+        ))}
+      </div>
+    );
+  } else {
+    return <InfoPanel label={"Pas de produits"} />;
+  }
 };
 
 export const ProductThumbnail = ({ product }) => {
