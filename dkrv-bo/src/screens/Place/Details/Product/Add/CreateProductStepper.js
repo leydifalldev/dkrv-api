@@ -15,7 +15,7 @@ const stepsConfig = {
   ]
 };
 
-const CreatePlaceStepper = ({setTemplate}) => {
+const CreatePlaceStepper = ({ setTemplate }) => {
   return (
     <div>
       <StepperComponent onFinish={setTemplate} stepsConfig={stepsConfig} />

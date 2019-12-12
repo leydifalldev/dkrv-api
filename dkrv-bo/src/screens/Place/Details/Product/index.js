@@ -63,10 +63,10 @@ export const ProductTab = () => {
 
   console.log("RETRIEVE_PRODUCTS_LIST", data);
 
-  const _getListTpl = () => {
-    refetch()
+  const _getListTpl = async () => {
+    await refetch();
     setTemplate(0);
-  }
+  };
 
   if (error) {
     if (error.networkError) {
@@ -82,9 +82,16 @@ export const ProductTab = () => {
   const _renderTemplate = tpl => {
     switch (tpl) {
       case 0:
-        return <ProductListPanel products={(data && data.getPlace) ? data.getPlace.products : []} setTemplate={setTemplate} />;
+        return (
+          <ProductListPanel
+            products={data && data.getPlace ? data.getPlace.products : []}
+            setTemplate={setTemplate}
+          />
+        );
       case 1:
-        return <CreateProductStepper setTemplate={_getListTpl}/>;
+        return (
+          <CreateProductStepper refresh={refetch} setTemplate={_getListTpl} />
+        );
       default:
         return null;
     }
@@ -92,7 +99,7 @@ export const ProductTab = () => {
 
   return (
     <div>
-      <NavBarProductPlace setTemplate={setTemplate}/>
+      <NavBarProductPlace setTemplate={setTemplate} />
       {_renderTemplate(template)}
     </div>
   );
