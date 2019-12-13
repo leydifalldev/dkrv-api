@@ -21,10 +21,15 @@ import { MoreVert } from "@material-ui/icons";
 
 const useStyles = makeStyles(theme => ({
   card: {
-    width: 300,
+    width: 270,
     marginTop: 4,
     marginLeft: 2,
     marginRight: 2
+  },
+  cardHeader:{
+    root: {
+      padding: 4
+    }
   },
   cardInfoLine: {
     width: "100%",
@@ -33,7 +38,7 @@ const useStyles = makeStyles(theme => ({
     justifyContent: "space-between"
   },
   media: {
-    height: 0,
+    height: 220,
     paddingTop: "56.25%" // 16:9
   },
   expand: {
@@ -58,16 +63,7 @@ export const ProductCard = ({ product }) => {
   return (
     <Card className={classes.card}>
       <CardHeader
-        avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVert />
-          </IconButton>
-        }
+        classes={classes.cardHeader}
         title={product.name}
         subheader={product.collection}
       />
@@ -75,9 +71,10 @@ export const ProductCard = ({ product }) => {
         <CardMedia
           image="/static/images/cards/paella.jpg"
           title="Paella dish"
+          classes={classes.media}
         />
       ) : (
-        <Skeleton variant="rect" height={250} width="100%" />
+        <Skeleton variant="rect" classes={classes.media} height={180} width="100%" />
       )}
       <CardContent>
         <div className={classes.cardInfoLine}>

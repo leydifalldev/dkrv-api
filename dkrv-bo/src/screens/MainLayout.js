@@ -62,6 +62,7 @@ const useStyles = makeStyles(theme => ({
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
+    backgroundColor: "#4A148C",
     overflowX: "hidden",
     width: theme.spacing(7) + 1,
     [theme.breakpoints.up("sm")]: {
@@ -84,7 +85,7 @@ const useStyles = makeStyles(theme => ({
 export const MainLayout = () => {
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
 
   const handleDrawerClose = () => {
     setOpen(false);

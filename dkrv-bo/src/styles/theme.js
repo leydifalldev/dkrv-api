@@ -35,6 +35,11 @@ export const theme = createMuiTheme({
         border: "1px solid #edf2f9"
       }
     },
+    MuiCardHeader: {
+      title: {
+        fontSize: 14,
+      }
+    },
     MuiBox: {
       root: {
         backgroundColor: "transparent",

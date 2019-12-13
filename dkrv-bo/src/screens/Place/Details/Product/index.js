@@ -6,7 +6,8 @@ import {
   CardMedia,
   CardContent,
   CardActions,
-  IconButton
+  IconButton,
+  Grid
 } from "@material-ui/core";
 import { useSnackbar } from "notistack";
 import { red } from "@material-ui/core/colors";
@@ -22,6 +23,7 @@ import { NavBarProductPlace } from "./_views/NavBarProductPlace";
 import { RETRIEVE_PRODUCTS_LIST } from "../../../../network";
 import { ProductCard } from "./List/ProductCard";
 import { InfoPanel } from "../../../components";
+import { ProductMenu } from "./List/ProductMenu";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -110,11 +112,18 @@ const ProductListPanel = ({ products }) => {
 
   if (products && products.length > 0) {
     return (
-      <div style={containerStyle}>
-        {products.map(product => (
-          <ProductCard product={product} classes={classes.card} />
-        ))}
-      </div>
+      <Grid container>
+        <Grid item xs={3}>
+          <ProductMenu/>
+        </Grid>
+        <Grid xs={9}>
+          <div style={containerStyle}>
+            {products.map(product => (
+              <ProductCard product={product} classes={classes.card} />
+            ))}
+          </div>
+        </Grid>
+      </Grid>
     );
   } else {
     return <InfoPanel label={"Pas de produits"} />;
