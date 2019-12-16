@@ -15,7 +15,7 @@ export class PlaceStore extends ElasticService {
           bool: {
             must: {
               term: {
-                placeid: 'IFladG4BPKIsN-IUkHva',
+                placeid,
               },
             },
           },

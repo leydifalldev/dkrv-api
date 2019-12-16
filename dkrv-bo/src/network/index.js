@@ -5,3 +5,4 @@ export { CREATE_PLACE_DETAIL } from "./Place/create";
 export { UPLOAD_PICTURES } from "./Common/uploadPicture";
 export { ADD_PRODUCT } from "./Place/add.product";
 export { RETRIEVE_PRODUCTS_LIST } from "./Place/get.products";
+export { RETRIEVE_PRODUCTS_GROUPED_INFO } from "./Place/get.products.grouped";

@@ -1,11 +1,11 @@
-import React, { useContext } from "react";
-import { useHistory } from "react-router-dom";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import Button from "@material-ui/core/Button";
-import Typography from "@material-ui/core/Typography";
+import React from "react";
+import {
+  Typography,
+  TablePagination,
+  Toolbar,
+  AppBar
+} from "@material-ui/core";
 import { fade, makeStyles } from "@material-ui/core/styles";
-import PlaceContext from "../../Context";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -60,10 +60,20 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export const NavBarProductPlace = ({ setTemplate }) => {
+export const NavBarProductPlace = () => {
   const classes = useStyles();
-  let history = useHistory();
-  const { id } = useContext(PlaceContext);
+
+  const [page, setPage] = React.useState(0);
+  const [rowsPerPage, setRowsPerPage] = React.useState(5);
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = event => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
 
   return (
     <div className={classes.root}>
@@ -74,13 +84,15 @@ export const NavBarProductPlace = ({ setTemplate }) => {
             variant="h6"
             noWrap
           ></Typography>
-          <Button
-            variant="outlined"
-            color="secondary"
-            onClick={() => setTemplate(1)}
-          >
-            Ajouter produit
-          </Button>
+          <TablePagination
+            rowsPerPageOptions={[5, 10, 25]}
+            component="div"
+            count={20}
+            rowsPerPage={10}
+            page={1}
+            onChangePage={handleChangePage}
+            onChangeRowsPerPage={handleChangeRowsPerPage}
+          />
         </Toolbar>
       </AppBar>
     </div>

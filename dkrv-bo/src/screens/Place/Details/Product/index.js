@@ -100,10 +100,17 @@ export const ProductTab = () => {
   };
 
   return (
-    <div>
-      <NavBarProductPlace setTemplate={setTemplate} />
-      {_renderTemplate(template)}
-    </div>
+    <Grid container>
+      <Grid item xs={12}>
+        <NavBarProductPlace setTemplate={setTemplate} />
+      </Grid>
+      <Grid item xs={2}>
+        <ProductMenu setTemplate={setTemplate} />
+      </Grid>
+      <Grid item xs={10}>
+        {_renderTemplate(template)}
+      </Grid>
+    </Grid>
   );
 };
 
@@ -112,18 +119,11 @@ const ProductListPanel = ({ products }) => {
 
   if (products && products.length > 0) {
     return (
-      <Grid container>
-        <Grid item xs={3}>
-          <ProductMenu/>
-        </Grid>
-        <Grid xs={9}>
-          <div style={containerStyle}>
-            {products.map(product => (
-              <ProductCard product={product} classes={classes.card} />
-            ))}
-          </div>
-        </Grid>
-      </Grid>
+      <div style={containerStyle}>
+        {products.map(product => (
+          <ProductCard product={product} classes={classes.card} />
+        ))}
+      </div>
     );
   } else {
     return <InfoPanel label={"Pas de produits"} />;

@@ -20,7 +20,7 @@ const placeMapping = {
         type: 'text',
       },
       categories: {
-        type: 'nested',
+        type: 'keyword',
       },
       gastronomies: {
         type: 'nested',

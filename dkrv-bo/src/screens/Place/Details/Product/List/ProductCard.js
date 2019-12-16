@@ -1,15 +1,10 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-import clsx from "clsx";
 import {
-  IconButton,
-  Avatar,
   Card,
   CardHeader,
   CardMedia,
   CardContent,
-  CardActions,
-  Collapse,
   Typography
 } from "@material-ui/core";
 import Skeleton from "@material-ui/lab/Skeleton";
@@ -26,7 +21,7 @@ const useStyles = makeStyles(theme => ({
     marginLeft: 2,
     marginRight: 2
   },
-  cardHeader:{
+  cardHeader: {
     root: {
       padding: 4
     }
@@ -41,16 +36,6 @@ const useStyles = makeStyles(theme => ({
     height: 220,
     paddingTop: "56.25%" // 16:9
   },
-  expand: {
-    transform: "rotate(0deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest
-    })
-  },
-  expandOpen: {
-    transform: "rotate(180deg)"
-  },
   avatar: {
     backgroundColor: red[500]
   }
@@ -58,7 +43,6 @@ const useStyles = makeStyles(theme => ({
 
 export const ProductCard = ({ product }) => {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
 
   return (
     <Card className={classes.card}>
@@ -74,7 +58,12 @@ export const ProductCard = ({ product }) => {
           classes={classes.media}
         />
       ) : (
-        <Skeleton variant="rect" classes={classes.media} height={180} width="100%" />
+        <Skeleton
+          variant="rect"
+          classes={classes.media}
+          height={180}
+          width="100%"
+        />
       )}
       <CardContent>
         <div className={classes.cardInfoLine}>

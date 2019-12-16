@@ -9,10 +9,11 @@ import {
 
 import { Logger } from '@nestjs/common';
 import { Place, Product } from '../objects';
-import { PlaceInput } from '../inputs';
+import { PlaceInput, SearchParamsInput } from '../inputs';
 import { PlaceStore, ProductStore } from '../../services';
 import { ServiceResponse } from '../../types/common.defs';
 import { File } from '../objects';
+import { Category } from '../objects/category.type';
 
 @Resolver(of => Place)
 export class PlaceResolver {
@@ -24,23 +25,18 @@ export class PlaceResolver {
   @Query(returns => [Place])
   async places(): Promise<Place[]> {
     const response: ServiceResponse = await this.placeStore.search({});
-    Logger.log(response);
     return response.payload || [];
   }
 
   @Query(returns => Place)
   async getPlace(@Args('id') id: string) {
-    Logger.log(id);
     const response: ServiceResponse = await this.placeStore.get(id);
-    Logger.log(response);
     return response.payload;
   }
 
   @Mutation(returns => String)
   async createPlace(@Args('place') place: PlaceInput) {
-    Logger.log(place);
     const response: ServiceResponse = await this.placeStore.add(place);
-    Logger.log(response);
     if (response.status === 400) {
       return Error('Bad Request');
     }
@@ -52,17 +48,26 @@ export class PlaceResolver {
     //return await this.postsService.findAll({ authorId: id });
   }*/
   @ResolveProperty('products', () => [Product!]!)
-  async getProducts(@Parent() place) {
+  async getProducts(
+    @Parent() place,
+    @Args('params') searchParams: SearchParamsInput,
+  ) {
     Logger.log('ResolveProperty log');
-    Logger.log(place);
+    Logger.log(searchParams);
     const { id } = place;
     const response: ServiceResponse = await this.productStore.getProductsByPlace(
       {
         placeid: id,
+        searchParams,
       },
     );
-    Logger.log('ResolveProperty response log');
-    Logger.log(response);
+    return response.payload || [];
+  }
+
+  @ResolveProperty('products_grouped', () => [Category!]!)
+  async getProductsGrouped(@Parent() place) {
+    const { id } = place;
+    const response: ServiceResponse = await this.productStore.getGroup(id);
     return response.payload || [];
   }
 }

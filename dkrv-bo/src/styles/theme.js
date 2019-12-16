@@ -36,14 +36,25 @@ export const theme = createMuiTheme({
       }
     },
     MuiCardHeader: {
+      root: {
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "space-between",
+        paddingBottom: 10
+      },
       title: {
-        fontSize: 14,
+        fontSize: 14
       }
     },
     MuiBox: {
       root: {
         backgroundColor: "transparent",
         padding: 24
+      }
+    },
+    MuiButton: {
+      secondary: {
+        color: "#FFF"
       }
     },
     MuiList: {

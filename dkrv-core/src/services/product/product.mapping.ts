@@ -67,6 +67,15 @@ const productMapping = {
       menu_available: {
         type: 'boolean',
       },
+      created_at: {
+        type: 'date',
+      },
+      modified_at: {
+        type: 'date',
+      },
+      last_user_modified: {
+        type: 'keyword',
+      },
     },
   },
 };

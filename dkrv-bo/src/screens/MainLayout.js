@@ -17,6 +17,7 @@ import {
 import { PriorityHigh, Send } from "@material-ui/icons";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PlaceScreen } from "./Place/PlaceScreen";
+import { Menu } from "./Menu";
 const drawerWidth = 240;
 
 const useStyles = makeStyles(theme => ({
@@ -24,7 +25,10 @@ const useStyles = makeStyles(theme => ({
     display: "flex"
   },
   appBar: {
-    zIndex: theme.zIndex.drawer + 1,
+    height: 50,
+    borderBottom: "1px solid #edf2f9",
+    background: "#FFF",
+
     transition: theme.transitions.create(["width", "margin"], {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
@@ -72,13 +76,15 @@ const useStyles = makeStyles(theme => ({
   toolbar: {
     display: "flex",
     alignItems: "center",
-    justifyContent: "flex-end",
+    justifyContent: "center",
     padding: theme.spacing(0, 1),
     ...theme.mixins.toolbar
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3)
+    paddingTop: 65,
+    paddingLeft: 20,
+    paddingRight: 20
   }
 }));
 
@@ -86,6 +92,10 @@ export const MainLayout = () => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
+
+  const handleDrawerOpen = () => {
+    setOpen(true);
+  };
 
   const handleDrawerClose = () => {
     setOpen(false);
@@ -95,6 +105,11 @@ export const MainLayout = () => {
     <Router>
       <div className={classes.root}>
         <CssBaseline />
+        <TopNavBar
+          handleDrawerOpen={handleDrawerOpen}
+          classes={classes}
+          isOpen={open}
+        />
         <MainDrawer
           classes={classes}
           isOpen={open}
@@ -122,22 +137,15 @@ const MainDrawer = ({ classes, isOpen, handleDrawerClose, theme }) => (
     }}
     open={isOpen}
   >
-    <div className={classes.toolbar}></div>
-    <Divider />
-    <MenuList>
-      <MenuItem>
-        <ListItemIcon>
-          <Send fontSize="small" />
-        </ListItemIcon>
-        <Typography variant="inherit">Nouvelle place</Typography>
-      </MenuItem>
-      <MenuItem>
-        <ListItemIcon>
-          <PriorityHigh fontSize="small" />
-        </ListItemIcon>
-        <Typography variant="inherit">List Place</Typography>
-      </MenuItem>
-    </MenuList>
+    <div className={classes.toolbar}>
+      <img
+        height="50"
+        width="50"
+        src="/assets/img/dkrv-logo-3.png"
+        alt="dkrv-logo-3"
+      />
+    </div>
+    <Menu />
   </Drawer>
 );
 
@@ -152,7 +160,7 @@ const LayoutContent = ({ classes }) => (
     </SnackbarProvider>
   </main>
 );
-/*
+
 const TopNavBar = ({ classes, isOpen, handleDrawerOpen }) => (
   <AppBar
     position="fixed"
@@ -170,14 +178,7 @@ const TopNavBar = ({ classes, isOpen, handleDrawerOpen }) => (
         className={clsx(classes.menuButton, {
           [classes.hide]: isOpen
         })}
-      >
-        <img
-          height="50"
-          width="50"
-          src="/assets/img/dkrv-logo-3.svg"
-          alt="dkrv-logo-3"
-        />
-      </IconButton>
+      ></IconButton>
     </Toolbar>
   </AppBar>
-);*/
+);

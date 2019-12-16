@@ -3,9 +3,25 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Category {
+  name: String!
+  count: Int
+  children: [Category!]
+}
+
 type Coordinate {
   lat: Float
   lng: Float
+}
+
+type Country {
+  code: String!
+  name: String!
+}
+
+input CountryInput {
+  code: String!
+  name: String!
 }
 
 type File {
@@ -33,7 +49,7 @@ input LocationInput {
 type Mutation {
   createPlace(place: PlaceInput!): String!
   getProduct(id: String!): ProductDetailResponse!
-  createProduct(product: ProductInput!): ProductCreateResponse!
+  createProduct(product: ProductInput!): String!
   updateProduct(product: ProductInput!): ProductUpdateResponse!
   deleteProduct(id: String!): ProductDeleteResponse!
 }
@@ -53,7 +69,7 @@ type Place {
   email: String
   description: String
   categories: [String!]!
-  gastronomies: [String!]
+  gastronomies: [Country!]
   notation: Int
   oceanear: Boolean
   address: String!
@@ -63,7 +79,8 @@ type Place {
   temporaly: Boolean
   logo: String
   pictures: [Picture!]
-  products: [Product!]
+  products: [Product!]!
+  products_grouped: [Category!]!
 }
 
 type PlaceCreateResponse {
@@ -97,6 +114,7 @@ input PlaceInput {
   temporaly: Boolean
   logo: String
   pictures: [PictureInput!]
+  products: [ProductInput!]
 }
 
 type PlaceListResponse {
@@ -111,24 +129,25 @@ type PlaceUpdateResponse {
 
 type Product {
   id: String
-  name: String
-  category: String
+  name: String!
+  categories: [String!]!
+  collection: String!
   gastronomies: [String!]
   description: String
-  recipes: [Recipe!]
+  recipes: [String!]
   spicy: Int
-  price: Float
+  price: Float!
   discount: Float
   quantity: Int
-  size: Int
+  size: String
   notation: Int
   likes: Int
-  placeid: String
+  placeid: String!
   placename: String
   placelogo: String
   placezone: String
   location: Coordinate
-  picture: Picture
+  picture: [String!]
   menuAvailable: Boolean
 }
 
@@ -149,24 +168,25 @@ type ProductDetailResponse {
 
 input ProductInput {
   id: String
-  name: String
-  category: String
+  name: String!
+  categories: [String!]!
+  collection: String!
   gastronomies: [String!]
   description: String
-  recipes: [RecipeInput!]
-  spicy: [Int!]
-  price: Float
-  discount: Float
+  recipes: [String!]
+  spicy: Int
+  price: Float!
+  discount: Float!
   quantity: Int
-  size: Int
+  size: String
   notation: Int
   likes: Int
-  placeid: String
+  placeid: String!
   placename: String
   placelogo: String
   placezone: String
   location: LocationInput
-  picture: PictureInput
+  picture: [String!]
   menuAvailable: Boolean
 }
 
@@ -180,16 +200,48 @@ type ProductUpdateResponse {
   updated: Boolean
 }
 
+type Profil {
+  id: String!
+  fullname: String
+  firstname: String
+  lastname: String
+  email: String!
+  gender: String!
+  birthdate: String
+  address: String
+  zone: [Country!]
+  notation: Int
+  location: Location
+  likes: Int
+  roles: [String!]
+  password: String
+  description: String
+  pictures: [Picture!]
+}
+
+input ProfilInput {
+  id: String!
+  fullname: String
+  firstname: String
+  lastname: String
+  email: String!
+  gender: String!
+  birthdate: String
+  address: String
+  zone: [CountryInput!]
+  notation: Int
+  location: LocationInput
+  likes: Int
+  roles: [String!]
+  password: String
+  description: String
+  pictures: [PictureInput!]
+}
+
 type Query {
   places: [Place!]!
   getPlace(id: String!): Place!
   products: [Product!]!
-}
-
-type Recipe {
-  name: String!
-  code: String!
-  quantity: Float
 }
 
 input RecipeInput {
