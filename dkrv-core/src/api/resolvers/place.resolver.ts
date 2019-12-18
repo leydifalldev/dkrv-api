@@ -50,7 +50,7 @@ export class PlaceResolver {
   @ResolveProperty('products', () => [Product!]!)
   async getProducts(
     @Parent() place,
-    @Args('params') searchParams: SearchParamsInput,
+    @Args('params') searchParams?: SearchParamsInput,
   ) {
     Logger.log('ResolveProperty log');
     Logger.log(searchParams);

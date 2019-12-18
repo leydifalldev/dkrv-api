@@ -24,10 +24,6 @@ export const RETRIEVE_PLACE_DETAIL = gql`
       notation
       oceanear
       temporaly
-      products {
-        id
-        name
-      }
     }
   }
 `;

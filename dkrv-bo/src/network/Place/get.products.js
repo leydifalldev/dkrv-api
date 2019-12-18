@@ -1,10 +1,10 @@
 import gql from "graphql-tag";
 
 export const RETRIEVE_PRODUCTS_LIST = gql`
-  query getPlaceDetail($id: String!) {
+  query getPlaceDetail($id: String!, $params: SearchParamsInput) {
     getPlace(id: $id) {
       id
-      products {
+      products(params: $params) {
         id
         name
         price

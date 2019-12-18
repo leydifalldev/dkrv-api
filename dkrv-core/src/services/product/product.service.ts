@@ -10,14 +10,14 @@ export class ProductStore extends ElasticService {
   }
 
   getProductsByPlace({ placeid, searchParams }) {
-    const must = this.buildMust(searchParams.match);
+    const must = this.buildTerms(searchParams.match);
     Logger.log('match LOGGG');
     Logger.log(must);
     const req = {
       body: {
         query: {
           bool: {
-            must: this.buildMust(searchParams.match),
+            must: this.buildTerms(searchParams.match),
           },
         },
       },
@@ -27,17 +27,12 @@ export class ProductStore extends ElasticService {
     return this.search(req);
   }
 
-  buildMust(must = []) {
-    Logger.log('buildMust');
-    Logger.log(must);
-    const build = {};
-    const result = [];
-    must.map(m => {
-      Logger.log('m log');
-      Logger.log(m);
-      const {term: {build[m.name] = m.value};
+  buildTerms(must = []) {
+    return must.map(m => {
+      const build = {};
+      build[m.name] = m.value;
+      return { term: build };
     });
-    return build;
   }
 
   async getGroup(placeid) {

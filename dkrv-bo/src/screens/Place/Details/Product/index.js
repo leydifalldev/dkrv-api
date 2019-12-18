@@ -55,12 +55,16 @@ const containerStyle = {
 };
 
 export const ProductTab = () => {
+  const initialParams = {
+    size: 10
+  };
   const [template, setTemplate] = useState(0);
+  const [params, setParams] = useState(initialParams);
   const place = useContext(PlaceContext);
   const { enqueueSnackbar } = useSnackbar();
 
   const { loading, error, data, refetch } = useQuery(RETRIEVE_PRODUCTS_LIST, {
-    variables: { id: place.id }
+    variables: { id: place.id, params: params }
   });
 
   console.log("RETRIEVE_PRODUCTS_LIST", data);
