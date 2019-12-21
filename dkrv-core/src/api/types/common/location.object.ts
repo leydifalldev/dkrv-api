@@ -1,5 +1,5 @@
 import { Field, ObjectType, Float } from 'type-graphql';
-import { Coordinate } from './coordinate.type';
+import { Coordinate } from './coordinate.object';
 
 @ObjectType()
 export class Location {

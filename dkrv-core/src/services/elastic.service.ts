@@ -13,8 +13,6 @@ import {
   ApiResponse,
 } from '@elastic/elasticsearch';
 import { ServiceResponse } from '../types/common.defs';
-import { ProductInput, PlaceInput } from '../api/inputs';
-import { throwError } from 'rxjs';
 
 export class ElasticService implements OnModuleInit {
   protected readonly esclient: Client;
@@ -79,6 +77,8 @@ export class ElasticService implements OnModuleInit {
   }
 
   toListResponse(hits) {
+    Logger.log("toListResponse LOG");
+    Logger.log(hits);
     const data = hits.hits.map((hit: any) => {
       hit._source.id = hit._id;
       return { id: hit._id, ...hit._source };
@@ -86,7 +86,7 @@ export class ElasticService implements OnModuleInit {
     return {
       status: 200,
       error: null,
-      total: data.length,
+      total: hits.total.value,
       payload: data,
     };
   }
@@ -119,6 +119,23 @@ export class ElasticService implements OnModuleInit {
       };
     }
   }
+
+  retrieve = params => {
+    const { match, size, from, q } = params;
+    const req = {
+      body: {
+        query: {
+          bool: {
+            must: this.buildTerms(match)
+          }
+        }
+      },
+      size: size || 10,
+      from: from || 0,
+      q: q
+    }
+    return this.search(req);
+  };
 
   async add(params: any): Promise<ServiceResponse> {
     Logger.log(params);
@@ -228,5 +245,13 @@ export class ElasticService implements OnModuleInit {
         data: [],
       };
     }
+  }
+
+  buildTerms(must = []) {
+    return must.map(m => {
+      const build = {};
+      build[m.name] = m.value;
+      return { term: build };
+    });
   }
 }

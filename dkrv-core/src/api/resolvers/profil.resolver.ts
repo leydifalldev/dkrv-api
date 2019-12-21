@@ -3,16 +3,11 @@ import {
   Query,
   Mutation,
   Args,
-  ResolveProperty,
-  Parent,
 } from '@nestjs/graphql';
 
 import { Logger } from '@nestjs/common';
-import { Profil } from '../objects';
-import { ProfilInput } from '../inputs';
-import { ProfilStore, ProductStore } from '../../services';
-import { ServiceResponse } from '../../types/common.defs';
-import { File } from '../objects';
+import { ProfilStore, ServiceResponse, ProductStore } from '../../services';
+import { ProfilInput, Profil, File } from '../types';
 
 @Resolver(of => Profil)
 export class ProfilResolver {

@@ -1,10 +1,8 @@
-import { Field, Int, ObjectType, InputType, Float } from 'type-graphql';
-import { Recipe } from './recipe.type';
-import { Coordinate } from './coordinate.type';
-import { Picture } from './picture';
+import { Field, Int, InputType, Float } from 'type-graphql';
+import { LocationInput, RecipeInput, PictureInput } from '../index';
 
-@ObjectType()
-export class Product {
+@InputType()
+export class ProductInput {
   @Field(type => String, { nullable: true })
   id: string;
 
@@ -12,10 +10,10 @@ export class Product {
   name: string;
 
   @Field(type => [String])
-  categories: string[];
+  categories?: string[];
 
   @Field(type => String)
-  collection: string;
+  collection?: string;
 
   @Field(type => [String], { nullable: true })
   gastronomies: string[];
@@ -32,7 +30,7 @@ export class Product {
   @Field(type => Float)
   price: number;
 
-  @Field(type => Float, { nullable: true })
+  @Field(type => Float)
   discount?: number;
 
   @Field(type => Int, { nullable: true })
@@ -59,8 +57,8 @@ export class Product {
   @Field(type => String, { nullable: true })
   placezone?: string;
 
-  @Field(type => Coordinate, { nullable: true })
-  location?: Coordinate;
+  @Field(type => LocationInput, { nullable: true })
+  location?: LocationInput;
 
   @Field(type => [String], { nullable: true })
   picture?: string[];

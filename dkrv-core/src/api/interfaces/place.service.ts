@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs';
-import { PlaceListResponse, PlaceDetailResponse, PlaceCreateResponse, PlaceUpdateResponse, PlaceDeleteResponse } from "../objects";
+import { PlaceListResponse, PlaceDetailResponse, PlaceCreateResponse, PlaceUpdateResponse, PlaceDeleteResponse } from '../types';
 
 export interface IPlaceService {
   search({}): Observable<PlaceListResponse>;

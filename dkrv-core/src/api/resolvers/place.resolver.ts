@@ -8,12 +8,8 @@ import {
 } from '@nestjs/graphql';
 
 import { Logger } from '@nestjs/common';
-import { Place, Product } from '../objects';
-import { PlaceInput, SearchParamsInput } from '../inputs';
-import { PlaceStore, ProductStore } from '../../services';
-import { ServiceResponse } from '../../types/common.defs';
-import { File } from '../objects';
-import { Category } from '../objects/category.type';
+import { PlaceStore, ProductStore, ServiceResponse } from '../../services';
+import { Category, Place, ProductListResponse, PlaceListResponse, PlaceInput, SearchParams } from '../types';
 
 @Resolver(of => Place)
 export class PlaceResolver {
@@ -22,10 +18,10 @@ export class PlaceResolver {
     private productStore: ProductStore,
   ) {}
 
-  @Query(returns => [Place])
-  async places(): Promise<Place[]> {
-    const response: ServiceResponse = await this.placeStore.search({});
-    return response.payload || [];
+  @Query(returns => PlaceListResponse)
+  async places(@Args() params: SearchParams){
+    const response: ServiceResponse = await this.placeStore.retrieve(params);
+    return response;
   }
 
   @Query(returns => Place)
@@ -42,26 +38,14 @@ export class PlaceResolver {
     }
     return response.payload;
   }
-  /*@ResolveProperty('product')
-  async addProduct(@Args('id') product: ProductInput, @Parent() place: PlaceInput) {
-    //const { id } = place;
-    //return await this.postsService.findAll({ authorId: id });
-  }*/
-  @ResolveProperty('products', () => [Product!]!)
+  @ResolveProperty('products', () => ProductListResponse!)
   async getProducts(
     @Parent() place,
-    @Args('params') searchParams?: SearchParamsInput,
+    @Args() searchParams?: SearchParams,
   ) {
-    Logger.log('ResolveProperty log');
-    Logger.log(searchParams);
     const { id } = place;
-    const response: ServiceResponse = await this.productStore.getProductsByPlace(
-      {
-        placeid: id,
-        searchParams,
-      },
-    );
-    return response.payload || [];
+    const response: ServiceResponse = await this.productStore.getProductsByPlace(id, searchParams);
+    return response;
   }
 
   @ResolveProperty('products_grouped', () => [Category!]!)

@@ -1,14 +1,8 @@
-import { Field, Int, ObjectType } from 'type-graphql';
-import { Location } from './location.object';
-import { Product } from './product.object';
-import { Picture } from './picture';
-import { Country } from './country.object';
+import { Field, Int, InputType } from 'type-graphql';
+import { ProductInput, GastronomyInput, PictureInput, LocationInput } from '../index';
 
-@ObjectType()
-export class Place {
-  @Field(type => String)
-  id: string;
-
+@InputType()
+export class PlaceInput {
   @Field(type => String, { nullable: true })
   name: string;
 
@@ -24,8 +18,8 @@ export class Place {
   @Field(type => [String])
   categories: string[];
 
-  @Field(type => Country, { nullable: true })
-  gastronomies?: Country[];
+  @Field(type => [GastronomyInput], { nullable: true })
+  gastronomies?: GastronomyInput[];
 
   @Field(type => Int, { nullable: true })
   notation?: number;
@@ -39,8 +33,8 @@ export class Place {
   @Field(type => String)
   zone: string;
 
-  @Field(type => Location, { nullable: true })
-  location?: Location;
+  @Field(type => LocationInput, { nullable: true })
+  location?: LocationInput;
 
   @Field(type => Int, { nullable: true })
   likes?: number;
@@ -51,9 +45,9 @@ export class Place {
   @Field(type => String, { nullable: true })
   logo?: string;
 
-  @Field(type => [Picture], { nullable: true })
-  pictures?: Picture;
+  @Field(type => [PictureInput], { nullable: true })
+  pictures?: PictureInput;
 
-  @Field(type => [Product], { nullable: true })
-  products?: Product[];
+  @Field(type => [ProductInput], { nullable: true })
+  products?: ProductInput[];
 }

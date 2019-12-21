@@ -6,6 +6,12 @@ export class ProductDetailResponse {
   @Field(type => Int, { nullable: true })
   status: number;
 
+  @Field(type => Int, { nullable: true })
+  total: number;
+
+  @Field(type => String, { nullable: true })
+  error: String;
+
   @Field(type => Product)
-  product: Product;
+  payload: Product;
 }

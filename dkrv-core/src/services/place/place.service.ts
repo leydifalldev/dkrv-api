@@ -8,34 +8,19 @@ export class PlaceStore extends ElasticService {
     super('place', placeMapping);
   }
 
-  getProductsCategories = placeid => {
+  getProductsCategories = params => {
+    const { match, size, from, q } = params;
     return this.search({
       body: {
         query: {
           bool: {
-            must: {
-              term: {
-                placeid,
-              },
-            },
-          },
-        },
-        aggs: {
-          categories_group: {
-            terms: {
-              field: 'categories',
-              size: 10,
-            },
-            aggs: {
-              collection: {
-                terms: {
-                  field: 'collection',
-                },
-              },
-            },
+            must: this.buildTerms(match),
           },
         },
       },
+      q: q,
+      size: size || 10,
+      from: from || 0,
       // tslint:disable-next-line:semicolon
     });
     // tslint:disable-next-line:semicolon

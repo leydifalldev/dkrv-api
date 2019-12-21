@@ -1,10 +1,8 @@
-import { Field, Int, InputType } from 'type-graphql';
-import { CountryInput } from '../country.input';
-import { LocationInput } from '../location.input';
-import { PictureInput } from '../picture.input';
+import { Field, Int, ObjectType } from 'type-graphql';
+import { Country, Location, Picture } from '../index';
 
-@InputType()
-export class ProfilInput {
+@ObjectType()
+export class Profil {
   @Field(type => String)
   id: string;
 
@@ -29,14 +27,14 @@ export class ProfilInput {
   @Field(type => String, { nullable: true })
   address?: string;
 
-  @Field(type => CountryInput, { nullable: true })
-  zone?: CountryInput[];
+  @Field(type => Country, { nullable: true })
+  zone?: Country[];
 
   @Field(type => Int, { nullable: true })
   notation?: number;
 
-  @Field(type => LocationInput, { nullable: true })
-  location?: LocationInput;
+  @Field(type => Location, { nullable: true })
+  location?: Location;
 
   @Field(type => Int, { nullable: true })
   likes?: number;
@@ -50,6 +48,6 @@ export class ProfilInput {
   @Field(type => String, { nullable: true })
   description?: String;
 
-  @Field(type => [PictureInput], { nullable: true })
-  pictures?: PictureInput;
+  @Field(type => [Picture], { nullable: true })
+  pictures?: Picture;
 }

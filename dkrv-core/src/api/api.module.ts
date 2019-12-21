@@ -2,24 +2,21 @@ import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
 import { APP_INTERCEPTOR } from '@nestjs/core';
 import { LoggingInterceptor } from '../shared/logging.interceptor';
-import { PlaceResolver } from './resolvers/place.resolver';
-import { ProductResolver } from './resolvers/product.resolver';
+import { PlaceResolver, ProductResolver, EventResolver } from './resolvers';
 import { PlaceStore, ProductStore, ProfilStore, EventStore } from '../services';
 import { UploadController } from './controllers/fileUploader';
 import { MulterModule } from '@nestjs/platform-express';
-import { MulterConfigService } from '../services';
+import { DateScalar } from './types';
 
 @Module({
   controllers: [UploadController],
   imports: [
     GraphQLModule.forRoot({
-      autoSchemaFile: './schemas/schema.gql',
-    }),
-    MulterModule.registerAsync({
-      useClass: MulterConfigService,
-    }),
+      autoSchemaFile: './schemas/schema.gql'
+    })
   ],
   providers: [
+    DateScalar,
     {
       provide: APP_INTERCEPTOR,
       useClass: LoggingInterceptor,
@@ -30,6 +27,7 @@ import { MulterConfigService } from '../services';
     EventStore,
     PlaceResolver,
     ProductResolver,
+    EventResolver,
   ],
 })
 export class ApiModule {}

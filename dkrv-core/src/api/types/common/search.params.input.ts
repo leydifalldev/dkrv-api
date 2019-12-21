@@ -1,8 +1,8 @@
-import { Field, InputType, Int } from 'type-graphql';
+import { Field, ArgsType, Int } from 'type-graphql';
 import { NameValueInput } from './namevalue.input';
 
-@InputType()
-export class SearchParamsInput {
+@ArgsType()
+export class SearchParams {
   @Field(type => [NameValueInput], { nullable: true })
   filters?: NameValueInput[];
 

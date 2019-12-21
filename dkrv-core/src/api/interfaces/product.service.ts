@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 
-import { ProductListResponse, ProductDetailResponse, ProductCreateResponse, ProductUpdateResponse, ProductDeleteResponse } from '../objects';
+import { ProductListResponse, ProductDetailResponse, ProductCreateResponse, ProductUpdateResponse, ProductDeleteResponse } from '../types';
 
 export interface IProductService {
   search({}): Observable<ProductListResponse>;
