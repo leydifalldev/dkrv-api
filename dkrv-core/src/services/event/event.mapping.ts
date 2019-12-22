@@ -21,11 +21,22 @@ const eventMapping = {
       placename: {
         type: 'keyword',
       },
+      address: {
+        type: 'keyword',
+      },
       zone: {
         type: 'keyword',
       },
       price: {
-        type: 'nested',
+        type: 'object',
+        properties: {
+          class: {
+            type: 'keyword',
+          },
+          value: {
+            type: 'integer',
+          },
+        },
       },
       manager: {
         properties: {
@@ -46,8 +57,8 @@ const eventMapping = {
           },
         },
       },
-      address: {
-        type: 'keyword',
+      place: {
+        type: 'object',
       },
       categories: {
         type: 'nested',
@@ -68,11 +79,14 @@ const eventMapping = {
         type: 'geo_point',
       },
       hosts: {
-        type: 'nested',
+        type: 'object',
       },
       pictures: {
         properties: {
           src: {
+            type: 'keyword',
+          },
+          size: {
             type: 'keyword',
           },
         },

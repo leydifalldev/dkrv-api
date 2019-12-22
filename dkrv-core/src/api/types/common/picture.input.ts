@@ -4,4 +4,7 @@ import { Field, ObjectType, InputType } from 'type-graphql';
 export class PictureInput {
   @Field(type => String)
   src?: string;
+
+  @Field(type => String)
+  size?: string;
 }

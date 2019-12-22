@@ -1,7 +1,6 @@
 import { Field, Int, ObjectType, InputType, Float } from 'type-graphql';
 import { Coordinate, Recipe, Picture } from '../index';
 
-
 @ObjectType()
 export class Product {
   @Field(type => String, { nullable: true })

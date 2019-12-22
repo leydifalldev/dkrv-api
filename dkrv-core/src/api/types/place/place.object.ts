@@ -1,7 +1,6 @@
 import { Field, Int, ObjectType } from 'type-graphql';
 import { Product, Location, Picture, Country } from '../index';
 
-
 @ObjectType()
 export class Place {
   @Field(type => String)

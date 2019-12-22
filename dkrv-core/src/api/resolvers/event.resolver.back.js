@@ -22,7 +22,7 @@ export class EventResolver {
   }
 
   @Mutation(returns => String)
-  async createEvent(@Args('event') event: EventInput) {
+  async createEvent(@Args() event: EventInput) {
     Logger.log(event);
     const test = {
       name: 'hello date',

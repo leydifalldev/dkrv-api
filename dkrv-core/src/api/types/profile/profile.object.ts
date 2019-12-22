@@ -1,10 +1,10 @@
 import { Field, Int, ObjectType } from 'type-graphql';
-import { Country, Location, Picture } from '../index';
+import { Location, Picture } from '../index';
 
 @ObjectType()
-export class Profil {
-  @Field(type => String)
-  id: string;
+export class Profile {
+  @Field(type => String, { nullable: true })
+  id?: string;
 
   @Field(type => String, { nullable: true })
   fullname: string;
@@ -27,8 +27,8 @@ export class Profil {
   @Field(type => String, { nullable: true })
   address?: string;
 
-  @Field(type => Country, { nullable: true })
-  zone?: Country[];
+  @Field(type => String, { nullable: true })
+  zone?: string[];
 
   @Field(type => Int, { nullable: true })
   notation?: number;
@@ -46,7 +46,7 @@ export class Profil {
   password?: string;
 
   @Field(type => String, { nullable: true })
-  description?: String;
+  description?: string;
 
   @Field(type => [Picture], { nullable: true })
   pictures?: Picture;

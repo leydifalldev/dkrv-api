@@ -1,6 +1,6 @@
-const profilMapping = {
-  index: 'profil',
-  type: 'profil',
+const profileMapping = {
+  index: 'profile',
+  type: 'profile',
   include_type_name: true,
   body: {
     properties: {
@@ -63,4 +63,4 @@ const profilMapping = {
   },
 };
 
-export default profilMapping;
+export default profileMapping;

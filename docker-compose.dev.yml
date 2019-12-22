@@ -59,7 +59,7 @@ services:
     ports:
       - 5800:9200
     healthcheck:
-      test: ["CMD", "curl --fail elasticsearch_primary:5800 || exit 1"]
+      test: ["CMD", "curl --fail elasticsearch_primary:9200 || exit 1"]
       interval: 30s
       timeout: 30s
       retries: 3
@@ -96,7 +96,7 @@ services:
       SERVER_NAME: kibana.local
       ELASTICSEARCH_HOSTS: http://elasticsearch_primary:9200
     ports:
-      - "5601:5601"
+      - "5801:5601"
     networks:
       - dkrv-network
 

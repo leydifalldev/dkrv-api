@@ -2,7 +2,7 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { Logger } from '@nestjs/common';
 import {
   Product,
-  ProductInput, 
+  ProductInput,
   SearchParams,
   ProductDeleteResponse,
   ProductUpdateResponse,
@@ -14,9 +14,7 @@ import { ProductStore, ServiceResponse } from '../../services';
 @Resolver(of => Product)
 export class ProductResolver {
   productService: any;
-  constructor(
-    private productStore: ProductStore,
-  ) {}
+  constructor(private productStore: ProductStore) {}
 
   @Query(returns => ProductListResponse)
   async products(@Args() params: SearchParams): Promise<ServiceResponse> {

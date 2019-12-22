@@ -15,13 +15,13 @@ export { ProductListResponse } from './product/product.list.response';
 export { ProductDetailResponse } from './product/product.detail.response';
 export { ProductUpdateResponse } from './product/product.update.response';
 
-export { Profil } from './profil/profil.object';
-export { ProfilInput } from './profil/profil.input';
+export { Profile } from './profile/profile.object';
+export { ProfileInput } from './profile/profile.input';
 
 export { Event } from './event/event.object';
 export { EventInput } from './event/event.input';
+export { EventListResponse } from './event/event.list.response';
 
-export { DateScalar } from './common/scalars/date.scalar';
 export { LocationInput } from './common/location.input';
 export { Location } from './common/location.object';
 export { ScheduleInput } from './common/schedule.input';
@@ -36,5 +36,7 @@ export { Coordinate } from './common/coordinate.object';
 export { Recipe } from './common/recipe.object';
 export { RecipeInput } from './common/recipe.input';
 export { File } from './common/file.object';
+export { PriceInput } from './common/price.input';
+export { Price } from './common/price.object';
 
 export { SearchParams } from './common/search.params.input';

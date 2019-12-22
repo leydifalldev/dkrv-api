@@ -77,10 +77,13 @@ export class ElasticService implements OnModuleInit {
   }
 
   toListResponse(hits) {
-    Logger.log("toListResponse LOG");
+    Logger.log('toListResponse LOG');
     Logger.log(hits);
     const data = hits.hits.map((hit: any) => {
       hit._source.id = hit._id;
+      const typeOfDate = typeof hit._source.start_date;
+      Logger.log('typeOfDate');
+      Logger.log(typeOfDate);
       return { id: hit._id, ...hit._source };
     });
     return {
@@ -126,18 +129,19 @@ export class ElasticService implements OnModuleInit {
       body: {
         query: {
           bool: {
-            must: this.buildTerms(match)
-          }
-        }
+            must: this.buildTerms(match),
+          },
+        },
       },
       size: size || 10,
       from: from || 0,
-      q: q
-    }
+      q,
+    };
     return this.search(req);
   };
 
   async add(params: any): Promise<ServiceResponse> {
+    Logger.log('ADD REQUEST DATA');
     Logger.log(params);
     try {
       const resp = await this.esclient.index({
@@ -152,7 +156,8 @@ export class ElasticService implements OnModuleInit {
         error: 'none',
       };
     } catch (e) {
-      Logger.log('error', e);
+      Logger.log('ERROR');
+      Logger.log(e);
       return {
         payload: null,
         status: e.statusCode,

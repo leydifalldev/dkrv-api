@@ -9,7 +9,14 @@ import {
 
 import { Logger } from '@nestjs/common';
 import { PlaceStore, ProductStore, ServiceResponse } from '../../services';
-import { Category, Place, ProductListResponse, PlaceListResponse, PlaceInput, SearchParams } from '../types';
+import {
+  Category,
+  Place,
+  ProductListResponse,
+  PlaceListResponse,
+  PlaceInput,
+  SearchParams,
+} from '../types';
 
 @Resolver(of => Place)
 export class PlaceResolver {
@@ -19,7 +26,7 @@ export class PlaceResolver {
   ) {}
 
   @Query(returns => PlaceListResponse)
-  async places(@Args() params: SearchParams){
+  async places(@Args() params: SearchParams) {
     const response: ServiceResponse = await this.placeStore.retrieve(params);
     return response;
   }
@@ -39,12 +46,12 @@ export class PlaceResolver {
     return response.payload;
   }
   @ResolveProperty('products', () => ProductListResponse!)
-  async getProducts(
-    @Parent() place,
-    @Args() searchParams?: SearchParams,
-  ) {
+  async getProducts(@Parent() place, @Args() searchParams?: SearchParams) {
     const { id } = place;
-    const response: ServiceResponse = await this.productStore.getProductsByPlace(id, searchParams);
+    const response: ServiceResponse = await this.productStore.getProductsByPlace(
+      id,
+      searchParams,
+    );
     return response;
   }
 
