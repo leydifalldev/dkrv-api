@@ -22,6 +22,8 @@ export { Event } from './event/event.object';
 export { EventInput } from './event/event.input';
 export { EventListResponse } from './event/event.list.response';
 
+export { Cast } from './broadcast/cast.object'
+
 export { LocationInput } from './common/location.input';
 export { Location } from './common/location.object';
 export { ScheduleInput } from './common/schedule.input';
@@ -38,5 +40,6 @@ export { RecipeInput } from './common/recipe.input';
 export { File } from './common/file.object';
 export { PriceInput } from './common/price.input';
 export { Price } from './common/price.object';
-
+export { SocialNet } from './common/social.net.object';
 export { SearchParams } from './common/search.params.input';
+export { BroadcastResult } from './broadcast/cast.datatype';

@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from 'type-graphql';
-import { Location, Picture } from '../index';
+import { Location, Picture, SocialNet } from '../index';
 
 @ObjectType()
 export class Profile {
@@ -14,6 +14,9 @@ export class Profile {
 
   @Field(type => String, { nullable: true })
   lastname?: string;
+
+  @Field(type => String, { nullable: true })
+  artistname?: string;
 
   @Field(type => String)
   email: string;
@@ -50,4 +53,8 @@ export class Profile {
 
   @Field(type => [Picture], { nullable: true })
   pictures?: Picture;
+
+  @Field(type => [SocialNet], { nullable: true })
+  socialnet?: SocialNet;
+
 }

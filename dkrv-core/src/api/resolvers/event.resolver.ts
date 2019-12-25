@@ -24,10 +24,6 @@ export class EventResolver {
   @Mutation(returns => String)
   async createEvent(@Args('event') event: EventInput) {
     Logger.log(event);
-    const test = {
-      name: 'hello date',
-      start_date: new Date(),
-    };
     const response: ServiceResponse = await this.eventStore.add(test);
     Logger.log(response);
     return response.payload;

@@ -15,11 +15,17 @@ export class ProfileInput {
   @Field(type => String, { nullable: true })
   lastname?: string;
 
+  @Field(type => String, { nullable: true })
+  artistname?: string;
+
   @Field(type => String)
   email: string;
 
   @Field(type => String)
   gender: string;
+
+  @Field(type => [String], { nullable: true })
+  categories?: string[];
 
   @Field(type => String, { nullable: true })
   birthdate?: string;
@@ -50,4 +56,7 @@ export class ProfileInput {
 
   @Field(type => [PictureInput], { nullable: true })
   pictures?: PictureInput;
+
+  @Field(type => [Int], { nullable: true })
+  mainpicture?: number;
 }

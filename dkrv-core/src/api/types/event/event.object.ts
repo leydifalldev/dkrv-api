@@ -60,8 +60,11 @@ export class Event {
   @Field(type => Location, { nullable: true })
   location?: Location;
 
-  @Field(type => Profile, { nullable: true })
-  hosts?: Profile;
+  @Field(type => [Profile], { nullable: true })
+  hosts?: Profile[];
+
+  @Field(type => [Profile], { nullable: true })
+  artists?: Profile[];
 
   @Field(type => [Picture], { nullable: true })
   pictures?: Picture[];
