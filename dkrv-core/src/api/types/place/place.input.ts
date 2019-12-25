@@ -1,16 +1,17 @@
 import { Field, Int, InputType } from 'type-graphql';
-import { ProductInput, GastronomyInput, PictureInput, LocationInput } from '../index';
+import {
+  ContactInput,
+  AddressInput,
+  MediaInput,
+  ProductInput,
+  PictureInput,
+  RankingInput,
+} from '../index';
 
 @InputType()
 export class PlaceInput {
-  @Field(type => String, { nullable: true })
+  @Field(type => String)
   name: string;
-
-  @Field(type => String, { nullable: true })
-  phone: string;
-
-  @Field(type => String, { nullable: true })
-  email?: string;
 
   @Field(type => String, { nullable: true })
   description?: string;
@@ -18,35 +19,32 @@ export class PlaceInput {
   @Field(type => [String])
   categories: string[];
 
-  @Field(type => [GastronomyInput], { nullable: true })
-  gastronomies?: GastronomyInput[];
+  @Field(type => [String], { nullable: true })
+  gastronomies?: string[];
 
-  @Field(type => Int, { nullable: true })
-  notation?: number;
+  @Field(type => [String], { nullable: true })
+  tags?: string[];
 
-  @Field(type => Boolean, { nullable: true })
-  oceanear?: boolean;
+  @Field(type => ContactInput, { nullable: true })
+  contact?: ContactInput;
 
-  @Field(type => String)
-  address: string;
+  @Field(type => AddressInput)
+  address: AddressInput;
 
-  @Field(type => String)
-  zone: string;
-
-  @Field(type => LocationInput, { nullable: true })
-  location?: LocationInput;
-
-  @Field(type => Int, { nullable: true })
-  likes?: number;
+  @Field(type => RankingInput, { nullable: true })
+  ranking?: RankingInput;
 
   @Field(type => Boolean, { nullable: true })
   temporaly?: boolean;
 
-  @Field(type => String, { nullable: true })
-  logo?: string;
-
   @Field(type => [PictureInput], { nullable: true })
-  pictures?: PictureInput;
+  pictures?: MediaInput;
+
+  @Field(type => String, { nullable: true })
+  facebook?: string;
+
+  @Field(type => String, { nullable: true })
+  twitter?: string;
 
   @Field(type => [ProductInput], { nullable: true })
   products?: ProductInput[];

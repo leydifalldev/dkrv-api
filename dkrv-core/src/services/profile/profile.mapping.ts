@@ -11,53 +11,104 @@ const profileMapping = {
         type: 'keyword',
       },
       firstname: {
-        type: 'date',
+        type: 'keyword',
       },
       lastname: {
-        type: 'date',
+        type: 'keyword',
+      },
+      artistname: {
+        type: 'keyword',
       },
       gender: {
         type: 'keyword',
       },
-      birthdate: {
-        type: 'keyword',
-      },
-      address: {
-        type: 'keyword',
-      },
-      zone: {
-        type: 'keyword',
-      },
-      email: {
-        type: 'keyword',
-      },
-      roles: {
-        type: 'nested',
-      },
-      permissions: {
-        type: 'nested',
+      contact: {
+        type: 'object',
+        properties: {
+          email: {
+            type: 'keyword',
+          },
+          phone: {
+            type: 'keyword',
+          },
+        },
       },
       description: {
         type: 'text',
       },
-      notation: {
-        type: 'integer',
+      birthdate: {
+        type: 'date',
       },
-      likes: {
-        type: 'integer',
-      },
-      logo: {
-        type: 'keyword',
-      },
-      location: {
-        type: 'geo_point',
-      },
-      pictures: {
+      address: {
+        type: 'object',
         properties: {
-          src: {
+          full: {
             type: 'keyword',
           },
+          zone: {
+            type: 'keyword',
+          },
+          location: {
+            type: 'geo_point',
+          },
         },
+      },
+      tags: {
+        type: 'keyword',
+      },
+      roles: {
+        type: 'keyword',
+      },
+      ranking: {
+        type: 'object',
+        properties: {
+          notation: {
+            type: 'float',
+          },
+          likes: {
+            type: 'integer',
+          },
+        },
+      },
+      pictures: {
+        type: 'object',
+        properties: {
+          main: {
+            type: 'integer',
+          },
+          logo: {
+            type: 'keyword',
+          },
+          gallery: {
+            type: 'object',
+            properties: {
+              small: {
+                type: 'keyword',
+              },
+              medium: {
+                type: 'keyword',
+              },
+              big: {
+                type: 'keyword',
+              },
+            },
+          },
+        },
+      },
+      facebook: {
+        type: 'keyword',
+      },
+      twitter: {
+        type: 'keyword',
+      },
+      CREATED_AT: {
+        type: 'date',
+      },
+      LAST_UPDATE_DATE: {
+        type: 'date',
+      },
+      LAST_UPDATE_USER: {
+        type: 'keyword',
       },
     },
   },

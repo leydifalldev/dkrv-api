@@ -10,12 +10,6 @@ const placeMapping = {
       name: {
         type: 'keyword',
       },
-      phone: {
-        type: 'keyword',
-      },
-      email: {
-        type: 'keyword',
-      },
       description: {
         type: 'text',
       },
@@ -23,38 +17,92 @@ const placeMapping = {
         type: 'keyword',
       },
       gastronomies: {
-        type: 'nested',
+        type: 'keyword',
       },
-      notation: {
-        type: 'integer',
+      tags: {
+        type: 'keyword',
       },
-      oceanear: {
-        type: 'boolean',
+      contact: {
+        type: 'object',
+        properties: {
+          email: {
+            type: 'keyword',
+          },
+          phone: {
+            type: 'keyword',
+          },
+        },
       },
       address: {
-        type: 'keyword',
+        type: 'object',
+        properties: {
+          full: {
+            type: 'keyword',
+          },
+          zone: {
+            type: 'keyword',
+          },
+          location: {
+            type: 'geo_point',
+          },
+          ocean: {
+            type: 'boolean',
+          },
+        },
       },
-      zone: {
-        type: 'keyword',
-      },
-      location: {
-        type: 'geo_point',
-      },
-      likes: {
-        type: 'integer',
+      ranking: {
+        type: 'object',
+        properties: {
+          notation: {
+            type: 'float',
+          },
+          likes: {
+            type: 'integer',
+          },
+        },
       },
       temporaly: {
         type: 'boolean',
       },
-      logo: {
-        type: 'keyword',
-      },
       pictures: {
+        type: 'object',
         properties: {
-          src: {
+          main: {
+            type: 'integer',
+          },
+          logo: {
             type: 'keyword',
           },
+          gallery: {
+            type: 'object',
+            properties: {
+              small: {
+                type: 'keyword',
+              },
+              medium: {
+                type: 'keyword',
+              },
+              big: {
+                type: 'keyword',
+              },
+            },
+          },
         },
+      },
+      facebook: {
+        type: 'keyword',
+      },
+      twitter: {
+        type: 'keyword',
+      },
+      CREATED_AT: {
+        type: 'date',
+      },
+      LAST_UPDATE_DATE: {
+        type: 'date',
+      },
+      LAST_UPDATE_USER: {
+        type: 'keyword',
       },
     },
   },

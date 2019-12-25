@@ -1,5 +1,5 @@
 import { Field, Int, ObjectType } from 'type-graphql';
-import { Location, Picture, SocialNet } from '../index';
+import { Contact, Address, Ranking, Media } from '../index';
 
 @ObjectType()
 export class Profile {
@@ -18,29 +18,20 @@ export class Profile {
   @Field(type => String, { nullable: true })
   artistname?: string;
 
-  @Field(type => String)
-  email: string;
-
-  @Field(type => String)
-  gender: string;
+  @Field(type => String, { nullable: true })
+  gender?: string;
 
   @Field(type => String, { nullable: true })
   birthdate?: string;
 
-  @Field(type => String, { nullable: true })
-  address?: string;
+  @Field(type => Contact, { nullable: true })
+  contact?: Contact;
 
-  @Field(type => String, { nullable: true })
-  zone?: string[];
+  @Field(type => Address, { nullable: true })
+  address?: Address;
 
-  @Field(type => Int, { nullable: true })
-  notation?: number;
-
-  @Field(type => Location, { nullable: true })
-  location?: Location;
-
-  @Field(type => Int, { nullable: true })
-  likes?: number;
+  @Field(type => [String], { nullable: true })
+  tags?: string[];
 
   @Field(type => [String], { nullable: true })
   roles?: string[];
@@ -51,10 +42,24 @@ export class Profile {
   @Field(type => String, { nullable: true })
   description?: string;
 
-  @Field(type => [Picture], { nullable: true })
-  pictures?: Picture;
+  @Field(type => Ranking, { nullable: true })
+  ranking?: Ranking;
 
-  @Field(type => [SocialNet], { nullable: true })
-  socialnet?: SocialNet;
+  @Field(type => Media, { nullable: true })
+  pictures?: Media;
 
+  @Field(type => String, { nullable: true })
+  facebook?: string;
+
+  @Field(type => String, { nullable: true })
+  twitter?: string;
+
+  @Field(type => String, { nullable: true })
+  CREATED_AT?: string;
+
+  @Field(type => String, { nullable: true })
+  LAST_UPDATE_DATE?: string;
+
+  @Field(type => String, { nullable: true })
+  LAST_UPDATE_USER?: string;
 }

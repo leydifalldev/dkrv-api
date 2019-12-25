@@ -6,5 +6,5 @@ export class LocationInput {
   lat: number;
 
   @Field(type => Float, { nullable: true })
-  lng: number;
+  lon: number;
 }

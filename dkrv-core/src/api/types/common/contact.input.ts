@@ -1,13 +1,10 @@
 import { Field, InputType } from 'type-graphql';
 
 @InputType()
-export class PictureInput {
+export class ContactInput {
   @Field(type => String)
-  small: string;
+  phone?: string;
 
   @Field(type => String)
-  medium: string;
-
-  @Field(type => String)
-  big: string;
+  email?: string;
 }

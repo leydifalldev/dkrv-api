@@ -1,10 +1,10 @@
-import { Field, Int, ObjectType, InputType, Float } from 'type-graphql';
-import { Coordinate, Recipe, Picture } from '../index';
+import { Field, Int, Float, ObjectType } from 'type-graphql';
+import { Location, Contact, Address, Ranking, Media } from '../index';
 
 @ObjectType()
 export class Product {
   @Field(type => String, { nullable: true })
-  id: string;
+  id?: string;
 
   @Field(type => String)
   name: string;
@@ -16,16 +16,16 @@ export class Product {
   collection: string;
 
   @Field(type => [String], { nullable: true })
-  gastronomies: string[];
-
-  @Field(type => String, { nullable: true })
-  description?: string;
+  gastronomies?: string[];
 
   @Field(type => [String], { nullable: true })
   recipes?: string[];
 
-  @Field(type => Int, { nullable: true })
-  spicy?: number;
+  @Field(type => String, { nullable: true })
+  spicy?: string;
+
+  @Field(type => [String], { nullable: true })
+  tags?: string[];
 
   @Field(type => Float)
   price: number;
@@ -39,30 +39,40 @@ export class Product {
   @Field(type => String, { nullable: true })
   size?: string;
 
-  @Field(type => Int, { nullable: true })
-  notation?: number;
+  @Field(type => String, { nullable: true })
+  description?: string;
 
-  @Field(type => Int, { nullable: true })
-  likes?: number;
+  @Field(type => Contact)
+  contact: Contact;
+
+  @Field(type => Address)
+  address: Address;
+
+  @Field(type => Ranking, { nullable: true })
+  ranking?: Ranking;
 
   @Field(type => String)
   placeid: string;
 
-  @Field(type => String, { nullable: true })
-  placename?: string;
+  @Field(type => Location, { nullable: true })
+  location?: Location;
 
-  @Field(type => String, { nullable: true })
-  placelogo?: string;
-
-  @Field(type => String, { nullable: true })
-  placezone?: string;
-
-  @Field(type => Coordinate, { nullable: true })
-  location?: Coordinate;
-
-  @Field(type => [String], { nullable: true })
-  picture?: string[];
+  @Field(type => Media, { nullable: true })
+  pictures?: Media;
 
   @Field(type => Boolean, { nullable: true })
-  menuAvailable?: boolean;
+  // tslint:disable-next-line:variable-name
+  menu?: boolean;
+
+  @Field(type => String, { nullable: true })
+  account?: string;
+
+  @Field(type => String, { nullable: true })
+  CREATED_AT?: string;
+
+  @Field(type => String, { nullable: true })
+  LAST_UPDATE_DATE?: string;
+
+  @Field(type => String, { nullable: true })
+  LAST_UPDATE_USER?: string;
 }

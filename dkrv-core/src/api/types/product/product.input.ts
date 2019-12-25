@@ -1,36 +1,43 @@
 import { Field, Int, InputType, Float } from 'type-graphql';
-import { LocationInput, RecipeInput, PictureInput } from '../index';
+import {
+  LocationInput,
+  PlaceInput,
+  ContactInput,
+  AddressInput,
+  RankingInput,
+  MediaInput,
+} from '../index';
 
 @InputType()
 export class ProductInput {
   @Field(type => String, { nullable: true })
-  id: string;
+  id?: string;
 
   @Field(type => String)
   name: string;
 
   @Field(type => [String])
-  categories?: string[];
+  categories: string[];
 
   @Field(type => String)
-  collection?: string;
+  collection: string;
 
   @Field(type => [String], { nullable: true })
-  gastronomies: string[];
-
-  @Field(type => String, { nullable: true })
-  description?: string;
+  gastronomies?: string[];
 
   @Field(type => [String], { nullable: true })
   recipes?: string[];
 
-  @Field(type => Int, { nullable: true })
-  spicy?: number;
+  @Field(type => String, { nullable: true })
+  spicy?: string;
+
+  @Field(type => [String], { nullable: true })
+  tags?: string[];
 
   @Field(type => Float)
   price: number;
 
-  @Field(type => Float)
+  @Field(type => Float, { nullable: true })
   discount?: number;
 
   @Field(type => Int, { nullable: true })
@@ -39,30 +46,31 @@ export class ProductInput {
   @Field(type => String, { nullable: true })
   size?: string;
 
-  @Field(type => Int, { nullable: true })
-  notation?: number;
+  @Field(type => String, { nullable: true })
+  description?: string;
 
-  @Field(type => Int, { nullable: true })
-  likes?: number;
+  @Field(type => ContactInput)
+  contact: ContactInput;
+
+  @Field(type => AddressInput)
+  address: AddressInput;
+
+  @Field(type => RankingInput, { nullable: true })
+  ranking?: RankingInput;
 
   @Field(type => String)
   placeid: string;
 
-  @Field(type => String, { nullable: true })
-  placename?: string;
-
-  @Field(type => String, { nullable: true })
-  placelogo?: string;
-
-  @Field(type => String, { nullable: true })
-  placezone?: string;
-
   @Field(type => LocationInput, { nullable: true })
   location?: LocationInput;
 
-  @Field(type => [String], { nullable: true })
-  picture?: string[];
+  @Field(type => MediaInput, { nullable: true })
+  pictures?: MediaInput;
 
   @Field(type => Boolean, { nullable: true })
-  menuAvailable?: boolean;
+  // tslint:disable-next-line:variable-name
+  menu?: boolean;
+
+  @Field(type => String, { nullable: true })
+  account?: string;
 }

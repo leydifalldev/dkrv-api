@@ -15,19 +15,55 @@ const eventMapping = {
       end_date: {
         type: 'date',
       },
-      placeid: {
+      categories: {
         type: 'keyword',
       },
-      placename: {
+      description: {
+        type: 'text',
+      },
+      contact: {
+        type: 'object',
+        properties: {
+          email: {
+            type: 'keyword',
+          },
+          phone: {
+            type: 'keyword',
+          },
+        },
+      },
+      tags: {
         type: 'keyword',
+      },
+      place: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'keyword',
+          },
+          name: {
+            type: 'keyword',
+          },
+          logo: {
+            type: 'keyword',
+          },
+        },
       },
       address: {
-        type: 'keyword',
+        type: 'object',
+        properties: {
+          full: {
+            type: 'keyword',
+          },
+          zone: {
+            type: 'keyword',
+          },
+          location: {
+            type: 'geo_point',
+          },
+        },
       },
-      zone: {
-        type: 'keyword',
-      },
-      price: {
+      prices: {
         type: 'object',
         properties: {
           class: {
@@ -38,58 +74,56 @@ const eventMapping = {
           },
         },
       },
-      manager: {
-        properties: {
-          id: {
-            type: 'keyword',
-          },
-          name: {
-            type: 'keyword',
-          },
-          phone: {
-            type: 'keyword',
-          },
-          email: {
-            type: 'keyword',
-          },
-          picture: {
-            type: 'keyword',
-          },
-        },
-      },
-      place: {
-        type: 'object',
-      },
-      categories: {
-        type: 'nested',
-      },
-      description: {
-        type: 'text',
-      },
-      notation: {
-        type: 'integer',
-      },
-      likes: {
-        type: 'integer',
-      },
-      logo: {
+      account: {
         type: 'keyword',
-      },
-      location: {
-        type: 'geo_point',
       },
       hosts: {
         type: 'object',
       },
-      pictures: {
+      ranking: {
+        type: 'object',
         properties: {
-          src: {
-            type: 'keyword',
+          notation: {
+            type: 'float',
           },
-          size: {
-            type: 'keyword',
+          likes: {
+            type: 'integer',
           },
         },
+      },
+      pictures: {
+        type: 'object',
+        properties: {
+          main: {
+            type: 'integer',
+          },
+          logo: {
+            type: 'keyword',
+          },
+          gallery: {
+            type: 'object',
+            properties: {
+              small: {
+                type: 'keyword',
+              },
+              medium: {
+                type: 'keyword',
+              },
+              big: {
+                type: 'keyword',
+              },
+            },
+          },
+        },
+      },
+      CREATED_AT: {
+        type: 'date',
+      },
+      LAST_UPDATE_DATE: {
+        type: 'date',
+      },
+      LAST_UPDATE_USER: {
+        type: 'keyword',
       },
     },
   },

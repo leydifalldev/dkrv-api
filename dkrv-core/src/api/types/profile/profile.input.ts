@@ -1,5 +1,5 @@
-import { Field, Int, InputType } from 'type-graphql';
-import { LocationInput, PictureInput } from '../index';
+import { Field, InputType } from 'type-graphql';
+import { RankingInput, ContactInput, AddressInput, MediaInput } from '../index';
 
 @InputType()
 export class ProfileInput {
@@ -18,32 +18,20 @@ export class ProfileInput {
   @Field(type => String, { nullable: true })
   artistname?: string;
 
-  @Field(type => String)
-  email: string;
-
-  @Field(type => String)
-  gender: string;
-
-  @Field(type => [String], { nullable: true })
-  categories?: string[];
+  @Field(type => String, { nullable: true })
+  gender?: string;
 
   @Field(type => String, { nullable: true })
   birthdate?: string;
 
-  @Field(type => String, { nullable: true })
-  address?: string;
+  @Field(type => ContactInput, { nullable: true })
+  contact?: ContactInput;
 
-  @Field(type => String, { nullable: true })
-  zone?: string[];
+  @Field(type => AddressInput, { nullable: true })
+  address?: AddressInput;
 
-  @Field(type => Int, { nullable: true })
-  notation?: number;
-
-  @Field(type => LocationInput, { nullable: true })
-  location?: LocationInput;
-
-  @Field(type => Int, { nullable: true })
-  likes?: number;
+  @Field(type => [String], { nullable: true })
+  tags?: string[];
 
   @Field(type => [String], { nullable: true })
   roles?: string[];
@@ -54,9 +42,15 @@ export class ProfileInput {
   @Field(type => String, { nullable: true })
   description?: string;
 
-  @Field(type => [PictureInput], { nullable: true })
-  pictures?: PictureInput;
+  @Field(type => RankingInput, { nullable: true })
+  ranking?: RankingInput;
 
-  @Field(type => [Int], { nullable: true })
-  mainpicture?: number;
+  @Field(type => MediaInput, { nullable: true })
+  pictures?: MediaInput;
+
+  @Field(type => String, { nullable: true })
+  facebook?: string;
+
+  @Field(type => String, { nullable: true })
+  twitter?: string;
 }

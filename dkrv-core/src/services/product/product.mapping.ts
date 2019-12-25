@@ -14,9 +14,12 @@ const productMapping = {
         type: 'keyword',
       },
       gastronomies: {
-        type: 'nested',
+        type: 'keyword',
       },
       collection: {
+        type: 'keyword',
+      },
+      tags: {
         type: 'keyword',
       },
       recipes: {
@@ -25,8 +28,36 @@ const productMapping = {
       description: {
         type: 'text',
       },
+      contact: {
+        type: 'object',
+        properties: {
+          email: {
+            type: 'keyword',
+          },
+          phone: {
+            type: 'keyword',
+          },
+        },
+      },
+      address: {
+        type: 'object',
+        properties: {
+          full: {
+            type: 'keyword',
+          },
+          zone: {
+            type: 'keyword',
+          },
+          location: {
+            type: 'geo_point',
+          },
+          ocean: {
+            type: 'boolean',
+          },
+        },
+      },
       spicy: {
-        type: 'integer',
+        type: 'keyword',
       },
       price: {
         type: 'float',
@@ -40,41 +71,61 @@ const productMapping = {
       size: {
         type: 'keyword',
       },
-      notation: {
-        type: 'integer',
+      ranking: {
+        type: 'object',
+        properties: {
+          notation: {
+            type: 'float',
+          },
+          likes: {
+            type: 'integer',
+          },
+        },
       },
-      likes: {
-        type: 'integer',
+      place: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'keyword',
+          },
+          name: {
+            type: 'keyword',
+          },
+          logo: {
+            type: 'keyword',
+          },
+        },
       },
-      placeid: {
+      menu: {
+        type: 'boolean',
+      },
+      account: {
         type: 'keyword',
-      },
-      placename: {
-        type: 'keyword',
-      },
-      placelogo: {
-        type: 'keyword',
-      },
-      placezone: {
-        type: 'keyword',
-      },
-      location: {
-        type: 'geo_point',
       },
       pictures: {
         type: 'object',
-      },
-      menu_available: {
-        type: 'boolean',
-      },
-      created_at: {
-        type: 'date',
-      },
-      modified_at: {
-        type: 'date',
-      },
-      last_user_modified: {
-        type: 'keyword',
+        properties: {
+          main: {
+            type: 'integer',
+          },
+          logo: {
+            type: 'keyword',
+          },
+          gallery: {
+            type: 'object',
+            properties: {
+              small: {
+                type: 'keyword',
+              },
+              medium: {
+                type: 'keyword',
+              },
+              big: {
+                type: 'keyword',
+              },
+            },
+          },
+        },
       },
     },
   },

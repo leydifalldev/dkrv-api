@@ -22,8 +22,12 @@ export { Event } from './event/event.object';
 export { EventInput } from './event/event.input';
 export { EventListResponse } from './event/event.list.response';
 
-export { Cast } from './broadcast/cast.object'
+export { Cast } from './broadcast/cast.object';
 
+export { Address } from './common/address.object';
+export { AddressInput } from './common/address.input';
+export { ContactInput } from './common/contact.input';
+export { Contact } from './common/contact.object';
 export { LocationInput } from './common/location.input';
 export { Location } from './common/location.object';
 export { ScheduleInput } from './common/schedule.input';
@@ -35,6 +39,10 @@ export { Picture } from './common/picture.object';
 export { Country } from './common/country.object';
 export { CountryInput } from './common/country.input';
 export { Coordinate } from './common/coordinate.object';
+export { Media } from './common/media.object';
+export { MediaInput } from './common/media.input';
+export { Ranking } from './common/ranking.object';
+export { RankingInput } from './common/ranking.input';
 export { Recipe } from './common/recipe.object';
 export { RecipeInput } from './common/recipe.input';
 export { File } from './common/file.object';

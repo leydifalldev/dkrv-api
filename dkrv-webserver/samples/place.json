@@ -5,11 +5,9 @@
   "phone": "Hello",
   "email": "Hello",
   "description": "Hello",
-  "gastronomie": [
-    {
-      "name": "Hello"
-    }
-  ],
+  "gastronomie": [{
+    "name": "Hello"
+  }],
   "location": {
     "lon": 1.1,
     "lat": 1.1
@@ -19,11 +17,9 @@
   "likes": 10,
   "notation": 10,
   "primary_category": "Hello",
-  "pictures": [
-    {
-      "src": "Hello"
-    }
-  ],
+  "pictures": [{
+    "src": "Hello"
+  }],
   "main_picture": 10,
   "zone": "Hello",
   "travel_time": 10,
@@ -34,5 +30,8 @@
   "temporaly_place": true,
   "categories": {
     "name": "Hello"
-  }
+  },
+  "LAST_UPDATE_DATE": "2011-10-05T14:48:00.000Z",
+  "LAST_UPDATE_USER": "ghd667dds88ds",
+  "CREATED_AT": "2011-10-05T14:48:00.000Z"
 }
