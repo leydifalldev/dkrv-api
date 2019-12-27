@@ -138,7 +138,7 @@ export class ElasticService implements OnModuleInit {
       q,
     };
     return this.search(req);
-  };
+  }
 
   async add(params: any): Promise<ServiceResponse> {
     Logger.log('ADD REQUEST DATA');
@@ -156,7 +156,7 @@ export class ElasticService implements OnModuleInit {
         error: 'none',
       };
     } catch (e) {
-      Logger.log('ERROR');
+      Logger.log('ERROR', e);
       Logger.log(e);
       return {
         payload: null,

@@ -69,8 +69,8 @@ export class ProductInput {
 
   @Field(type => Boolean, { nullable: true })
   // tslint:disable-next-line:variable-name
-  menu?: boolean;
+  hasmenu?: boolean;
 
   @Field(type => String, { nullable: true })
-  account?: string;
+  accountid?: string;
 }

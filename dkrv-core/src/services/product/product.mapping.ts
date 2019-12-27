@@ -96,7 +96,7 @@ const productMapping = {
           },
         },
       },
-      menu: {
+      hasmenu: {
         type: 'boolean',
       },
       account: {
@@ -126,6 +126,15 @@ const productMapping = {
             },
           },
         },
+      },
+      CREATED_AT: {
+        type: 'date',
+      },
+      LAST_UPDATE_DATE: {
+        type: 'date',
+      },
+      LAST_UPDATE_USER: {
+        type: 'keyword',
       },
     },
   },

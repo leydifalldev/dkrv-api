@@ -9,10 +9,10 @@ const eventMapping = {
       name: {
         type: 'keyword',
       },
-      start_date: {
+      start: {
         type: 'date',
       },
-      end_date: {
+      end: {
         type: 'date',
       },
       categories: {
@@ -76,6 +76,9 @@ const eventMapping = {
       },
       account: {
         type: 'keyword',
+      },
+      artists: {
+        type: 'object',
       },
       hosts: {
         type: 'object',

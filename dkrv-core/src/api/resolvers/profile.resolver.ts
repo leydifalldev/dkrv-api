@@ -24,7 +24,7 @@ export class ProfileResolver {
   }
 
   @Mutation(returns => String)
-  async createProfile(@Args('Profile') profile: ProfileInput) {
+  async createProfile(@Args('profile') profile: ProfileInput) {
     Logger.log(profile);
     const response: ServiceResponse = await this.profileStore.add(Profile);
     Logger.log(response);

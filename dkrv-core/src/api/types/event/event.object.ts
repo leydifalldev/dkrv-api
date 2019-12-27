@@ -1,71 +1,68 @@
-import { Field, Int, ObjectType } from 'type-graphql';
-import { Price, Profile, Place, Location, Picture } from '../index';
+import { Field, ObjectType } from 'type-graphql';
+import {
+  Price,
+  Profile,
+  Picture,
+  Ranking,
+  Contact,
+  Address,
+  Media,
+} from '../index';
+import { Place } from '../place/place.object';
 
 @ObjectType()
 export class Event {
-  @Field(type => String, { nullable: true })
-  id?: string;
-
-  @Field(type => String, { nullable: true })
-  name?: string;
+  @Field(type => String)
+  id: string;
 
   @Field(type => String)
-  // tslint:disable-next-line:variable-name
-  start_date?: string;
-
-  @Field(type => String, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  end_date?: string;
+  name: string;
 
   @Field(type => String)
-  // tslint:disable-next-line:variable-name
-  placeid: string;
+  start?: string;
 
   @Field(type => String, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  placename?: string;
+  end: string;
 
   @Field(type => String, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  zone?: string;
+  description: string;
+
+  @Field(type => Contact)
+  contact: Contact;
 
   @Field(type => [Price], { nullable: true })
-  // tslint:disable-next-line:variable-name
   prices?: Price[];
 
-  @Field(type => Profile, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  manager?: Profile;
-
-  @Field(type => Place, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  place?: Place;
-
   @Field(type => [String])
-  // tslint:disable-next-line:variable-name
   categories: string[];
 
-  @Field(type => Int, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  notation?: number;
+  @Field(type => [String], { nullable: true })
+  tags: string[];
 
-  @Field(type => Int, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  likes?: number;
+  @Field(type => [Place], { nullable: true })
+  place: Place[];
 
-  @Field(type => String, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  logo?: string;
+  @Field(type => Address)
+  address: Address;
 
-  @Field(type => Location, { nullable: true })
-  location?: Location;
-
-  @Field(type => [Profile], { nullable: true })
-  hosts?: Profile[];
+  @Field(type => Ranking, { nullable: true })
+  ranking?: Ranking;
 
   @Field(type => [Profile], { nullable: true })
   artists?: Profile[];
 
+  @Field(type => [Profile], { nullable: true })
+  hosts?: Profile[];
+
   @Field(type => [Picture], { nullable: true })
-  pictures?: Picture[];
+  pictures?: Media[];
+
+  @Field(type => String, { nullable: true })
+  CREATED_AT?: string;
+
+  @Field(type => String, { nullable: true })
+  LAST_UPDATE_DATE?: string;
+
+  @Field(type => String, { nullable: true })
+  LAST_UPDATE_USER?: string;
 }

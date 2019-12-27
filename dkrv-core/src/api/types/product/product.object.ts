@@ -1,5 +1,6 @@
 import { Field, Int, Float, ObjectType } from 'type-graphql';
 import { Location, Contact, Address, Ranking, Media } from '../index';
+import { Profile } from '../profile/profile.object';
 
 @ObjectType()
 export class Product {
@@ -62,10 +63,10 @@ export class Product {
 
   @Field(type => Boolean, { nullable: true })
   // tslint:disable-next-line:variable-name
-  menu?: boolean;
+  hasmenu?: boolean;
 
-  @Field(type => String, { nullable: true })
-  account?: string;
+  @Field(type => Profile, { nullable: true })
+  account?: Profile;
 
   @Field(type => String, { nullable: true })
   CREATED_AT?: string;

@@ -1,10 +1,12 @@
-import { Field, Int, InputType } from 'type-graphql';
+import { Field, InputType } from 'type-graphql';
 import {
   PriceInput,
   ProfileInput,
-  PlaceInput,
-  LocationInput,
   PictureInput,
+  RankingInput,
+  ContactInput,
+  AddressInput,
+  MediaInput,
 } from '../index';
 
 @InputType()
@@ -17,58 +19,38 @@ export class EventInput {
 
   @Field(type => String)
   // tslint:disable-next-line:variable-name
-  start_date?: string;
+  start?: string;
 
   @Field(type => String, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  end_date?: string;
-
-  @Field(type => String)
-  // tslint:disable-next-line:variable-name
-  placeid: string;
+  end: string;
 
   @Field(type => String, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  placename?: string;
-
-  @Field(type => String, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  zone?: string;
+  description: string;
 
   @Field(type => [PriceInput], { nullable: true })
-  // tslint:disable-next-line:variable-name
   prices?: PriceInput[];
 
-  @Field(type => ProfileInput, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  manager?: ProfileInput;
-
-  @Field(type => PlaceInput, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  place?: PlaceInput;
-
   @Field(type => [String])
-  // tslint:disable-next-line:variable-name
   categories: string[];
 
-  @Field(type => Int, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  notation?: number;
+  @Field(type => ContactInput, { nullable: true })
+  contact?: ContactInput;
 
-  @Field(type => Int, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  likes?: number;
+  @Field(type => [String], { nullable: true })
+  tags: string[];
 
-  @Field(type => String, { nullable: true })
-  // tslint:disable-next-line:variable-name
-  logo?: string;
+  @Field(type => AddressInput)
+  address: AddressInput;
 
-  @Field(type => LocationInput, { nullable: true })
-  location?: LocationInput;
+  @Field(type => RankingInput, { nullable: true })
+  ranking?: RankingInput;
 
-  @Field(type => ProfileInput, { nullable: true })
-  hosts?: ProfileInput;
+  @Field(type => [ProfileInput], { nullable: true })
+  artists?: ProfileInput[];
 
-  @Field(type => [PictureInput], { nullable: true })
-  pictures?: PictureInput[];
+  @Field(type => [ProfileInput], { nullable: true })
+  hosts?: ProfileInput[];
+
+  @Field(type => [MediaInput], { nullable: true })
+  pictures?: MediaInput[];
 }
