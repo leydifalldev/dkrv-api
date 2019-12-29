@@ -1,42 +1,27 @@
 import { Module } from '@nestjs/common';
 import { GraphQLModule } from '@nestjs/graphql';
-import { APP_INTERCEPTOR } from '@nestjs/core';
-import { LoggingInterceptor } from '../shared/logging.interceptor';
+import { GraphQLUpload } from 'graphql-upload';
 import {
   PlaceResolver,
   ProductResolver,
   EventResolver,
-  ProfileResolver,
+  UserResolver,
 } from './resolvers';
-import {
-  PlaceStore,
-  ProductStore,
-  ProfileStore,
-  EventStore,
-} from '../services';
-import { UploadController } from './controllers/fileUploader';
-import { MulterModule } from '@nestjs/platform-express';
+import { ServicesModule } from '../services/services.module';
+import { Upload } from './types';
 
 @Module({
-  controllers: [UploadController],
   imports: [
+    Upload,
+    ServicesModule,
     GraphQLModule.forRoot({
       autoSchemaFile: './schemas/schema.gql',
+      uploads: {
+        maxFileSize: 10000000, // 10 MB
+        maxFiles: 5,
+      },
     }),
   ],
-  providers: [
-    {
-      provide: APP_INTERCEPTOR,
-      useClass: LoggingInterceptor,
-    },
-    PlaceStore,
-    ProductStore,
-    ProfileStore,
-    EventStore,
-    PlaceResolver,
-    ProductResolver,
-    ProfileResolver,
-    EventResolver,
-  ],
+  providers: [PlaceResolver, ProductResolver, UserResolver, EventResolver],
 })
 export class ApiModule {}

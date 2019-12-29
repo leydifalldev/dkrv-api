@@ -17,6 +17,7 @@ import {
 import { PriorityHigh, Send } from "@material-ui/icons";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { PlaceScreen } from "./Place/PlaceScreen";
+import { ProfileScreen } from "./Profile/ProfileScreen";
 import { Menu } from "./Menu";
 const drawerWidth = 240;
 
@@ -155,6 +156,9 @@ const LayoutContent = ({ classes }) => (
       <Switch>
         <Route path="/place">
           <PlaceScreen />
+        </Route>
+        <Route path="/profile">
+          <ProfileScreen />
         </Route>
       </Switch>
     </SnackbarProvider>

@@ -2,7 +2,7 @@ import { Field, ObjectType } from 'type-graphql';
 import { Contact, Address, Ranking, Media } from '../index';
 
 @ObjectType()
-export class Profile {
+export class User {
   @Field(type => String, { nullable: true })
   id?: string;
 
@@ -35,9 +35,6 @@ export class Profile {
 
   @Field(type => [String], { nullable: true })
   roles?: string[];
-
-  @Field(type => String, { nullable: true })
-  password?: string;
 
   @Field(type => String, { nullable: true })
   description?: string;

@@ -14,9 +14,9 @@ export { ProductDeleteResponse } from './product/product.delete.response';
 export { ProductListResponse } from './product/product.list.response';
 export { ProductDetailResponse } from './product/product.detail.response';
 export { ProductUpdateResponse } from './product/product.update.response';
-
-export { Profile } from './profile/profile.object';
-export { ProfileInput } from './profile/profile.input';
+export { User } from './user/user.object';
+export { ProfileInput } from './user/profile.input';
+export { UserInput } from './user/user.input';
 
 export { Event } from './event/event.object';
 export { EventInput } from './event/event.input';
@@ -46,6 +46,7 @@ export { RankingInput } from './common/ranking.input';
 export { Recipe } from './common/recipe.object';
 export { RecipeInput } from './common/recipe.input';
 export { File } from './common/file.object';
+export { Upload } from './common/upload.scalar';
 export { PriceInput } from './common/price.input';
 export { Price } from './common/price.object';
 export { SocialNet } from './common/social.net.object';

@@ -76,14 +76,12 @@ export class ElasticService implements OnModuleInit {
     return this.esclient;
   }
 
-  toListResponse(hits) {
+  toListResponse(hits): ServiceResponse {
     Logger.log('toListResponse LOG');
     Logger.log(hits);
     const data = hits.hits.map((hit: any) => {
       hit._source.id = hit._id;
       const typeOfDate = typeof hit._source.start_date;
-      Logger.log('typeOfDate');
-      Logger.log(typeOfDate);
       return { id: hit._id, ...hit._source };
     });
     return {
@@ -109,9 +107,8 @@ export class ElasticService implements OnModuleInit {
       const {
         body: { hits },
       } = result;
-      Logger.log('SearchResponse log');
-      Logger.log(hits);
-      return this.toListResponse(hits);
+      const response = this.toListResponse(hits);
+      return response;
     } catch (e) {
       Logger.log(e);
       return {
@@ -138,7 +135,7 @@ export class ElasticService implements OnModuleInit {
       q,
     };
     return this.search(req);
-  }
+  };
 
   async add(params: any): Promise<ServiceResponse> {
     Logger.log('ADD REQUEST DATA');
@@ -234,6 +231,25 @@ export class ElasticService implements OnModuleInit {
         payload: null,
       };
     }
+  }
+
+  async getProfileByEmail(email) {
+    const req = {
+      body: {
+        _source: ['firstname', 'lastname', 'contact.email', 'email', 'roles'],
+        query: {
+          bool: {
+            must: {
+              term: {
+                'contact.email': email,
+              },
+            },
+          },
+        },
+      },
+      size: 1,
+    };
+    return await this.search(req);
   }
 
   searchErrorHandler(e) {

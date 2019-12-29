@@ -1,7 +1,7 @@
 import { Field, ObjectType } from 'type-graphql';
 import {
   Price,
-  Profile,
+  User,
   Picture,
   Ranking,
   Contact,
@@ -48,11 +48,11 @@ export class Event {
   @Field(type => Ranking, { nullable: true })
   ranking?: Ranking;
 
-  @Field(type => [Profile], { nullable: true })
-  artists?: Profile[];
+  @Field(type => [User], { nullable: true })
+  artists?: User[];
 
-  @Field(type => [Profile], { nullable: true })
-  hosts?: Profile[];
+  @Field(type => [User], { nullable: true })
+  hosts?: User[];
 
   @Field(type => [Picture], { nullable: true })
   pictures?: Media[];

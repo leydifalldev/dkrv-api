@@ -6,3 +6,4 @@ export { UPLOAD_PICTURES } from "./Common/uploadPicture";
 export { ADD_PRODUCT } from "./Place/add.product";
 export { RETRIEVE_PRODUCTS_LIST } from "./Place/get.products";
 export { RETRIEVE_PRODUCTS_GROUPED_INFO } from "./Place/get.products.grouped";
+export { GET_PROFILE_LIST } from "./Profile/list";

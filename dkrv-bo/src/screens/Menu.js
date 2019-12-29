@@ -38,7 +38,7 @@ export const Menu = () => {
         <ButtonLink to={"#"} icon={<TrendingUp />} />
         <ButtonLink to={"#"} icon={<Search />} />
         <ButtonLink to={"/place/list"} icon={<HomeWork />} />
-        <ButtonLink to={"#"} icon={<AccountCircle />} />
+        <ButtonLink to={"/profile/list"} icon={<AccountCircle />} />
         <ButtonLink to={"#"} icon={<AccountBalance />} />
         <ButtonLink to={"#"} icon={<ImportantDevices />} />
       </div>
@@ -57,8 +57,8 @@ const ButtonLink = ({ to, icon, inversedColor, activeOnlyWhenExact }) => {
 
   return (
     <Link style={buttonLinkStyle} to={to}>
-      <Fab color={match ? "secondary" : "primary"} aria-label="add">
-        {icon}
+      <Fab aria-label="add" color="primary">
+        {React.cloneElement(icon, { color: match ? "secondary" : "default" })}
       </Fab>
     </Link>
   );
@@ -66,7 +66,7 @@ const ButtonLink = ({ to, icon, inversedColor, activeOnlyWhenExact }) => {
 
 const PowerButton = ({ to, icon, inversedColor, activeOnlyWhenExact }) => {
   return (
-    <Fab style={buttonLinkStyle} color="secondary" aria-label="add">
+    <Fab style={buttonLinkStyle} color="primary" aria-label="add">
       <PowerSettingsNew style={{ color: "#fff" }} />
     </Fab>
   );

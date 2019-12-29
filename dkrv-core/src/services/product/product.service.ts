@@ -1,7 +1,6 @@
 import { Injectable, Logger } from '@nestjs/common';
 import productMapping from './product.mapping';
 import { ElasticService } from '../elastic.service';
-import { response } from 'express';
 
 @Injectable()
 export class ProductStore extends ElasticService {
@@ -19,7 +18,7 @@ export class ProductStore extends ElasticService {
           },
         },
       },
-      q: q,
+      q,
       size: size || 10,
       from: from || 0,
     };
